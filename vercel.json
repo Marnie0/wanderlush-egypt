@@ -15,7 +15,7 @@
       "headers": [
         {
           "key": "Link",
-          "value": "</images/hero/egypt-hero-1600.webp>; rel=preload; as=image; imagesrcset=\"/images/hero/egypt-hero-640.webp 640w, /images/hero/egypt-hero-1024.webp 1024w, /images/hero/egypt-hero-1600.webp 1600w, /images/hero/egypt-hero-2400.webp 2400w\"; imagesizes=\"100vw\""
+          "value": "</images/hero/egypt-hero-1600.6367532e.webp>; rel=preload; as=image; imagesrcset=\"/images/hero/egypt-hero-640.8b278e37.webp 640w, /images/hero/egypt-hero-1024.82be3f8a.webp 1024w, /images/hero/egypt-hero-1600.6367532e.webp 1600w, /images/hero/egypt-hero-2400.144c5f27.webp 2400w\"; imagesizes=\"100vw\""
         }
       ]
     },

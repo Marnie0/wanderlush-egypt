@@ -32,8 +32,8 @@ export const destinations: Destination[] = [
     heroImage: {
       src: "/images/destinations/cairo-hero.webp",
       alt: {
-        en: "The Citadel of Salah al-Din and the Muhammad Ali Mosque",
-        ar: "قلعة صلاح الدين ومسجد محمد علي",
+        en: "Sultan Hassan and Al-Rifai mosques above the old city",
+        ar: "مسجدا السلطان حسن والرفاعي فوق المدينة القديمة",
       },
     },
     gallery: [

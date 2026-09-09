@@ -16,7 +16,7 @@ licence shown. Attribution is required for the CC BY and CC BY-SA images.
 | destinations/cairo-01 | [Khan el-Khalili 2019.jpg](https://commons.wikimedia.org/wiki/File:Khan_el-Khalili_2019.jpg) | Mohammed Moussa | CC BY-SA 4.0 |
 | destinations/cairo-02 | [Al Qasby Alley at the corner with Muizz Street 01.jpg](https://commons.wikimedia.org/wiki/File:Al_Qasby_Alley_at_the_corner_with_Muizz_Street_01.jpg) | Marsupium | CC BY 4.0 |
 | destinations/cairo-03 | [Sunset at cairo tower.jpg](https://commons.wikimedia.org/wiki/File:Sunset_at_cairo_tower.jpg) | Mahmoud elhashash | CC BY-SA 4.0 |
-| destinations/cairo-hero | [Flickr - HuTect ShOts - Citadel of Salah El.Din and Masjid Muhammad Ali قلعة صلاح الدين الأيوبي ومسجد محمد علي - Cairo - Egypt - 17 04 2010 (4).jpg](https://commons.wikimedia.org/wiki/File:Flickr_-_HuTect_ShOts_-_Citadel_of_Salah_El.Din_and_Masjid_Muhammad_Ali_قلعة_صلاح_الدين_الأيوبي_ومسجد_محمد_علي_-_Cairo_-_Egypt_-_17_04_2010_(4).jpg) | Ahmed Al.Badawy from Cairo, Egypt | CC BY-SA 2.0 |
+| destinations/cairo-hero | [مسجد الرفاعي و مسجد السلطان حسن - Rifai Mosque and Sultan Hassan mosque.jpg](https://commons.wikimedia.org/wiki/File:مسجد_الرفاعي_و_مسجد_السلطان_حسن_-_Rifai_Mosque_and_Sultan_Hassan_mosque.jpg) | Mahmoud Mostafa Ashour | CC BY-SA 4.0 |
 | destinations/fayoum-01 | [Lake Moeris 031.JPG](https://commons.wikimedia.org/wiki/File:Lake_Moeris_031.JPG) | لا روسا | CC BY-SA 3.0 |
 | destinations/fayoum-02 | [Wadi Al Hitan, Fayoum.jpg](https://commons.wikimedia.org/wiki/File:Wadi_Al_Hitan,_Fayoum.jpg) | Maaly Saeed | CC BY-SA 4.0 |
 | destinations/fayoum-03 | [Tunis village -Fayoum by Hatem Moushir 10.JPG](https://commons.wikimedia.org/wiki/File:Tunis_village_-Fayoum_by_Hatem_Moushir_10.JPG) | Hatem Moushir | CC BY-SA 3.0 |

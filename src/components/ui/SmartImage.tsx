@@ -53,9 +53,10 @@ export function SmartImage({
     if (img?.complete && img.naturalWidth > 0) setLoaded(true);
   }, [src]);
 
-  const base = src.replace(/\.webp$/, "");
-  const srcSet = entry?.widths.map((w) => `${base}-${w}.webp ${w}w`).join(", ");
-  const fallbackWidth = entry?.widths[Math.min(1, entry.widths.length - 1)];
+  // Filenames are content-hashed, so the manifest is the only place that
+  // knows the real URLs.
+  const srcSet = entry?.sources.map((s) => `${s.url} ${s.width}w`).join(", ");
+  const fallback = entry?.sources[Math.min(1, entry.sources.length - 1)];
   const showPlaceholder = !entry || failed;
 
   return (
@@ -76,7 +77,7 @@ export function SmartImage({
       {entry && !failed && (
         <img
           ref={imgRef}
-          src={`${base}-${fallbackWidth}.webp`}
+          src={fallback?.url}
           srcSet={srcSet}
           sizes={sizes}
           alt={alt}
