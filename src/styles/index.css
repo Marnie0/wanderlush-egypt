@@ -196,6 +196,11 @@
     display: block;
     max-width: 100%;
   }
+
+  /* The header is fixed, so anything scrolled to by id needs to clear it. */
+  [id] {
+    scroll-margin-top: 6rem;
+  }
 }
 
 @layer utilities {

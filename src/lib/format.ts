@@ -59,8 +59,8 @@ export function formatDate(
 }
 
 /**
- * "3–5 days", not "3 days–5 days". Reads correctly in both directions
- * because the digits form their own bidi run.
+ * "3–5 days", not "3 days–5 days". Ranges use their own string because
+ * Arabic's dual form ("يومان") carries no numeral and cannot end a range.
  */
 export function formatDayRange(
   min: number,
@@ -69,7 +69,10 @@ export function formatDayRange(
   language: string,
 ): string {
   if (min === max) return t("common.days", { count: min });
-  return `${formatNumber(min, language)}\u2013${t("common.days", { count: max })}`;
+  return t("common.dayRange", {
+    min: formatNumber(min, language),
+    max: formatNumber(max, language),
+  });
 }
 
 /**

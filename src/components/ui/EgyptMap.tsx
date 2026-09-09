@@ -2,7 +2,8 @@ import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/cn";
 import { pick } from "@/lib/format";
 import {
-  LABEL_BELOW,
+  DEFAULT_LABEL,
+  LABEL_PLACEMENT,
   MAP_HEIGHT,
   MAP_WIDTH,
   MARKER_NUDGE,
@@ -84,6 +85,7 @@ export function EgyptMap({ destinations, activeSlug, onSelect, className }: Egyp
         const y = base.y + nudge.y;
         const isActive = destination.slug === activeSlug;
         const name = pick(destination.name, language);
+        const label = LABEL_PLACEMENT[destination.slug] ?? DEFAULT_LABEL;
 
         return (
           <g
@@ -125,9 +127,9 @@ export function EgyptMap({ destinations, activeSlug, onSelect, className }: Egyp
               className="transition-all duration-300"
             />
             <text
-              x={x}
-              y={LABEL_BELOW.has(destination.slug) ? y + 34 : y - 20}
-              textAnchor="middle"
+              x={x + label.dx}
+              y={y + label.dy}
+              textAnchor={label.anchor}
               className={cn(
                 "pointer-events-none select-none font-body text-[15px] transition-opacity duration-300",
                 isActive ? "opacity-100" : "opacity-0",

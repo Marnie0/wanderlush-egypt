@@ -73,7 +73,8 @@
     "notFound": "الصفحة غير موجودة",
     "demoContent": "محتوى تجريبي",
     "comingInPhase": "يصل في مرحلة لاحقة",
-    "backHome": "العودة إلى الصفحة الرئيسية"
+    "backHome": "العودة إلى الصفحة الرئيسية",
+    "dayRange": "{{min}}–{{max}} أيام"
   },
   "home": {
     "heroHeadline": "مصر، مرتَّبة على مقاسك",
@@ -302,5 +303,70 @@
   "groupFormat": {
     "private": "خاص",
     "shared": "مشترك"
+  },
+  "explore": {
+    "searchLabel": "ابحث في الوجهات",
+    "searchPlaceholder": "الاسم أو الإقليم أو الطابع",
+    "filters": "عوامل التصفية",
+    "showFilters": "تصفية",
+    "hideFilters": "تم",
+    "region": "الإقليم",
+    "travelStyle": "طابع الرحلة",
+    "duration": "المدة المتاحة لك",
+    "season": "موعد سفرك",
+    "anyRegion": "أي مكان",
+    "anyMonth": "أي شهر",
+    "clearAll": "مسح الكل",
+    "clearOne": "إزالة {{label}}",
+    "activeFilters": "عوامل التصفية النشطة",
+    "resultCount_zero": "لا توجد وجهات",
+    "resultCount_one": "وجهة واحدة",
+    "resultCount_two": "وجهتان",
+    "resultCount_few": "{{count}} وجهات",
+    "resultCount_many": "{{count}} وجهة",
+    "resultCount_other": "{{count}} وجهة",
+    "empty": {
+      "title": "لا شيء يطابق هذه التركيبة",
+      "body": "جرّب توسيع الموسم أو مدة الإقامة. مصر بلد واسع، لكن ليس كل ركن فيها يناسب كل شهر.",
+      "action": "امسح عوامل التصفية"
+    },
+    "durations": {
+      "short": "يوم إلى يومين",
+      "medium": "ثلاثة إلى أربعة أيام",
+      "long": "خمسة أيام فأكثر"
+    },
+    "spotlight": "على الخريطة",
+    "experiencesHere_zero": "لا توجد تجارب هنا",
+    "experiencesHere_one": "تجربة واحدة هنا",
+    "experiencesHere_two": "تجربتان هنا",
+    "experiencesHere_few": "{{count}} تجارب هنا",
+    "experiencesHere_many": "{{count}} تجربة هنا",
+    "experiencesHere_other": "{{count}} تجربة هنا",
+    "startingFrom": "يبدأ من"
+  },
+  "trip": {
+    "add": "أضف إلى الرحلة",
+    "added": "مضاف إلى رحلتك",
+    "remove": "إزالة من الرحلة",
+    "count_zero": "لا عناصر",
+    "count_one": "عنصر واحد",
+    "count_two": "عنصران",
+    "count_few": "{{count}} عناصر",
+    "count_many": "{{count}} عنصرًا",
+    "count_other": "{{count}} عنصر",
+    "inYourTrip": "في رحلتك"
+  },
+  "gallery": {
+    "title": "معرض الصور",
+    "open": "افتح الصورة {{index}} من {{total}}",
+    "close": "إغلاق",
+    "previous": "الصورة السابقة",
+    "next": "الصورة التالية",
+    "counter": "{{index}} من {{total}}"
+  },
+  "notFound": {
+    "destination": "لا يوجد لدينا دليل لهذا المكان",
+    "destinationBody": "ربما تغيّر اسمه أو أصبح الرابط قديمًا. وجميع الأدلة العشرة مدرجة أدناه.",
+    "backToDestinations": "شاهد كل الوجهات"
   }
 }

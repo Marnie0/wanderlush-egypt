@@ -8,6 +8,7 @@ import { MobileMenu } from "./MobileMenu";
 import { Logo } from "./Logo";
 import { primaryNav } from "./navItems";
 import { cn } from "@/lib/cn";
+import { useTripCount } from "@/lib/trip-store";
 
 /**
  * Transparent over a hero, solid once the page scrolls. The compact state is
@@ -19,6 +20,7 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const tripCount = useTripCount();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -60,6 +62,14 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
                     }
                   >
                     {t(item.key)}
+                    {item.to === "/trip-builder" && tripCount > 0 && (
+                      <span
+                        className="ms-1.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-ember-500 px-1.5 text-xs text-ivory"
+                        aria-label={t("trip.count", { count: tripCount })}
+                      >
+                        {tripCount}
+                      </span>
+                    )}
                   </NavLink>
                 </li>
               ))}

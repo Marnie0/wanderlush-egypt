@@ -7,12 +7,14 @@ import { LanguageSwitcher } from "./LanguageSwitcher";
 import { ButtonLink } from "@/components/ui/Button";
 import { useDirection } from "@/hooks/useDirection";
 import { transitions } from "@/lib/motion";
+import { useTripCount } from "@/lib/trip-store";
 
 export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
   const { t } = useTranslation();
   const { isRtl } = useDirection();
   const closeRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+  const tripCount = useTripCount();
 
   // Escape closes, Tab stays inside the panel, and the page behind must not
   // scroll while the panel is up.
@@ -115,6 +117,11 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
                       }
                     >
                       {t(item.key)}
+                      {item.to === "/trip-builder" && tripCount > 0 && (
+                        <span className="ms-2 inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-ember-500 px-2 text-sm text-ivory">
+                          {tripCount}
+                        </span>
+                      )}
                     </NavLink>
                   </li>
                 ))}

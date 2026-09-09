@@ -73,10 +73,23 @@ export const MARKER_NUDGE: Record<string, { x: number; y: number }> = {
 };
 
 /**
- * Labels sit above their marker unless that would collide with a neighbour.
- * Only the Cairo and Giza pair needs the exception.
+ * Labels sit above their marker by default. Around Cairo the markers are close
+ * enough that a label would land on a neighbouring dot, so those few are
+ * placed by hand.
  */
-export const LABEL_BELOW = new Set(["giza", "fayoum"]);
+export interface LabelPlacement {
+  dx: number;
+  dy: number;
+  anchor: "start" | "middle" | "end";
+}
+
+export const DEFAULT_LABEL: LabelPlacement = { dx: 0, dy: -20, anchor: "middle" };
+
+export const LABEL_PLACEMENT: Record<string, LabelPlacement> = {
+  // Above would hit Cairo, below would hit Fayoum, so Giza reads to the west.
+  giza: { dx: -13, dy: 6, anchor: "end" },
+  fayoum: { dx: 0, dy: 34, anchor: "middle" },
+};
 
 export const egyptOutlinePath = toPath(OUTLINE, true);
 export const nileMainPath = toPath(NILE_MAIN);

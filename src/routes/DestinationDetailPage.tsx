@@ -1,4 +1,4 @@
-import { Navigate, useParams, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { m } from "framer-motion";
 import { destinationBySlug } from "@content/destinations";
@@ -6,6 +6,9 @@ import { experiencesByDestination } from "@content/experiences";
 import { Container, Eyebrow, Rule, Section } from "@/components/ui/Layout";
 import { SmartImage, FULL_SIZES } from "@/components/ui/SmartImage";
 import { ExperienceCard } from "@/components/ui/Cards";
+import { Gallery } from "@/components/ui/Gallery";
+import { AddToTripButton } from "@/components/ui/AddToTripButton";
+import { ButtonLink } from "@/components/ui/Button";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { pick, pickList, formatMoney, formatDayRange } from "@/lib/format";
 import { riseIn, stagger, transitions, viewportOnce } from "@/lib/motion";
@@ -25,7 +28,21 @@ export function DestinationDetailPage() {
     destination ? pick(destination.tagline, language) : undefined,
   );
 
-  if (!destination) return <Navigate to="/destinations" replace />;
+  if (!destination) {
+    return (
+      <Section>
+        <Container className="max-w-2xl text-center">
+          <h1 className="text-display text-charcoal-900">{t("notFound.destination")}</h1>
+          <p className="mt-6 text-lead leading-relaxed text-charcoal-600">
+            {t("notFound.destinationBody")}
+          </p>
+          <ButtonLink to="/destinations" className="mt-10">
+            {t("notFound.backToDestinations")}
+          </ButtonLink>
+        </Container>
+      </Section>
+    );
+  }
 
   const localExperiences = experiencesByDestination[destination.slug] ?? [];
   const seasons = destination.bestSeason.map((m) => t(`months.${m}`));
@@ -61,6 +78,9 @@ export function DestinationDetailPage() {
             <m.p variants={riseIn} className="mt-4 max-w-2xl text-lead text-ivory/90 on-photo">
               {pick(destination.tagline, language)}
             </m.p>
+            <m.div variants={riseIn} className="mt-8">
+              <AddToTripButton kind="destination" slug={destination.slug} size="lg" />
+            </m.div>
           </m.div>
         </Container>
       </section>
@@ -189,12 +209,32 @@ export function DestinationDetailPage() {
                 })}
               </ul>
             </div>
+
+            <div className="mt-8 border-t border-line pt-6">
+              <AddToTripButton
+                kind="destination"
+                slug={destination.slug}
+                className="w-full"
+              />
+            </div>
           </aside>
         </Container>
       </Section>
 
+      {destination.gallery.length > 0 && (
+        <Section id="gallery" className="pt-0 lg:pt-0">
+          <Container>
+            <Eyebrow>{t("gallery.title")}</Eyebrow>
+            <Rule className="mt-4" />
+            <div className="mt-10">
+              <Gallery images={destination.gallery} accent={destination.accent} />
+            </div>
+          </Container>
+        </Section>
+      )}
+
       {localExperiences.length > 0 && (
-        <Section className="bg-sand-50 pt-0 pb-section lg:pt-0">
+        <Section id="experiences" className="bg-sand-50 pt-0 pb-section lg:pt-0">
           <Container className="pt-section">
             <Eyebrow>{t("destination.experiencesHere")}</Eyebrow>
             <Rule className="mt-4" />

@@ -825,7 +825,7 @@ export const destinations: Destination[] = [
     region: "red-sea",
     coordinates: { lat: 27.2579, lng: 33.8116 },
     travelStyles: ["beach", "family", "nature"],
-    bestSeason: ["mar", "apr", "may", "jun", "sep", "oct", "nov"],
+    bestSeason: ["jan", "feb", "mar", "apr", "may", "jun", "sep", "oct", "nov", "dec"],
     bestSeasonNote: {
       en: "Swimmable all year. Spring and autumn give warm water without the July heat on land.",
       ar: "صالحة للسباحة طوال العام. ويمنح الربيع والخريف ماءً دافئًا دون حرارة يوليو على اليابسة.",
@@ -936,7 +936,10 @@ export const destinations: Destination[] = [
     region: "red-sea",
     coordinates: { lat: 27.9158, lng: 34.33 },
     travelStyles: ["beach", "luxury", "family", "nature"],
-    bestSeason: ["mar", "apr", "may", "jun", "sep", "oct", "nov", "dec"],
+    bestSeason: [
+      "jan", "feb", "mar", "apr", "may", "jun",
+      "jul", "aug", "sep", "oct", "nov", "dec",
+    ],
     bestSeasonNote: {
       en: "A genuine year-round destination. Water stays above 21°C in winter and the desert air keeps summer bearable.",
       ar: "وجهة صالحة للزيارة طوال العام بحق. تبقى حرارة الماء فوق 21 درجة شتاءً، ويجعل هواء الصحراء الصيف محتملًا.",

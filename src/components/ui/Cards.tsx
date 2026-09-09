@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { m } from "framer-motion";
 import { SmartImage, CARD_SIZES, HALF_SIZES } from "./SmartImage";
+import { AddToTripButton } from "./AddToTripButton";
 import { pick, formatMoney, formatDayRange, formatDuration } from "@/lib/format";
 import { riseIn } from "@/lib/motion";
 import { cn } from "@/lib/cn";
@@ -17,11 +18,13 @@ export function DestinationCard({
   className,
   featured = false,
   sizes = CARD_SIZES,
+  showAddToTrip = false,
 }: {
   destination: Destination;
   className?: string;
   featured?: boolean;
   sizes?: string;
+  showAddToTrip?: boolean;
 }) {
   const { t, i18n } = useTranslation();
   const language = i18n.resolvedLanguage ?? "en";
@@ -49,6 +52,15 @@ export function DestinationCard({
           </div>
         </SmartImage>
       </Link>
+      {showAddToTrip && (
+        <AddToTripButton
+          kind="destination"
+          slug={destination.slug}
+          size="sm"
+          variant="secondary"
+          className="mt-4 w-full"
+        />
+      )}
       <div className="mt-4 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 text-sm text-ink-muted">
         <span>
           {formatDayRange(

@@ -53,7 +53,8 @@
     "notFound": "Page not found",
     "demoContent": "Demo content",
     "comingInPhase": "Arriving in a later phase",
-    "backHome": "Back to the homepage"
+    "backHome": "Back to the homepage",
+    "dayRange": "{{min}}–{{max}} days"
   },
   "home": {
     "heroHeadline": "Egypt, arranged around you",
@@ -282,5 +283,58 @@
   "groupFormat": {
     "private": "Private",
     "shared": "Shared"
+  },
+  "explore": {
+    "searchLabel": "Search destinations",
+    "searchPlaceholder": "Name, region or style",
+    "filters": "Filters",
+    "showFilters": "Filters",
+    "hideFilters": "Done",
+    "region": "Region",
+    "travelStyle": "Travel style",
+    "duration": "How long you have",
+    "season": "When you are going",
+    "anyRegion": "Anywhere",
+    "anyMonth": "Any month",
+    "clearAll": "Clear all",
+    "clearOne": "Remove {{label}}",
+    "activeFilters": "Active filters",
+    "resultCount_one": "{{count}} destination",
+    "resultCount_other": "{{count}} destinations",
+    "empty": {
+      "title": "Nothing matches that combination",
+      "body": "Try widening the season or the length of stay. Egypt is a big country, but not every corner suits every month.",
+      "action": "Clear the filters"
+    },
+    "durations": {
+      "short": "1 to 2 days",
+      "medium": "3 to 4 days",
+      "long": "5 days or more"
+    },
+    "spotlight": "On the map",
+    "experiencesHere_one": "{{count}} experience here",
+    "experiencesHere_other": "{{count}} experiences here",
+    "startingFrom": "Starting from"
+  },
+  "trip": {
+    "add": "Add to trip",
+    "added": "In your trip",
+    "remove": "Remove from trip",
+    "count_one": "{{count}} item",
+    "count_other": "{{count}} items",
+    "inYourTrip": "In your trip"
+  },
+  "gallery": {
+    "title": "Gallery",
+    "open": "Open image {{index}} of {{total}}",
+    "close": "Close",
+    "previous": "Previous image",
+    "next": "Next image",
+    "counter": "{{index}} of {{total}}"
+  },
+  "notFound": {
+    "destination": "We do not have a guide for that place",
+    "destinationBody": "It may have been renamed, or the link may be out of date. All ten guides are listed below.",
+    "backToDestinations": "See all destinations"
   }
 }
