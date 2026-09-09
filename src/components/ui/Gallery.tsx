@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { AnimatePresence, m } from "framer-motion";
 import { SmartImage, preloadImage } from "./SmartImage";
 import { pick } from "@/lib/format";
+import { cn } from "@/lib/cn";
 import { transitions } from "@/lib/motion";
 import type { ImageRef } from "@content/types";
 
@@ -86,7 +87,14 @@ export function Gallery({ images, accent }: { images: ImageRef[]; accent?: strin
 
   return (
     <>
-      <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {/* Columns follow the count, so a pair of photographs fills the row
+          instead of leaving a gap that reads as a missing image. */}
+      <ul
+        className={cn(
+          "grid gap-4",
+          images.length === 2 ? "sm:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3",
+        )}
+      >
         {images.map((image, index) => (
           <li key={image.src}>
             <button

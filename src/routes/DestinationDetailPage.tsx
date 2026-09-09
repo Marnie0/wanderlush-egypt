@@ -246,7 +246,7 @@ export function DestinationDetailPage() {
               className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-3"
             >
               {localExperiences.map((experience) => (
-                <ExperienceCard key={experience.slug} experience={experience} />
+                <ExperienceCard key={experience.slug} experience={experience} showActions />
               ))}
             </m.div>
           </Container>

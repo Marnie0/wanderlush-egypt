@@ -49,6 +49,14 @@ export function formatNumber(value: number, language: string): string {
   return new Intl.NumberFormat(localeTag[lang(language)]).format(value);
 }
 
+/** Ratings always carry one decimal, so 5 does not read as a different scale. */
+export function formatRating(value: number, language: string): string {
+  return new Intl.NumberFormat(localeTag[lang(language)], {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+  }).format(value);
+}
+
 export function formatDate(
   value: Date | string,
   language: string,

@@ -1856,5 +1856,1301 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
       "license": "CC BY-SA 4.0",
       "source": "https://commons.wikimedia.org/wiki/File:As_free_as_the_birds.jpg"
     }
+  },
+  "/images/experiences/abu-simbel-01.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/abu-simbel-01-480.ebcb1ffe.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/abu-simbel-01-800.f7cc659c.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/abu-simbel-01-1200.e4f7f6f6.webp"
+      }
+    ],
+    "width": 1920,
+    "height": 1280,
+    "lqip": "data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAABwAwCdASoUAA0APu1iqU2ppaOiMAgBMB2JQBOgA6dylTpxHgAA/rn5gfAQJ/nPajpPf7pwjmDdAd5lLBZft2sWRIpcU/LXjNnExZ4iRARi5hfwAAA=",
+    "credit": {
+      "artist": "Diego Delso",
+      "license": "CC BY-SA 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Templo_de_Nefertari%2C_Abu_Simbel%2C_Egipto%2C_2022-04-02%2C_DD_152.jpg"
+    }
+  },
+  "/images/experiences/abu-simbel-02.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/abu-simbel-02-480.eb17f7ef.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/abu-simbel-02-800.f09f5317.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/abu-simbel-02-1200.a2f77fd9.webp"
+      }
+    ],
+    "width": 1920,
+    "height": 1357,
+    "lqip": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAAAQBACdASoUAA4APu1kqU2ppaQiMAgBMB2JQBOmUI7gA9CI66tCtrMOgAD+6PAlZeiY7G7Hjdy3LxiE2TopW98Jvmqap7sJ4QMB3kAA",
+    "credit": {
+      "artist": "Diego Delso",
+      "license": "CC BY-SA 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Templo_de_Rams%C3%A9s_II%2C_Abu_Simbel%2C_Egipto%2C_2022-04-02%2C_DD_26-28_HDR.jpg"
+    }
+  },
+  "/images/experiences/alex-catacombs-01.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/alex-catacombs-01-480.c82dbbe2.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/alex-catacombs-01-800.c3b1fe6f.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/alex-catacombs-01-1200.19ff5455.webp"
+      }
+    ],
+    "width": 1920,
+    "height": 1440,
+    "lqip": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAAAQBACdASoUAA8APu1iqU2ppaOiMAgBMB2JZwCsACHHUiTvQ3kcuVuiAAD+0PhDfdNa5Yb7II39GONaUhmtHQmaKS+4cVUPl2sAAA==",
+    "credit": {
+      "artist": "Following Hadrian",
+      "license": "CC BY-SA 2.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Catacombs_of_Kom_El_Shoqafa%2C_Alexandria%2C_Egypt_-_50852603501.jpg"
+    }
+  },
+  "/images/experiences/alex-catacombs-02.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/alex-catacombs-02-480.00324cc0.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/alex-catacombs-02-800.4db8252e.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/alex-catacombs-02-1200.01439236.webp"
+      }
+    ],
+    "width": 1920,
+    "height": 1132,
+    "lqip": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAAAQBACdASoUAAwAPu1mqk2ppaQiMAgBMB2JaACdMoR3ACmvFgszDt5MMAD+ogU762CBX1Qs6wUbdagmhB3QxHkLOMaDioT8jnDXd+J6b8gAAA==",
+    "credit": {
+      "artist": "Aya Mahmoud Naguib Ibrahim",
+      "license": "CC BY-SA 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Pompey%27s_Pillar%2C_Alexandria_2016.jpg"
+    }
+  },
+  "/images/experiences/alex-seafood-01.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/alex-seafood-01-480.e5481332.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/alex-seafood-01-800.ba8b99c0.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/alex-seafood-01-1200.11372338.webp"
+      }
+    ],
+    "width": 1920,
+    "height": 1440,
+    "lqip": "data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAADwAwCdASoUAA8APu1iqk2ppaQiMAgBMB2JYwCdACEQ1mRatCtI8UEAAP6DEMaJ1SpQHG7I0bBpA1lJAbRAIxjdiySBF/7b4MRrlsiYNZDmY9yAAAA=",
+    "credit": {
+      "artist": "Walter G Rodriguez",
+      "license": "CC BY 2.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Samak_mashwi.jpg"
+    }
+  },
+  "/images/experiences/alex-seafood-02.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/alex-seafood-02-480.e426e022.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/alex-seafood-02-800.943cf88b.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/alex-seafood-02-1200.1fd34d99.webp"
+      }
+    ],
+    "width": 1920,
+    "height": 1418,
+    "lqip": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAADwAwCdASoUAA8APu1kqk4ppaQiMAgBMB2JQBOmUABR6usj001vGwUQAP3SBLQMyAyR4ZHaPn/9etgRWeuySZoQJB5gCQjh6uA7DpIyIwwYL2gA",
+    "credit": {
+      "artist": "Eman arab 2020",
+      "license": "CC BY-SA 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:%D8%B1%D8%AC%D9%84_%D8%A7%D9%84%D8%B3%D9%85%D9%83.jpg"
+    }
+  },
+  "/images/experiences/felucca-01.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/felucca-01-480.9af69658.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/felucca-01-800.0fbfa096.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/felucca-01-1200.bfbb730e.webp"
+      }
+    ],
+    "width": 1920,
+    "height": 1312,
+    "lqip": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAACwAwCdASoUAA4APu1mqk4ppaOiMAgBMB2JZQCdACHDnz1t4eKrAAD8brIXFS8Mo9XQtfCTFnmxUExHG2csfoEAAAA=",
+    "credit": {
+      "artist": "Marc Ryckaert (MJJR)",
+      "license": "CC BY 3.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Aswan_Nile_R17.jpg"
+    }
+  },
+  "/images/experiences/felucca-02.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/felucca-02-480.0893abab.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/felucca-02-800.7db0d59f.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/felucca-02-1200.270f0387.webp"
+      }
+    ],
+    "width": 1920,
+    "height": 1280,
+    "lqip": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAADQAwCdASoUAA0APu1krU2ppaSiMAgBMB2JYgC06B7HbiVTDDGldgAA/ulDCOgcNkhxpBjxLH+P3UfXJdgiWP+D1sCv26IBIAfctR5uKlMAAA==",
+    "credit": {
+      "artist": "Vyacheslav Argenberg",
+      "license": "CC BY 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Nile_River%2C_Felucca_boat%2C_Aswan%2C_Egypt.jpg"
+    }
+  },
+  "/images/experiences/gem-atrium-01.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/gem-atrium-01-480.65788010.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/gem-atrium-01-800.9e7fb2a8.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/gem-atrium-01-1200.e38f7c26.webp"
+      }
+    ],
+    "width": 1920,
+    "height": 1440,
+    "lqip": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAABwAwCdASoUAA8APu1iqU2ppaOiMAgBMB2JZQAAUUVMEgboNtAAyqtTC11T770QvILBmqqNTEoq+a4wDSYMHEdMOjmWuk+MV1nkM0gA",
+    "credit": {
+      "artist": "Amr F.Nagy",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:Grand_Egyptian_Museum_2025_%2844788%29.jpg"
+    }
+  },
+  "/images/experiences/gem-atrium-02.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/gem-atrium-02-480.21ec56b7.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/gem-atrium-02-800.cc06d344.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/gem-atrium-02-1200.c7871591.webp"
+      }
+    ],
+    "width": 1920,
+    "height": 1440,
+    "lqip": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAADwAwCdASoUAA8APu1iqk2ppaQiMAgBMB2JZwDCgCKj+bfznpLqDrQAAPY6frEN5HJE3uqzUUwRd4ZxCYraTNNfwbgdDKDzLL/deyqWjkAAAA==",
+    "credit": {
+      "artist": "Amr F.Nagy",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:Grand_Egyptian_Museum_2025_%2858149%29.jpg"
+    }
+  },
+  "/images/experiences/giftun-01.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/giftun-01-480.d018d51c.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/giftun-01-800.79b14956.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/giftun-01-1200.e93ec4b7.webp"
+      }
+    ],
+    "width": 1920,
+    "height": 1440,
+    "lqip": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAACQAwCdASoUAA8APu1iqU2ppaQiMAgBMB2JYwCdAB5IBXBfTiYAAMqRv1qtHXhQ4jp15B7JyoKdvDztRkPzZ6DH7GCroAAA",
+    "credit": {
+      "artist": "No machine-readable author provided. Ebief assumed (based on copyright claims).",
+      "license": "CC BY-SA 2.5",
+      "source": "https://commons.wikimedia.org/wiki/File:Egypt-Hurghada-from-plane01.jpg"
+    }
+  },
+  "/images/experiences/giftun-02.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/giftun-02-480.de5021e5.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/giftun-02-800.62fff17e.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/giftun-02-1200.f99ef26b.webp"
+      }
+    ],
+    "width": 1280,
+    "height": 960,
+    "lqip": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAADQAwCdASoUAA8APu1iqU2ppaOiMAgBMB2JZACdACPgnMRYCAUAAQAA/S/PJX5gLI3JyT5HYQtLV/+Gr9gfj75sL5H3OK8Mda7XAAAA",
+    "credit": {
+      "artist": "lienyuan lee",
+      "license": "CC BY 3.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Red_Sea_%E7%B4%85%E6%B5%B7_-_panoramio.jpg"
+    }
+  },
+  "/images/experiences/giza-sunrise-01.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/giza-sunrise-01-480.9a834c19.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/giza-sunrise-01-800.1e59ac60.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/giza-sunrise-01-1200.bbb92829.webp"
+      }
+    ],
+    "width": 1920,
+    "height": 1280,
+    "lqip": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAACwAwCdASoUAA0APu1kq04ppaQiMAgBMB2JYgCdMoADTZpiBSqgOAD+dr+Y/b67bBRklNPRT5iR2OpTwARFLWX8tD17UAAA",
+    "credit": {
+      "artist": "kallerna",
+      "license": "CC BY-SA 3.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Pyramid_of_Cheops_-_side.jpg"
+    }
+  },
+  "/images/experiences/giza-sunrise-02.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/giza-sunrise-02-480.65c0fae1.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/giza-sunrise-02-800.c862deec.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/giza-sunrise-02-1200.1b016df2.webp"
+      }
+    ],
+    "width": 1280,
+    "height": 853,
+    "lqip": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAACQAwCdASoUAA0ALrV2u12jqampiYC0SyAE6ZQANTQOClBX0qSAAP6hwY8WdtoWGuJUTD2UZx2zgJH+RgdIMsgAAAA=",
+    "credit": {
+      "artist": "kallerna",
+      "license": "CC BY-SA 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Great_Sphinx_of_Giza_and_Pyramid_of_Cheops.jpg"
+    }
+  },
+  "/images/experiences/karnak-night-01.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/karnak-night-01-480.e7faa980.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/karnak-night-01-800.a4a6ed08.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/karnak-night-01-1200.aeb86147.webp"
+      }
+    ],
+    "width": 1920,
+    "height": 1280,
+    "lqip": "data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAAAQBACdASoUAA0APu1kqU2ppaQiMAgBMB2JZACdMoACMzQUt6AIqCiMAAD+xtwDdDD324nboPe3efFw5Uv925/kV405+kGE02oe7LzJhLTJH/52zfu4ueB/CG4VfNujhAA=",
+    "credit": {
+      "artist": "Vyacheslav Argenberg",
+      "license": "CC BY 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Luxor%2C_Egypt%2C_Karnak%2C_Great_Hypostyle_Hall%2C_Columns.jpg"
+    }
+  },
+  "/images/experiences/karnak-night-02.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/karnak-night-02-480.ac275b6c.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/karnak-night-02-800.bfdf7f25.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/karnak-night-02-1200.a402ee87.webp"
+      }
+    ],
+    "width": 1280,
+    "height": 871,
+    "lqip": "data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAABwBACdASoUAA4APu1kqU2ppaQiMAgBMB2JaACdGvAAX1x4SYdVDOU/K4laAADNse9H4vAZBniquPZrbpRdB18zYUxek4zpYkd7tIDaqkN9RoXc2d2yOz8AAAA=",
+    "credit": {
+      "artist": "Gary Todd from Xinzheng, China",
+      "license": "CC0",
+      "source": "https://commons.wikimedia.org/wiki/File:Karnak_Temple_Obelisk_%289794712676%29.jpg"
+    }
+  },
+  "/images/experiences/khan-food-01.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/khan-food-01-480.54fed756.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/khan-food-01-800.3adef13c.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/khan-food-01-1200.6b0b143e.webp"
+      }
+    ],
+    "width": 1920,
+    "height": 1183,
+    "lqip": "data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAADwAwCdASoUAAwAPu1iqk2ppaQiMAgBMB2JZQCw7CBm8rSeEBRMPZgAAP7l/4VBCzQPLVKeuZmWoYEjJGiG5IevIUSkU3SdskkGSUxM904/d4zOIRAAAA==",
+    "credit": {
+      "artist": "Ahmed Al.Badawy from Cairo, Egypt",
+      "license": "CC BY-SA 2.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Flickr_-_HuTect_ShOts_-_Khan_El-Khalili_Street_%D8%B4%D8%A7%D8%B1%D8%B9_%D8%AE%D8%A7%D9%86_%D8%A7%D9%84%D8%AE%D9%84%D9%8A%D9%84%D9%8A_-_Cairo_-_Egypt_-_09_04_2010_%281%29.jpg"
+    }
+  },
+  "/images/experiences/khan-food-02.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/khan-food-02-480.821c6a86.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/khan-food-02-800.178761dd.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/khan-food-02-1200.d6ff2b48.webp"
+      }
+    ],
+    "width": 1280,
+    "height": 887,
+    "lqip": "data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAAAwBACdASoUAA4APu1iqU2ppaOiMAgBMB2JQBOmUI7gA38Egt3ZSNGo/gAA/qmCvbCKDVqPomeFtkSg+rRDn1EX/TdrWyvviAA=",
+    "credit": {
+      "artist": "Dina Said",
+      "license": "CC BY-SA 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Egyptian_food_Koshary.jpg"
+    }
+  },
+  "/images/experiences/lake-qarun-01.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/lake-qarun-01-480.02645787.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/lake-qarun-01-800.aa950dcb.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/lake-qarun-01-1200.90e9146f.webp"
+      }
+    ],
+    "width": 1920,
+    "height": 1272,
+    "lqip": "data:image/webp;base64,UklGRkQAAABXRUJQVlA4IDgAAACQAwCdASoUAA0APu1iqU2ppaOiMAgBMB2JZwC/OCHEihsB/ZdYAP3YOoTrRx+g938GgxsDyLcAAA==",
+    "credit": {
+      "artist": "Hatem Moushir",
+      "license": "CC BY-SA 3.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Tunis_village_-Fayoum_by_Hatem_Moushir_8.JPG"
+    }
+  },
+  "/images/experiences/lake-qarun-02.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/lake-qarun-02-480.2703e722.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/lake-qarun-02-800.cef29a2b.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/lake-qarun-02-1200.f99733b6.webp"
+      }
+    ],
+    "width": 1280,
+    "height": 853,
+    "lqip": "data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAACwAwCdASoUAA0APu1kqk2ppaQiMAgBMB2JZwAAW9vfPq2/mWV6AAD+7XmrDaOZtZar/8xv3VrxnoSUwhY+05Bejs7WflrIgAA=",
+    "credit": {
+      "artist": "Myousry6666",
+      "license": "CC BY-SA 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Happines_comes_in_waves.jpg"
+    }
+  },
+  "/images/experiences/luxor-balloon-01.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/luxor-balloon-01-480.362a0d6e.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/luxor-balloon-01-800.cef9c09c.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/luxor-balloon-01-1200.bc0097bd.webp"
+      }
+    ],
+    "width": 1920,
+    "height": 1440,
+    "lqip": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAACQAwCdASoUAA8APu1iqU2ppaOiMAgBMB2JZACdACHWnLt0rqNAAPeYzqwUqDkTblUq+EnsszOI3Q38ucTSY/vYoNBmCAAA",
+    "credit": {
+      "artist": "Heksamarre",
+      "license": "CC BY-SA 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Masseballonger.JPG"
+    }
+  },
+  "/images/experiences/luxor-balloon-02.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/luxor-balloon-02-480.6d7dfe83.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/luxor-balloon-02-800.5030a163.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/luxor-balloon-02-1200.271d9121.webp"
+      }
+    ],
+    "width": 1280,
+    "height": 850,
+    "lqip": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAAAQBACdASoUAA0APu1iqk4ppaQiMAgBMB2JaACdMoMrZE5L0byGHH+9IAD+zyFhnjPeellUTbFAMVJAmnkIrxcxUv7rZ8h4TbiuD7NMMYU/RZAA",
+    "credit": {
+      "artist": "Marcosleal",
+      "license": "CC BY-SA 3.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Balloon_over_Luxor_-_Egypt.jpg"
+    }
+  },
+  "/images/experiences/mount-sinai-01.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/mount-sinai-01-480.afe5ba5b.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/mount-sinai-01-800.fb10f76f.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/mount-sinai-01-1200.bd106d49.webp"
+      }
+    ],
+    "width": 1920,
+    "height": 1285,
+    "lqip": "data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAAAQBACdASoUAA0APu1orU6ppiSiMAgBMB2JaACdMoMljEmPSl2ZXnbC8AD31BZyTujxXludoe2jgpyPL/aFaipt6UZQpyFtTyeh5OmyLQLkLcfAAAA=",
+    "credit": {
+      "artist": "Mohammed Moussa",
+      "license": "CC BY-SA 3.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Mount_Sinai_Egypt_1.jpg"
+    }
+  },
+  "/images/experiences/mount-sinai-02.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/mount-sinai-02-480.6ee61cff.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/mount-sinai-02-800.67c332e5.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/mount-sinai-02-1200.7ddd5dd6.webp"
+      }
+    ],
+    "width": 1280,
+    "height": 857,
+    "lqip": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAACQAwCdASoUAA0APu1iqk2ppaQiMAgBMB2JQBOmUAAlFIvxilYAAP6iPjWR1DtZVzaulxPI5nKmCgInTpc28gg3Zefo9z43//dXygi6DXUgAA==",
+    "credit": {
+      "artist": "Berthold Werner",
+      "license": "CC BY-SA 3.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Katharinenkloster_Sinai_BW_2.jpg"
+    }
+  },
+  "/images/experiences/muizz-night-01.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/muizz-night-01-480.ffa2dcb0.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/muizz-night-01-800.c9fcca43.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/muizz-night-01-1200.5d101aa2.webp"
+      }
+    ],
+    "width": 1920,
+    "height": 1265,
+    "lqip": "data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAAAQBACdASoUAA0APu1kqU2ppaQiMAgBMB2JZACdMoMYADwDp4or8CCWAAD+70t1+XS8TBs86+Y4+v+TAmQ2VLrpE7BiFZrxo8XcSZnHmHfyDGKOmqKINEzAAAA=",
+    "credit": {
+      "artist": "Ahmedherz",
+      "license": "CC BY-SA 3.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Night_Walk_in_Cairo_in_Hussein.jpg"
+    }
+  },
+  "/images/experiences/muizz-night-02.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/muizz-night-02-480.e9399bfd.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/muizz-night-02-800.ccbf5d24.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/muizz-night-02-1200.e75d400b.webp"
+      }
+    ],
+    "width": 1920,
+    "height": 1280,
+    "lqip": "data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAAAwBACdASoUAA0APu1oqk6ppiQiMAgBMB2JbACdMoRwACWV9xtxYLnSvsQA/sGYRyBKocEFZOtW27UYRqQv6zybfAyTUykYQ9P6qkcQndYfkJB8plU5nelogfMY0mYofu5NcCgAAAA=",
+    "credit": {
+      "artist": "Mohamed abdelzaher",
+      "license": "CC BY-SA 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Mohamed_Abdelzaher-Cairo_street.jpg"
+    }
+  },
+  "/images/experiences/nile-cruise-01.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/nile-cruise-01-480.de162ad0.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/nile-cruise-01-800.7b403f63.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/nile-cruise-01-1200.72a3042a.webp"
+      }
+    ],
+    "width": 1280,
+    "height": 724,
+    "lqip": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAACwAwCdASoUAAsAPu1iqU2ppaOiMAgBMB2JYwC06CKT2DpCnPGGAAD+sHl1A0c1fPTQF4oCRQ8VZtEMY4U7p1OS8S/hz4AA",
+    "credit": {
+      "artist": "Marc Ryckaert",
+      "license": "CC BY-SA 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Royal_Princess_Nile_cruise_ship_R04.jpg"
+    }
+  },
+  "/images/experiences/nile-cruise-02.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/nile-cruise-02-480.9169386d.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/nile-cruise-02-800.39a14b11.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/nile-cruise-02-1200.ff80fca0.webp"
+      }
+    ],
+    "width": 1920,
+    "height": 1440,
+    "lqip": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAACwAwCdASoUAA8APu1iqU2ppaOiMAgBMB2JZACdLoAAKomrclOXAADKcmjsltt4YylZjAPwPuzLDBG6GsTWMxNSIgr7fuYRXikIwAAA",
+    "credit": {
+      "artist": "Olaf Tausch",
+      "license": "CC BY 3.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Kom_Ombo_Portal_03.JPG"
+    }
+  },
+  "/images/experiences/nile-dinner-01.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/nile-dinner-01-480.f6ab997d.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/nile-dinner-01-800.f6397675.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/nile-dinner-01-1200.73f18558.webp"
+      }
+    ],
+    "width": 1280,
+    "height": 960,
+    "lqip": "data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAABwAwCdASoUAA8APu1kqk4ppaQiMAgBMB2JYwAAW+svcO2UJkAA/vKaZyYJwFQI8d9CzlQ5BVswTFrjlN38/QAA",
+    "credit": {
+      "artist": "Daniel Nussbaum",
+      "license": "CC BY-SA 3.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Nile_and_Cairo_Tower_at_night_-_panoramio.jpg"
+    }
+  },
+  "/images/experiences/nile-dinner-02.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/nile-dinner-02-480.fa915be7.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/nile-dinner-02-800.c4ef8160.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/nile-dinner-02-1200.462f2023.webp"
+      }
+    ],
+    "width": 1920,
+    "height": 1280,
+    "lqip": "data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAABwAwCdASoUAA0APu1iqU2ppaQiMAgBMB2JZwAAW7hUv+IuUAAA/vEID0gnV3wL79+muoIP4lT0g2okae3U5qAA",
+    "credit": {
+      "artist": "scott marsland",
+      "license": "CC BY 3.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Cairo%2C_Nile_River%2C_Night_-_panoramio.jpg"
+    }
+  },
+  "/images/experiences/nubian-village-01.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/nubian-village-01-480.080b6b20.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/nubian-village-01-800.0bd68095.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/nubian-village-01-1200.0890a6b1.webp"
+      }
+    ],
+    "width": 1280,
+    "height": 852,
+    "lqip": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAADwAwCdASoUAA0APu1kqU2ppaQiMAgBMB2JYwC2yBtsqD5S+N5cBhQAAPhcQuVOkm4mOPoRhK8eaf/PwuvKEuktEFOLxDwalCCWTW6f0gAAAA==",
+    "credit": {
+      "artist": "Alberto-g-rovi",
+      "license": "CC BY-SA 3.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Pueblo_nubio-aswan-2007_%282%29.JPG"
+    }
+  },
+  "/images/experiences/nubian-village-02.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/nubian-village-02-480.b09b1a53.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/nubian-village-02-800.a5aa5045.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/nubian-village-02-1200.7d78d60b.webp"
+      }
+    ],
+    "width": 1920,
+    "height": 1280,
+    "lqip": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAACwAwCdASoUAA0APu1iqk4ppaQiMAgBMB2JQBdgBD28ubzIkdtsQAD+o2qJ+iEbQ2QsAX6rTlxZp9+xu+qWnPpzVVubimveRPRLLN46G037gAAA",
+    "credit": {
+      "artist": "David Broad",
+      "license": "CC BY 3.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Nubian_Village_at_Aswan_-_panoramio.jpg"
+    }
+  },
+  "/images/experiences/quad-desert-01.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/quad-desert-01-480.a2fcd659.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/quad-desert-01-800.c0138bb9.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/quad-desert-01-1200.91d76ea2.webp"
+      }
+    ],
+    "width": 1920,
+    "height": 1280,
+    "lqip": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAADwAwCdASoUAA0APu1iqk2ppaQiMAgBMB2JagCdMoMYOGABC7SskwvKAP7pTiFQaPbsSQLIPIXTusbELIlLxGepvMqYtoX7XaoAAA==",
+    "credit": {
+      "artist": "Myousry6666",
+      "license": "CC BY-SA 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Follow_the_lines.jpg"
+    }
+  },
+  "/images/experiences/quad-desert-02.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/quad-desert-02-480.7ac9a691.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/quad-desert-02-800.659de3c1.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/quad-desert-02-1200.3785c6aa.webp"
+      }
+    ],
+    "width": 1920,
+    "height": 1440,
+    "lqip": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAADwAwCdASoUAA8APu1iqk2ppaQiMAgBMB2JQBOkAfhgW+9zl2GWTIOgAPxuPToy7S7QzR64ufOGOH3w0V6SF6AehI8p//xR9xoLWbQ0E1ZEYAAA",
+    "credit": {
+      "artist": "jay8085",
+      "license": "CC BY 2.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Dahab%2C_Sinai%2C_Egypt_%282056149762%29.jpg"
+    }
+  },
+  "/images/experiences/ras-mohammed-01.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/ras-mohammed-01-480.ed16da53.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/ras-mohammed-01-800.9885a784.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/ras-mohammed-01-1200.02de3d79.webp"
+      }
+    ],
+    "width": 1280,
+    "height": 1280,
+    "lqip": "data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAADwBACdASoUABQAPu1mq08ppaOiKA1RMB2JZAC7L9SDXOKeWJKW6QWAmSIBbLlfwBwA/YmL7/N8lnqCCy591NWlYRLwTvemBXdvlzwFvQdyFVSPJ8b1yeFFntBIQ6NHX/6vnz6tgl0vEAAA",
+    "credit": {
+      "artist": "Diego Delso",
+      "license": "CC BY-SA 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Coral_%28Annella_mollis%29%2C_parque_nacional_Ras_Muhammad%2C_Egipto%2C_2022-03-28%2C_DD_108.jpg"
+    }
+  },
+  "/images/experiences/ras-mohammed-02.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/ras-mohammed-02-480.0c741df4.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/ras-mohammed-02-800.ac386eea.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/ras-mohammed-02-1200.edf9293e.webp"
+      }
+    ],
+    "width": 1920,
+    "height": 1440,
+    "lqip": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAADwAwCdASoUAA8APu1yrU+pp6QiMAgBMB2JZQC2yCGZ/2O0phHm8kkMAP5/5tg09JuX5gJ3rNtsUzoxCBpVH31Y8aTW6AAA",
+    "credit": {
+      "artist": "Wusel007",
+      "license": "CC BY-SA 3.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Red_Sea_Corals_and_Fish.JPG"
+    }
+  },
+  "/images/experiences/sand-sea-01.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/sand-sea-01-480.18ab362f.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/sand-sea-01-800.deb3972c.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/sand-sea-01-1200.824d0222.webp"
+      }
+    ],
+    "width": 1280,
+    "height": 960,
+    "lqip": "data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAADQAwCdASoUAA8APu1kqk4ppaQiMAgBMB2JYgCdMoACLjGVbES0S+AA/uBsd+CledZQdar0PxgSVl7yUBe4ag6MpNPqF5g0AGOdNA9AAAA=",
+    "credit": {
+      "artist": "ولاء",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:Great_Sand_Sea24.jpg"
+    }
+  },
+  "/images/experiences/sand-sea-02.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/sand-sea-02-480.0ea42a99.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/sand-sea-02-800.39fcc464.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/sand-sea-02-1200.cd44aa28.webp"
+      }
+    ],
+    "width": 1920,
+    "height": 1280,
+    "lqip": "data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAADQAwCdASoUAA0APu1iqk4ppaQiMAgBMB2JQBOmUABFzY/wR8iQdIAA/sP9uDN2bwMVRYaYY904Wxh5s06vafjt57RB1HwdqsuCCeqTafn94UD8cjQAAA==",
+    "credit": {
+      "artist": "Myousry6666",
+      "license": "CC BY-SA 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Into_the_desert_%283%29.jpg"
+    }
+  },
+  "/images/experiences/saqqara-01.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/saqqara-01-480.3b9e4ef3.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/saqqara-01-800.828fe80c.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/saqqara-01-1200.6c5cbeb8.webp"
+      }
+    ],
+    "width": 1716,
+    "height": 1164,
+    "lqip": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAACwAwCdASoUAA4APu1kqU2ppaQiMAgBMB2JZgCdABqwDy8jBDYCQAD6ahFjJqX4oixSWe2+rpjjcFtWEOX4MIC4MNv8mSO5jLi6gAAA",
+    "credit": {
+      "artist": "Arian Zwegers from Brussels, Belgium",
+      "license": "CC BY 2.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Saqqara%2C_step_pyramid_of_Djoser_%286201557496%29.jpg"
+    }
+  },
+  "/images/experiences/saqqara-02.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/saqqara-02-480.0efa5029.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/saqqara-02-800.9ac4d823.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/saqqara-02-1200.0ff15b50.webp"
+      }
+    ],
+    "width": 1920,
+    "height": 1440,
+    "lqip": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAADQAwCdASoUAA8APu1yrU+pp6QiMAgBMB2JYgCdABe+D5OshaXbSHAA/FpeXCom817r38BCcIK/maK6Bf+4h7KBaddbDILVsJOs1YBHyXIAAAAA",
+    "credit": {
+      "artist": "Ivrienen at English Wikipedia",
+      "license": "CC BY 3.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Snefru%27s_Bent_Pyramid_in_Dahshur.jpg"
+    }
+  },
+  "/images/experiences/siwa-bike-01.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/siwa-bike-01-480.d8102849.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/siwa-bike-01-800.191b3690.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/siwa-bike-01-1200.e014536d.webp"
+      }
+    ],
+    "width": 1280,
+    "height": 960,
+    "lqip": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAAAQBACdASoUAA8APu1iqk2ppaQiMAgBMB2JZACdMoADAQxF2I+/wYNt+ADKo6beOIJni4MiNTyZaAvQ87bmIpe1tnGEz22NNzF8wpN6SitMt0z/Un6cxbqiPHykMAAA",
+    "credit": {
+      "artist": "ولاء",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:Oracle_Temple_Siwa0-1.jpg"
+    }
+  },
+  "/images/experiences/siwa-bike-02.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/siwa-bike-02-480.c6f066a2.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/siwa-bike-02-800.aa1ce744.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/siwa-bike-02-1200.24b6a2cc.webp"
+      }
+    ],
+    "width": 1920,
+    "height": 1440,
+    "lqip": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAABQBACdASoUAA8APu1iqk2ppaQiMAgBMB2JYgCdMoACsUjg2T5gpb25UnwAAP7fX7t+SIwXVfDCihMWVrCzExVVPQfOTfVZd1hlWnMaVgAAAA==",
+    "credit": {
+      "artist": "ولاء",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:Shali_Fortress44.jpg"
+    }
+  },
+  "/images/experiences/siwa-salt-01.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/siwa-salt-01-480.88a3a849.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/siwa-salt-01-800.3baa90d1.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/siwa-salt-01-1200.66b64fdb.webp"
+      }
+    ],
+    "width": 1280,
+    "height": 960,
+    "lqip": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAAAwBACdASoUAA8APu1krU6ppaSiMAgBMB2JYgCdMoMYADs8lxF2/WLldwAA+nGQmych/77Czg7xZjXKkPlFCDHlGRnRanyPx569w/tJaXMzvHgA",
+    "credit": {
+      "artist": "ولاء",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:Siwa_Salt_pools08.jpg"
+    }
+  },
+  "/images/experiences/siwa-salt-02.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/siwa-salt-02-480.ad280141.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/siwa-salt-02-800.59b44810.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/siwa-salt-02-1200.19ce7cc4.webp"
+      }
+    ],
+    "width": 1920,
+    "height": 1440,
+    "lqip": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAACQAwCdASoUAA8APu1kqU2ppaQiMAgBMB2JZQCdAA6etHLixzvAAP2KbDI8NlGLReJGDHKsDqRRROfAvY95C4QL/5bvhTR1dfQU7kJXD+E7AAAA",
+    "credit": {
+      "artist": "ولاء",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:Siwa_Salt_pools12.jpg"
+    }
+  },
+  "/images/experiences/thistlegorm-01.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/thistlegorm-01-480.b22c0290.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/thistlegorm-01-800.63aee4ae.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/thistlegorm-01-1200.e8e0697e.webp"
+      }
+    ],
+    "width": 1280,
+    "height": 959,
+    "lqip": "data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAADQAwCdASoUAA8APu1iqU2ppaOiMAgBMB2JQBYdg6c7rG4pRwYO3QAA/hSYNRVnIL4GayKKBe7K4DNj3QF89uyzWM0D3RQIolFaTS7yAAA=",
+    "credit": {
+      "artist": "W.Strickling",
+      "license": "CC BY-SA 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Ship_wreck_Carnatic_2017-04-22_Egypt-7947.jpg"
+    }
+  },
+  "/images/experiences/thistlegorm-02.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/thistlegorm-02-480.9fdf5139.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/thistlegorm-02-800.e60059a4.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/thistlegorm-02-1200.0da23441.webp"
+      }
+    ],
+    "width": 1920,
+    "height": 1920,
+    "lqip": "data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAADQBACdASoUABQAPt1apU2opSOiN/qoARAbiWUAxkAh3+ZlXHsSn44VcEK+zBvqAAD+82sFYJch+Mulw216BzekT3PDhHHqWhLICkzCwa1muY0CtTvcT4VJikMuBUvAAAA=",
+    "credit": {
+      "artist": "Diego Delso",
+      "license": "CC BY-SA 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Pecio_SS_Thistlegorm%2C_mar_Rojo%2C_Egipto%2C_2022-03-29%2C_DD_37.jpg"
+    }
+  },
+  "/images/experiences/tunis-village-01.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/tunis-village-01-480.41d07d57.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/tunis-village-01-800.636179c9.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/tunis-village-01-1200.d2fb1efa.webp"
+      }
+    ],
+    "width": 1280,
+    "height": 889,
+    "lqip": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAAAQBACdASoUAA4APu1kqU2ppaQiMAgBMB2JaQAAWjFx8hjDvHNpQ65IAAD+6NAHuS0jOSE/vJqqBTK9/uXGEdhL4J0XQAAA",
+    "credit": {
+      "artist": "Ahmed Kassem",
+      "license": "CC BY-SA 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Pottery_Hands_in_mud.jpg"
+    }
+  },
+  "/images/experiences/tunis-village-02.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/tunis-village-02-480.a39fa49c.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/tunis-village-02-800.ddac92ba.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/tunis-village-02-1200.a6d5ff55.webp"
+      }
+    ],
+    "width": 1920,
+    "height": 1342,
+    "lqip": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAACwAwCdASoUAA4APu1kqk2ppaQiMAgBMB2JYwCsABdwXYxYnGKykAD+5zmNt61qGaaeEwU4tDHJrHyaPj4oVSLXnVLluRv5xYmbEwRqnkAAAA==",
+    "credit": {
+      "artist": "Summering2018",
+      "license": "CC BY-SA 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:%D8%A7%D8%AD%D8%AF%D9%89_%D9%88%D8%B1%D8%B4_%D8%B5%D9%86%D8%A7%D8%B9%D8%A9_%D8%A7%D9%84%D8%AE%D8%B2%D9%81_%D8%A8%D9%82%D8%B1%D9%8A%D8%A9_%D8%AA%D9%88%D9%86%D8%B3_%28_%D8%A7%D9%84%D9%81%D9%8A%D9%88%D9%85_%29.jpg"
+    }
+  },
+  "/images/experiences/valley-kings-01.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/valley-kings-01-480.7b1779b7.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/valley-kings-01-800.91648d8f.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/valley-kings-01-1200.17b3ffb7.webp"
+      }
+    ],
+    "width": 1280,
+    "height": 853,
+    "lqip": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAACwAwCdASoUAA0APu1iqU2ppaOiMAgBMB2JQBadAvc4mcgXQwnMAAD+50FGq4ANl5EDtJT71uJsMJgkKxtmIoAyJLykUR8V1wAAAA==",
+    "credit": {
+      "artist": "Vyacheslav Argenberg",
+      "license": "CC BY 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Thebes%2C_Medinet_Habu%2C_Egypt%2C_Temple_of_Ramesses_III%2C_Columns.jpg"
+    }
+  },
+  "/images/experiences/valley-kings-02.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/valley-kings-02-480.b142f0d5.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/valley-kings-02-800.da5abf60.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/valley-kings-02-1200.d3ebd953.webp"
+      }
+    ],
+    "width": 1920,
+    "height": 1280,
+    "lqip": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAACwAwCdASoUAA0APu1iqU2ppaQiMAgBMB2JQBYdg26ss3Eae/I7RADWlc9wJrGSY30auMJpJzfkRCieSkHt78B3dkEAAA==",
+    "credit": {
+      "artist": "Vyacheslav Argenberg",
+      "license": "CC BY 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Thebes%2C_Luxor%2C_Egypt%2C_Valley_of_the_Kings_from_above.jpg"
+    }
+  },
+  "/images/experiences/wadi-rayan-01.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/wadi-rayan-01-480.48ed9dca.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/wadi-rayan-01-800.5c94cbe0.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/wadi-rayan-01-1200.04240142.webp"
+      }
+    ],
+    "width": 1701,
+    "height": 1276,
+    "lqip": "data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAADQAwCdASoUAA8APu1iqU2ppaOiMAgBMB2JZgCdACHaI+2Iq4dZjcAA/sX612XvQ1pZT0m6xRWLgO1NAUM94r/BLdO/IuRG8DG+ZaXEvtVg6lSlXNkAAA==",
+    "credit": {
+      "artist": "youssef_alam",
+      "license": "CC BY 3.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Wadi_El_Rayan%2C_Faiyum_Governorate%2C_Egypt_-_panoramio.jpg"
+    }
+  },
+  "/images/experiences/wadi-rayan-02.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/wadi-rayan-02-480.83a1c515.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/wadi-rayan-02-800.3a3b7b3a.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/wadi-rayan-02-1200.b6200a36.webp"
+      }
+    ],
+    "width": 1920,
+    "height": 1280,
+    "lqip": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAACQAwCdASoUAA0APu1kqU4ppaOiMAgBMB2JYwC7ABhiezPu8bcAAP6vIJFIMFP0O21Evs6S6XIZtlolAbpR/yjVWsDHAAAA",
+    "credit": {
+      "artist": "Clr202 (Christoph Rohner) at de.wikipedia",
+      "license": "CC BY-SA 3.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Dorudon_atrox_fossil_at_Wadi_El-Hitan%2C_Egypt%2C_March_2008.jpg"
+    }
+  },
+  "/images/experiences/white-desert-camp-01.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/white-desert-camp-01-480.568f7d59.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/white-desert-camp-01-800.93d25442.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/white-desert-camp-01-1200.cf79f901.webp"
+      }
+    ],
+    "width": 1280,
+    "height": 853,
+    "lqip": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAACwAwCdASoUAA0APu1iqU2ppaOiMAgBMB2JQBdgA79mWi40b7THwAD+05XzSRlHL1Rh0g+e6kATRki4q4jcznOKu/Bae7fkhsAwQCAA",
+    "credit": {
+      "artist": "Vyacheslav Argenberg",
+      "license": "CC BY 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:White_Desert%2C_Camels%2C_Egypt.jpg"
+    }
+  },
+  "/images/experiences/white-desert-camp-02.webp": {
+    "sources": [
+      {
+        "width": 480,
+        "url": "/images/experiences/white-desert-camp-02-480.feb9ed89.webp"
+      },
+      {
+        "width": 800,
+        "url": "/images/experiences/white-desert-camp-02-800.eae7606d.webp"
+      },
+      {
+        "width": 1200,
+        "url": "/images/experiences/white-desert-camp-02-1200.ed80f0f9.webp"
+      }
+    ],
+    "width": 1920,
+    "height": 1280,
+    "lqip": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAADQAwCdASoUAA0APu1iqk2ppaQiMAgBMB2JYgCdAB6HiPUqVr5PfAAA/R0hb87wkM1fmd501wZz0Th7mXWYoddhI254ZgO9qmHAAA==",
+    "credit": {
+      "artist": "Vyacheslav Argenberg",
+      "license": "CC BY 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:White_Desert%2C_Rock_formation%2C_Egypt.jpg"
+    }
   }
 };

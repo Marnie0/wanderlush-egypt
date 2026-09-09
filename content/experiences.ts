@@ -51,7 +51,16 @@ export const experiences: Experience[] = [
     },
     cancellation: { en: "Free cancellation up to 24 hours before", ar: "إلغاء مجاني حتى 24 ساعة قبل الموعد" },
     heroImage: { src: "/images/experiences/giza-sunrise.webp", alt: { en: "Riders below the pyramid of Khafre", ar: "فرسان أسفل هرم خفرع" } },
-    gallery: [],
+    gallery: [
+      {
+        src: "/images/experiences/giza-sunrise-01.webp",
+        alt: { en: "The Great Pyramid's blocks, with visitors for scale", ar: "كتل الهرم الأكبر، ويظهر الزوار لبيان الحجم" },
+      },
+      {
+        src: "/images/experiences/giza-sunrise-02.webp",
+        alt: { en: "The Sphinx with the Great Pyramid behind it", ar: "أبو الهول والهرم الأكبر خلفه" },
+      },
+    ],
     accent: "#c85f26",
   },
   {
@@ -90,7 +99,16 @@ export const experiences: Experience[] = [
     accessibility: { en: "Step-free throughout, with lifts to every level and wheelchairs available at the entrance.", ar: "خالٍ من الدرج بالكامل، وبه مصاعد إلى كل الطوابق وكراسٍ متحركة متاحة عند المدخل." },
     cancellation: { en: "Free cancellation up to 24 hours before", ar: "إلغاء مجاني حتى 24 ساعة قبل الموعد" },
     heroImage: { src: "/images/experiences/gem-atrium.webp", alt: { en: "The museum atrium and colossal statue", ar: "بهو المتحف والتمثال الضخم" } },
-    gallery: [],
+    gallery: [
+      {
+        src: "/images/experiences/gem-atrium-01.webp",
+        alt: { en: "The grand staircase, lined with royal statues", ar: "السلم العظيم تصطف على جانبيه التماثيل الملكية" },
+      },
+      {
+        src: "/images/experiences/gem-atrium-02.webp",
+        alt: { en: "Daylight through the museum's glass wall", ar: "ضوء النهار عبر الواجهة الزجاجية للمتحف" },
+      },
+    ],
     accent: "#a8853b",
   },
   {
@@ -126,7 +144,16 @@ export const experiences: Experience[] = [
     accessibility: { en: "Cobbled and busy underfoot. Tell us in advance and we will adjust the route for limited mobility.", ar: "الأرضية حصوية ومزدحمة. أخبرنا مسبقًا لنعدّل المسار لمن لديه صعوبة في الحركة." },
     cancellation: { en: "Free cancellation up to 24 hours before", ar: "إلغاء مجاني حتى 24 ساعة قبل الموعد" },
     heroImage: { src: "/images/experiences/khan-food.webp", alt: { en: "Street food stall in the old market", ar: "عربة طعام في السوق القديم" } },
-    gallery: [],
+    gallery: [
+      {
+        src: "/images/experiences/khan-food-01.webp",
+        alt: { en: "The bazaar lanes after dark", ar: "أزقة الخان بعد حلول الظلام" },
+      },
+      {
+        src: "/images/experiences/khan-food-02.webp",
+        alt: { en: "Koshary, the dish Cairo argues about", ar: "الكشري، الطبق الذي تختلف عليه القاهرة" },
+      },
+    ],
     accent: "#c85f26",
   },
   {
@@ -162,7 +189,16 @@ export const experiences: Experience[] = [
     accessibility: { en: "Mostly flat and paved. Two mosque courtyards have a single step.", ar: "المسار مستوٍ ومرصوف في معظمه. وفي فناءي مسجدين درجة واحدة." },
     cancellation: { en: "Free cancellation up to 24 hours before", ar: "إلغاء مجاني حتى 24 ساعة قبل الموعد" },
     heroImage: { src: "/images/experiences/muizz-night.webp", alt: { en: "Lit minarets along Al-Muizz Street", ar: "مآذن مضاءة في شارع المعز" } },
-    gallery: [],
+    gallery: [
+      {
+        src: "/images/experiences/muizz-night-01.webp",
+        alt: { en: "Minarets lit along the street at night", ar: "المآذن مضاءة على امتداد الشارع ليلًا" },
+      },
+      {
+        src: "/images/experiences/muizz-night-02.webp",
+        alt: { en: "Mosque facades under the evening floodlights", ar: "واجهات المساجد تحت أضواء المساء" },
+      },
+    ],
     accent: "#a8853b",
   },
   {
@@ -198,7 +234,16 @@ export const experiences: Experience[] = [
     accessibility: { en: "A short gangway with a handrail. Step-free once aboard the main deck.", ar: "ممر قصير بمسند يد. وخالٍ من الدرج بعد الصعود إلى السطح الرئيسي." },
     cancellation: { en: "Free cancellation up to 48 hours before", ar: "إلغاء مجاني حتى 48 ساعة قبل الموعد" },
     heroImage: { src: "/images/experiences/nile-dinner.webp", alt: { en: "The Nile at dusk in Cairo", ar: "النيل عند الغسق في القاهرة" } },
-    gallery: [],
+    gallery: [
+      {
+        src: "/images/experiences/nile-dinner-01.webp",
+        alt: { en: "The Cairo Tower above the river at night", ar: "برج القاهرة فوق النهر ليلًا" },
+      },
+      {
+        src: "/images/experiences/nile-dinner-02.webp",
+        alt: { en: "Boats moored along the lit corniche", ar: "مراكب راسية على الكورنيش المضاء" },
+      },
+    ],
     accent: "#2a719a",
   },
   {
@@ -234,7 +279,16 @@ export const experiences: Experience[] = [
     accessibility: { en: "Site paths are sandy and uneven. Pyramid interiors involve a steep, low, ducked descent.", ar: "مسارات المواقع رملية وغير مستوية. والنزول داخل الأهرامات يتطلب انحناءً في ممر منحدر منخفض." },
     cancellation: { en: "Free cancellation up to 24 hours before", ar: "إلغاء مجاني حتى 24 ساعة قبل الموعد" },
     heroImage: { src: "/images/experiences/saqqara.webp", alt: { en: "The Step Pyramid of Djoser", ar: "هرم زوسر المدرج" } },
-    gallery: [],
+    gallery: [
+      {
+        src: "/images/experiences/saqqara-01.webp",
+        alt: { en: "Djoser's step pyramid, the first of them all", ar: "هرم زوسر المدرج، أول الأهرامات" },
+      },
+      {
+        src: "/images/experiences/saqqara-02.webp",
+        alt: { en: "The Bent Pyramid at Dahshur, still wearing its casing", ar: "الهرم المائل في دهشور، وما زال يحتفظ بكسائه" },
+      },
+    ],
     accent: "#9a7a54",
   },
   {
@@ -270,7 +324,16 @@ export const experiences: Experience[] = [
     accessibility: { en: "The catacombs descend a spiral staircase with no lift. Everything else is largely step-free.", ar: "يُنزل إلى السراديب عبر سلم حلزوني بلا مصعد. أما بقية المواقع فخالية من الدرج إلى حد كبير." },
     cancellation: { en: "Free cancellation up to 24 hours before", ar: "إلغاء مجاني حتى 24 ساعة قبل الموعد" },
     heroImage: { src: "/images/experiences/alex-catacombs.webp", alt: { en: "Carved chamber in the catacombs", ar: "حجرة منحوتة في السراديب" } },
-    gallery: [],
+    gallery: [
+      {
+        src: "/images/experiences/alex-catacombs-01.webp",
+        alt: { en: "Carved chambers inside the Kom El Shoqafa catacombs", ar: "حجرات منحوتة داخل سراديب كوم الشقافة" },
+      },
+      {
+        src: "/images/experiences/alex-catacombs-02.webp",
+        alt: { en: "Pompey's Pillar above the Serapeum", ar: "عمود السواري فوق السيرابيوم" },
+      },
+    ],
     accent: "#2a719a",
   },
   {
@@ -306,7 +369,16 @@ export const experiences: Experience[] = [
     accessibility: { en: "The kitchen is on the first floor and reached by stairs only.", ar: "المطبخ في الطابق الأول ولا يُوصل إليه إلا بالسلم." },
     cancellation: { en: "Free cancellation up to 48 hours before", ar: "إلغاء مجاني حتى 48 ساعة قبل الموعد" },
     heroImage: { src: "/images/experiences/alex-seafood.webp", alt: { en: "Choosing the catch at the fish market", ar: "اختيار الصيد في سوق السمك" } },
-    gallery: [],
+    gallery: [
+      {
+        src: "/images/experiences/alex-seafood-01.webp",
+        alt: { en: "Grilled fish with the sides that come with it", ar: "سمك مشوي مع أطباقه الجانبية" },
+      },
+      {
+        src: "/images/experiences/alex-seafood-02.webp",
+        alt: { en: "Fish over the coals at the market grill", ar: "السمك على الجمر في مشواة السوق" },
+      },
+    ],
     accent: "#2c6e67",
   },
   {
@@ -342,7 +414,16 @@ export const experiences: Experience[] = [
     accessibility: { en: "Boarding means climbing over the basket wall, roughly one metre high, unaided.", ar: "يتطلب الصعود تسلق جدار السلة بارتفاع متر تقريبًا دون مساعدة." },
     cancellation: { en: "Full refund if cancelled for weather, which happens often and without warning", ar: "استرداد كامل عند الإلغاء بسبب الطقس، وهو أمر متكرر ويحدث دون إنذار" },
     heroImage: { src: "/images/experiences/luxor-balloon.webp", alt: { en: "Balloons over the west bank at dawn", ar: "مناطيد فوق الضفة الغربية عند الفجر" } },
-    gallery: [],
+    gallery: [
+      {
+        src: "/images/experiences/luxor-balloon-01.webp",
+        alt: { en: "Balloons over the farmland on the west bank", ar: "المناطيد فوق حقول الضفة الغربية" },
+      },
+      {
+        src: "/images/experiences/luxor-balloon-02.webp",
+        alt: { en: "A basket lifting into the first light", ar: "سلة ترتفع مع أول الضوء" },
+      },
+    ],
     accent: "#c85f26",
   },
   {
@@ -378,7 +459,16 @@ export const experiences: Experience[] = [
     accessibility: { en: "A shuttle runs to the tomb entrances, but the tombs themselves are ramped or stepped descents with no handrails.", ar: "توجد عربة نقل إلى مداخل المقابر، لكن المقابر نفسها منحدرات أو درجات نازلة بلا مساند." },
     cancellation: { en: "Free cancellation up to 48 hours before", ar: "إلغاء مجاني حتى 48 ساعة قبل الموعد" },
     heroImage: { src: "/images/experiences/valley-kings.webp", alt: { en: "Painted tomb wall in the Valley of the Kings", ar: "جدار مقبرة مزخرف في وادي الملوك" } },
-    gallery: [],
+    gallery: [
+      {
+        src: "/images/experiences/valley-kings-01.webp",
+        alt: { en: "Painted columns at Medinet Habu, where the morning ends", ar: "أعمدة مدينة هابو الملونة حيث ينتهي الصباح" },
+      },
+      {
+        src: "/images/experiences/valley-kings-02.webp",
+        alt: { en: "The valley from above, tomb doors cut into the rock", ar: "الوادي من أعلى وأبواب المقابر منحوتة في الصخر" },
+      },
+    ],
     accent: "#a8853b",
   },
   {
@@ -414,7 +504,16 @@ export const experiences: Experience[] = [
     accessibility: { en: "The route crosses uneven ancient paving in low light and is not suitable for wheelchairs.", ar: "يمر المسار على بلاط قديم غير مستوٍ في إضاءة خافتة، وهو غير مناسب للكراسي المتحركة." },
     cancellation: { en: "Free cancellation up to 24 hours before", ar: "إلغاء مجاني حتى 24 ساعة قبل الموعد" },
     heroImage: { src: "/images/experiences/karnak-night.webp", alt: { en: "The obelisk at Karnak in late light", ar: "مسلة الكرنك في ضوء آخر النهار" } },
-    gallery: [],
+    gallery: [
+      {
+        src: "/images/experiences/karnak-night-01.webp",
+        alt: { en: "Columns of the Great Hypostyle Hall", ar: "أعمدة قاعة الأساطين الكبرى" },
+      },
+      {
+        src: "/images/experiences/karnak-night-02.webp",
+        alt: { en: "An obelisk standing above the ruins", ar: "مسلة قائمة فوق الأطلال" },
+      },
+    ],
     accent: "#8a3b17",
   },
   {
@@ -450,7 +549,16 @@ export const experiences: Experience[] = [
     accessibility: { en: "Step-free from the car park to the temple terrace along a paved path.", ar: "خالٍ من الدرج من الموقف إلى شرفة المعبد عبر ممر مرصوف." },
     cancellation: { en: "Free cancellation up to 48 hours before", ar: "إلغاء مجاني حتى 48 ساعة قبل الموعد" },
     heroImage: { src: "/images/experiences/abu-simbel.webp", alt: { en: "The pillared hall inside Abu Simbel", ar: "بهو الأعمدة داخل أبو سمبل" } },
-    gallery: [],
+    gallery: [
+      {
+        src: "/images/experiences/abu-simbel-01.webp",
+        alt: { en: "The small temple of Nefertari, cut into the cliff", ar: "معبد نفرتاري الصغير المنحوت في الصخر" },
+      },
+      {
+        src: "/images/experiences/abu-simbel-02.webp",
+        alt: { en: "Inside the great temple of Ramesses II", ar: "داخل المعبد الكبير لرمسيس الثاني" },
+      },
+    ],
     accent: "#c85f26",
   },
   {
@@ -486,7 +594,16 @@ export const experiences: Experience[] = [
     accessibility: { en: "Boarding is from a low jetty and the village lanes are sand. Assistance can be arranged on request.", ar: "الصعود من رصيف منخفض، وأزقة القرية رملية. ويمكن ترتيب المساعدة عند الطلب." },
     cancellation: { en: "Free cancellation up to 24 hours before", ar: "إلغاء مجاني حتى 24 ساعة قبل الموعد" },
     heroImage: { src: "/images/experiences/nubian-village.webp", alt: { en: "Painted Nubian houses above the Nile", ar: "بيوت نوبية ملونة فوق النيل" } },
-    gallery: [],
+    gallery: [
+      {
+        src: "/images/experiences/nubian-village-01.webp",
+        alt: { en: "Domed Nubian houses above the water", ar: "بيوت نوبية بقباب فوق الماء" },
+      },
+      {
+        src: "/images/experiences/nubian-village-02.webp",
+        alt: { en: "Cones of spice in the village market", ar: "أهرامات البهارات في سوق القرية" },
+      },
+    ],
     accent: "#2a719a",
   },
   {
@@ -522,7 +639,16 @@ export const experiences: Experience[] = [
     accessibility: { en: "Boarding is a step down into a low open boat with no rail.", ar: "الصعود خطوة نازلة إلى قارب مفتوح منخفض بلا حاجز." },
     cancellation: { en: "Free cancellation up to 12 hours before", ar: "إلغاء مجاني حتى 12 ساعة قبل الموعد" },
     heroImage: { src: "/images/experiences/felucca.webp", alt: { en: "Feluccas under sail on the Nile", ar: "فلائك تبحر على النيل" } },
-    gallery: [],
+    gallery: [
+      {
+        src: "/images/experiences/felucca-01.webp",
+        alt: { en: "A felucca under full sail off Aswan", ar: "فلوكة بشراع مفرود قبالة أسوان" },
+      },
+      {
+        src: "/images/experiences/felucca-02.webp",
+        alt: { en: "Still water and a single sail", ar: "ماء ساكن وشراع وحيد" },
+      },
+    ],
     accent: "#2c6e67",
   },
   {
@@ -558,7 +684,16 @@ export const experiences: Experience[] = [
     accessibility: { en: "Most vessels have no lift between decks and cabin doorways are narrow.", ar: "معظم المراكب بلا مصعد بين الطوابق، وأبواب الكبائن ضيقة." },
     cancellation: { en: "Free cancellation up to 14 days before", ar: "إلغاء مجاني حتى 14 يومًا قبل الموعد" },
     heroImage: { src: "/images/experiences/nile-cruise.webp", alt: { en: "A river cruiser moored on the Nile", ar: "مركب نيلي راسٍ على النهر" } },
-    gallery: [],
+    gallery: [
+      {
+        src: "/images/experiences/nile-cruise-01.webp",
+        alt: { en: "A cruise boat against the desert bank", ar: "باخرة نيلية أمام الضفة الصحراوية" },
+      },
+      {
+        src: "/images/experiences/nile-cruise-02.webp",
+        alt: { en: "The portal at Kom Ombo, a morning stop", ar: "بوابة كوم أمبو، محطة الصباح" },
+      },
+    ],
     accent: "#1f5a7d",
   },
   {
@@ -594,7 +729,16 @@ export const experiences: Experience[] = [
     accessibility: { en: "Repeated steep dune descents in a vehicle. Not advisable with back or neck injuries or during pregnancy.", ar: "نزول متكرر على كثبان شديدة الانحدار داخل السيارة. غير مستحسن لمن لديه إصابات في الظهر أو الرقبة أو للحوامل." },
     cancellation: { en: "Free cancellation up to 24 hours before", ar: "إلغاء مجاني حتى 24 ساعة قبل الموعد" },
     heroImage: { src: "/images/experiences/sand-sea.webp", alt: { en: "Walking a dune crest at sunset", ar: "سير على قمة كثيب عند الغروب" } },
-    gallery: [],
+    gallery: [
+      {
+        src: "/images/experiences/sand-sea-01.webp",
+        alt: { en: "A dune face with vehicles for scale", ar: "وجه كثيب والسيارات تبيّن حجمه" },
+      },
+      {
+        src: "/images/experiences/sand-sea-02.webp",
+        alt: { en: "Low light along a dune ridge at the end of the day", ar: "ضوء خافت على حافة كثيب في آخر النهار" },
+      },
+    ],
     accent: "#9a7a54",
   },
   {
@@ -630,7 +774,16 @@ export const experiences: Experience[] = [
     accessibility: { en: "The pool edge is uneven crystallised salt, sharp in places, with no handrail.", ar: "حافة البركة ملح متبلور غير مستوٍ، حاد في بعض المواضع، وبلا مسند يد." },
     cancellation: { en: "Free cancellation up to 24 hours before", ar: "إلغاء مجاني حتى 24 ساعة قبل الموعد" },
     heroImage: { src: "/images/experiences/siwa-salt.webp", alt: { en: "A turquoise salt pool with white banks", ar: "بركة ملحية فيروزية بضفاف بيضاء" } },
-    gallery: [],
+    gallery: [
+      {
+        src: "/images/experiences/siwa-salt-01.webp",
+        alt: { en: "A salt pool ringed with white crystal", ar: "بركة ملحية تحيط بها بلورات بيضاء" },
+      },
+      {
+        src: "/images/experiences/siwa-salt-02.webp",
+        alt: { en: "Midday sun on the salt water", ar: "شمس الظهيرة على الماء المالح" },
+      },
+    ],
     accent: "#468a82",
   },
   {
@@ -666,7 +819,16 @@ export const experiences: Experience[] = [
     accessibility: { en: "Requires confident cycling on unpaved lanes. A car alternative is available for the same route.", ar: "يتطلب قيادة واثقة للدراجة على دروب غير معبدة. ويتوفر بديل بالسيارة للمسار نفسه." },
     cancellation: { en: "Free cancellation up to 12 hours before", ar: "إلغاء مجاني حتى 12 ساعة قبل الموعد" },
     heroImage: { src: "/images/experiences/siwa-bike.webp", alt: { en: "The ruins at Aghurmi beside the Temple of the Oracle", ar: "أطلال أغورمي بجوار معبد الوحي" } },
-    gallery: [],
+    gallery: [
+      {
+        src: "/images/experiences/siwa-bike-01.webp",
+        alt: { en: "What remains of the Temple of the Oracle", ar: "ما تبقى من معبد الوحي" },
+      },
+      {
+        src: "/images/experiences/siwa-bike-02.webp",
+        alt: { en: "The mudbrick roofs of Shali", ar: "أسطح شالي المبنية من الطوب اللبن" },
+      },
+    ],
     accent: "#2c6e67",
   },
   {
@@ -702,7 +864,16 @@ export const experiences: Experience[] = [
     accessibility: { en: "Camping on sand with a shared tent and a desert toilet. No running water and no step-free facilities.", ar: "تخييم على الرمل بخيمة مشتركة ودورة مياه صحراوية. لا ماء جاريًا ولا مرافق خالية من الدرج." },
     cancellation: { en: "Free cancellation up to 72 hours before", ar: "إلغاء مجاني حتى 72 ساعة قبل الموعد" },
     heroImage: { src: "/images/experiences/white-desert-camp.webp", alt: { en: "Chalk pillars in the White Desert", ar: "أعمدة طباشيرية في الصحراء البيضاء" } },
-    gallery: [],
+    gallery: [
+      {
+        src: "/images/experiences/white-desert-camp-01.webp",
+        alt: { en: "Camels resting where the camp is set", ar: "الجمال تستريح حيث يُنصب المخيم" },
+      },
+      {
+        src: "/images/experiences/white-desert-camp-02.webp",
+        alt: { en: "Chalk weathered into a mushroom", ar: "طباشير نحتته الرياح على هيئة فطر" },
+      },
+    ],
     accent: "#7c6144",
   },
   {
@@ -738,7 +909,16 @@ export const experiences: Experience[] = [
     accessibility: { en: "Entry to the water is by ladder from the stern. Crew assistance is available.", ar: "النزول إلى الماء بسُلّم من مؤخرة المركب. وتتوفر مساعدة الطاقم." },
     cancellation: { en: "Free cancellation up to 24 hours before", ar: "إلغاء مجاني حتى 24 ساعة قبل الموعد" },
     heroImage: { src: "/images/experiences/giftun.webp", alt: { en: "Snorkellers over a shallow reef", ar: "غطّاسون فوق شعاب ضحلة" } },
-    gallery: [],
+    gallery: [
+      {
+        src: "/images/experiences/giftun-01.webp",
+        alt: { en: "The reef and the sandbank from the air", ar: "الشعاب والحاجز الرملي من الجو" },
+      },
+      {
+        src: "/images/experiences/giftun-02.webp",
+        alt: { en: "Fish in the shallows over the reef", ar: "أسماك في المياه الضحلة فوق الشعاب" },
+      },
+    ],
     accent: "#2a719a",
   },
   {
@@ -774,7 +954,16 @@ export const experiences: Experience[] = [
     accessibility: { en: "Riders must operate the quad themselves. Children ride as passengers with an adult.", ar: "على السائق تشغيل الدراجة بنفسه. ويركب الأطفال كمرافقين مع بالغ." },
     cancellation: { en: "Free cancellation up to 24 hours before", ar: "إلغاء مجاني حتى 24 ساعة قبل الموعد" },
     heroImage: { src: "/images/experiences/quad-desert.webp", alt: { en: "Quad bikes crossing a desert plain", ar: "دراجات رباعية تعبر سهلًا صحراويًا" } },
-    gallery: [],
+    gallery: [
+      {
+        src: "/images/experiences/quad-desert-01.webp",
+        alt: { en: "Tracks carved across the sand by the ride out", ar: "آثار العجلات محفورة في الرمل على طول المسار" },
+      },
+      {
+        src: "/images/experiences/quad-desert-02.webp",
+        alt: { en: "Cushions and low tables laid out for dinner", ar: "وسائد وموائد منخفضة معدّة للعشاء" },
+      },
+    ],
     accent: "#a94a1b",
   },
   {
@@ -810,7 +999,16 @@ export const experiences: Experience[] = [
     accessibility: { en: "Open Water certification or above is required. Entry is a giant stride from the platform.", ar: "يلزم الحصول على شهادة المياه المفتوحة أو أعلى. والنزول بخطوة واسعة من المنصة." },
     cancellation: { en: "Free cancellation up to 48 hours before", ar: "إلغاء مجاني حتى 48 ساعة قبل الموعد" },
     heroImage: { src: "/images/experiences/ras-mohammed.webp", alt: { en: "A blue lagoon on the Sinai coast", ar: "بحيرة زرقاء على ساحل سيناء" } },
-    gallery: [],
+    gallery: [
+      {
+        src: "/images/experiences/ras-mohammed-01.webp",
+        alt: { en: "A sea fan on the wall at Ras Mohammed", ar: "مروحة بحرية على جدار رأس محمد" },
+      },
+      {
+        src: "/images/experiences/ras-mohammed-02.webp",
+        alt: { en: "Reef fish over hard coral", ar: "أسماك الشعاب فوق المرجان الصلب" },
+      },
+    ],
     accent: "#1f5a7d",
   },
   {
@@ -846,7 +1044,16 @@ export const experiences: Experience[] = [
     accessibility: { en: "Three hours each way in open water with strong currents on site. Not a beginner dive.", ar: "ثلاث ساعات في كل اتجاه في مياه مفتوحة مع تيارات قوية في الموقع. ليست غوصة للمبتدئين." },
     cancellation: { en: "Free cancellation up to 72 hours before", ar: "إلغاء مجاني حتى 72 ساعة قبل الموعد" },
     heroImage: { src: "/images/experiences/thistlegorm.webp", alt: { en: "Vehicles in the hold of the Thistlegorm", ar: "مركبات داخل عنبر الثيسل غورم" } },
-    gallery: [],
+    gallery: [
+      {
+        src: "/images/experiences/thistlegorm-01.webp",
+        alt: { en: "A diver working along a Red Sea wreck", ar: "غواص يتحرك بمحاذاة حطام في البحر الأحمر" },
+      },
+      {
+        src: "/images/experiences/thistlegorm-02.webp",
+        alt: { en: "The Thistlegorm's holds, still loaded", ar: "عنابر الثيسلجورم وما زالت محمّلة" },
+      },
+    ],
     accent: "#16374b",
   },
   {
@@ -882,7 +1089,16 @@ export const experiences: Experience[] = [
     accessibility: { en: "Seven hours of walking, the final section on uneven stone steps in the dark. Good fitness required.", ar: "سبع ساعات من السير، ومقطعها الأخير درجات حجرية غير مستوية في الظلام. تتطلب لياقة جيدة." },
     cancellation: { en: "Free cancellation up to 48 hours before", ar: "إلغاء مجاني حتى 48 ساعة قبل الموعد" },
     heroImage: { src: "/images/experiences/mount-sinai.webp", alt: { en: "Sunrise over the Sinai mountains", ar: "شروق الشمس فوق جبال سيناء" } },
-    gallery: [],
+    gallery: [
+      {
+        src: "/images/experiences/mount-sinai-01.webp",
+        alt: { en: "The Sinai ridges at first light", ar: "جبال سيناء عند أول الضوء" },
+      },
+      {
+        src: "/images/experiences/mount-sinai-02.webp",
+        alt: { en: "Saint Catherine's Monastery below the mountain", ar: "دير سانت كاترين أسفل الجبل" },
+      },
+    ],
     accent: "#8a3b17",
   },
   {
@@ -930,7 +1146,16 @@ export const experiences: Experience[] = [
       src: "/images/experiences/wadi-rayan.webp",
       alt: { en: "The waterfalls at Wadi El Rayan", ar: "شلالات وادي الريان" },
     },
-    gallery: [],
+    gallery: [
+      {
+        src: "/images/experiences/wadi-rayan-01.webp",
+        alt: { en: "The falls between the two lakes", ar: "الشلالات بين البحيرتين" },
+      },
+      {
+        src: "/images/experiences/wadi-rayan-02.webp",
+        alt: { en: "A whale skeleton where the sea used to be", ar: "هيكل حوت حيث كان البحر" },
+      },
+    ],
     accent: "#2c6e67",
   },
   {
@@ -972,7 +1197,16 @@ export const experiences: Experience[] = [
       src: "/images/experiences/tunis-village.webp",
       alt: { en: "A potter working at the wheel", ar: "خزّاف يعمل على العجلة" },
     },
-    gallery: [],
+    gallery: [
+      {
+        src: "/images/experiences/tunis-village-01.webp",
+        alt: { en: "Hands on the wheel, the clay still wet", ar: "يدان على العجلة والطين ما زال رطبًا" },
+      },
+      {
+        src: "/images/experiences/tunis-village-02.webp",
+        alt: { en: "A pottery workshop on the village lane", ar: "ورشة خزف في زقاق القرية" },
+      },
+    ],
     accent: "#a94a1b",
   },
   {
@@ -1011,7 +1245,16 @@ export const experiences: Experience[] = [
       src: "/images/experiences/lake-qarun.webp",
       alt: { en: "A fishing boat and birds on Lake Qarun", ar: "قارب صيد وطيور في بحيرة قارون" },
     },
-    gallery: [],
+    gallery: [
+      {
+        src: "/images/experiences/lake-qarun-01.webp",
+        alt: { en: "Fishermen working the lake, egrets waiting", ar: "صيادون في البحيرة وطيور البلشون تنتظر" },
+      },
+      {
+        src: "/images/experiences/lake-qarun-02.webp",
+        alt: { en: "A rowing boat out on the flat water", ar: "قارب تجديف على الماء الساكن" },
+      },
+    ],
     accent: "#2a719a",
   },
 ];

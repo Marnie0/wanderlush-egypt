@@ -3,6 +3,9 @@ import { useTranslation } from "react-i18next";
 import { m } from "framer-motion";
 import { SmartImage, CARD_SIZES, HALF_SIZES } from "./SmartImage";
 import { AddToTripButton } from "./AddToTripButton";
+import { SaveButton } from "./SaveButton";
+import { Rating } from "./Rating";
+import { destinationBySlug } from "@content/destinations";
 import { pick, formatMoney, formatDayRange, formatDuration } from "@/lib/format";
 import { riseIn } from "@/lib/motion";
 import { cn } from "@/lib/cn";
@@ -82,41 +85,89 @@ export function DestinationCard({
 export function ExperienceCard({
   experience,
   className,
+  sizes = CARD_SIZES,
+  showActions = false,
 }: {
   experience: Experience;
   className?: string;
+  sizes?: string;
+  /** Homepage teasers link through instead; only the marketplace acts here. */
+  showActions?: boolean;
 }) {
   const { t, i18n } = useTranslation();
   const language = i18n.resolvedLanguage ?? "en";
+  const destination = destinationBySlug.get(experience.destinationSlug);
+  // "Private or shared" reads as one fact; two chips read as two.
+  const groupLabel =
+    experience.groupFormat.length > 1
+      ? t("groupFormat.both")
+      : t(`groupFormat.${experience.groupFormat[0]}`);
 
   return (
-    <m.article {...cardMotion} className={cn(cardMotion.className, className)}>
-      <Link to={`/experiences/${experience.slug}`} className="block">
-        <SmartImage
-          src={experience.heroImage.src}
-          alt={pick(experience.heroImage.alt, language)}
-          accent={experience.accent}
-          sizes={CARD_SIZES}
-          className="aspect-[3/2] w-full"
-          imgClassName="transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
-        />
-        <div className="pt-4">
-          <p className="eyebrow text-gold-600">{t(`categories.${experience.category}`, experience.category)}</p>
-          <h3 className="mt-2 font-display text-xl leading-snug text-charcoal-900 transition-colors group-hover:text-ember-600">
-            {pick(experience.name, language)}
-          </h3>
-          <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-ink-muted">
-            {pick(experience.summary, language)}
+    // A column that fills its grid cell, so a two-line title on one card does
+    // not leave its price and button sitting below the row's.
+    <m.article
+      {...cardMotion}
+      className={cn(cardMotion.className, "flex h-full flex-col", className)}
+    >
+      <div className="relative">
+        <Link to={`/experiences/${experience.slug}`} className="block">
+          <SmartImage
+            src={experience.heroImage.src}
+            alt={pick(experience.heroImage.alt, language)}
+            accent={experience.accent}
+            sizes={sizes}
+            className="aspect-[3/2] w-full"
+            imgClassName="transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
+          />
+        </Link>
+        {showActions && (
+          <SaveButton
+            slug={experience.slug}
+            className="absolute end-3 top-3 h-10 w-10 border-transparent bg-canvas/85 backdrop-blur-sm"
+          />
+        )}
+      </div>
+
+      <Link to={`/experiences/${experience.slug}`} className="block pt-4">
+        <div className="flex items-baseline justify-between gap-3">
+          <p className="eyebrow text-gold-600">
+            {t(`categories.${experience.category}`, experience.category)}
           </p>
+          <Rating value={experience.rating} count={experience.reviewCount} />
         </div>
+        <h3 className="mt-2 font-display text-xl leading-snug text-charcoal-900 transition-colors group-hover:text-ember-600">
+          {pick(experience.name, language)}
+        </h3>
+        {destination && (
+          <p className="mt-1 text-sm text-ink-muted">{pick(destination.name, language)}</p>
+        )}
+        <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-ink-muted">
+          {pick(experience.summary, language)}
+        </p>
       </Link>
-      <div className="mt-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-t border-line pt-3 text-sm">
-        <span className="text-ink-muted">
-          {formatDuration(experience.durationMinutes, t)}
-        </span>
-        <span className="text-charcoal-800">
-          {t("common.from")} {formatMoney(experience.priceFrom, "USD", language)}
-        </span>
+
+      <div className="mt-auto">
+        <div className="mt-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-t border-line pt-3 text-sm">
+          <span className="text-ink-muted">
+            {formatDuration(experience.durationMinutes, t)}
+            <span className="mx-1.5 text-charcoal-300">·</span>
+            {groupLabel}
+          </span>
+          <span className="text-charcoal-800">
+            {t("common.from")} {formatMoney(experience.priceFrom, "USD", language)}
+          </span>
+        </div>
+
+        {showActions && (
+          <AddToTripButton
+            kind="experience"
+            slug={experience.slug}
+            size="sm"
+            variant="secondary"
+            className="mt-4 w-full"
+          />
+        )}
       </div>
     </m.article>
   );

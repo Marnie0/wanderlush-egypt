@@ -42,20 +42,30 @@ for (const dir of ["hero", "destinations", "experiences", "journeys"]) {
   rmSync(join(outDir, dir), { recursive: true, force: true });
 }
 
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 async function download(slot, urls) {
   const file = join(cacheDir, slot.replaceAll("/", "__") + ".src");
   if (existsSync(file)) return file;
   // Commons only serves a fixed set of thumbnail widths per file, so fall
-  // back through smaller renders and finally the original upload.
+  // back through smaller renders and finally the original upload. It also
+  // rate-limits a cold cache fetching a hundred files, so back off on 429
+  // rather than losing the whole run to one refusal.
   let lastError;
   for (const url of urls) {
-    try {
-      const res = await fetch(url, { headers: { "User-Agent": UA } });
-      if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
-      writeFileSync(file, Buffer.from(await res.arrayBuffer()));
-      return file;
-    } catch (error) {
-      lastError = error;
+    for (let attempt = 0; attempt < 4; attempt++) {
+      try {
+        const res = await fetch(url, { headers: { "User-Agent": UA } });
+        if (res.status === 429) throw Object.assign(new Error("429"), { retry: true });
+        if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+        writeFileSync(file, Buffer.from(await res.arrayBuffer()));
+        await sleep(250);
+        return file;
+      } catch (error) {
+        lastError = error;
+        if (!error.retry) break;
+        await sleep(3000 * (attempt + 1));
+      }
     }
   }
   throw new Error(`${slot}: ${lastError?.message ?? "download failed"}`);

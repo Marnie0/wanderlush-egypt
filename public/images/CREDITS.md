@@ -47,32 +47,86 @@ licence shown. Attribution is required for the CC BY and CC BY-SA images.
 | destinations/white-desert-03 | [Black Desert, Egypt 11.jpg](https://commons.wikimedia.org/wiki/File:Black_Desert,_Egypt_11.jpg) | Viktor Lazić | CC BY-SA 4.0 |
 | destinations/white-desert-hero | [White Desert, Rock formations, Egypt.jpg](https://commons.wikimedia.org/wiki/File:White_Desert,_Rock_formations,_Egypt.jpg) | Vyacheslav Argenberg | CC BY 4.0 |
 | experiences/abu-simbel | [Templo de Nefertari, Abu Simbel, Egipto, 2022-04-02, DD 128-130 HDR.jpg](https://commons.wikimedia.org/wiki/File:Templo_de_Nefertari,_Abu_Simbel,_Egipto,_2022-04-02,_DD_128-130_HDR.jpg) | Diego Delso | CC BY-SA 4.0 |
+| experiences/abu-simbel-01 | [Templo de Nefertari, Abu Simbel, Egipto, 2022-04-02, DD 152.jpg](https://commons.wikimedia.org/wiki/File:Templo_de_Nefertari%2C_Abu_Simbel%2C_Egipto%2C_2022-04-02%2C_DD_152.jpg) | Diego Delso | CC BY-SA 4.0 |
+| experiences/abu-simbel-02 | [Templo de Ramsés II, Abu Simbel, Egipto, 2022-04-02, DD 26-28 HDR.jpg](https://commons.wikimedia.org/wiki/File:Templo_de_Rams%C3%A9s_II%2C_Abu_Simbel%2C_Egipto%2C_2022-04-02%2C_DD_26-28_HDR.jpg) | Diego Delso | CC BY-SA 4.0 |
 | experiences/alex-catacombs | [Catacombs of Kom El Shoqafa, Alexandria, Egypt - 50852603281.jpg](https://commons.wikimedia.org/wiki/File:Catacombs_of_Kom_El_Shoqafa,_Alexandria,_Egypt_-_50852603281.jpg) | Following Hadrian | CC BY-SA 2.0 |
+| experiences/alex-catacombs-01 | [Catacombs of Kom El Shoqafa, Alexandria, Egypt - 50852603501.jpg](https://commons.wikimedia.org/wiki/File:Catacombs_of_Kom_El_Shoqafa%2C_Alexandria%2C_Egypt_-_50852603501.jpg) | Following Hadrian | CC BY-SA 2.0 |
+| experiences/alex-catacombs-02 | [Pompey's Pillar, Alexandria 2016.jpg](https://commons.wikimedia.org/wiki/File:Pompey%27s_Pillar%2C_Alexandria_2016.jpg) | Aya Mahmoud Naguib Ibrahim | CC BY-SA 4.0 |
 | experiences/alex-seafood | [Fresh fish for healthy meal.jpg](https://commons.wikimedia.org/wiki/File:Fresh_fish_for_healthy_meal.jpg) | Marwa elchazly | CC BY-SA 4.0 |
+| experiences/alex-seafood-01 | [Samak mashwi.jpg](https://commons.wikimedia.org/wiki/File:Samak_mashwi.jpg) | Walter G Rodriguez | CC BY 2.0 |
+| experiences/alex-seafood-02 | [رجل السمك.jpg](https://commons.wikimedia.org/wiki/File:%D8%B1%D8%AC%D9%84_%D8%A7%D9%84%D8%B3%D9%85%D9%83.jpg) | Eman arab 2020 | CC BY-SA 4.0 |
 | experiences/felucca | [FELUCCA NILE TRIP (2).jpg](https://commons.wikimedia.org/wiki/File:FELUCCA_NILE_TRIP_(2).jpg) | Myousry6666 | CC BY-SA 4.0 |
+| experiences/felucca-01 | [Aswan Nile R17.jpg](https://commons.wikimedia.org/wiki/File:Aswan_Nile_R17.jpg) | Marc Ryckaert (MJJR) | CC BY 3.0 |
+| experiences/felucca-02 | [Nile River, Felucca boat, Aswan, Egypt.jpg](https://commons.wikimedia.org/wiki/File:Nile_River%2C_Felucca_boat%2C_Aswan%2C_Egypt.jpg) | Vyacheslav Argenberg | CC BY 4.0 |
 | experiences/gem-atrium | [Grand Egyptian Museum 2025 (70046).jpg](https://commons.wikimedia.org/wiki/File:Grand_Egyptian_Museum_2025_(70046).jpg) | Amr F.Nagy | Public domain |
+| experiences/gem-atrium-01 | [Grand Egyptian Museum 2025 (44788).jpg](https://commons.wikimedia.org/wiki/File:Grand_Egyptian_Museum_2025_%2844788%29.jpg) | Amr F.Nagy | Public domain |
+| experiences/gem-atrium-02 | [Grand Egyptian Museum 2025 (58149).jpg](https://commons.wikimedia.org/wiki/File:Grand_Egyptian_Museum_2025_%2858149%29.jpg) | Amr F.Nagy | Public domain |
 | experiences/giftun | [Hurghada snorkelling - Egypt - panoramio.jpg](https://commons.wikimedia.org/wiki/File:Hurghada_snorkelling_-_Egypt_-_panoramio.jpg) | Fanny S Forsdik | CC BY-SA 3.0 |
+| experiences/giftun-01 | [Egypt-Hurghada-from-plane01.jpg](https://commons.wikimedia.org/wiki/File:Egypt-Hurghada-from-plane01.jpg) | No machine-readable author provided. Ebief assumed (based on copyright claims). | CC BY-SA 2.5 |
+| experiences/giftun-02 | [Red Sea 紅海 - panoramio.jpg](https://commons.wikimedia.org/wiki/File:Red_Sea_%E7%B4%85%E6%B5%B7_-_panoramio.jpg) | lienyuan lee | CC BY 3.0 |
 | experiences/giza-sunrise | [Pyramid of Khafre (50283854781).jpg](https://commons.wikimedia.org/wiki/File:Pyramid_of_Khafre_(50283854781).jpg) | Vincent Brown | CC BY 2.0 |
+| experiences/giza-sunrise-01 | [Pyramid of Cheops - side.jpg](https://commons.wikimedia.org/wiki/File:Pyramid_of_Cheops_-_side.jpg) | kallerna | CC BY-SA 3.0 |
+| experiences/giza-sunrise-02 | [Great Sphinx of Giza and Pyramid of Cheops.jpg](https://commons.wikimedia.org/wiki/File:Great_Sphinx_of_Giza_and_Pyramid_of_Cheops.jpg) | kallerna | CC BY-SA 4.0 |
 | experiences/karnak-night | [Karnak Temple Obelisk of Hatshepsut and Thutmosis I.jpg](https://commons.wikimedia.org/wiki/File:Karnak_Temple_Obelisk_of_Hatshepsut_and_Thutmosis_I.jpg) | Tsyganov Sergey | CC0 |
+| experiences/karnak-night-01 | [Luxor, Egypt, Karnak, Great Hypostyle Hall, Columns.jpg](https://commons.wikimedia.org/wiki/File:Luxor%2C_Egypt%2C_Karnak%2C_Great_Hypostyle_Hall%2C_Columns.jpg) | Vyacheslav Argenberg | CC BY 4.0 |
+| experiences/karnak-night-02 | [Karnak Temple Obelisk (9794712676).jpg](https://commons.wikimedia.org/wiki/File:Karnak_Temple_Obelisk_%289794712676%29.jpg) | Gary Todd from Xinzheng, China | CC0 |
 | experiences/khan-food | [Food carts in the streets of Egypt.jpg](https://commons.wikimedia.org/wiki/File:Food_carts_in_the_streets_of_Egypt.jpg) | Foua42000 | CC BY-SA 4.0 |
+| experiences/khan-food-01 | [Flickr - HuTect ShOts - Khan El-Khalili Street شارع خان الخليلي - Cairo - Egypt - 09 04 2010 (1).jpg](https://commons.wikimedia.org/wiki/File:Flickr_-_HuTect_ShOts_-_Khan_El-Khalili_Street_%D8%B4%D8%A7%D8%B1%D8%B9_%D8%AE%D8%A7%D9%86_%D8%A7%D9%84%D8%AE%D9%84%D9%8A%D9%84%D9%8A_-_Cairo_-_Egypt_-_09_04_2010_%281%29.jpg) | Ahmed Al.Badawy from Cairo, Egypt | CC BY-SA 2.0 |
+| experiences/khan-food-02 | [Egyptian food Koshary.jpg](https://commons.wikimedia.org/wiki/File:Egyptian_food_Koshary.jpg) | Dina Said | CC BY-SA 4.0 |
 | experiences/lake-qarun | [As free as the birds.jpg](https://commons.wikimedia.org/wiki/File:As_free_as_the_birds.jpg) | Myousry6666 | CC BY-SA 4.0 |
+| experiences/lake-qarun-01 | [Tunis village -Fayoum by Hatem Moushir 8.JPG](https://commons.wikimedia.org/wiki/File:Tunis_village_-Fayoum_by_Hatem_Moushir_8.JPG) | Hatem Moushir | CC BY-SA 3.0 |
+| experiences/lake-qarun-02 | [Happines comes in waves.jpg](https://commons.wikimedia.org/wiki/File:Happines_comes_in_waves.jpg) | Myousry6666 | CC BY-SA 4.0 |
 | experiences/luxor-balloon | [Luxor hot air balloon E.jpg](https://commons.wikimedia.org/wiki/File:Luxor_hot_air_balloon_E.jpg) | Wouter Hagens | CC BY-SA 3.0 |
+| experiences/luxor-balloon-01 | [Masseballonger.JPG](https://commons.wikimedia.org/wiki/File:Masseballonger.JPG) | Heksamarre | CC BY-SA 4.0 |
+| experiences/luxor-balloon-02 | [Balloon over Luxor - Egypt.jpg](https://commons.wikimedia.org/wiki/File:Balloon_over_Luxor_-_Egypt.jpg) | Marcosleal | CC BY-SA 3.0 |
 | experiences/mount-sinai | [Sunrise from the summit of Mount Sinai or Gabal Musa.jpg](https://commons.wikimedia.org/wiki/File:Sunrise_from_the_summit_of_Mount_Sinai_or_Gabal_Musa.jpg) | Sara Nabih | CC BY-SA 4.0 |
+| experiences/mount-sinai-01 | [Mount Sinai Egypt 1.jpg](https://commons.wikimedia.org/wiki/File:Mount_Sinai_Egypt_1.jpg) | Mohammed Moussa | CC BY-SA 3.0 |
+| experiences/mount-sinai-02 | [Katharinenkloster Sinai BW 2.jpg](https://commons.wikimedia.org/wiki/File:Katharinenkloster_Sinai_BW_2.jpg) | Berthold Werner | CC BY-SA 3.0 |
 | experiences/muizz-night | [Al-Azhar Mosque, Cairo, Egypt10.jpg](https://commons.wikimedia.org/wiki/File:Al-Azhar_Mosque,_Cairo,_Egypt10.jpg) | Diego Delso | CC BY-SA 3.0 |
+| experiences/muizz-night-01 | [Night Walk in Cairo in Hussein.jpg](https://commons.wikimedia.org/wiki/File:Night_Walk_in_Cairo_in_Hussein.jpg) | Ahmedherz | CC BY-SA 3.0 |
+| experiences/muizz-night-02 | [Mohamed Abdelzaher-Cairo street.jpg](https://commons.wikimedia.org/wiki/File:Mohamed_Abdelzaher-Cairo_street.jpg) | Mohamed abdelzaher | CC BY-SA 4.0 |
 | experiences/nile-cruise | [Monaco Nile cruise ship R02.jpg](https://commons.wikimedia.org/wiki/File:Monaco_Nile_cruise_ship_R02.jpg) | Marc Ryckaert | CC BY-SA 4.0 |
+| experiences/nile-cruise-01 | [Royal Princess Nile cruise ship R04.jpg](https://commons.wikimedia.org/wiki/File:Royal_Princess_Nile_cruise_ship_R04.jpg) | Marc Ryckaert | CC BY-SA 4.0 |
+| experiences/nile-cruise-02 | [Kom Ombo Portal 03.JPG](https://commons.wikimedia.org/wiki/File:Kom_Ombo_Portal_03.JPG) | Olaf Tausch | CC BY 3.0 |
 | experiences/nile-dinner | [Sunset at cairo tower.jpg](https://commons.wikimedia.org/wiki/File:Sunset_at_cairo_tower.jpg) | Mahmoud elhashash | CC BY-SA 4.0 |
+| experiences/nile-dinner-01 | [Nile and Cairo Tower at night - panoramio.jpg](https://commons.wikimedia.org/wiki/File:Nile_and_Cairo_Tower_at_night_-_panoramio.jpg) | Daniel Nussbaum | CC BY-SA 3.0 |
+| experiences/nile-dinner-02 | [Cairo, Nile River, Night - panoramio.jpg](https://commons.wikimedia.org/wiki/File:Cairo%2C_Nile_River%2C_Night_-_panoramio.jpg) | scott marsland | CC BY 3.0 |
 | experiences/nubian-village | [Nubian house in the bank of River Nile Aswan , Egypt.JPG](https://commons.wikimedia.org/wiki/File:Nubian_house_in_the_bank_of_River_Nile_Aswan_,_Egypt.JPG) | Belmahdy | CC BY-SA 4.0 |
+| experiences/nubian-village-01 | [Pueblo nubio-aswan-2007 (2).JPG](https://commons.wikimedia.org/wiki/File:Pueblo_nubio-aswan-2007_%282%29.JPG) | Alberto-g-rovi | CC BY-SA 3.0 |
+| experiences/nubian-village-02 | [Nubian Village at Aswan - panoramio.jpg](https://commons.wikimedia.org/wiki/File:Nubian_Village_at_Aswan_-_panoramio.jpg) | David Broad | CC BY 3.0 |
 | experiences/quad-desert | [Merzouga dune quad tour.jpg](https://commons.wikimedia.org/wiki/File:Merzouga_dune_quad_tour.jpg) | SaharaADV | CC BY-SA 4.0 |
+| experiences/quad-desert-01 | [Follow the lines.jpg](https://commons.wikimedia.org/wiki/File:Follow_the_lines.jpg) | Myousry6666 | CC BY-SA 4.0 |
+| experiences/quad-desert-02 | [Dahab, Sinai, Egypt (2056149762).jpg](https://commons.wikimedia.org/wiki/File:Dahab%2C_Sinai%2C_Egypt_%282056149762%29.jpg) | jay8085 | CC BY 2.0 |
 | experiences/ras-mohammed | [Fjord Bay - Taba, 2.jpg](https://commons.wikimedia.org/wiki/File:Fjord_Bay_-_Taba,_2.jpg) | Mohammed Moussa | CC BY-SA 4.0 |
+| experiences/ras-mohammed-01 | [Coral (Annella mollis), parque nacional Ras Muhammad, Egipto, 2022-03-28, DD 108.jpg](https://commons.wikimedia.org/wiki/File:Coral_%28Annella_mollis%29%2C_parque_nacional_Ras_Muhammad%2C_Egipto%2C_2022-03-28%2C_DD_108.jpg) | Diego Delso | CC BY-SA 4.0 |
+| experiences/ras-mohammed-02 | [Red Sea Corals and Fish.JPG](https://commons.wikimedia.org/wiki/File:Red_Sea_Corals_and_Fish.JPG) | Wusel007 | CC BY-SA 3.0 |
 | experiences/sand-sea | [Desert safari (9).jpg](https://commons.wikimedia.org/wiki/File:Desert_safari_(9).jpg) | Myousry6666 | CC BY-SA 4.0 |
+| experiences/sand-sea-01 | [Great Sand Sea24.jpg](https://commons.wikimedia.org/wiki/File:Great_Sand_Sea24.jpg) | ولاء | Public domain |
+| experiences/sand-sea-02 | [Into the desert (3).jpg](https://commons.wikimedia.org/wiki/File:Into_the_desert_%283%29.jpg) | Myousry6666 | CC BY-SA 4.0 |
 | experiences/saqqara | [Saqqara, Pyramid of Djoser, Ancient Egypt.jpg](https://commons.wikimedia.org/wiki/File:Saqqara,_Pyramid_of_Djoser,_Ancient_Egypt.jpg) | Vyacheslav Argenberg | CC BY 4.0 |
+| experiences/saqqara-01 | [Saqqara, step pyramid of Djoser (6201557496).jpg](https://commons.wikimedia.org/wiki/File:Saqqara%2C_step_pyramid_of_Djoser_%286201557496%29.jpg) | Arian Zwegers from Brussels, Belgium | CC BY 2.0 |
+| experiences/saqqara-02 | [Snefru's Bent Pyramid in Dahshur.jpg](https://commons.wikimedia.org/wiki/File:Snefru%27s_Bent_Pyramid_in_Dahshur.jpg) | Ivrienen at English Wikipedia | CC BY 3.0 |
 | experiences/siwa-bike | [Oracle Temple Siwa0-0.jpg](https://commons.wikimedia.org/wiki/File:Oracle_Temple_Siwa0-0.jpg) | ولاء | Public domain |
+| experiences/siwa-bike-01 | [Oracle Temple Siwa0-1.jpg](https://commons.wikimedia.org/wiki/File:Oracle_Temple_Siwa0-1.jpg) | ولاء | Public domain |
+| experiences/siwa-bike-02 | [Shali Fortress44.jpg](https://commons.wikimedia.org/wiki/File:Shali_Fortress44.jpg) | ولاء | Public domain |
 | experiences/siwa-salt | [Salt Lake in Siwa.jpg](https://commons.wikimedia.org/wiki/File:Salt_Lake_in_Siwa.jpg) | Ahmed khalil Hassan Mohamed | CC BY-SA 4.0 |
+| experiences/siwa-salt-01 | [Siwa Salt pools08.jpg](https://commons.wikimedia.org/wiki/File:Siwa_Salt_pools08.jpg) | ولاء | Public domain |
+| experiences/siwa-salt-02 | [Siwa Salt pools12.jpg](https://commons.wikimedia.org/wiki/File:Siwa_Salt_pools12.jpg) | ولاء | Public domain |
 | experiences/thistlegorm | [Pecio SS Thistlegorm, mar Rojo, Egipto, 2022-03-29, DD 04.jpg](https://commons.wikimedia.org/wiki/File:Pecio_SS_Thistlegorm,_mar_Rojo,_Egipto,_2022-03-29,_DD_04.jpg) | Diego Delso | CC BY-SA 4.0 |
+| experiences/thistlegorm-01 | [Ship wreck Carnatic 2017-04-22 Egypt-7947.jpg](https://commons.wikimedia.org/wiki/File:Ship_wreck_Carnatic_2017-04-22_Egypt-7947.jpg) | W.Strickling | CC BY-SA 4.0 |
+| experiences/thistlegorm-02 | [Pecio SS Thistlegorm, mar Rojo, Egipto, 2022-03-29, DD 37.jpg](https://commons.wikimedia.org/wiki/File:Pecio_SS_Thistlegorm%2C_mar_Rojo%2C_Egipto%2C_2022-03-29%2C_DD_37.jpg) | Diego Delso | CC BY-SA 4.0 |
 | experiences/tunis-village | [خزاف.jpg](https://commons.wikimedia.org/wiki/File:خزاف.jpg) | Adelbayoumi | CC BY-SA 4.0 |
+| experiences/tunis-village-01 | [Pottery Hands in mud.jpg](https://commons.wikimedia.org/wiki/File:Pottery_Hands_in_mud.jpg) | Ahmed Kassem | CC BY-SA 4.0 |
+| experiences/tunis-village-02 | [احدى ورش صناعة الخزف بقرية تونس ( الفيوم ).jpg](https://commons.wikimedia.org/wiki/File:%D8%A7%D8%AD%D8%AF%D9%89_%D9%88%D8%B1%D8%B4_%D8%B5%D9%86%D8%A7%D8%B9%D8%A9_%D8%A7%D9%84%D8%AE%D8%B2%D9%81_%D8%A8%D9%82%D8%B1%D9%8A%D8%A9_%D8%AA%D9%88%D9%86%D8%B3_%28_%D8%A7%D9%84%D9%81%D9%8A%D9%88%D9%85_%29.jpg) | Summering2018 | CC BY-SA 4.0 |
 | experiences/valley-kings | [KV17, the tomb of Pharaoh Seti I of the Nineteenth Dynasty, Pillared Chamber F, left pillar Seti before Hathor as Goddess of the West, right pillar Seti before Isis, Valley of the Kings, Egypt (49846646197).jpg](https://commons.wikimedia.org/wiki/File:KV17,_the_tomb_of_Pharaoh_Seti_I_of_the_Nineteenth_Dynasty,_Pillared_Chamber_F,_left_pillar_Seti_before_Hathor_as_Goddess_of_the_West,_right_pillar_Seti_before_Isis,_Valley_of_the_Kings,_Egypt_(49846646197).jpg) | Carole Raddato from Frankfurt, Germany | CC BY-SA 2.0 |
+| experiences/valley-kings-01 | [Thebes, Medinet Habu, Egypt, Temple of Ramesses III, Columns.jpg](https://commons.wikimedia.org/wiki/File:Thebes%2C_Medinet_Habu%2C_Egypt%2C_Temple_of_Ramesses_III%2C_Columns.jpg) | Vyacheslav Argenberg | CC BY 4.0 |
+| experiences/valley-kings-02 | [Thebes, Luxor, Egypt, Valley of the Kings from above.jpg](https://commons.wikimedia.org/wiki/File:Thebes%2C_Luxor%2C_Egypt%2C_Valley_of_the_Kings_from_above.jpg) | Vyacheslav Argenberg | CC BY 4.0 |
 | experiences/wadi-rayan | [Waterfalls of Wadi El Rayan, Fayoum, Egypt.jpg](https://commons.wikimedia.org/wiki/File:Waterfalls_of_Wadi_El_Rayan,_Fayoum,_Egypt.jpg) | Ibrahim El-Mezayen | CC BY-SA 4.0 |
+| experiences/wadi-rayan-01 | [Wadi El Rayan, Faiyum Governorate, Egypt - panoramio.jpg](https://commons.wikimedia.org/wiki/File:Wadi_El_Rayan%2C_Faiyum_Governorate%2C_Egypt_-_panoramio.jpg) | youssef_alam | CC BY 3.0 |
+| experiences/wadi-rayan-02 | [Dorudon atrox fossil at Wadi El-Hitan, Egypt, March 2008.jpg](https://commons.wikimedia.org/wiki/File:Dorudon_atrox_fossil_at_Wadi_El-Hitan%2C_Egypt%2C_March_2008.jpg) | Clr202 (Christoph Rohner) at de.wikipedia | CC BY-SA 3.0 |
 | experiences/white-desert-camp | [White Desert, Egypt.jpg](https://commons.wikimedia.org/wiki/File:White_Desert,_Egypt.jpg) | Vyacheslav Argenberg | CC BY 4.0 |
+| experiences/white-desert-camp-01 | [White Desert, Camels, Egypt.jpg](https://commons.wikimedia.org/wiki/File:White_Desert%2C_Camels%2C_Egypt.jpg) | Vyacheslav Argenberg | CC BY 4.0 |
+| experiences/white-desert-camp-02 | [White Desert, Rock formation, Egypt.jpg](https://commons.wikimedia.org/wiki/File:White_Desert%2C_Rock_formation%2C_Egypt.jpg) | Vyacheslav Argenberg | CC BY 4.0 |
 | hero/egypt-hero | [Pyramid of Khafre (color-corrected).jpg](https://commons.wikimedia.org/wiki/File:Pyramid_of_Khafre_(color-corrected).jpg) | User:Myousry6666 | CC BY-SA 4.0 |
 | journeys/ancient-egypt | [Templo de Karnak, Luxor, Egipto, 2022-04-03, DD 139.jpg](https://commons.wikimedia.org/wiki/File:Templo_de_Karnak,_Luxor,_Egipto,_2022-04-03,_DD_139.jpg) | Diego Delso | CC BY-SA 4.0 |
 | journeys/family | [Camel and the pyramids.jpg](https://commons.wikimedia.org/wiki/File:Camel_and_the_pyramids.jpg) | kallerna | CC BY-SA 3.0 |

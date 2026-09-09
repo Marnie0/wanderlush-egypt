@@ -214,7 +214,11 @@
     "privateAvailable": "Private option available",
     "familyFriendly": "Family friendly",
     "minAge": "Minimum age {{age}}",
-    "upToPeople": "Up to {{count}} people"
+    "upToPeople": "Up to {{count}} people",
+    "ratingLabel": "Rated {{rating}} out of 5 from {{count}} reviews",
+    "privateFrom": "Private from {{amount}} per person",
+    "setting": "Setting",
+    "related": "You may also like"
   },
   "journey": {
     "outline": "Day by day",
@@ -282,7 +286,8 @@
   },
   "groupFormat": {
     "private": "Private",
-    "shared": "Shared"
+    "shared": "Shared",
+    "both": "Private or shared"
   },
   "explore": {
     "searchLabel": "Search destinations",
@@ -335,6 +340,56 @@
   "notFound": {
     "destination": "We do not have a guide for that place",
     "destinationBody": "It may have been renamed, or the link may be out of date. All ten guides are listed below.",
-    "backToDestinations": "See all destinations"
+    "backToDestinations": "See all destinations",
+    "experience": "We do not run that experience",
+    "experienceBody": "It may have been renamed, or the link may be out of date. Every experience we run is listed below.",
+    "backToExperiences": "See all experiences"
+  },
+  "saved": {
+    "add": "Save for later",
+    "remove": "Remove from saved",
+    "save": "Save",
+    "savedLabel": "Saved"
+  },
+  "experiences": {
+    "searchLabel": "Search experiences",
+    "searchPlaceholder": "Name, place or activity",
+    "destination": "Where",
+    "category": "Kind of experience",
+    "price": "Price per person",
+    "priceUnder": "Under {{amount}}",
+    "priceOver": "{{amount}} and over",
+    "length": "How long it takes",
+    "lengths": {
+      "upTo3h": "Up to 3 hours",
+      "halfDay": "Half a day",
+      "fullDay": "A full day",
+      "multiDay": "More than a day"
+    },
+    "groupType": "Private or shared",
+    "setting": "Setting",
+    "suitability": "Narrow it down",
+    "familyFriendly": "Good with children",
+    "savedOnly": "Saved ({{count}})",
+    "savedOnlyChip": "Saved only",
+    "sortLabel": "Sort",
+    "sorts": {
+      "recommended": "Recommended",
+      "priceAsc": "Price, low to high",
+      "priceDesc": "Price, high to low",
+      "durationAsc": "Shortest first",
+      "rating": "Best rated"
+    },
+    "resultCount_one": "{{count}} experience",
+    "resultCount_other": "{{count}} experiences",
+    "empty": {
+      "title": "Nothing matches that combination",
+      "body": "Try widening the price or the length. Some of the best days out are shorter and cheaper than people expect.",
+      "action": "Clear the filters"
+    },
+    "emptySaved": {
+      "title": "You have not saved anything yet",
+      "body": "Use the bookmark on any experience to keep it here while you decide. Saved experiences stay in this browser."
+    }
   }
 }

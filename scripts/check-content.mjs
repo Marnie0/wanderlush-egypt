@@ -35,9 +35,14 @@ for (const e of experiences) {
   if (!destinationSlugs.has(e.destinationSlug)) {
     fail(e.slug, `destination "${e.destinationSlug}" does not exist`);
   }
-  if (!imageManifest[e.heroImage.src]) fail(e.slug, `missing image ${e.heroImage.src}`);
+  for (const image of [e.heroImage, ...e.gallery]) {
+    if (!imageManifest[image.src]) fail(e.slug, `missing image ${image.src}`);
+  }
   if (e.durationMinutes <= 0) fail(e.slug, "duration must be positive");
   if (e.priceFrom <= 0) fail(e.slug, "price must be positive");
+  if (e.privateSupplement < 0) fail(e.slug, "private supplement must not be negative");
+  if (e.rating < 0 || e.rating > 5) fail(e.slug, "rating must be between 0 and 5");
+  if (e.groupFormat.length === 0) fail(e.slug, "needs at least one group format");
 }
 
 for (const j of journeys) {

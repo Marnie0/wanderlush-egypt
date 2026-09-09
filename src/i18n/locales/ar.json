@@ -234,7 +234,11 @@
     "privateAvailable": "يتوفر خيار خاص",
     "familyFriendly": "مناسب للعائلات",
     "minAge": "الحد الأدنى للعمر {{age}}",
-    "upToPeople": "حتى {{count}} أشخاص"
+    "upToPeople": "حتى {{count}} أشخاص",
+    "ratingLabel": "التقييم {{rating}} من 5 بناءً على {{count}} مراجعة",
+    "privateFrom": "خاص ابتداءً من {{amount}} للفرد",
+    "setting": "البيئة",
+    "related": "قد يعجبك أيضًا"
   },
   "journey": {
     "outline": "يومًا بيوم",
@@ -302,7 +306,8 @@
   },
   "groupFormat": {
     "private": "خاص",
-    "shared": "مشترك"
+    "shared": "مشترك",
+    "both": "خاص أو مشترك"
   },
   "explore": {
     "searchLabel": "ابحث في الوجهات",
@@ -367,6 +372,60 @@
   "notFound": {
     "destination": "لا يوجد لدينا دليل لهذا المكان",
     "destinationBody": "ربما تغيّر اسمه أو أصبح الرابط قديمًا. وجميع الأدلة العشرة مدرجة أدناه.",
-    "backToDestinations": "شاهد كل الوجهات"
+    "backToDestinations": "شاهد كل الوجهات",
+    "experience": "لا ننظّم هذه التجربة",
+    "experienceBody": "ربما تغيّر اسمها أو أصبح الرابط قديمًا. وكل تجاربنا مدرجة أدناه.",
+    "backToExperiences": "شاهد كل التجارب"
+  },
+  "saved": {
+    "add": "احفظها لوقت لاحق",
+    "remove": "أزلها من المحفوظات",
+    "save": "احفظ",
+    "savedLabel": "محفوظة"
+  },
+  "experiences": {
+    "searchLabel": "ابحث في التجارب",
+    "searchPlaceholder": "الاسم أو المكان أو النشاط",
+    "destination": "أين",
+    "category": "نوع التجربة",
+    "price": "السعر للفرد",
+    "priceUnder": "أقل من {{amount}}",
+    "priceOver": "{{amount}} فأكثر",
+    "length": "كم تستغرق",
+    "lengths": {
+      "upTo3h": "حتى 3 ساعات",
+      "halfDay": "نصف يوم",
+      "fullDay": "يوم كامل",
+      "multiDay": "أكثر من يوم"
+    },
+    "groupType": "خاص أو مشترك",
+    "setting": "البيئة",
+    "suitability": "ضيّق الاختيار",
+    "familyFriendly": "مناسب للأطفال",
+    "savedOnly": "المحفوظة ({{count}})",
+    "savedOnlyChip": "المحفوظة فقط",
+    "sortLabel": "الترتيب",
+    "sorts": {
+      "recommended": "المقترح",
+      "priceAsc": "السعر من الأقل للأعلى",
+      "priceDesc": "السعر من الأعلى للأقل",
+      "durationAsc": "الأقصر أولًا",
+      "rating": "الأعلى تقييمًا"
+    },
+    "resultCount_zero": "لا توجد تجارب",
+    "resultCount_one": "تجربة واحدة",
+    "resultCount_two": "تجربتان",
+    "resultCount_few": "{{count}} تجارب",
+    "resultCount_many": "{{count}} تجربة",
+    "resultCount_other": "{{count}} تجربة",
+    "empty": {
+      "title": "لا شيء يطابق هذه المجموعة",
+      "body": "جرّب توسيع نطاق السعر أو المدة. فبعض أجمل الأيام أقصر وأقل كلفة مما يتوقع الناس.",
+      "action": "امسح عوامل التصفية"
+    },
+    "emptySaved": {
+      "title": "لم تحفظ أي تجربة بعد",
+      "body": "استخدم علامة الحفظ على أي تجربة لتبقى هنا ريثما تقرر. وتبقى التجارب المحفوظة في هذا المتصفح وحده."
+    }
   }
 }

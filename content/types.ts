@@ -132,8 +132,13 @@ export interface Experience {
   familyFriendly: boolean;
   /** Minutes. Rendered as hours/days by the locale formatter. */
   durationMinutes: number;
-  /** USD per person. */
+  /** USD per person, on the shared departure. */
   priceFrom: number;
+  /**
+   * Extra USD per person to take the experience privately. Chartering the
+   * whole balloon or boat costs far more than a seat on it, so on a few of
+   * these the supplement is larger than the base price.
+   */
   privateSupplement: number;
   rating: number;
   reviewCount: number;
