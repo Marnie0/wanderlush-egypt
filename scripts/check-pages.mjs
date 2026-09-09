@@ -1,6 +1,7 @@
 /**
- * Loads every route in headless Chrome and reports console errors, failed
- * network requests, missing headings and broken internal links.
+ * Loads every route in headless Chrome, at a desktop and a phone viewport,
+ * and reports console errors, failed network requests, missing headings,
+ * horizontal overflow and broken internal links.
  *
  *   node scripts/check-pages.mjs http://localhost:4173
  */
@@ -11,10 +12,18 @@ import { join } from "node:path";
 
 const base = (process.argv[2] ?? "http://localhost:4173").replace(/\/$/, "");
 const ROUTES = [
-  "/", "/?lng=ar", "/destinations", "/destinations/giza", "/destinations/fayoum",
+  "/", "/destinations", "/destinations/giza", "/destinations/fayoum",
   "/experiences", "/experiences/wadi-el-rayan-and-whale-valley", "/journeys",
   "/journeys/family-journey", "/trip-builder", "/trip-summary", "/booking",
   "/booking/confirmation", "/about", "/contact", "/faq", "/privacy", "/no-such-page",
+  // Arabic runs last: the detector caches the choice, so every route visited
+  // after this one would report as RTL and hide a real direction problem.
+  "/?lng=ar", "/destinations", "/destinations/luxor", "/experiences", "/journeys",
+];
+
+const VIEWPORTS = [
+  { name: "desktop", width: 1440, height: 900, mobile: false },
+  { name: "phone", width: 390, height: 844, mobile: true },
 ];
 
 const port = 9500 + Math.floor(Math.random() * 300);
@@ -85,39 +94,53 @@ await send("Network.enable");
 let problems = 0;
 const links = new Set();
 
-for (const route of ROUTES) {
-  consoleErrors = [];
-  failedRequests = [];
-  await send("Page.navigate", { url: base + route });
-  await sleep(3200);
+for (const viewport of VIEWPORTS) {
+  await send("Emulation.setDeviceMetricsOverride", {
+    width: viewport.width,
+    height: viewport.height,
+    deviceScaleFactor: 1,
+    mobile: viewport.mobile,
+  });
+  // The language detector caches its choice in this profile, so each pass has
+  // to start from English or it would inherit the Arabic run above.
+  await send("Page.navigate", { url: `${base}/?lng=en` });
+  await sleep(2000);
+  console.log(`\n--- ${viewport.name} ${viewport.width}x${viewport.height} ---`);
 
-  const info = (
-    await send("Runtime.evaluate", {
-      expression: `(() => ({
-        h1: document.querySelector('h1')?.textContent?.trim() ?? null,
-        title: document.title,
-        lang: document.documentElement.lang,
-        dir: document.documentElement.dir,
-        links: [...document.querySelectorAll('a[href^="/"]')].map((a) => a.getAttribute('href')),
-        overflow: document.documentElement.scrollWidth > window.innerWidth + 1,
-      }))()`,
-      returnByValue: true,
-    })
-  ).result.value;
+  for (const route of ROUTES) {
+    consoleErrors = [];
+    failedRequests = [];
+    await send("Page.navigate", { url: base + route });
+    await sleep(3200);
 
-  for (const href of info.links) links.add(href.split("#")[0]);
+    const info = (
+      await send("Runtime.evaluate", {
+        expression: `(() => ({
+          h1: document.querySelector('h1')?.textContent?.trim() ?? null,
+          title: document.title,
+          lang: document.documentElement.lang,
+          dir: document.documentElement.dir,
+          links: [...document.querySelectorAll('a[href^="/"]')].map((a) => a.getAttribute('href')),
+          overflow: document.documentElement.scrollWidth > window.innerWidth + 1,
+        }))()`,
+        returnByValue: true,
+      })
+    ).result.value;
 
-  const issues = [];
-  if (!info.h1) issues.push("no h1");
-  if (!info.title) issues.push("no title");
-  if (info.overflow) issues.push("horizontal overflow");
-  if (consoleErrors.length) issues.push(`console: ${consoleErrors.slice(0, 2).join(" | ")}`);
-  if (failedRequests.length) issues.push(`network: ${failedRequests.slice(0, 2).join(" | ")}`);
+    for (const href of info.links) links.add(href.split("#")[0]);
 
-  problems += issues.length;
-  console.log(
-    `${issues.length ? "FAIL" : "ok  "} ${route.padEnd(42)} ${info.dir} ${issues.join("; ")}`,
-  );
+    const issues = [];
+    if (!info.h1) issues.push("no h1");
+    if (!info.title) issues.push("no title");
+    if (info.overflow) issues.push("horizontal overflow");
+    if (consoleErrors.length) issues.push(`console: ${consoleErrors.slice(0, 2).join(" | ")}`);
+    if (failedRequests.length) issues.push(`network: ${failedRequests.slice(0, 2).join(" | ")}`);
+
+    problems += issues.length;
+    console.log(
+      `${issues.length ? "FAIL" : "ok  "} ${route.padEnd(42)} ${info.dir} ${issues.join("; ")}`,
+    );
+  }
 }
 
 console.log(`\ninternal link targets found: ${links.size}`);

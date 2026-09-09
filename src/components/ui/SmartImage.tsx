@@ -10,6 +10,12 @@ interface SmartImageProps {
   accent?: string;
   className?: string;
   imgClassName?: string;
+  /**
+   * `cover` fills the box the caller sizes, so the caller must give it a
+   * height. `contain` shows the whole picture and lets the picture set the
+   * height, for a lightbox or anywhere the crop would lose the subject.
+   */
+  fit?: "cover" | "contain";
   /** Only above-the-fold heroes should be eager. */
   priority?: boolean;
   sizes?: string;
@@ -24,6 +30,20 @@ export const HALF_SIZES = "(min-width: 640px) 50vw, 100vw";
 export const FULL_SIZES = "100vw";
 
 /**
+ * Warm the cache for a picture that is about to be shown, choosing the same
+ * variant `SmartImage` would, so a lightbox step lands on a decoded file
+ * instead of leaving the previous photo under the new caption.
+ */
+export function preloadImage(src: string, sizes: string) {
+  const entry = imageManifest[src];
+  if (!entry) return;
+  const img = new Image();
+  img.sizes = sizes;
+  img.srcset = entry.sources.map((s) => `${s.url} ${s.width}w`).join(", ");
+  img.src = entry.sources[Math.min(1, entry.sources.length - 1)].url;
+}
+
+/**
  * Serves the responsive WebP variants produced by `scripts/images/build.mjs`,
  * with the generated blur placeholder painted underneath so there is never a
  * blank rectangle. Anything missing from the manifest degrades to a warm
@@ -35,6 +55,7 @@ export function SmartImage({
   accent = "#9a7a54",
   className,
   imgClassName,
+  fit = "cover",
   priority = false,
   sizes = CARD_SIZES,
   showCredit = false,
@@ -58,20 +79,30 @@ export function SmartImage({
   const srcSet = entry?.sources.map((s) => `${s.url} ${s.width}w`).join(", ");
   const fallback = entry?.sources[Math.min(1, entry.sources.length - 1)];
   const showPlaceholder = !entry || failed;
+  const isContain = fit === "contain";
 
   return (
     <div
-      className={cn("relative overflow-hidden bg-sand-200", className)}
+      className={cn(
+        "relative",
+        isContain ? "flex items-center justify-center" : "overflow-hidden bg-sand-200",
+        // Nothing sizes a contained box but the picture inside it, so the
+        // placeholder needs a shape of its own to fall back to.
+        isContain && showPlaceholder && "aspect-[3/2] w-full overflow-hidden",
+        className,
+      )}
       style={
         showPlaceholder
           ? {
               backgroundImage: `linear-gradient(150deg, ${accent} 0%, color-mix(in oklab, ${accent} 55%, #12100c) 62%, #12100c 100%)`,
             }
-          : {
-              backgroundImage: `url("${entry.lqip}")`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }
+          : isContain
+            ? undefined
+            : {
+                backgroundImage: `url("${entry.lqip}")`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }
       }
     >
       {entry && !failed && (
@@ -89,7 +120,13 @@ export function SmartImage({
           onError={() => setFailed(true)}
           onLoad={() => setLoaded(true)}
           className={cn(
-            "absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-out",
+            "transition-opacity duration-700 ease-out",
+            // A contained picture stays in flow so it can give the box its
+            // height; a covering one is taken out of flow to fill the box the
+            // caller has already sized.
+            isContain
+              ? "block h-auto w-auto max-w-full object-contain"
+              : "absolute inset-0 h-full w-full object-cover",
             loaded ? "opacity-100" : "opacity-0",
             imgClassName,
           )}

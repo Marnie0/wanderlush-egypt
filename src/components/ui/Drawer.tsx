@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { AnimatePresence, m } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useDirection } from "@/hooks/useDirection";
@@ -65,7 +66,9 @@ export function Drawer({
     };
   }, [open, onClose]);
 
-  return (
+  // Rendered on the body so no animated ancestor can trap the panel in its own
+  // stacking context, underneath the fixed header.
+  return createPortal(
     <AnimatePresence>
       {open && (
         <m.div className="fixed inset-0 z-50" initial="hidden" animate="visible" exit="hidden">
@@ -105,6 +108,7 @@ export function Drawer({
           </m.div>
         </m.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body,
   );
 }
