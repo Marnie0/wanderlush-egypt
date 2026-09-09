@@ -3,6 +3,7 @@
  *
  *   node scripts/screenshot.mjs <url> <out.png> [--width=1440] [--height=900]
  *                                              [--scroll=#selector] [--wait=2500]
+ *                                              [--settle=1600]
  *
  * Drives headless Chrome over the DevTools protocol rather than the one-shot
  * `--screenshot` flag, because that flag cannot scroll, cannot wait for lazy
@@ -27,6 +28,7 @@ const width = Number(flag("width", 1440));
 const height = Number(flag("height", 900));
 const scrollTo = flag("scroll", "");
 const wait = Number(flag("wait", 2500));
+const settle = Number(flag("settle", 1600));
 const port = 9222 + Math.floor(Math.random() * 400);
 
 const chrome = spawn(
@@ -97,8 +99,9 @@ if (scrollTo) {
       ?.scrollIntoView({ behavior: "instant", block: "start" })`,
     awaitPromise: false,
   });
-  // Entrance animations fire on scroll, so give them time to settle.
-  await sleep(1600);
+  // Entrance animations and lazy images both start on scroll, so give them
+  // time to finish before the frame is grabbed.
+  await sleep(settle);
 }
 
 const { data } = await send("Page.captureScreenshot", { format: "png" });
