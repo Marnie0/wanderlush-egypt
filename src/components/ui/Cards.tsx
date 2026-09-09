@@ -22,12 +22,15 @@ export function DestinationCard({
   featured = false,
   sizes = CARD_SIZES,
   showAddToTrip = false,
+  priority = false,
 }: {
   destination: Destination;
   className?: string;
   featured?: boolean;
   sizes?: string;
   showAddToTrip?: boolean;
+  /** The first row of a grid is the largest thing on screen; do not lazy-load it. */
+  priority?: boolean;
 }) {
   const { t, i18n } = useTranslation();
   const language = i18n.resolvedLanguage ?? "en";
@@ -40,6 +43,7 @@ export function DestinationCard({
           alt={pick(destination.heroImage.alt, language)}
           accent={destination.accent}
           sizes={sizes}
+          priority={priority}
           className={cn(
             "w-full",
             featured ? "aspect-[4/5] lg:aspect-[3/4]" : "aspect-[4/3]",
@@ -75,7 +79,7 @@ export function DestinationCard({
         </span>
         <span>
           {t("common.from")} {formatMoney(destination.dailyBudgetFrom, "USD", language)}{" "}
-          <span className="text-ink-muted/80">{t("common.perPerson")}</span>
+          <span className="text-ink-muted">{t("common.perPerson")}</span>
         </span>
       </div>
     </m.article>
@@ -87,12 +91,15 @@ export function ExperienceCard({
   className,
   sizes = CARD_SIZES,
   showActions = false,
+  priority = false,
 }: {
   experience: Experience;
   className?: string;
   sizes?: string;
   /** Homepage teasers link through instead; only the marketplace acts here. */
   showActions?: boolean;
+  /** The first row of a grid is the largest thing on screen; do not lazy-load it. */
+  priority?: boolean;
 }) {
   const { t, i18n } = useTranslation();
   const language = i18n.resolvedLanguage ?? "en";
@@ -117,6 +124,7 @@ export function ExperienceCard({
             alt={pick(experience.heroImage.alt, language)}
             accent={experience.accent}
             sizes={sizes}
+            priority={priority}
             className="aspect-[3/2] w-full"
             imgClassName="transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
           />

@@ -670,16 +670,17 @@
   ]
  },
  "experiences/giftun": {
-  "title": "File:Hurghada snorkelling - Egypt - panoramio.jpg",
-  "source": "https://commons.wikimedia.org/wiki/File:Hurghada_snorkelling_-_Egypt_-_panoramio.jpg",
-  "artist": "Fanny S Forsdik",
+  "title": "File:Beach of giftun island.JPG",
+  "source": "https://commons.wikimedia.org/wiki/File:Beach_of_giftun_island.JPG",
+  "artist": "Caprice4540",
   "license": "CC BY-SA 3.0",
-  "width": 3456,
-  "height": 2304,
+  "width": 2592,
+  "height": 1944,
   "download": [
-   "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4e/Hurghada_snorkelling_-_Egypt_-_panoramio.jpg/2560px-Hurghada_snorkelling_-_Egypt_-_panoramio.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-   "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4e/Hurghada_snorkelling_-_Egypt_-_panoramio.jpg/1920px-Hurghada_snorkelling_-_Egypt_-_panoramio.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-   "https://upload.wikimedia.org/wikipedia/commons/4/4e/Hurghada_snorkelling_-_Egypt_-_panoramio.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+   "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Beach_of_giftun_island.JPG/2560px-Beach_of_giftun_island.JPG",
+   "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Beach_of_giftun_island.JPG/1920px-Beach_of_giftun_island.JPG",
+   "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Beach_of_giftun_island.JPG/1280px-Beach_of_giftun_island.JPG",
+   "https://upload.wikimedia.org/wikipedia/commons/1/1c/Beach_of_giftun_island.JPG"
   ]
  },
  "experiences/quad-desert": {
@@ -1141,16 +1142,17 @@
   ]
  },
  "experiences/giftun-02": {
-  "title": "File:Red Sea 紅海 - panoramio.jpg",
-  "source": "https://commons.wikimedia.org/wiki/File:Red_Sea_%E7%B4%85%E6%B5%B7_-_panoramio.jpg",
-  "artist": "lienyuan lee",
-  "license": "CC BY 3.0",
-  "width": 2560,
-  "height": 1920,
+  "title": "File:Rafa koralowa Hurgada(14).JPG",
+  "source": "https://commons.wikimedia.org/wiki/File:Rafa_koralowa_Hurgada(14).JPG",
+  "artist": "Inetta",
+  "license": "CC BY-SA 3.0",
+  "width": 4000,
+  "height": 3000,
   "download": [
-   "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Red_Sea_%E7%B4%85%E6%B5%B7_-_panoramio.jpg/1920px-Red_Sea_%E7%B4%85%E6%B5%B7_-_panoramio.jpg",
-   "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Red_Sea_%E7%B4%85%E6%B5%B7_-_panoramio.jpg/1280px-Red_Sea_%E7%B4%85%E6%B5%B7_-_panoramio.jpg",
-   "https://upload.wikimedia.org/wikipedia/commons/c/c0/Red_Sea_%E7%B4%85%E6%B5%B7_-_panoramio.jpg"
+   "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Rafa_koralowa_Hurgada%2814%29.JPG/2560px-Rafa_koralowa_Hurgada%2814%29.JPG",
+   "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Rafa_koralowa_Hurgada%2814%29.JPG/1920px-Rafa_koralowa_Hurgada%2814%29.JPG",
+   "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Rafa_koralowa_Hurgada%2814%29.JPG/1280px-Rafa_koralowa_Hurgada%2814%29.JPG",
+   "https://upload.wikimedia.org/wikipedia/commons/8/89/Rafa_koralowa_Hurgada%2814%29.JPG"
   ]
  },
  "experiences/giza-sunrise-01": {

@@ -19,7 +19,9 @@ export function Rating({
   const language = i18n.resolvedLanguage ?? "en";
 
   return (
+    // A plain span may not carry a label; as an image it is read as one phrase.
     <span
+      role="img"
       className={cn("inline-flex items-baseline gap-1.5 text-sm text-charcoal-700", className)}
       aria-label={t("experience.ratingLabel", {
         rating: formatRating(value, language),

@@ -1,6 +1,9 @@
 import { useTranslation } from "react-i18next";
-import { Icon } from "@/components/ui/Icon";
-import { FilterGroup as Group, FilterToggle as Toggle } from "@/components/ui/FilterControls";
+import {
+  FilterGroup as Group,
+  FilterSearch as Search,
+  FilterToggle as Toggle,
+} from "@/components/ui/FilterControls";
 import { destinations } from "@content/destinations";
 import { pick } from "@/lib/format";
 import {
@@ -35,22 +38,13 @@ export function ExperienceFilters({
 
   return (
     <div className="space-y-8">
-      <div>
-        <label htmlFor="experience-search" className="eyebrow text-ink-muted">
-          {t("experiences.searchLabel")}
-        </label>
-        <div className="mt-3 flex items-center gap-3 border border-line bg-canvas px-4 py-3 transition-colors focus-within:border-ember-500">
-          <Icon name="search" size={18} className="text-charcoal-400" />
-          <input
-            id="experience-search"
-            type="search"
-            value={filters.query}
-            placeholder={t("experiences.searchPlaceholder")}
-            onChange={(event) => onChange({ ...filters, query: event.target.value })}
-            className="w-full bg-transparent text-charcoal-900 placeholder:text-charcoal-400 focus:outline-none"
-          />
-        </div>
-      </div>
+      <Search
+        id="experience-search"
+        label={t("experiences.searchLabel")}
+        placeholder={t("experiences.searchPlaceholder")}
+        value={filters.query}
+        onChange={(query) => onChange({ ...filters, query })}
+      />
 
       <Group label={t("experiences.destination")}>
         {destinations.map((destination) => (

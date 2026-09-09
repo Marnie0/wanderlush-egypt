@@ -22,7 +22,7 @@ import {
   type DestinationFilterState,
 } from "@/lib/destination-filters";
 import { pick } from "@/lib/format";
-import { stagger, viewportOnce } from "@/lib/motion";
+import { stagger } from "@/lib/motion";
 import { cn } from "@/lib/cn";
 
 export function DestinationsPage() {
@@ -99,7 +99,7 @@ export function DestinationsPage() {
 
       <Section className="pt-0 lg:pt-0">
         <Container className="pt-16 lg:pt-20">
-          <div className="grid gap-12 lg:grid-cols-[16rem_1fr] lg:gap-14">
+          <div className="grid gap-12 lg:grid-cols-[18rem_1fr] lg:gap-14">
             <aside className="hidden lg:block">
               <div className="sticky top-28">
                 <DestinationFilters filters={filters} onChange={setFilters} />
@@ -119,7 +119,7 @@ export function DestinationsPage() {
                 >
                   {t("explore.showFilters")}
                   {activeCount > 0 && (
-                    <span className="ms-1 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-ember-500 px-1.5 text-xs text-ivory">
+                    <span className="ms-1 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-ember-600 px-1.5 text-xs text-ivory">
                       {activeCount}
                     </span>
                   )}
@@ -129,6 +129,7 @@ export function DestinationsPage() {
               <div className="mt-5">
                 <ActiveFilters filters={filters} onChange={setFilters} />
               </div>
+              <h2 className="sr-only">{t("explore.resultsHeading")}</h2>
 
               {results.length === 0 ? (
                 <div className="mt-12 border border-line bg-sand-50 px-6 py-14 text-center">
@@ -144,19 +145,18 @@ export function DestinationsPage() {
                 </div>
               ) : (
                 <m.div
-                  key={results.map((destination) => destination.slug).join()}
                   initial="hidden"
-                  whileInView="visible"
-                  viewport={viewportOnce}
+                  animate="visible"
                   variants={stagger(0.03, 0.06)}
                   className="mt-10 grid gap-x-8 gap-y-12 sm:grid-cols-2 xl:grid-cols-3"
                 >
-                  {results.map((destination) => (
+                  {results.map((destination, index) => (
                     <DestinationCard
                       key={destination.slug}
                       destination={destination}
                       sizes="(min-width: 1280px) 28vw, (min-width: 640px) 42vw, 100vw"
                       showAddToTrip
+                      priority={index < 3}
                     />
                   ))}
                 </m.div>

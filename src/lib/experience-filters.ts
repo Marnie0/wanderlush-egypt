@@ -1,4 +1,5 @@
 import type { TFunction } from "i18next";
+import { destinationBySlug } from "@content/destinations";
 import { formatMoney } from "@/lib/format";
 import type {
   Experience,
@@ -82,7 +83,22 @@ export function durationBand(experience: Experience): ExperienceDurationBand {
   return band?.id ?? "multiDay";
 }
 
-function matchesQuery(experience: Experience, needle: string, arabic: boolean): boolean {
+/** Turns a locale key into the words the visitor actually sees. */
+type Translate = (key: string) => string;
+
+/**
+ * Searches the words on the page, not the identifiers behind them: the place
+ * name in both languages, and the category and setting as they are labelled,
+ * so "الأقصر" and "مغامرة" find things in Arabic the way "Luxor" and
+ * "adventure" do in English.
+ */
+function matchesQuery(
+  experience: Experience,
+  needle: string,
+  arabic: boolean,
+  translate?: Translate,
+): boolean {
+  const destination = destinationBySlug.get(experience.destinationSlug);
   const haystack = [
     experience.name.en,
     experience.name.ar,
@@ -90,8 +106,12 @@ function matchesQuery(experience: Experience, needle: string, arabic: boolean): 
     experience.summary.ar,
     arabic ? experience.description.ar : experience.description.en,
     experience.destinationSlug.replace(/-/g, " "),
+    destination?.name.en ?? "",
+    destination?.name.ar ?? "",
     experience.category,
     experience.environment,
+    translate?.(`categories.${experience.category}`) ?? "",
+    translate?.(`environments.${experience.environment}`) ?? "",
     ...experience.travelStyles,
   ]
     .join(" ")
@@ -109,12 +129,13 @@ export function filterExperiences(
   filters: ExperienceFilterState,
   language: string,
   savedSlugs: string[] = [],
+  translate?: Translate,
 ): Experience[] {
   const needle = filters.query.trim().toLowerCase();
   const arabic = language.startsWith("ar");
 
   const results = experiences.filter((experience) => {
-    if (needle && !matchesQuery(experience, needle, arabic)) return false;
+    if (needle && !matchesQuery(experience, needle, arabic, translate)) return false;
 
     if (filters.destinations.length > 0 && !filters.destinations.includes(experience.destinationSlug)) {
       return false;

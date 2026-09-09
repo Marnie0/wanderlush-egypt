@@ -354,6 +354,7 @@
   "experiences": {
     "searchLabel": "Search experiences",
     "searchPlaceholder": "Name, place or activity",
+    "resultsHeading": "Results",
     "destination": "Where",
     "category": "Kind of experience",
     "price": "Price per person",

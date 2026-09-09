@@ -22,7 +22,7 @@ import {
   filterExperiences,
   type ExperienceFilterState,
 } from "@/lib/experience-filters";
-import { stagger, viewportOnce } from "@/lib/motion";
+import { stagger } from "@/lib/motion";
 
 const destinationSlugs = destinations.map((destination) => destination.slug);
 
@@ -48,8 +48,8 @@ export function ExperiencesPage() {
   const savedSlugs = useTripStore((state) => state.savedExperienceSlugs);
 
   const results = useMemo(
-    () => filterExperiences(experiences, filters, language, savedSlugs),
-    [filters, language, savedSlugs],
+    () => filterExperiences(experiences, filters, language, savedSlugs, t),
+    [filters, language, savedSlugs, t],
   );
   const activeCount = countActiveExperienceFilters(filters);
 
@@ -63,7 +63,7 @@ export function ExperiencesPage() {
 
       <Section className="pt-0 lg:pt-0">
         <Container>
-          <div className="grid gap-12 lg:grid-cols-[16rem_1fr] lg:gap-14">
+          <div className="grid gap-12 lg:grid-cols-[18rem_1fr] lg:gap-14">
             <aside className="hidden lg:block">
               {/* The panel is taller than a viewport once every group is open,
                   so it scrolls within itself rather than pinning past the fold. */}
@@ -94,7 +94,7 @@ export function ExperiencesPage() {
                   >
                     {t("explore.showFilters")}
                     {activeCount > 0 && (
-                      <span className="ms-1 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-ember-500 px-1.5 text-xs text-ivory">
+                      <span className="ms-1 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-ember-600 px-1.5 text-xs text-ivory">
                         {activeCount}
                       </span>
                     )}
@@ -105,6 +105,7 @@ export function ExperiencesPage() {
               <div className="mt-5">
                 <ExperienceActiveFilters filters={filters} onChange={setFilters} />
               </div>
+              <h2 className="sr-only">{t("experiences.resultsHeading")}</h2>
 
               {results.length === 0 ? (
                 <div className="mt-12 border border-line bg-sand-50 px-6 py-14 text-center">
@@ -126,20 +127,24 @@ export function ExperiencesPage() {
                   </Button>
                 </div>
               ) : (
+                // Not keyed on the results: remounting the grid made every
+                // card fade in again on each keystroke. The grid animates
+                // rather than waiting for the viewport because a card that
+                // arrives later inherits the parent's animate state, and a
+                // once-only viewport trigger would leave it hidden.
                 <m.div
-                  key={results.map((experience) => experience.slug).join()}
                   initial="hidden"
-                  whileInView="visible"
-                  viewport={viewportOnce}
+                  animate="visible"
                   variants={stagger(0.03, 0.06)}
                   className="mt-10 grid gap-x-8 gap-y-12 sm:grid-cols-2 xl:grid-cols-3"
                 >
-                  {results.map((experience) => (
+                  {results.map((experience, index) => (
                     <ExperienceCard
                       key={experience.slug}
                       experience={experience}
                       sizes="(min-width: 1280px) 28vw, (min-width: 640px) 42vw, 100vw"
                       showActions
+                      priority={index < 3}
                     />
                   ))}
                 </m.div>

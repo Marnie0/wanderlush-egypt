@@ -45,6 +45,28 @@ const BookingConfirmationPage = lazy(() =>
 );
 const ContactPage = lazy(() => import("./StubPages").then((m) => ({ default: m.ContactPage })));
 
+/**
+ * Fetch the chunks behind the main navigation once the landing page has gone
+ * idle, so the first click opens instantly instead of waiting on a download.
+ * Together they are under twenty kilobytes compressed. Skipped for anyone
+ * who has asked the browser to save data.
+ */
+export function warmMainRoutes() {
+  if ((navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData) return;
+  const warm = () => {
+    void import("./DestinationsPage");
+    void import("./DestinationDetailPage");
+    void import("./ExperiencesPage");
+    void import("./ExperienceDetailPage");
+    void import("./JourneysPage");
+  };
+  if (typeof window.requestIdleCallback === "function") {
+    window.requestIdleCallback(warm, { timeout: 4000 });
+  } else {
+    window.setTimeout(warm, 2500);
+  }
+}
+
 /** The route table from the brief, in full, from the first deployment. */
 export const router = createBrowserRouter([
   {

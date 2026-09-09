@@ -3,8 +3,23 @@ import { createRoot } from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
 import { LazyMotion, MotionConfig, domAnimation } from "framer-motion";
 import "./i18n";
+// Fonts are served from this origin with the rest of the bundle. The Google
+// Fonts stylesheet was render-blocking and cost two extra connections before
+// a single word could paint; these files are subset by script, so a visitor
+// only downloads the alphabet they are reading. Inter is Latin-only because
+// the Arabic side uses IBM Plex Sans Arabic for everything, including the
+// Latin words inside Arabic text.
+import "@fontsource-variable/fraunces/opsz.css";
+import "@fontsource/inter/latin-400.css";
+import "@fontsource/inter/latin-500.css";
+import "@fontsource/inter/latin-600.css";
+import "@fontsource/amiri/400.css";
+import "@fontsource/amiri/700.css";
+import "@fontsource/ibm-plex-sans-arabic/400.css";
+import "@fontsource/ibm-plex-sans-arabic/500.css";
+import "@fontsource/ibm-plex-sans-arabic/600.css";
 import "./styles/index.css";
-import { router } from "./routes/router";
+import { router, warmMainRoutes } from "./routes/router";
 
 /**
  * `LazyMotion` with the `domAnimation` feature set ships animations, exit
@@ -28,3 +43,5 @@ createRoot(document.getElementById("root")!).render(
     </LazyMotion>
   </StrictMode>,
 );
+
+warmMainRoutes();

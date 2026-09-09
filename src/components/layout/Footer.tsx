@@ -50,8 +50,8 @@ export function Footer() {
         </div>
 
         <div className="mt-16 border-t border-ivory/15 pt-8">
-          <p className="text-xs leading-relaxed text-ivory/50">{t("footer.demoNotice")}</p>
-          <p className="mt-2 text-xs text-ivory/50">
+          <p className="text-xs leading-relaxed text-ivory/70">{t("footer.demoNotice")}</p>
+          <p className="mt-2 text-xs text-ivory/70">
             © {year} {t("brand.name")}. {t("footer.rights")}
           </p>
         </div>

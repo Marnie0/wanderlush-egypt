@@ -908,7 +908,7 @@ export const experiences: Experience[] = [
     whatToBring: { en: ["Reef-safe sunscreen only", "A towel", "A dry bag for your phone"], ar: ["واقي شمس آمن للشعاب فقط", "منشفة", "حقيبة مقاومة للماء للهاتف"] },
     accessibility: { en: "Entry to the water is by ladder from the stern. Crew assistance is available.", ar: "النزول إلى الماء بسُلّم من مؤخرة المركب. وتتوفر مساعدة الطاقم." },
     cancellation: { en: "Free cancellation up to 24 hours before", ar: "إلغاء مجاني حتى 24 ساعة قبل الموعد" },
-    heroImage: { src: "/images/experiences/giftun.webp", alt: { en: "Snorkellers over a shallow reef", ar: "غطّاسون فوق شعاب ضحلة" } },
+    heroImage: { src: "/images/experiences/giftun.webp", alt: { en: "A boat pulled up on the white sand of Giftun Island", ar: "مركب راسٍ على رمال جزيرة الجفتون البيضاء" } },
     gallery: [
       {
         src: "/images/experiences/giftun-01.webp",
@@ -916,7 +916,7 @@ export const experiences: Experience[] = [
       },
       {
         src: "/images/experiences/giftun-02.webp",
-        alt: { en: "Fish in the shallows over the reef", ar: "أسماك في المياه الضحلة فوق الشعاب" },
+        alt: { en: "Angelfish over the coral in the shallows", ar: "أسماك ملائكية فوق المرجان في المياه الضحلة" },
       },
     ],
     accent: "#2a719a",

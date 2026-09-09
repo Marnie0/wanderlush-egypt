@@ -25,7 +25,7 @@ export function RootLayout() {
     <div className="flex min-h-dvh flex-col bg-canvas">
       <a
         href="#main"
-        className="sr-only rounded-sm bg-ember-500 px-4 py-2 text-ivory focus:not-sr-only focus:absolute focus:start-4 focus:top-4 focus:z-50"
+        className="sr-only rounded-sm bg-ember-600 px-4 py-2 text-ivory focus:not-sr-only focus:absolute focus:start-4 focus:top-4 focus:z-50"
       >
         {t("nav.skipToContent")}
       </a>

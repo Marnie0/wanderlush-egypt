@@ -61,9 +61,9 @@ licence shown. Attribution is required for the CC BY and CC BY-SA images.
 | experiences/gem-atrium | [Grand Egyptian Museum 2025 (70046).jpg](https://commons.wikimedia.org/wiki/File:Grand_Egyptian_Museum_2025_(70046).jpg) | Amr F.Nagy | Public domain |
 | experiences/gem-atrium-01 | [Grand Egyptian Museum 2025 (44788).jpg](https://commons.wikimedia.org/wiki/File:Grand_Egyptian_Museum_2025_%2844788%29.jpg) | Amr F.Nagy | Public domain |
 | experiences/gem-atrium-02 | [Grand Egyptian Museum 2025 (58149).jpg](https://commons.wikimedia.org/wiki/File:Grand_Egyptian_Museum_2025_%2858149%29.jpg) | Amr F.Nagy | Public domain |
-| experiences/giftun | [Hurghada snorkelling - Egypt - panoramio.jpg](https://commons.wikimedia.org/wiki/File:Hurghada_snorkelling_-_Egypt_-_panoramio.jpg) | Fanny S Forsdik | CC BY-SA 3.0 |
+| experiences/giftun | [Beach of giftun island.JPG](https://commons.wikimedia.org/wiki/File:Beach_of_giftun_island.JPG) | Caprice4540 | CC BY-SA 3.0 |
 | experiences/giftun-01 | [Egypt-Hurghada-from-plane01.jpg](https://commons.wikimedia.org/wiki/File:Egypt-Hurghada-from-plane01.jpg) | No machine-readable author provided. Ebief assumed (based on copyright claims). | CC BY-SA 2.5 |
-| experiences/giftun-02 | [Red Sea 紅海 - panoramio.jpg](https://commons.wikimedia.org/wiki/File:Red_Sea_%E7%B4%85%E6%B5%B7_-_panoramio.jpg) | lienyuan lee | CC BY 3.0 |
+| experiences/giftun-02 | [Rafa koralowa Hurgada(14).JPG](https://commons.wikimedia.org/wiki/File:Rafa_koralowa_Hurgada(14).JPG) | Inetta | CC BY-SA 3.0 |
 | experiences/giza-sunrise | [Pyramid of Khafre (50283854781).jpg](https://commons.wikimedia.org/wiki/File:Pyramid_of_Khafre_(50283854781).jpg) | Vincent Brown | CC BY 2.0 |
 | experiences/giza-sunrise-01 | [Pyramid of Cheops - side.jpg](https://commons.wikimedia.org/wiki/File:Pyramid_of_Cheops_-_side.jpg) | kallerna | CC BY-SA 3.0 |
 | experiences/giza-sunrise-02 | [Great Sphinx of Giza and Pyramid of Cheops.jpg](https://commons.wikimedia.org/wiki/File:Great_Sphinx_of_Giza_and_Pyramid_of_Cheops.jpg) | kallerna | CC BY-SA 4.0 |

@@ -20,7 +20,7 @@ function DetailList({ title, items }: { title: string; items: string[] }) {
   if (items.length === 0) return null;
   return (
     <div>
-      <h3 className="eyebrow text-ink-muted">{title}</h3>
+      <h2 className="eyebrow text-ink-muted">{title}</h2>
       <ul className="mt-3 space-y-2">
         {items.map((item) => (
           <li key={item} className="flex gap-3 text-sm leading-relaxed text-charcoal-600">
@@ -145,7 +145,7 @@ export function ExperienceDetailPage() {
                   items={pickList(experience.whatToBring, language)}
                 />
                 <div>
-                  <h3 className="eyebrow text-ink-muted">{t("experience.accessibility")}</h3>
+                  <h2 className="eyebrow text-ink-muted">{t("experience.accessibility")}</h2>
                   <p className="mt-3 text-sm leading-relaxed text-charcoal-600">
                     {pick(experience.accessibility, language)}
                   </p>

@@ -1,6 +1,9 @@
 import { useTranslation } from "react-i18next";
-import { Icon } from "@/components/ui/Icon";
-import { FilterGroup as Group, FilterToggle as Toggle } from "@/components/ui/FilterControls";
+import {
+  FilterGroup as Group,
+  FilterSearch as Search,
+  FilterToggle as Toggle,
+} from "@/components/ui/FilterControls";
 import {
   DURATION_BUCKETS,
   MONTHS,
@@ -47,22 +50,13 @@ export function DestinationFilters({
 
   return (
     <div className="space-y-8">
-      <div>
-        <label htmlFor="destination-search" className="eyebrow text-ink-muted">
-          {t("explore.searchLabel")}
-        </label>
-        <div className="mt-3 flex items-center gap-3 border border-line bg-canvas px-4 py-3 transition-colors focus-within:border-ember-500">
-          <Icon name="search" size={18} className="text-charcoal-400" />
-          <input
-            id="destination-search"
-            type="search"
-            value={filters.query}
-            placeholder={t("explore.searchPlaceholder")}
-            onChange={(event) => onChange({ ...filters, query: event.target.value })}
-            className="w-full bg-transparent text-charcoal-900 placeholder:text-charcoal-400 focus:outline-none"
-          />
-        </div>
-      </div>
+      <Search
+        id="destination-search"
+        label={t("explore.searchLabel")}
+        placeholder={t("explore.searchPlaceholder")}
+        value={filters.query}
+        onChange={(query) => onChange({ ...filters, query })}
+      />
 
       <Group label={t("explore.region")}>
         {REGIONS.map((region) => (

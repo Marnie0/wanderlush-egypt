@@ -64,7 +64,7 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
                     {t(item.key)}
                     {item.to === "/trip-builder" && tripCount > 0 && (
                       <span
-                        className="ms-1.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-ember-500 px-1.5 text-xs text-ivory"
+                        className="ms-1.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-ember-600 px-1.5 text-xs text-ivory"
                         aria-label={t("trip.count", { count: tripCount })}
                       >
                         {tripCount}

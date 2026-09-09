@@ -9,7 +9,8 @@ const base =
   "focus-visible:outline-2 focus-visible:outline-offset-3 disabled:cursor-not-allowed disabled:opacity-50";
 
 const variants: Record<Variant, string> = {
-  primary: "bg-ember-500 text-ivory hover:bg-ember-600",
+  // Ivory on ember-500 is 3.97:1, short of the 4.5:1 that button text needs.
+  primary: "bg-ember-600 text-ivory hover:bg-ember-700",
   secondary:
     "border border-charcoal-800/25 text-charcoal-800 hover:border-charcoal-800/60 hover:bg-sand-100",
   ghost: "text-charcoal-700 hover:bg-sand-100",

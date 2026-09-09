@@ -386,6 +386,7 @@
   "experiences": {
     "searchLabel": "ابحث في التجارب",
     "searchPlaceholder": "الاسم أو المكان أو النشاط",
+    "resultsHeading": "النتائج",
     "destination": "أين",
     "category": "نوع التجربة",
     "price": "السعر للفرد",

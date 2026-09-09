@@ -1273,24 +1273,24 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
     "sources": [
       {
         "width": 480,
-        "url": "/images/experiences/giftun-480.f2de8724.webp"
+        "url": "/images/experiences/giftun-480.1fe9af6c.webp"
       },
       {
         "width": 800,
-        "url": "/images/experiences/giftun-800.55368436.webp"
+        "url": "/images/experiences/giftun-800.54c22fdc.webp"
       },
       {
         "width": 1200,
-        "url": "/images/experiences/giftun-1200.d2ea1eef.webp"
+        "url": "/images/experiences/giftun-1200.43bc8980.webp"
       }
     ],
     "width": 1920,
-    "height": 1280,
-    "lqip": "data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAABQAwCdASoUAA0APu1kqk4ppaQiMAgBMB2JYgCsAAu3q1imAACo7b1KpmOBNA14bI3wbka/ChT6UAksEyKpgAAA",
+    "height": 1440,
+    "lqip": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAACQAwCdASoUAA8APu1kqU2ppaQiMAgBMB2JZgCdACHRd+OV2HcQAP2WWqO804A9enfXWomFyzJXtT647jIbKmI1vCDO3rAA",
     "credit": {
-      "artist": "Fanny S Forsdik",
+      "artist": "Caprice4540",
       "license": "CC BY-SA 3.0",
-      "source": "https://commons.wikimedia.org/wiki/File:Hurghada_snorkelling_-_Egypt_-_panoramio.jpg"
+      "source": "https://commons.wikimedia.org/wiki/File:Beach_of_giftun_island.JPG"
     }
   },
   "/images/experiences/quad-desert.webp": {
@@ -2125,24 +2125,24 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
     "sources": [
       {
         "width": 480,
-        "url": "/images/experiences/giftun-02-480.de5021e5.webp"
+        "url": "/images/experiences/giftun-02-480.d907790c.webp"
       },
       {
         "width": 800,
-        "url": "/images/experiences/giftun-02-800.62fff17e.webp"
+        "url": "/images/experiences/giftun-02-800.a47f0181.webp"
       },
       {
         "width": 1200,
-        "url": "/images/experiences/giftun-02-1200.f99ef26b.webp"
+        "url": "/images/experiences/giftun-02-1200.7327839d.webp"
       }
     ],
-    "width": 1280,
-    "height": 960,
-    "lqip": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAADQAwCdASoUAA8APu1iqU2ppaOiMAgBMB2JZACdACPgnMRYCAUAAQAA/S/PJX5gLI3JyT5HYQtLV/+Gr9gfj75sL5H3OK8Mda7XAAAA",
+    "width": 1920,
+    "height": 1440,
+    "lqip": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAACQAwCdASoUAA8APu1iqk4ppaQiMAgBMB2JQBYdgpfCkUCoaFTIAM4cuwwnheOOFLFYBhklKCMRmsvWmKyod4bQzp/czY1nuNHN5gAA",
     "credit": {
-      "artist": "lienyuan lee",
-      "license": "CC BY 3.0",
-      "source": "https://commons.wikimedia.org/wiki/File:Red_Sea_%E7%B4%85%E6%B5%B7_-_panoramio.jpg"
+      "artist": "Inetta",
+      "license": "CC BY-SA 3.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Rafa_koralowa_Hurgada(14).JPG"
     }
   },
   "/images/experiences/giza-sunrise-01.webp": {

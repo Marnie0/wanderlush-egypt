@@ -40,9 +40,9 @@ export function DestinationSpotlight({ destination }: { destination: Destination
         </Link>
 
         <p className="eyebrow mt-6 text-ember-600">{t(`regions.${destination.region}`)}</p>
-        <h3 className="mt-3 font-display text-3xl text-charcoal-900">
+        <h2 className="mt-3 font-display text-3xl text-charcoal-900">
           {pick(destination.name, language)}
-        </h3>
+        </h2>
         <p className="mt-4 leading-relaxed text-charcoal-600">
           {pick(destination.intro, language)}
         </p>
