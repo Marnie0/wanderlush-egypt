@@ -63,7 +63,6 @@
     "searchNoResults": "No destination matches that.",
     "searchHint": "Start typing a place, or browse all ten.",
     "buildTrip": "Build Your Trip",
-    "scrollHint": "Scroll",
     "finalCta": "Your Egyptian journey begins here.",
     "mapLabel": "Map of Egypt with selectable destinations",
     "destinations": {
@@ -102,7 +101,8 @@
       "body": "Pick a destination, add the experiences you want, and watch the estimate settle. It takes about five minutes and commits you to nothing.",
       "primary": "Build Your Trip",
       "secondary": "Browse destinations"
-    }
+    },
+    "searchCount": "destinations"
   },
   "footer": {
     "explore": "Explore",

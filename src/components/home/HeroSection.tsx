@@ -25,20 +25,24 @@ export function HeroSection() {
   const contentOpacity = useTransform(scrollYProgress, [0, 0.75], [1, reduceMotion ? 1 : 0]);
 
   return (
-    <section ref={sectionRef} className="relative flex min-h-[92svh] items-end overflow-hidden">
-      <m.div style={{ y: imageY }} className="absolute inset-0 h-[112%]">
-        <SmartImage
-          src="/images/hero/egypt-hero.webp"
-          alt=""
-          accent="#a94a1b"
-          priority
-          showCredit
-          sizes={FULL_SIZES}
-          className="h-full w-full"
-        />
-      </m.div>
-      <div aria-hidden className="absolute inset-0 scrim-full" />
-      <div aria-hidden className="absolute inset-0 scrim-inline" />
+    <section ref={sectionRef} className="relative flex min-h-[92svh] items-end">
+      {/* The clip lives here, not on the section, so the search results can
+          escape the hero instead of being cut off at its edge. */}
+      <div className="absolute inset-0 overflow-hidden">
+        <m.div style={{ y: imageY }} className="absolute inset-0 h-[112%]">
+          <SmartImage
+            src="/images/hero/egypt-hero.webp"
+            alt=""
+            accent="#a94a1b"
+            priority
+            showCredit
+            sizes={FULL_SIZES}
+            className="h-full w-full"
+          />
+        </m.div>
+        <div aria-hidden className="absolute inset-0 scrim-full" />
+        <div aria-hidden className="absolute inset-0 scrim-inline" />
+      </div>
 
       <Container className="relative pb-20 lg:pb-28">
         <m.div

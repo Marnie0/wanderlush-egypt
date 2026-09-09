@@ -1,10 +1,13 @@
-import { useEffect, useId, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Icon } from "@/components/ui/Icon";
-import { pick } from "@/lib/format";
+import { formatNumber, pick } from "@/lib/format";
 import { cn } from "@/lib/cn";
 import type { Destination } from "@content/types";
+
+const LIST_MAX_HEIGHT = 336;
+const MIN_ROOM_BELOW = 200;
 
 /**
  * The quick destination search from the hero. A combobox rather than a form:
@@ -16,55 +19,70 @@ export function DestinationSearch({ className }: { className?: string }) {
   const language = i18n.resolvedLanguage ?? "en";
   const navigate = useNavigate();
   const listId = useId();
+  const optionId = useId();
   const inputRef = useRef<HTMLInputElement>(null);
+  const fieldRef = useRef<HTMLDivElement>(null);
 
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
   const [highlighted, setHighlighted] = useState(0);
   const [destinations, setDestinations] = useState<Destination[]>([]);
+  const [placement, setPlacement] = useState({ up: false, maxHeight: LIST_MAX_HEIGHT });
 
   // The catalogue is far larger than a search box needs at first paint, so it
-  // is fetched once the browser is idle. The same module backs the sections
-  // below the hero, so this is usually a cache hit by the time anyone types.
-  useEffect(() => {
-    let cancelled = false;
-    const load = () => {
-      void import("@content/destinations").then((module) => {
-        if (!cancelled) setDestinations(module.destinations);
-      });
-    };
-    const idle = window.requestIdleCallback?.(load, { timeout: 1500 });
-    if (idle === undefined) {
-      const timer = window.setTimeout(load, 300);
-      return () => {
-        cancelled = true;
-        window.clearTimeout(timer);
-      };
-    }
-    return () => {
-      cancelled = true;
-      window.cancelIdleCallback?.(idle);
-    };
+  // is fetched once the browser is idle, and immediately if someone reaches
+  // the field before that happens.
+  const loaded = useRef(false);
+  const loadCatalogue = useCallback(() => {
+    if (loaded.current) return;
+    loaded.current = true;
+    void import("@content/destinations").then((module) => setDestinations(module.destinations));
   }, []);
+
+  useEffect(() => {
+    const idle = window.requestIdleCallback?.(loadCatalogue, { timeout: 2000 });
+    if (idle === undefined) {
+      const timer = window.setTimeout(loadCatalogue, 400);
+      return () => window.clearTimeout(timer);
+    }
+    return () => window.cancelIdleCallback?.(idle);
+  }, [loadCatalogue]);
 
   const matches = useMemo(() => {
     const needle = query.trim().toLowerCase();
-    if (!needle) return destinations.slice(0, 6);
-    return destinations
-      .filter((destination) => {
-        const haystack = [
-          destination.name.en,
-          destination.name.ar,
-          destination.tagline.en,
-          destination.tagline.ar,
-          destination.region,
-        ]
-          .join(" ")
-          .toLowerCase();
-        return haystack.includes(needle);
-      })
-      .slice(0, 6);
+    if (!needle) return destinations;
+    return destinations.filter((destination) =>
+      [
+        destination.name.en,
+        destination.name.ar,
+        destination.tagline.en,
+        destination.tagline.ar,
+        destination.region.replace(/-/g, " "),
+      ]
+        .join(" ")
+        .toLowerCase()
+        .includes(needle),
+    );
   }, [query, destinations]);
+
+  /**
+   * Prefer opening downward and shrink to the room available, since flipping
+   * up covers the headline. Only flip when there is genuinely no space below.
+   */
+  const openList = () => {
+    loadCatalogue();
+    const rect = fieldRef.current?.getBoundingClientRect();
+    if (rect) {
+      const below = window.innerHeight - rect.bottom - 16;
+      const above = rect.top - 16;
+      setPlacement(
+        below >= MIN_ROOM_BELOW || below >= above
+          ? { up: false, maxHeight: Math.min(LIST_MAX_HEIGHT, below) }
+          : { up: true, maxHeight: Math.min(LIST_MAX_HEIGHT, above) },
+      );
+    }
+    setOpen(true);
+  };
 
   const go = (slug: string) => {
     setOpen(false);
@@ -75,7 +93,7 @@ export function DestinationSearch({ className }: { className?: string }) {
   const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "ArrowDown" || event.key === "ArrowUp") {
       event.preventDefault();
-      if (!open) setOpen(true);
+      if (!open) openList();
       setHighlighted((current) => {
         const next = event.key === "ArrowDown" ? current + 1 : current - 1;
         return (next + matches.length) % Math.max(matches.length, 1);
@@ -93,9 +111,12 @@ export function DestinationSearch({ className }: { className?: string }) {
   };
 
   return (
-    <div className={cn("relative w-full max-w-md", className)}>
-      <div className="flex items-center gap-3 border-b border-ivory/40 pb-3 transition-colors focus-within:border-ivory">
-        <Icon name="search" size={20} className="text-ivory/70" />
+    <div className={cn("relative w-full max-w-lg", className)}>
+      <div
+        ref={fieldRef}
+        className="flex items-center gap-3 border border-ivory/25 bg-ivory/95 px-4 py-3.5 shadow-lg backdrop-blur-sm transition-colors focus-within:border-ember-500 sm:px-5"
+      >
+        <Icon name="search" size={20} className="text-charcoal-400" />
         <input
           ref={inputRef}
           type="text"
@@ -103,26 +124,35 @@ export function DestinationSearch({ className }: { className?: string }) {
           aria-expanded={open}
           aria-controls={listId}
           aria-autocomplete="list"
+          aria-activedescendant={open && matches[highlighted] ? `${optionId}-${highlighted}` : undefined}
           aria-label={t("home.searchLabel")}
           placeholder={t("home.heroSearch")}
           value={query}
           onChange={(event) => {
             setQuery(event.target.value);
             setHighlighted(0);
-            setOpen(true);
+            openList();
           }}
-          onFocus={() => setOpen(true)}
+          onFocus={openList}
           onBlur={() => window.setTimeout(() => setOpen(false), 120)}
           onKeyDown={onKeyDown}
-          className="w-full bg-transparent text-lg text-ivory placeholder:text-ivory/60 focus:outline-none"
+          className="w-full bg-transparent text-base text-charcoal-900 placeholder:text-charcoal-400 focus:outline-none sm:text-lg"
         />
+        <span className="hidden shrink-0 text-xs text-ink-muted sm:block">
+          {formatNumber(destinations.length || 10, language)} {t("home.searchCount")}
+        </span>
       </div>
 
       {open && (
         <ul
           id={listId}
           role="listbox"
-          className="absolute inset-x-0 top-full z-30 mt-2 max-h-80 overflow-y-auto border border-line bg-canvas py-1 shadow-lg"
+          aria-label={t("home.searchLabel")}
+          style={{ maxHeight: placement.maxHeight }}
+          className={cn(
+            "absolute inset-x-0 z-40 overflow-y-auto border border-line bg-canvas py-1 shadow-2xl",
+            placement.up ? "bottom-full mb-2" : "top-full mt-2",
+          )}
         >
           {matches.length === 0 && (
             <li className="px-4 py-3 text-sm text-ink-muted">
@@ -130,9 +160,15 @@ export function DestinationSearch({ className }: { className?: string }) {
             </li>
           )}
           {matches.map((destination, index) => (
-            <li key={destination.slug} role="option" aria-selected={index === highlighted}>
+            <li
+              key={destination.slug}
+              id={`${optionId}-${index}`}
+              role="option"
+              aria-selected={index === highlighted}
+            >
               <button
                 type="button"
+                tabIndex={-1}
                 // The input's blur fires first on click, so commit on mousedown.
                 onMouseDown={(event) => {
                   event.preventDefault();
@@ -147,7 +183,7 @@ export function DestinationSearch({ className }: { className?: string }) {
                 <span className="font-display text-lg text-charcoal-900">
                   {pick(destination.name, language)}
                 </span>
-                <span className="text-xs text-ink-muted">
+                <span className="shrink-0 text-xs text-ink-muted">
                   {t(`regions.${destination.region}`)}
                 </span>
               </button>

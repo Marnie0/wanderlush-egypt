@@ -4,7 +4,7 @@ import { m } from "framer-motion";
 import { homepageDestinations } from "@content/destinations";
 import { Container, Eyebrow, Rule, Section } from "@/components/ui/Layout";
 import { ButtonLink } from "@/components/ui/Button";
-import { SmartImage, HALF_SIZES, CARD_SIZES } from "@/components/ui/SmartImage";
+import { SmartImage, HALF_SIZES } from "@/components/ui/SmartImage";
 import { DestinationCard } from "@/components/ui/Cards";
 import { Icon } from "@/components/ui/Icon";
 import { formatDayRange, formatMoney, pick } from "@/lib/format";
@@ -161,7 +161,7 @@ export function DestinationShowcase() {
             <DestinationCard
               key={destination.slug}
               destination={destination}
-              sizes={CARD_SIZES}
+              sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
             />
           ))}
         </m.div>

@@ -44,7 +44,7 @@ export function PromisesSection() {
         >
           {brand.promises.map((promise) => (
             <m.li key={promise.icon} variants={riseIn}>
-              <Icon name={promise.icon as IconName} className="text-ember-500" />
+              <Icon name={promise.icon as IconName} size={28} className="text-ember-500" />
               <h3 className="mt-4 font-display text-xl text-charcoal-900">
                 {pick(promise.title, language)}
               </h3>

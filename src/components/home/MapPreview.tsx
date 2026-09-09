@@ -8,7 +8,7 @@ import { SmartImage, HALF_SIZES } from "@/components/ui/SmartImage";
 import { EgyptMap } from "@/components/ui/EgyptMap";
 import { Icon } from "@/components/ui/Icon";
 import { formatDayRange, formatMoney, pick } from "@/lib/format";
-import { riseIn, stagger, transitions, viewportOnce } from "@/lib/motion";
+import { duration, ease, riseIn, stagger, viewportOnce } from "@/lib/motion";
 import { cn } from "@/lib/cn";
 
 /**
@@ -73,7 +73,7 @@ export function MapPreview() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
-                transition={transitions.soft}
+                transition={{ duration: duration.fast, ease: ease.soft }}
               >
                 <Link to={`/destinations/${active.slug}`} className="group block">
                   <SmartImage
