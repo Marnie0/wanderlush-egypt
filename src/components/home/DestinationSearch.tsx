@@ -48,8 +48,8 @@ export function DestinationSearch({ className }: { className?: string }) {
     return () => window.cancelIdleCallback?.(idle);
   }, [loadCatalogue]);
 
-  // Names, taglines, regions and the sights themselves, so "pyramids"
-  // suggests Giza rather than reporting that no destination matches.
+  // Names, taglines, regions, the intro and the sights themselves, so
+  // "pyramids" suggests Giza rather than reporting that nothing matches.
   const matches = useMemo(() => {
     const needle = normalizeSearch(query.trim());
     if (!needle) return destinations;
@@ -62,6 +62,8 @@ export function DestinationSearch({ className }: { className?: string }) {
           destination.tagline.ar,
           destination.region.replace(/-/g, " "),
           t(`regions.${destination.region}`),
+          destination.intro.en,
+          destination.intro.ar,
           ...destination.attractions.flatMap((attraction) => [attraction.name.en, attraction.name.ar]),
         ].join(" "),
       ).includes(needle),
