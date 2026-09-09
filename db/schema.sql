@@ -116,6 +116,9 @@ create table if not exists reviews (
   is_demo          boolean not null default true
 );
 
+create index if not exists reviews_journey_idx on reviews (journey_slug);
+create index if not exists reviews_destination_idx on reviews (destination_slug);
+
 create table if not exists faq_categories (
   id   text primary key,
   name jsonb not null
@@ -127,6 +130,8 @@ create table if not exists faqs (
   question    jsonb not null,
   answer      jsonb not null
 );
+
+create index if not exists faqs_category_idx on faqs (category_id);
 
 -- Phase 7 writes here. Created now so the schema is complete from the start
 -- and the booking journey has somewhere to land when it is built.

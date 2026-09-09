@@ -1,7 +1,7 @@
 import type { Experience } from "./types";
 
 /**
- * Twenty-four bookable experiences across all eight destinations, covering
+ * Twenty-seven bookable experiences across all ten destinations, covering
  * every category the marketplace filters on: culture, history, adventure,
  * food, nature, wellness, nightlife and water.
  */
@@ -188,7 +188,7 @@ export const experiences: Experience[] = [
     whatToBring: { en: ["Shoulders and knees covered", "A scarf for mosque visits"], ar: ["لباس يغطي الكتفين والركبتين", "وشاح لزيارة المساجد"] },
     accessibility: { en: "Mostly flat and paved. Two mosque courtyards have a single step.", ar: "المسار مستوٍ ومرصوف في معظمه. وفي فناءي مسجدين درجة واحدة." },
     cancellation: { en: "Free cancellation up to 24 hours before", ar: "إلغاء مجاني حتى 24 ساعة قبل الموعد" },
-    heroImage: { src: "/images/experiences/muizz-night.webp", alt: { en: "Lit minarets along Al-Muizz Street", ar: "مآذن مضاءة في شارع المعز" } },
+    heroImage: { src: "/images/experiences/muizz-night.webp", alt: { en: "The lit minarets of Al-Azhar, a few steps from Al-Muizz Street", ar: "مآذن الأزهر مضاءة، على خطوات من شارع المعز" } },
     gallery: [
       {
         src: "/images/experiences/muizz-night-01.webp",
@@ -444,8 +444,8 @@ export const experiences: Experience[] = [
     maxGroupSize: 6,
     minAge: null,
     summary: {
-      en: "Five tombs including Seti I, chosen for painting quality rather than fame, with an Egyptologist.",
-      ar: "خمس مقابر منها مقبرة سيتي الأول، مختارة بحسب جودة النقوش لا الشهرة، بصحبة عالم مصريات.",
+      en: "Four tombs including Seti I, chosen for painting quality rather than fame, with an Egyptologist.",
+      ar: "أربع مقابر منها مقبرة سيتي الأول، مختارة بحسب جودة النقوش لا الشهرة، بصحبة عالم مصريات.",
     },
     description: {
       en: "Your guide picks the day's tombs based on which are open and least busy, then adds Seti I, the longest and most completely painted tomb in the valley. The morning finishes at Hatshepsut's terraces and Medinet Habu, where the original colour survives on the ceilings.",
@@ -548,7 +548,7 @@ export const experiences: Experience[] = [
     whatToBring: { en: ["Passport for the checkpoint", "Sun protection", "Something to sleep on in the van"], ar: ["جواز السفر لنقطة التفتيش", "واقٍ من الشمس", "ما تنام عليه في السيارة"] },
     accessibility: { en: "Step-free from the car park to the temple terrace along a paved path.", ar: "خالٍ من الدرج من الموقف إلى شرفة المعبد عبر ممر مرصوف." },
     cancellation: { en: "Free cancellation up to 48 hours before", ar: "إلغاء مجاني حتى 48 ساعة قبل الموعد" },
-    heroImage: { src: "/images/experiences/abu-simbel.webp", alt: { en: "The pillared hall inside Abu Simbel", ar: "بهو الأعمدة داخل أبو سمبل" } },
+    heroImage: { src: "/images/experiences/abu-simbel.webp", alt: { en: "The pillared hall of Nefertari's temple at Abu Simbel", ar: "بهو الأعمدة في معبد نفرتاري بأبو سمبل" } },
     gallery: [
       {
         src: "/images/experiences/abu-simbel-01.webp",
@@ -659,9 +659,11 @@ export const experiences: Experience[] = [
     category: "water",
     travelStyles: ["luxury", "romantic", "history"],
     environment: "water",
-    groupFormat: ["shared", "private"],
+    // A sixty-berth vessel is not chartered by the cabin; the cruise is shared.
+    groupFormat: ["shared"],
     familyFriendly: true,
-    durationMinutes: 4320,
+    // Four days and three nights: the last morning is a day of the trip.
+    durationMinutes: 5760,
     priceFrom: 590,
     privateSupplement: 0,
     rating: 4.8,
@@ -691,7 +693,7 @@ export const experiences: Experience[] = [
       },
       {
         src: "/images/experiences/nile-cruise-02.webp",
-        alt: { en: "The portal at Kom Ombo, a morning stop", ar: "بوابة كوم أمبو، محطة الصباح" },
+        alt: { en: "The portal at Kom Ombo, the stop at dusk", ar: "بوابة كوم أمبو، محطة الغسق" },
       },
     ],
     accent: "#1f5a7d",
@@ -841,7 +843,8 @@ export const experiences: Experience[] = [
     environment: "desert",
     groupFormat: ["shared", "private"],
     familyFriendly: true,
-    durationMinutes: 1800,
+    // 13:00 from Bahariya to the morning after sunrise, back at Bawiti.
+    durationMinutes: 1260,
     priceFrom: 180,
     privateSupplement: 140,
     rating: 4.9,
@@ -854,10 +857,10 @@ export const experiences: Experience[] = [
     },
     description: {
       en: "Drive out from Bahariya through the Black Desert and Crystal Mountain, then set camp among the white formations in time for sunset. Dinner is cooked over a fire, the sky is as good as any on earth, and desert foxes usually turn up. You wake for first light on the chalk before driving back.",
-      ar: "انطلق من الباويطي عبر الصحراء السوداء وجبل الكريستال، ثم انصب المخيم بين التكوينات البيضاء قبل الغروب. يُطهى العشاء على النار، والسماء هنا تضاهي أي سماء على الأرض، وعادة ما تظهر ثعالب الصحراء. وتستيقظ لأول الضوء على الطباشير قبل العودة.",
+      ar: "انطلق من الواحات البحرية عبر الصحراء السوداء وجبل الكريستال، ثم انصب المخيم بين التكوينات البيضاء قبل الغروب. يُطهى العشاء على النار، والسماء هنا تضاهي أي سماء على الأرض، وعادة ما تظهر ثعالب الصحراء. وتستيقظ لأول الضوء على الطباشير قبل العودة.",
     },
-    schedule: { en: "Daily departures from Bahariya, 13:00", ar: "انطلاق يومي من الباويطي، 13:00" },
-    meetingPoint: { en: "Bahariya Oasis, Bawiti village", ar: "واحة الباويطي، قرية الباويطي" },
+    schedule: { en: "Daily departures from Bahariya, 13:00", ar: "انطلاق يومي من الواحات البحرية، 13:00" },
+    meetingPoint: { en: "Bahariya Oasis, Bawiti village", ar: "الواحات البحرية، قرية الباويطي" },
     inclusions: { en: ["4x4 and desert guide", "Camping equipment and bedding", "Dinner and breakfast", "National park permit"], ar: ["سيارة دفع رباعي ومرشد صحراوي", "معدات التخييم والفرش", "العشاء والفطور", "تصريح المحمية الوطنية"] },
     exclusions: { en: ["Transfer from Cairo", "Alcohol, which is not permitted in the park", "Showers"], ar: ["الانتقال من القاهرة", "الكحول، وهو غير مسموح في المحمية", "الاستحمام"] },
     whatToBring: { en: ["A warm layer, genuinely", "Head torch", "Wet wipes and your own rubbish bag"], ar: ["طبقة دافئة، وهذا جاد", "كشاف رأس", "مناديل مبللة وكيس لنفاياتك"] },
@@ -961,7 +964,7 @@ export const experiences: Experience[] = [
       },
       {
         src: "/images/experiences/quad-desert-02.webp",
-        alt: { en: "Cushions and low tables laid out for dinner", ar: "وسائد وموائد منخفضة معدّة للعشاء" },
+        alt: { en: "The Eastern Desert mountains where the ride ends for dinner", ar: "جبال الصحراء الشرقية حيث تنتهي الجولة بالعشاء" },
       },
     ],
     accent: "#a94a1b",
@@ -998,7 +1001,7 @@ export const experiences: Experience[] = [
     whatToBring: { en: ["Certification card and logbook", "Reef-safe sunscreen", "Seasickness tablets if you need them"], ar: ["بطاقة الشهادة ودفتر الغوص", "واقي شمس آمن للشعاب", "أقراص دوار البحر إن كنت تحتاجها"] },
     accessibility: { en: "Open Water certification or above is required. Entry is a giant stride from the platform.", ar: "يلزم الحصول على شهادة المياه المفتوحة أو أعلى. والنزول بخطوة واسعة من المنصة." },
     cancellation: { en: "Free cancellation up to 48 hours before", ar: "إلغاء مجاني حتى 48 ساعة قبل الموعد" },
-    heroImage: { src: "/images/experiences/ras-mohammed.webp", alt: { en: "A blue lagoon on the Sinai coast", ar: "بحيرة زرقاء على ساحل سيناء" } },
+    heroImage: { src: "/images/experiences/ras-mohammed.webp", alt: { en: "The reef at Ras Mohammed from the surface", ar: "شعاب رأس محمد من سطح الماء" } },
     gallery: [
       {
         src: "/images/experiences/ras-mohammed-01.webp",
@@ -1047,11 +1050,11 @@ export const experiences: Experience[] = [
     gallery: [
       {
         src: "/images/experiences/thistlegorm-01.webp",
-        alt: { en: "A diver working along a Red Sea wreck", ar: "غواص يتحرك بمحاذاة حطام في البحر الأحمر" },
+        alt: { en: "A locomotive on the Thistlegorm's deck", ar: "قاطرة على سطح الثيسل غورم" },
       },
       {
         src: "/images/experiences/thistlegorm-02.webp",
-        alt: { en: "The Thistlegorm's holds, still loaded", ar: "عنابر الثيسلجورم وما زالت محمّلة" },
+        alt: { en: "The Thistlegorm's holds, still loaded", ar: "عنابر الثيسل غورم وما زالت محمّلة" },
       },
     ],
     accent: "#16374b",

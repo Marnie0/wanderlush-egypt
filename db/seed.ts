@@ -188,6 +188,19 @@ async function seed(pool: Pool) {
       );
     }
 
+    // Content is the source of truth, so a renamed or removed item must not
+    // linger in the database. Children go before parents for the foreign keys.
+    const keep = async (table: string, column: string, values: string[]) => {
+      await client.query(`delete from ${table} where ${column} <> all($1::text[])`, [values]);
+    };
+    await keep("faqs", "id", faqs.map((f) => f.id));
+    await keep("faq_categories", "id", faqCategories.map((c) => c.id));
+    await keep("reviews", "id", reviews.map((r) => r.id));
+    await keep("journeys", "slug", journeys.map((j) => j.slug));
+    await keep("experiences", "slug", experiences.map((e) => e.slug));
+    await keep("destinations", "slug", destinations.map((d) => d.slug));
+    await keep("accommodation_levels", "id", accommodationLevels.map((l) => l.id));
+
     await client.query("commit");
   } catch (error) {
     await client.query("rollback");

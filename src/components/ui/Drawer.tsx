@@ -27,13 +27,19 @@ export function Drawer({
   const { isRtl } = useDirection();
   const panelRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
+  // Pages pass a fresh arrow each render, and every filter change re-renders
+  // the page. Keyed on the callback, the effect would re-run on each change
+  // and pull focus out of the search box mid-word, so the latest callback is
+  // read through a ref and the effect follows `open` alone.
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
 
   useEffect(() => {
     if (!open) return;
 
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        onClose();
+        onCloseRef.current();
         return;
       }
       if (event.key !== "Tab" || !panelRef.current) return;
@@ -44,10 +50,11 @@ export function Drawer({
       const first = focusable[0];
       const last = focusable[focusable.length - 1];
       const active = document.activeElement;
-      if (event.shiftKey && (active === first || !panelRef.current.contains(active))) {
+      const outside = !panelRef.current.contains(active);
+      if (event.shiftKey && (active === first || outside)) {
         event.preventDefault();
         last.focus();
-      } else if (!event.shiftKey && active === last) {
+      } else if (!event.shiftKey && (active === last || outside)) {
         event.preventDefault();
         first.focus();
       }
@@ -64,7 +71,7 @@ export function Drawer({
       document.body.style.overflow = previousOverflow;
       restoreFocus?.focus?.();
     };
-  }, [open, onClose]);
+  }, [open]);
 
   // Rendered on the body so no animated ancestor can trap the panel in its own
   // stacking context, underneath the fixed header.
@@ -85,7 +92,8 @@ export function Drawer({
             role="dialog"
             aria-modal="true"
             aria-label={title}
-            className="absolute inset-y-0 end-0 flex w-[min(26rem,92vw)] flex-col bg-canvas"
+            tabIndex={-1}
+            className="absolute inset-y-0 end-0 flex w-[min(26rem,92vw)] flex-col bg-canvas focus:outline-none"
             variants={{ hidden: { x: isRtl ? "-100%" : "100%" }, visible: { x: 0 } }}
             transition={transitions.soft}
           >

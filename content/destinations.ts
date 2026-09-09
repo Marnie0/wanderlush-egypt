@@ -1,8 +1,8 @@
 import type { Destination } from "./types";
 
 /**
- * Eight destinations spanning the Nile valley, both coasts and the Western
- * Desert. Copy is written as a travel editor would write it: specific,
+ * Ten destinations spanning the Nile valley, both coasts, Fayoum and the
+ * Western Desert. Copy is written as a travel editor would write it: specific,
  * outcome-focused, never generic.
  */
 export const destinations: Destination[] = [
@@ -47,7 +47,7 @@ export const destinations: Destination[] = [
       },
       {
         src: "/images/destinations/cairo-03.webp",
-        alt: { en: "The Nile at sunset beneath Cairo Tower", ar: "النيل عند الغروب تحت برج القاهرة" },
+        alt: { en: "Cairo lit up after dark along the Nile", ar: "القاهرة مضاءة بعد الغروب على امتداد النيل" },
       },
     ],
     attractions: [
@@ -506,7 +506,7 @@ export const destinations: Destination[] = [
     },
     heroImage: {
       src: "/images/destinations/luxor-hero.webp",
-      alt: { en: "A balloon at sunrise over the Theban west bank", ar: "منطاد عند الشروق فوق الضفة الغربية بطيبة" },
+      alt: { en: "The colonnade of Luxor Temple in the late afternoon", ar: "صف أعمدة معبد الأقصر في آخر النهار" },
     },
     gallery: [
       { src: "/images/destinations/luxor-01.webp", alt: { en: "The hypostyle hall at Karnak", ar: "بهو الأعمدة في الكرنك" } },
@@ -714,7 +714,7 @@ export const destinations: Destination[] = [
     region: "western-desert",
     coordinates: { lat: 29.2041, lng: 25.5195 },
     travelStyles: ["desert", "nature", "romantic"],
-    bestSeason: ["oct", "nov", "dec", "feb", "mar", "apr"],
+    bestSeason: ["oct", "nov", "dec", "jan", "feb", "mar", "apr"],
     bestSeasonNote: {
       en: "Autumn and spring are ideal. Nights in December and January drop close to freezing in the dunes.",
       ar: "الخريف والربيع مثاليان. أما ليالي ديسمبر ويناير فتقترب من الصفر في الكثبان.",
@@ -723,8 +723,8 @@ export const destinations: Destination[] = [
     nightlyRates: { essential: 40, comfort: 85, premium: 165, luxury: 340 },
     dailyBudgetFrom: 70,
     intro: {
-      en: "Eight hours from the coast and a world from everywhere else. Siwa speaks Siwi rather than Arabic, builds in salt and mud, floats you in lakes you cannot sink in, and keeps the oracle that told Alexander he was a god.",
-      ar: "ثماني ساعات من الساحل، وعالم كامل بعيدًا عن كل مكان. تتحدث سيوة السيوية لا العربية، وتبني بالملح والطين، وتطفو بك في بحيرات لا تغرق فيها، وتحتفظ بمعبد الوحي الذي أخبر الإسكندر أنه إله.",
+      en: "Eight hours from Cairo and a world from everywhere else. Siwa speaks Siwi rather than Arabic, builds in salt and mud, floats you in lakes you cannot sink in, and keeps the oracle that told Alexander he was a god.",
+      ar: "ثماني ساعات من القاهرة، وعالم كامل بعيدًا عن كل مكان. تتحدث سيوة السيوية لا العربية، وتبني بالملح والطين، وتطفو بك في بحيرات لا تغرق فيها، وتحتفظ بمعبد الوحي الذي أخبر الإسكندر أنه إله.",
     },
     heroImage: {
       src: "/images/destinations/siwa-hero.webp",
@@ -733,7 +733,7 @@ export const destinations: Destination[] = [
     gallery: [
       { src: "/images/destinations/siwa-01.webp", alt: { en: "A salt lake with white crystalline banks", ar: "بحيرة ملحية بضفاف بلورية بيضاء" } },
       { src: "/images/destinations/siwa-02.webp", alt: { en: "Palm groves reflected in an oasis lake", ar: "بساتين نخيل تنعكس في بحيرة الواحة" } },
-      { src: "/images/destinations/siwa-03.webp", alt: { en: "Dunes of the Great Sand Sea", ar: "كثبان بحر الرمال الأعظم" } },
+      { src: "/images/destinations/siwa-03.webp", alt: { en: "Date palm orchards under the hills of Siwa", ar: "بساتين النخيل تحت تلال سيوة" } },
     ],
     attractions: [
       {
@@ -958,7 +958,7 @@ export const destinations: Destination[] = [
     gallery: [
       { src: "/images/destinations/sharm-01.webp", alt: { en: "Coral garden in shallow water", ar: "حديقة مرجانية في مياه ضحلة" } },
       { src: "/images/destinations/sharm-02.webp", alt: { en: "The red mountains of southern Sinai", ar: "الجبال الحمراء في جنوب سيناء" } },
-      { src: "/images/destinations/sharm-03.webp", alt: { en: "Sunrise from the summit of Mount Sinai", ar: "شروق الشمس من قمة جبل موسى" } },
+      { src: "/images/destinations/sharm-03.webp", alt: { en: "A bay on the Sharm coast in the evening light", ar: "خليج على ساحل شرم في ضوء المساء" } },
     ],
     attractions: [
       {
@@ -1048,7 +1048,8 @@ export const destinations: Destination[] = [
       ar: "منحوتات من الطباشير تحت أصفى سماء في مصر",
     },
     region: "western-desert",
-    coordinates: { lat: 27.0587, lng: 27.97 },
+    // The protectorate itself, on the road between Farafra and Bahariya.
+    coordinates: { lat: 27.33, lng: 28.17 },
     travelStyles: ["desert", "nature", "romantic"],
     bestSeason: ["oct", "nov", "dec", "jan", "feb", "mar"],
     bestSeasonNote: {
@@ -1060,7 +1061,7 @@ export const destinations: Destination[] = [
     dailyBudgetFrom: 105,
     intro: {
       en: "The route runs from Bahariya, on the Giza side, into the White Desert protectorate in New Valley. Wind has spent millennia carving a chalk plateau into mushrooms, towers and animals, and left them white against orange sand. You come to sleep here. One night in a desert camp, with no light for two hundred kilometres, is the reason this place is on the list.",
-      ar: "يمتد المسار من الباويطي في جهة الجيزة إلى محمية الصحراء البيضاء في الوادي الجديد. وقد أمضت الرياح آلاف السنين تنحت هضبة طباشيرية إلى فطر وأبراج وحيوانات، وتركتها بيضاء على رمل برتقالي. تأتي إلى هنا لتنام. ليلة واحدة في مخيم صحراوي، بلا ضوء على مدى مئتي كيلومتر، هي سبب وجود هذا المكان في القائمة.",
+      ar: "يمتد المسار من الواحات البحرية في جهة الجيزة إلى محمية الصحراء البيضاء في الوادي الجديد. وقد أمضت الرياح آلاف السنين تنحت هضبة طباشيرية إلى فطر وأبراج وحيوانات، وتركتها بيضاء على رمل برتقالي. تأتي إلى هنا لتنام. ليلة واحدة في مخيم صحراوي، بلا ضوء على مدى مئتي كيلومتر، هي سبب وجود هذا المكان في القائمة.",
     },
     heroImage: {
       src: "/images/destinations/white-desert-hero.webp",
@@ -1068,7 +1069,7 @@ export const destinations: Destination[] = [
     },
     gallery: [
       { src: "/images/destinations/white-desert-01.webp", alt: { en: "Chalk pillars rising from the desert floor", ar: "أعمدة طباشيرية تنهض من أرض الصحراء" } },
-      { src: "/images/destinations/white-desert-02.webp", alt: { en: "Late light over the Bahariya escarpment", ar: "ضوء آخر النهار فوق حافة الباويطي" } },
+      { src: "/images/destinations/white-desert-02.webp", alt: { en: "Late light over the Bahariya escarpment", ar: "ضوء آخر النهار فوق حافة الواحات البحرية" } },
       { src: "/images/destinations/white-desert-03.webp", alt: { en: "A black basalt cone in the Black Desert", ar: "مخروط بازلتي أسود في الصحراء السوداء" } },
     ],
     attractions: [
@@ -1083,7 +1084,7 @@ export const destinations: Destination[] = [
         name: { en: "The Black Desert", ar: "الصحراء السوداء" },
         blurb: {
           en: "Volcanic hills coated in dark basalt, passed on the drive in from Bahariya.",
-          ar: "تلال بركانية مغطاة ببازلت داكن، تمر بها في الطريق من الباويطي.",
+          ar: "تلال بركانية مغطاة ببازلت داكن، تمر بها في الطريق من الواحات البحرية.",
         },
       },
       {
@@ -1094,7 +1095,7 @@ export const destinations: Destination[] = [
         },
       },
       {
-        name: { en: "Bahariya Oasis", ar: "واحة الباويطي" },
+        name: { en: "Bahariya Oasis", ar: "الواحات البحرية" },
         blurb: {
           en: "The gateway oasis, four hours from Cairo and still inside Giza governorate. Hot springs, and the Valley of the Golden Mummies nearby.",
           ar: "الواحة البوابة، على بعد أربع ساعات من القاهرة وما زالت ضمن محافظة الجيزة. فيها عيون ساخنة ووادي المومياوات الذهبية على مقربة.",
@@ -1107,7 +1108,7 @@ export const destinations: Destination[] = [
         title: { en: "Drive in and camp", ar: "الوصول والتخييم" },
         detail: {
           en: "Cairo to Bahariya, the Black Desert and Crystal Mountain on the way, camp set up before sunset.",
-          ar: "من القاهرة إلى الباويطي، مرورًا بالصحراء السوداء وجبل الكريستال، ونصب المخيم قبل الغروب.",
+          ar: "من القاهرة إلى الواحات البحرية، مرورًا بالصحراء السوداء وجبل الكريستال، ونصب المخيم قبل الغروب.",
         },
       },
       {
@@ -1133,7 +1134,7 @@ export const destinations: Destination[] = [
     },
     gettingThere: {
       en: "Four to five hours by road from Cairo to Bahariya Oasis, then four-wheel drive only beyond the tarmac.",
-      ar: "من أربع إلى خمس ساعات برًا من القاهرة إلى واحة الباويطي، ثم بالدفع الرباعي فقط بعد نهاية الأسفلت.",
+      ar: "من أربع إلى خمس ساعات برًا من القاهرة إلى الواحات البحرية، ثم بالدفع الرباعي فقط بعد نهاية الأسفلت.",
     },
     accommodationNote: {
       en: "Overnight is a guided desert camp. Comfort tiers add private tents, proper bedding and a cook rather than a building.",

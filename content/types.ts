@@ -103,7 +103,7 @@ export interface Destination {
   bestSeason: Month[];
   bestSeasonNote: Localized;
   recommendedDays: { min: number; max: number };
-  /** Per-person, per-night accommodation guidance in USD. */
+  /** Indicative USD per room per night at each tier, the same basis as the tiers themselves. */
   nightlyRates: TierPrices;
   /** Headline "from" figure shown on cards, USD per person per day. */
   dailyBudgetFrom: number;

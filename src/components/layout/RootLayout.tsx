@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { RouteFallback } from "@/components/ui/RouteFallback";
+import { useHeaderStore } from "@/lib/header-store";
 
 /**
  * The homepage and destination guides open on full-bleed photography, so the
@@ -14,7 +15,8 @@ const TRANSPARENT_HEADER = [/^\/$/, /^\/destinations\/[^/]+$/, /^\/journeys\/[^/
 export function RootLayout() {
   const { t, i18n } = useTranslation();
   const { pathname } = useLocation();
-  const transparent = TRANSPARENT_HEADER.some((pattern) => pattern.test(pathname));
+  const solid = useHeaderStore((state) => state.solid);
+  const transparent = !solid && TRANSPARENT_HEADER.some((pattern) => pattern.test(pathname));
 
   // Keep the document language in step when i18next resolves asynchronously.
   useEffect(() => {

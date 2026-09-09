@@ -44,8 +44,8 @@ export function DestinationsPage() {
   const spotlight = destinationBySlug.get(activeSlug) ?? destinations[0];
 
   const results = useMemo(
-    () => filterDestinations(destinations, filters, language),
-    [filters, language],
+    () => filterDestinations(destinations, filters, language, t),
+    [filters, language, t],
   );
   const activeCount = countActiveFilters(filters);
 

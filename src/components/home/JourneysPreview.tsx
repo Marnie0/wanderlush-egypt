@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { CARD_SIZES } from "@/components/ui/SmartImage";
 import { m } from "framer-motion";
 import { journeys } from "@content/journeys";
 import { Container, Eyebrow, Rule, Section } from "@/components/ui/Layout";
@@ -48,7 +49,7 @@ export function JourneysPreview() {
           className="mt-14 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3"
         >
           {journeys.map((journey) => (
-            <JourneyCard key={journey.slug} journey={journey} />
+            <JourneyCard key={journey.slug} journey={journey} sizes={CARD_SIZES} />
           ))}
         </m.div>
       </Container>

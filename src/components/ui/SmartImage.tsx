@@ -69,9 +69,12 @@ export function SmartImage({
   // A cached image can finish decoding before React attaches its onLoad
   // handler, which would leave the picture stuck at opacity zero with only
   // the blur placeholder showing. Check `complete` once on mount instead.
+  // Also the reset for a new src: the lightbox reuses one instance while
+  // stepping, and a failure on one picture must not blank the next.
   useEffect(() => {
     const img = imgRef.current;
-    if (img?.complete && img.naturalWidth > 0) setLoaded(true);
+    setFailed(false);
+    setLoaded(Boolean(img?.complete && img.naturalWidth > 0));
   }, [src]);
 
   // Filenames are content-hashed, so the manifest is the only place that

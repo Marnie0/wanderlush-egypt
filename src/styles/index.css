@@ -1,4 +1,6 @@
 @import "tailwindcss";
+/* Size-adjusted system fallbacks, so the web fonts swap in without a reflow. */
+@import "./font-fallbacks.css";
 
 /* ------------------------------------------------------------------
    Wanderlush Egypt — design tokens
@@ -82,8 +84,8 @@
   --color-gold-900: #332814;
 
   /* Typography. Latin and Arabic families are swapped by direction. */
-  --font-display: "Fraunces Variable", "Iowan Old Style", Georgia, serif;
-  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces Variable", "Fraunces Variable Fallback", Georgia, serif;
+  --font-body: "Inter", "Inter Fallback", ui-sans-serif, system-ui, sans-serif;
   --font-arabic-display: "Amiri", "Times New Roman", serif;
   --font-arabic-body: "IBM Plex Sans Arabic", ui-sans-serif, system-ui, sans-serif;
 

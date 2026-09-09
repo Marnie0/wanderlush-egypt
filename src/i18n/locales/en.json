@@ -37,16 +37,6 @@
     "from": "From",
     "perPerson": "per person",
     "perNight": "per night",
-    "days": "{{count}} day",
-    "days_other": "{{count}} days",
-    "nights": "{{count}} night",
-    "nights_other": "{{count}} nights",
-    "hours": "{{count}} hour",
-    "hours_other": "{{count}} hours",
-    "minutes": "{{count}} minute",
-    "minutes_other": "{{count}} minutes",
-    "reviews": "{{count}} review",
-    "reviews_other": "{{count}} reviews",
     "loading": "Loading",
     "error": "Something went wrong",
     "retry": "Try again",
@@ -54,7 +44,18 @@
     "demoContent": "Demo content",
     "comingInPhase": "Arriving in a later phase",
     "backHome": "Back to the homepage",
-    "dayRange": "{{min}}–{{max}} days"
+    "dayRange": "{{min}}–{{max}} days",
+    "days_one": "{{count}} day",
+    "days_other": "{{count}} days",
+    "nights_one": "{{count}} night",
+    "nights_other": "{{count}} nights",
+    "hours_one": "{{count}} hour",
+    "hours_other": "{{count}} hours",
+    "minutes_one": "{{count}} minute",
+    "minutes_other": "{{count}} minutes",
+    "reviews_one": "{{count}} review",
+    "reviews_other": "{{count}} reviews",
+    "listSeparator": ", "
   },
   "home": {
     "heroHeadline": "Egypt, arranged around you",
@@ -62,7 +63,6 @@
     "heroSearch": "Where do you want to go?",
     "searchLabel": "Search destinations",
     "searchNoResults": "No destination matches that.",
-    "searchHint": "Start typing a place, or browse all ten.",
     "buildTrip": "Build Your Trip",
     "finalCta": "Your Egyptian journey begins here.",
     "mapLabel": "Map of Egypt with selectable destinations",
@@ -86,7 +86,7 @@
     "experiences": {
       "eyebrow": "What to do",
       "title": "The experiences people remember",
-      "lead": "A balloon over the Valley of the Kings, four nights on the river, a night under the chalk formations, a wall of coral that drops into open blue."
+      "lead": "A balloon over the Valley of the Kings, three nights on the river, a night under the chalk formations, a wall of coral that drops into open blue."
     },
     "promises": {
       "eyebrow": "How we work",
@@ -103,7 +103,7 @@
       "primary": "Build Your Trip",
       "secondary": "Browse destinations"
     },
-    "searchCount": "destinations"
+    "heroAlt": "The Pyramid of Khafre on the Giza plateau under a clear sky"
   },
   "footer": {
     "explore": "Explore",
@@ -139,7 +139,8 @@
     "journeys": {
       "eyebrow": "Curated",
       "title": "Journeys we would book ourselves",
-      "intro": "Six routes built around how Egypt actually travels. Take one as it is, or open it in the trip builder and make it yours."
+      "intro": "Six routes built around how Egypt actually travels. Take one as it is, or open it in the trip builder and make it yours.",
+      "listHeading": "All journeys"
     },
     "tripBuilder": {
       "eyebrow": "Plan",
@@ -199,7 +200,8 @@
     "localAdvice": "Local advice",
     "relatedDestinations": "Nearby and next",
     "experiencesHere": "Experiences here",
-    "dayLabel": "Day {{day}}"
+    "dayLabel": "Day {{day}}",
+    "allYear": "All year"
   },
   "experience": {
     "duration": "Duration",
@@ -294,12 +296,10 @@
     "searchPlaceholder": "Name, region or style",
     "filters": "Filters",
     "showFilters": "Filters",
-    "hideFilters": "Done",
     "region": "Region",
     "travelStyle": "Travel style",
     "duration": "How long you have",
     "season": "When you are going",
-    "anyRegion": "Anywhere",
     "anyMonth": "Any month",
     "clearAll": "Clear all",
     "clearOne": "Remove {{label}}",
@@ -319,7 +319,8 @@
     "spotlight": "On the map",
     "experiencesHere_one": "{{count}} experience here",
     "experiencesHere_other": "{{count}} experiences here",
-    "startingFrom": "Starting from"
+    "startingFrom": "Starting from",
+    "resultsHeading": "Results"
   },
   "trip": {
     "add": "Add to trip",
@@ -343,7 +344,10 @@
     "backToDestinations": "See all destinations",
     "experience": "We do not run that experience",
     "experienceBody": "It may have been renamed, or the link may be out of date. Every experience we run is listed below.",
-    "backToExperiences": "See all experiences"
+    "backToExperiences": "See all experiences",
+    "journey": "We do not offer that journey",
+    "journeyBody": "It may have been renamed, or the link may be out of date. All six journeys are listed below.",
+    "backToJourneys": "See all journeys"
   },
   "saved": {
     "add": "Save for later",

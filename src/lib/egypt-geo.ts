@@ -89,6 +89,8 @@ export const LABEL_PLACEMENT: Record<string, LabelPlacement> = {
   // Above would hit Cairo, below would hit Fayoum, so Giza reads to the west.
   giza: { dx: -13, dy: 6, anchor: "end" },
   fayoum: { dx: 0, dy: 34, anchor: "middle" },
+  // Above would run into the Sharm el-Sheikh marker across the gulf.
+  hurghada: { dx: 0, dy: 28, anchor: "middle" },
 };
 
 export const egyptOutlinePath = toPath(OUTLINE, true);

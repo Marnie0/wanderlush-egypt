@@ -4,8 +4,11 @@ import { m, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { Container } from "@/components/ui/Layout";
 import { ButtonLink } from "@/components/ui/Button";
 import { SmartImage, FULL_SIZES } from "@/components/ui/SmartImage";
+import { imageManifest } from "@/generated/images";
 import { DestinationSearch } from "./DestinationSearch";
 import { riseIn, stagger, transitions } from "@/lib/motion";
+
+const HERO_SRC = "/images/hero/egypt-hero.webp";
 
 /**
  * Full-bleed photography, a headline, the quick search and the two actions the
@@ -14,6 +17,7 @@ import { riseIn, stagger, transitions } from "@/lib/motion";
  */
 export function HeroSection() {
   const { t } = useTranslation();
+  const credit = imageManifest[HERO_SRC]?.credit;
   const sectionRef = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
 
@@ -31,17 +35,29 @@ export function HeroSection() {
       <div className="absolute inset-0 overflow-hidden">
         <m.div style={{ y: imageY }} className="absolute inset-0 h-[112%]">
           <SmartImage
-            src="/images/hero/egypt-hero.webp"
-            alt=""
+            src={HERO_SRC}
+            alt={t("home.heroAlt")}
             accent="#a94a1b"
             priority
-            showCredit
             sizes={FULL_SIZES}
             className="h-full w-full"
           />
         </m.div>
         <div aria-hidden className="absolute inset-0 scrim-full" />
         <div aria-hidden className="absolute inset-0 scrim-inline" />
+        {/* The credit sits on the section, not on the picture: the picture is
+            taller than its clip for the parallax, so a credit pinned to its
+            bottom edge would be cut off and leave an invisible tab stop. */}
+        {credit && (
+          <a
+            href={credit.source}
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+            className="absolute bottom-2 end-3 z-10 text-[0.625rem] text-ivory/45 transition-colors hover:text-ivory/80"
+          >
+            {credit.artist} · {credit.license}
+          </a>
+        )}
       </div>
 
       <Container className="relative pb-20 lg:pb-28">

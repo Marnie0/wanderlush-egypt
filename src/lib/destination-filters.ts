@@ -1,4 +1,5 @@
 import type { Destination, Month, Region, TravelStyle } from "@content/types";
+import { normalizeSearch, pick } from "@/lib/format";
 
 export type DurationBucket = "short" | "medium" | "long";
 
@@ -25,35 +26,56 @@ export const MONTHS: Month[] = [
   "jul", "aug", "sep", "oct", "nov", "dec",
 ];
 
-/** Buckets read off the upper bound: a 3-4 day place is not a day trip. */
-export function durationBucket(destination: Destination): DurationBucket {
-  const days = destination.recommendedDays.max;
-  if (days <= 2) return "short";
-  if (days <= 4) return "medium";
-  return "long";
+/** The days each bucket covers; the last one is open-ended. */
+const BUCKET_RANGES: Record<DurationBucket, [number, number]> = {
+  short: [1, 2],
+  medium: [3, 4],
+  long: [5, Infinity],
+};
+
+/**
+ * The filter asks how long the visitor has, so a place matches when any of
+ * its recommended stay fits: Hurghada at three to six days belongs under
+ * "3 to 4 days" as much as under "5 days or more".
+ */
+export function matchesDuration(destination: Destination, buckets: DurationBucket[]): boolean {
+  const { min, max } = destination.recommendedDays;
+  return buckets.some((bucket) => {
+    const [from, to] = BUCKET_RANGES[bucket];
+    return min <= to && max >= from;
+  });
 }
+
+/** Turns a locale key into the words the visitor actually sees. */
+type Translate = (key: string) => string;
 
 export function filterDestinations(
   destinations: Destination[],
   filters: DestinationFilterState,
   language: string,
+  translate?: Translate,
 ): Destination[] {
-  const needle = filters.query.trim().toLowerCase();
+  const needle = normalizeSearch(filters.query.trim());
   const arabic = language.startsWith("ar");
 
   return destinations.filter((destination) => {
     if (needle) {
-      const haystack = [
-        destination.name.en,
-        destination.name.ar,
-        destination.tagline.en,
-        destination.tagline.ar,
-        arabic ? destination.intro.ar : destination.intro.en,
-        destination.region.replace(/-/g, " "),
-        ...destination.travelStyles,
-      ]
-        .join(" ")
-        .toLowerCase();
+      // The words on the page, not the identifiers behind them, so the
+      // region and style labels match in whichever language they are shown.
+      const haystack = normalizeSearch(
+        [
+          destination.name.en,
+          destination.name.ar,
+          destination.tagline.en,
+          destination.tagline.ar,
+          arabic ? destination.intro.ar : destination.intro.en,
+          destination.region.replace(/-/g, " "),
+          translate?.(`regions.${destination.region}`) ?? "",
+          ...destination.travelStyles,
+          ...destination.travelStyles.map((style) => translate?.(`travelStyles.${style}`) ?? ""),
+          ...destination.attractions.map((attraction) => pick(attraction.name, language)),
+        ].join(" "),
+      );
       if (!haystack.includes(needle)) return false;
     }
 
@@ -69,10 +91,7 @@ export function filterDestinations(
       return false;
     }
 
-    if (
-      filters.durations.length > 0 &&
-      !filters.durations.includes(durationBucket(destination))
-    ) {
+    if (filters.durations.length > 0 && !matchesDuration(destination, filters.durations)) {
       return false;
     }
 
@@ -109,7 +128,10 @@ export function filtersFromParams(params: URLSearchParams): DestinationFilterSta
   const list = <T extends string>(key: string, allowed: readonly T[]): T[] => {
     const raw = params.get(key);
     if (!raw) return [];
-    return raw.split(",").filter((value): value is T => (allowed as readonly string[]).includes(value));
+    // De-duplicated, so a hand-edited URL cannot produce two identical chips.
+    return [...new Set(raw.split(","))].filter((value): value is T =>
+      (allowed as readonly string[]).includes(value),
+    );
   };
 
   const month = params.get("month");

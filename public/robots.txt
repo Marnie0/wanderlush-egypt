@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://wanderlush-egypt.vercel.app/sitemap.xml

@@ -10,6 +10,8 @@ import { Gallery } from "@/components/ui/Gallery";
 import { AddToTripButton } from "@/components/ui/AddToTripButton";
 import { ButtonLink } from "@/components/ui/Button";
 import { usePageMeta } from "@/hooks/usePageMeta";
+import { useSolidHeader } from "@/lib/header-store";
+import { formatMonthRuns } from "@/lib/format";
 import { pick, pickList, formatMoney, formatDayRange } from "@/lib/format";
 import { riseIn, stagger, transitions, viewportOnce } from "@/lib/motion";
 
@@ -22,6 +24,7 @@ export function DestinationDetailPage() {
   const { t, i18n } = useTranslation();
   const language = i18n.resolvedLanguage ?? "en";
   const destination = destinationBySlug.get(slug);
+  useSolidHeader(!destination);
 
   usePageMeta(
     destination ? pick(destination.name, language) : undefined,
@@ -45,7 +48,7 @@ export function DestinationDetailPage() {
   }
 
   const localExperiences = experiencesByDestination[destination.slug] ?? [];
-  const seasons = destination.bestSeason.map((m) => t(`months.${m}`));
+  const seasons = formatMonthRuns(destination.bestSeason, t);
 
   return (
     <>
@@ -93,7 +96,7 @@ export function DestinationDetailPage() {
             </p>
 
             <div className="mt-16">
-              <Eyebrow>{t("destination.highlights")}</Eyebrow>
+              <Eyebrow as="h2">{t("destination.highlights")}</Eyebrow>
               <Rule className="mt-4" />
               <ul className="mt-8 space-y-8">
                 {destination.attractions.map((attraction) => (
@@ -110,7 +113,7 @@ export function DestinationDetailPage() {
             </div>
 
             <div className="mt-16">
-              <Eyebrow>{t("destination.suggestedItinerary")}</Eyebrow>
+              <Eyebrow as="h2">{t("destination.suggestedItinerary")}</Eyebrow>
               <Rule className="mt-4" />
               <ol className="mt-8 space-y-6 border-s border-line ps-6">
                 {destination.suggestedItinerary.map((day) => (
@@ -134,7 +137,7 @@ export function DestinationDetailPage() {
             </div>
 
             <div className="mt-16">
-              <Eyebrow>{t("destination.localAdvice")}</Eyebrow>
+              <Eyebrow as="h2">{t("destination.localAdvice")}</Eyebrow>
               <Rule className="mt-4" />
               <ul className="mt-8 space-y-4">
                 {pickList(destination.localAdvice, language).map((tip) => (
@@ -162,9 +165,7 @@ export function DestinationDetailPage() {
               </div>
               <div className="py-4">
                 <dt className="eyebrow text-ink-muted">{t("destination.bestSeason")}</dt>
-                <dd className="mt-2 text-charcoal-900">
-                  {seasons[0]} – {seasons[seasons.length - 1]}
-                </dd>
+                <dd className="mt-2 text-charcoal-900">{seasons}</dd>
                 <dd className="mt-2 text-sm leading-relaxed text-ink-muted">
                   {pick(destination.bestSeasonNote, language)}
                 </dd>
@@ -224,7 +225,7 @@ export function DestinationDetailPage() {
       {destination.gallery.length > 0 && (
         <Section id="gallery" className="pt-0 lg:pt-0">
           <Container>
-            <Eyebrow>{t("gallery.title")}</Eyebrow>
+            <Eyebrow as="h2">{t("gallery.title")}</Eyebrow>
             <Rule className="mt-4" />
             <div className="mt-10">
               <Gallery images={destination.gallery} accent={destination.accent} />
@@ -236,7 +237,7 @@ export function DestinationDetailPage() {
       {localExperiences.length > 0 && (
         <Section id="experiences" className="bg-sand-50 pt-0 pb-section lg:pt-0">
           <Container className="pt-section">
-            <Eyebrow>{t("destination.experiencesHere")}</Eyebrow>
+            <Eyebrow as="h2">{t("destination.experiencesHere")}</Eyebrow>
             <Rule className="mt-4" />
             <m.div
               initial="hidden"

@@ -50,6 +50,8 @@ export function applyDocumentLanguage(language: string) {
 }
 
 applyDocumentLanguage(i18n.resolvedLanguage ?? "en");
-i18n.on("languageChanged", applyDocumentLanguage);
+// The event carries the raw code, which can be regional ("ar-EG"); the
+// resolved language is always one of the two the site supports.
+i18n.on("languageChanged", () => applyDocumentLanguage(i18n.resolvedLanguage ?? "en"));
 
 export default i18n;

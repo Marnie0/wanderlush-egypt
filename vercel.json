@@ -29,7 +29,7 @@
       ]
     },
     {
-      "source": "/images/(.*)",
+      "source": "/images/(hero|destinations|experiences|journeys)/(.*)",
       "headers": [
         {
           "key": "Cache-Control",

@@ -67,8 +67,8 @@ export const faqs: Faq[] = [
     categoryId: "practical",
     question: { en: "Is Egypt suitable for families with young children?", ar: "هل مصر مناسبة للعائلات ذات الأطفال الصغار؟" },
     answer: {
-      en: "Yes, with pacing. Morning site visits, an afternoon break and a Red Sea stretch at the end works well. Our family journey is built exactly that way, and every experience card states a minimum age.",
-      ar: "نعم، مع ضبط الإيقاع. زيارات صباحية للمواقع واستراحة بعد الظهر ومقطع على البحر الأحمر في النهاية تنجح جيدًا. ورحلة العائلة لدينا مبنية بهذه الطريقة تمامًا، وتذكر كل بطاقة تجربة الحد الأدنى للعمر.",
+      en: "Yes, with pacing. Morning site visits, an afternoon break and a Red Sea stretch at the end works well. Our family journey is built exactly that way, and every experience page states a minimum age where one applies.",
+      ar: "نعم، مع ضبط الإيقاع. زيارات صباحية للمواقع واستراحة بعد الظهر ومقطع على البحر الأحمر في النهاية تنجح جيدًا. ورحلة العائلة لدينا مبنية بهذه الطريقة تمامًا، وتذكر كل صفحة تجربة الحد الأدنى للعمر حيثما وُجد.",
     },
   },
   {

@@ -54,17 +54,19 @@ export function Testimonials() {
                 className="border-t border-ivory/20 pt-6"
               >
                 <Icon name="quote" className="text-gold-400" size={28} />
-                <blockquote className="mt-4 leading-relaxed text-ivory/90">
-                  {pick(review.quote, language)}
-                </blockquote>
-                <figcaption className="mt-6 text-sm">
+                <figure>
+                  <blockquote className="mt-4 leading-relaxed text-ivory/90">
+                    {pick(review.quote, language)}
+                  </blockquote>
+                  <figcaption className="mt-6 text-sm">
                   <span className="block text-ivory">{pick(review.author, language)}</span>
                   <span className="block text-ivory/55">{pick(review.origin, language)}</span>
                   <span className="mt-1 block text-ivory/45">
                     {journey ? `${pick(journey.name, language)} · ` : ""}
                     {formatMonthYear(review.travelledOn, language)}
                   </span>
-                </figcaption>
+                  </figcaption>
+                </figure>
               </m.li>
             );
           })}

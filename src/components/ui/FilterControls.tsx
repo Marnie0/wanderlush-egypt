@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { Icon } from "./Icon";
 import { cn } from "@/lib/cn";
 
@@ -51,18 +51,19 @@ export function FilterGroup({ label, children }: { label: string; children: Reac
  * typed at all.
  */
 export function FilterSearch({
-  id,
   label,
   placeholder,
   value,
   onChange,
 }: {
-  id: string;
   label: string;
   placeholder: string;
   value: string;
   onChange: (next: string) => void;
 }) {
+  // The panel is rendered twice on a phone, once in the hidden sidebar and
+  // once in the drawer, so a fixed id would label only the hidden copy.
+  const id = useId();
   const [draft, setDraft] = useState(value);
   const lastSent = useRef(value);
 

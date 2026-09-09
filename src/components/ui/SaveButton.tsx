@@ -28,7 +28,9 @@ export function SaveButton({
       onClick={() => toggleSaved(slug)}
       aria-pressed={saved}
       title={saved ? t("saved.remove") : t("saved.add")}
-      aria-label={saved ? t("saved.remove") : t("saved.add")}
+      // The name stays put and aria-pressed carries the state, so a screen
+      // reader says "Save, pressed" rather than a label that changes under it.
+      aria-label={t("saved.save")}
       className={cn(
         "inline-flex items-center justify-center gap-2 rounded-sm border px-3 text-sm transition-colors",
         withLabel ? "h-11" : "h-11 w-11",

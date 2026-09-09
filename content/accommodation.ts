@@ -14,7 +14,7 @@ export const accommodationLevels: AccommodationLevel[] = [
       en: "Well-run three-star hotels and family guesthouses in walkable parts of town. Private bathrooms, air conditioning and breakfast, without a pool or a view. The right choice when the trip is about what is outside the room.",
       ar: "فنادق ثلاث نجوم جيدة الإدارة وبيوت ضيافة عائلية في مواضع يسهل السير منها. حمامات خاصة وتكييف وفطور، بلا مسبح أو إطلالة. الخيار الصحيح حين تكون الرحلة عمّا هو خارج الغرفة.",
     },
-    nightlyFrom: 40,
+    nightlyFrom: 35,
     nightlyTo: 60,
     inclusions: {
       en: ["Private ensuite room", "Air conditioning", "Breakfast", "Daily housekeeping"],
@@ -32,7 +32,7 @@ export const accommodationLevels: AccommodationLevel[] = [
       en: "Established four-star hotels with a pool, a restaurant worth eating in and rooms large enough to spread out. The level most travellers pick, and the one the sample prices on this site assume by default.",
       ar: "فنادق أربع نجوم راسخة بمسبح ومطعم يستحق تناول الطعام فيه وغرف واسعة بما يكفي. وهو المستوى الذي يختاره معظم المسافرين، وما تفترضه الأسعار الاسترشادية في هذا الموقع افتراضيًا.",
     },
-    nightlyFrom: 85,
+    nightlyFrom: 75,
     nightlyTo: 130,
     inclusions: {
       en: ["Four-star room with a pool", "Full breakfast buffet", "24-hour reception", "Airport transfer coordination"],
@@ -50,7 +50,7 @@ export const accommodationLevels: AccommodationLevel[] = [
       en: "Five-star hotels where the location is the point: a Nile-facing balcony in Aswan, a garden suite in Luxor, a bay-front room in Sharm. Includes a spa, several restaurants and staff who will rearrange a day for you.",
       ar: "فنادق خمس نجوم يكون الموقع فيها هو المقصد: شرفة على النيل في أسوان، وجناح على الحديقة في الأقصر، وغرفة على الخليج في شرم. وتشمل منتجعًا صحيًا وعدة مطاعم وطاقمًا يعيد ترتيب يومك من أجلك.",
     },
-    nightlyFrom: 170,
+    nightlyFrom: 140,
     nightlyTo: 250,
     inclusions: {
       en: ["Five-star room with a view", "Spa and multiple restaurants", "Priority check-in", "Concierge planning"],
@@ -68,7 +68,7 @@ export const accommodationLevels: AccommodationLevel[] = [
       en: "Suites and private villas, a dedicated guide and driver for the whole trip, private transfers between cities and skip-the-queue arrangements at every site. This tier also covers deluxe cabins on the river cruise and private desert camps.",
       ar: "أجنحة وفلل خاصة، ومرشد وسائق مخصصان طوال الرحلة، وانتقالات خاصة بين المدن، وترتيبات لتجاوز الطوابير في كل موقع. ويشمل هذا المستوى أيضًا الكبائن الفاخرة في الرحلة النهرية والمخيمات الصحراوية الخاصة.",
     },
-    nightlyFrom: 320,
+    nightlyFrom: 260,
     nightlyTo: 600,
     inclusions: {
       en: ["Suite or private villa", "Dedicated guide and driver", "Private intercity transfers", "Priority site access"],

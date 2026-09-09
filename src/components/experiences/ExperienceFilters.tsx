@@ -39,7 +39,6 @@ export function ExperienceFilters({
   return (
     <div className="space-y-8">
       <Search
-        id="experience-search"
         label={t("experiences.searchLabel")}
         placeholder={t("experiences.searchPlaceholder")}
         value={filters.query}

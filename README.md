@@ -24,11 +24,19 @@ both first-class.
 
 ## Running locally
 
+Requires Node 22 or newer.
+
 ```bash
 npm install
 cp .env.example .env.local     # then paste your Neon connection string
-npm run dev
+npm run dev                    # the React app, with content bundled in
+npx vercel dev                 # the app plus the /api functions against Neon
 ```
+
+`npm run dev` serves the frontend only; the pages read their content from the
+bundled modules, so nothing on the site needs the database to render. The
+serverless functions under `api/` run with `vercel dev`, which reads
+`.env.local` for `DATABASE_URL`.
 
 | Script | What it does |
 | --- | --- |
@@ -37,10 +45,12 @@ npm run dev
 | `npm run preview` | Serve the production build |
 | `npm run typecheck` | `tsc -b` across app, API and content |
 | `npm run check:content` | Resolve every content slug, link and image |
-| `npm run check:pages` | Load every route and report console errors, missing headings and overflow |
+| `npm run check:pages` | Load every route at desktop and phone widths, in both languages, and report console errors, failed requests, missing headings and overflow. Needs `npm run preview` running on port 4173 and a `google-chrome` binary |
 | `npm run db:migrate` | Apply `db/schema.sql` |
 | `npm run db:seed` | Upsert every row from `content/` |
-| `node scripts/images/build.mjs` | Rebuild responsive photography and its manifest |
+| `node scripts/images/build.mjs` | Rebuild responsive photography, its manifest and the credits file from `scripts/images/sources.json` |
+| `npm run fonts` | Regenerate the size-adjusted font fallbacks in `src/styles/font-fallbacks.css` |
+| `npm run sitemap` | Regenerate `public/sitemap.xml` (also runs inside `npm run build`) |
 | `node scripts/screenshot.mjs <url> <out.png>` | Screenshot a page, optionally scrolled to a section |
 
 ## Layout
@@ -48,14 +58,19 @@ npm run dev
 ```
 api/          Vercel serverless functions (Node)
 content/      All demo content, the single source of truth
-db/           Schema, pooled client, seed script
+db/           Schema, pooled client, row mappers, seed script
 docs/         Brand guide, design system, content model
+public/
+  images/     Rendered photography (generated, committed) and its credits
+scripts/      Content and page checkers, image pipeline, sitemap, fonts
 src/
-  components/ layout shell and reusable UI
+  components/ layout shell, homepage sections, explorer and marketplace UI
+  generated/  Image manifest written by the image pipeline (committed)
+  hooks/      page metadata, reading direction
   i18n/       i18next setup and en/ar locale files
-  lib/        formatting, motion vocabulary, class merging
+  lib/        formatting, filters, stores, motion vocabulary, class merging
   routes/     one file per route plus the router
-  styles/     design tokens and base styles
+  styles/     design tokens, base styles and the generated font fallbacks
 ```
 
 ## Documentation

@@ -19,7 +19,7 @@
  */
 import sharp from "sharp";
 import { createHash } from "node:crypto";
-import { readFileSync, writeFileSync, mkdirSync, existsSync, rmSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync, rmSync, renameSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -36,11 +36,13 @@ const CARD_WIDTHS = [480, 800, 1200];
 
 mkdirSync(cacheDir, { recursive: true });
 
-// Rendered output is disposable and hashed, so clear it rather than leaving
-// orphans behind whenever a photograph or a width changes.
-for (const dir of ["hero", "destinations", "experiences", "journeys"]) {
-  rmSync(join(outDir, dir), { recursive: true, force: true });
-}
+// Rendered output is disposable and hashed, so it is rebuilt from scratch
+// into a staging directory and swapped in only once every slot has rendered.
+// Clearing first would leave the site without pictures if one download of a
+// hundred and thirty failed halfway.
+const stageDir = join(root, ".cache/images-stage");
+rmSync(stageDir, { recursive: true, force: true });
+mkdirSync(stageDir, { recursive: true });
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -82,8 +84,8 @@ for (const [slot, meta] of entries) {
   const widths = (HERO.test(slot) ? HERO_WIDTHS : CARD_WIDTHS).filter((w) => w <= srcW);
   if (widths.length === 0) widths.push(srcW);
 
-  mkdirSync(join(outDir, dirname(slot)), { recursive: true });
-  const sources = [];
+  mkdirSync(join(stageDir, dirname(slot)), { recursive: true });
+  const variants = [];
   for (const w of widths) {
     const buffer = await sharp(src, { failOn: "none" })
       .rotate()
@@ -92,8 +94,8 @@ for (const [slot, meta] of entries) {
       .toBuffer();
     const hash = createHash("sha256").update(buffer).digest("hex").slice(0, 8);
     const file = `${slot}-${w}.${hash}.webp`;
-    writeFileSync(join(outDir, file), buffer);
-    sources.push({ width: w, url: `/images/${file}` });
+    writeFileSync(join(stageDir, file), buffer);
+    variants.push({ width: w, url: `/images/${file}` });
   }
 
   // 20px wide blurred placeholder, inlined as a data URI in the manifest.
@@ -105,7 +107,7 @@ for (const [slot, meta] of entries) {
     .toBuffer();
 
   manifest[`/images/${slot}.webp`] = {
-    sources,
+    sources: variants,
     width: srcW,
     height: srcH,
     lqip: `data:image/webp;base64,${lqipBuf.toString("base64")}`,
@@ -121,6 +123,12 @@ for (const [slot, meta] of entries) {
   );
   process.stdout.write(`${slot} (${widths.join("/")})\n`);
 }
+
+for (const dir of ["hero", "destinations", "experiences", "journeys"]) {
+  rmSync(join(outDir, dir), { recursive: true, force: true });
+  if (existsSync(join(stageDir, dir))) renameSync(join(stageDir, dir), join(outDir, dir));
+}
+rmSync(stageDir, { recursive: true, force: true });
 
 const header = `# Photography credits
 

@@ -1,5 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { query } from "../db/client.js";
+import { rowToExperience } from "../db/rows.js";
 
 /**
  * GET /api/experiences
@@ -20,7 +21,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       const rows = await query("select * from experiences where slug = $1", [slug]);
       if (rows.length === 0) return res.status(404).json({ error: "Experience not found" });
       res.setHeader("Cache-Control", "public, s-maxage=3600, stale-while-revalidate=86400");
-      return res.status(200).json(rows[0]);
+      return res.status(200).json(rowToExperience(rows[0]));
     }
 
     const conditions: string[] = [];
@@ -42,11 +43,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     );
 
     res.setHeader("Cache-Control", "public, s-maxage=3600, stale-while-revalidate=86400");
-    return res.status(200).json(rows);
+    return res.status(200).json(rows.map(rowToExperience));
   } catch (error) {
-    return res.status(500).json({
-      error: "Failed to load experiences",
-      message: error instanceof Error ? error.message : "unknown error",
-    });
+    console.error("experiences", error);
+    return res.status(500).json({ error: "Failed to load experiences" });
   }
 }

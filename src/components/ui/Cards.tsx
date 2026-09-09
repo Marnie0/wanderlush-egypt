@@ -181,7 +181,16 @@ export function ExperienceCard({
   );
 }
 
-export function JourneyCard({ journey, className }: { journey: Journey; className?: string }) {
+export function JourneyCard({
+  journey,
+  className,
+  sizes = HALF_SIZES,
+}: {
+  journey: Journey;
+  className?: string;
+  /** The journeys page shows two across; the homepage preview shows three. */
+  sizes?: string;
+}) {
   const { t, i18n } = useTranslation();
   const language = i18n.resolvedLanguage ?? "en";
 
@@ -192,7 +201,7 @@ export function JourneyCard({ journey, className }: { journey: Journey; classNam
           src={journey.heroImage.src}
           alt={pick(journey.heroImage.alt, language)}
           accent={journey.accent}
-          sizes={HALF_SIZES}
+          sizes={sizes}
           className="aspect-[16/10] w-full"
           imgClassName="transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
         >

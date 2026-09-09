@@ -1,4 +1,4 @@
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { m } from "framer-motion";
 import { journeyBySlug } from "@content/journeys";
@@ -8,6 +8,7 @@ import { Container, Eyebrow, Rule, Section } from "@/components/ui/Layout";
 import { ButtonLink } from "@/components/ui/Button";
 import { SmartImage, FULL_SIZES } from "@/components/ui/SmartImage";
 import { usePageMeta } from "@/hooks/usePageMeta";
+import { useSolidHeader } from "@/lib/header-store";
 import { pick, formatMoney } from "@/lib/format";
 import { riseIn, stagger, transitions } from "@/lib/motion";
 
@@ -16,13 +17,30 @@ export function JourneyDetailPage() {
   const { t, i18n } = useTranslation();
   const language = i18n.resolvedLanguage ?? "en";
   const journey = journeyBySlug.get(slug);
+  useSolidHeader(!journey);
 
   usePageMeta(
     journey ? pick(journey.name, language) : undefined,
     journey ? pick(journey.tagline, language) : undefined,
   );
 
-  if (!journey) return <Navigate to="/journeys" replace />;
+  // A wrong link deserves an answer, not a silent bounce to the list that
+  // leaves the visitor wondering what they clicked.
+  if (!journey) {
+    return (
+      <Section>
+        <Container className="max-w-2xl text-center">
+          <h1 className="text-display text-charcoal-900">{t("notFound.journey")}</h1>
+          <p className="mt-6 text-lead leading-relaxed text-charcoal-600">
+            {t("notFound.journeyBody")}
+          </p>
+          <ButtonLink to="/journeys" className="mt-10">
+            {t("notFound.backToJourneys")}
+          </ButtonLink>
+        </Container>
+      </Section>
+    );
+  }
 
   const tier = accommodationById.get(journey.suggestedTier);
 
@@ -69,7 +87,7 @@ export function JourneyDetailPage() {
             </p>
 
             <div className="mt-16">
-              <Eyebrow>{t("journey.outline")}</Eyebrow>
+              <Eyebrow as="h2">{t("journey.outline")}</Eyebrow>
               <Rule className="mt-4" />
               <ol className="mt-8 space-y-6 border-s border-line ps-6">
                 {journey.outline.map((day) => (

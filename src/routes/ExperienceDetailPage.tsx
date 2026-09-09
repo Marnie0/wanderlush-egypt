@@ -225,7 +225,7 @@ export function ExperienceDetailPage() {
       {experience.gallery.length > 0 && (
         <Section id="gallery" className="pt-0 lg:pt-0">
           <Container>
-            <Eyebrow>{t("gallery.title")}</Eyebrow>
+            <Eyebrow as="h2">{t("gallery.title")}</Eyebrow>
             <Rule className="mt-4" />
             <div className="mt-10">
               <Gallery images={experience.gallery} accent={experience.accent} />
@@ -237,7 +237,7 @@ export function ExperienceDetailPage() {
       {suggestions.length > 0 && (
         <section className="bg-sand-50 py-16 lg:py-20">
           <Container>
-            <Eyebrow>{t("experience.related")}</Eyebrow>
+            <Eyebrow as="h2">{t("experience.related")}</Eyebrow>
             <Rule className="mt-4" />
             <m.div
               initial="hidden"

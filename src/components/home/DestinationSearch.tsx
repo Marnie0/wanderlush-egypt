@@ -2,7 +2,7 @@ import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Icon } from "@/components/ui/Icon";
-import { formatNumber, pick } from "@/lib/format";
+import { normalizeSearch, pick } from "@/lib/format";
 import { cn } from "@/lib/cn";
 import type { Destination } from "@content/types";
 
@@ -48,22 +48,25 @@ export function DestinationSearch({ className }: { className?: string }) {
     return () => window.cancelIdleCallback?.(idle);
   }, [loadCatalogue]);
 
+  // Names, taglines, regions and the sights themselves, so "pyramids"
+  // suggests Giza rather than reporting that no destination matches.
   const matches = useMemo(() => {
-    const needle = query.trim().toLowerCase();
+    const needle = normalizeSearch(query.trim());
     if (!needle) return destinations;
     return destinations.filter((destination) =>
-      [
-        destination.name.en,
-        destination.name.ar,
-        destination.tagline.en,
-        destination.tagline.ar,
-        destination.region.replace(/-/g, " "),
-      ]
-        .join(" ")
-        .toLowerCase()
-        .includes(needle),
+      normalizeSearch(
+        [
+          destination.name.en,
+          destination.name.ar,
+          destination.tagline.en,
+          destination.tagline.ar,
+          destination.region.replace(/-/g, " "),
+          t(`regions.${destination.region}`),
+          ...destination.attractions.flatMap((attraction) => [attraction.name.en, attraction.name.ar]),
+        ].join(" "),
+      ).includes(needle),
     );
-  }, [query, destinations]);
+  }, [query, destinations, t]);
 
   /**
    * Prefer opening downward and shrink to the room available, since flipping
@@ -100,9 +103,14 @@ export function DestinationSearch({ className }: { className?: string }) {
       });
     } else if (event.key === "Enter") {
       const match = matches[highlighted];
+      event.preventDefault();
       if (match) {
-        event.preventDefault();
         go(match.slug);
+      } else if (query.trim()) {
+        // Nothing here matched, so hand the words to the explorer, which
+        // searches more than names and can show the filters beside them.
+        setOpen(false);
+        navigate(`/destinations?q=${encodeURIComponent(query.trim())}`);
       }
     } else if (event.key === "Escape") {
       setOpen(false);
@@ -122,7 +130,7 @@ export function DestinationSearch({ className }: { className?: string }) {
           type="text"
           role="combobox"
           aria-expanded={open}
-          aria-controls={listId}
+          aria-controls={open ? listId : undefined}
           aria-autocomplete="list"
           aria-activedescendant={open && matches[highlighted] ? `${optionId}-${highlighted}` : undefined}
           aria-label={t("home.searchLabel")}
@@ -139,7 +147,7 @@ export function DestinationSearch({ className }: { className?: string }) {
           className="w-full bg-transparent text-base text-charcoal-900 placeholder:text-charcoal-400 focus:outline-none sm:text-lg"
         />
         <span className="hidden shrink-0 text-xs text-ink-muted sm:block">
-          {formatNumber(destinations.length || 10, language)} {t("home.searchCount")}
+          {t("explore.resultCount", { count: destinations.length || 10 })}
         </span>
       </div>
 
@@ -155,38 +163,35 @@ export function DestinationSearch({ className }: { className?: string }) {
           )}
         >
           {matches.length === 0 && (
-            <li className="px-4 py-3 text-sm text-ink-muted">
+            <li role="option" aria-selected={false} aria-disabled className="px-4 py-3 text-sm text-ink-muted">
               {destinations.length === 0 ? t("common.loading") : t("home.searchNoResults")}
             </li>
           )}
+          {/* The option is the clickable row itself: a button inside an
+              option is not allowed, an option's children are presentational. */}
           {matches.map((destination, index) => (
             <li
               key={destination.slug}
               id={`${optionId}-${index}`}
               role="option"
               aria-selected={index === highlighted}
+              // The input's blur fires first on click, so commit on mousedown.
+              onMouseDown={(event) => {
+                event.preventDefault();
+                go(destination.slug);
+              }}
+              onMouseEnter={() => setHighlighted(index)}
+              className={cn(
+                "flex cursor-pointer items-baseline justify-between gap-4 px-4 py-3 text-start transition-colors",
+                index === highlighted ? "bg-sand-100" : "bg-transparent",
+              )}
             >
-              <button
-                type="button"
-                tabIndex={-1}
-                // The input's blur fires first on click, so commit on mousedown.
-                onMouseDown={(event) => {
-                  event.preventDefault();
-                  go(destination.slug);
-                }}
-                onMouseEnter={() => setHighlighted(index)}
-                className={cn(
-                  "flex w-full items-baseline justify-between gap-4 px-4 py-3 text-start transition-colors",
-                  index === highlighted ? "bg-sand-100" : "bg-transparent",
-                )}
-              >
-                <span className="font-display text-lg text-charcoal-900">
-                  {pick(destination.name, language)}
-                </span>
-                <span className="shrink-0 text-xs text-ink-muted">
-                  {t(`regions.${destination.region}`)}
-                </span>
-              </button>
+              <span className="font-display text-lg text-charcoal-900">
+                {pick(destination.name, language)}
+              </span>
+              <span className="shrink-0 text-xs text-ink-muted">
+                {t(`regions.${destination.region}`)}
+              </span>
             </li>
           ))}
         </ul>

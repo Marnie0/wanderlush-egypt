@@ -51,7 +51,6 @@ export function DestinationFilters({
   return (
     <div className="space-y-8">
       <Search
-        id="destination-search"
         label={t("explore.searchLabel")}
         placeholder={t("explore.searchPlaceholder")}
         value={filters.query}

@@ -9,10 +9,17 @@ let pool: Pool | undefined;
 
 export function getPool(): Pool {
   if (!pool) {
-    const connectionString = process.env.DATABASE_URL;
-    if (!connectionString) {
+    const raw = process.env.DATABASE_URL;
+    if (!raw) {
       throw new Error("DATABASE_URL is not set");
     }
+    // Neon's string carries sslmode=require. pg parses that into its own
+    // ssl setting, which overrides the explicit one below and, from pg 9,
+    // stops verifying the certificate. Strip it and say what we mean.
+    const url = new URL(raw);
+    url.searchParams.delete("sslmode");
+    url.searchParams.delete("channel_binding");
+    const connectionString = url.toString();
     pool = new Pool({
       connectionString,
       max: 3,

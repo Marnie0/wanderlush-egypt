@@ -1,6 +1,6 @@
 import type { TFunction } from "i18next";
 import { destinationBySlug } from "@content/destinations";
-import { formatMoney } from "@/lib/format";
+import { formatMoney, normalizeSearch } from "@/lib/format";
 import type {
   Experience,
   ExperienceCategory,
@@ -113,10 +113,8 @@ function matchesQuery(
     translate?.(`categories.${experience.category}`) ?? "",
     translate?.(`environments.${experience.environment}`) ?? "",
     ...experience.travelStyles,
-  ]
-    .join(" ")
-    .toLowerCase();
-  return haystack.includes(needle);
+  ].join(" ");
+  return normalizeSearch(haystack).includes(needle);
 }
 
 /**
@@ -131,7 +129,7 @@ export function filterExperiences(
   savedSlugs: string[] = [],
   translate?: Translate,
 ): Experience[] {
-  const needle = filters.query.trim().toLowerCase();
+  const needle = normalizeSearch(filters.query.trim());
   const arabic = language.startsWith("ar");
 
   const results = experiences.filter((experience) => {
@@ -227,9 +225,10 @@ export function experienceFiltersFromParams(
   const list = <T extends string>(key: string, allowed: readonly T[]): T[] => {
     const raw = params.get(key);
     if (!raw) return [];
-    return raw
-      .split(",")
-      .filter((value): value is T => (allowed as readonly string[]).includes(value));
+    // De-duplicated, so a hand-edited URL cannot produce two identical chips.
+    return [...new Set(raw.split(","))].filter((value): value is T =>
+      (allowed as readonly string[]).includes(value),
+    );
   };
 
   const sort = params.get("sort");

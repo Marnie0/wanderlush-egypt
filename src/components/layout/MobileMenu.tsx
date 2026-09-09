@@ -15,6 +15,10 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
   const closeRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const tripCount = useTripCount();
+  // Read through a ref so the header re-rendering (a scroll, a language
+  // change) does not re-run the effect and pull focus back to the close button.
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
 
   // Escape closes, Tab stays inside the panel, and the page behind must not
   // scroll while the panel is up.
@@ -23,7 +27,7 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
 
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        onClose();
+        onCloseRef.current();
         return;
       }
       if (event.key !== "Tab" || !panelRef.current) return;
@@ -36,10 +40,11 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
       const last = focusable[focusable.length - 1];
       const active = document.activeElement;
 
-      if (event.shiftKey && (active === first || !panelRef.current.contains(active))) {
+      const outside = !panelRef.current.contains(active);
+      if (event.shiftKey && (active === first || outside)) {
         event.preventDefault();
         last.focus();
-      } else if (!event.shiftKey && active === last) {
+      } else if (!event.shiftKey && (active === last || outside)) {
         event.preventDefault();
         first.focus();
       }
@@ -51,12 +56,22 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
     document.body.style.overflow = "hidden";
     closeRef.current?.focus();
 
+    // The panel is hidden by CSS past the desktop breakpoint, but the scroll
+    // lock and the key trap would stay. Rotating a tablet must not leave a
+    // desktop page that cannot scroll.
+    const desktop = window.matchMedia("(min-width: 64rem)");
+    const onResize = (event: MediaQueryListEvent) => {
+      if (event.matches) onCloseRef.current();
+    };
+    desktop.addEventListener("change", onResize);
+
     return () => {
       document.removeEventListener("keydown", onKey);
+      desktop.removeEventListener("change", onResize);
       document.body.style.overflow = previous;
       restoreFocus?.focus?.();
     };
-  }, [open, onClose]);
+  }, [open]);
 
   // The panel enters from the trailing edge, which flips with direction.
   const offscreen = isRtl ? "-100%" : "100%";
@@ -83,7 +98,8 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
             role="dialog"
             aria-modal="true"
             aria-label={t("nav.primaryLabel")}
-            className="absolute inset-y-0 end-0 flex w-[min(22rem,88vw)] flex-col bg-teal-800 text-ivory"
+            tabIndex={-1}
+            className="absolute inset-y-0 end-0 flex w-[min(22rem,88vw)] flex-col bg-teal-800 text-ivory focus:outline-none"
             variants={{ hidden: { x: offscreen }, visible: { x: 0 } }}
             transition={transitions.soft}
           >

@@ -30,19 +30,21 @@ export function Section({
   );
 }
 
-/** Small uppercase label above a heading. Arabic drops the tracking. */
+/**
+ * Small uppercase label above a heading. Arabic drops the tracking. Where the
+ * eyebrow is the only title a section has, render it as the heading it is,
+ * so the outline reads h1, h2, h3 rather than jumping straight to h3.
+ */
 export function Eyebrow({
+  as: Tag = "p",
   className,
   children,
 }: {
+  as?: "p" | "h2" | "h3";
   className?: string;
   children: React.ReactNode;
 }) {
-  return (
-    <p className={cn("eyebrow text-ember-600", className)}>
-      {children}
-    </p>
-  );
+  return <Tag className={cn("eyebrow text-ember-600", className)}>{children}</Tag>;
 }
 
 /** A short gold rule used to separate editorial blocks. */

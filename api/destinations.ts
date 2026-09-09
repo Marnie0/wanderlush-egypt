@@ -1,5 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { query } from "../db/client.js";
+import { rowToDestination } from "../db/rows.js";
 
 /**
  * GET /api/destinations          → every destination
@@ -25,12 +26,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(404).json({ error: "Destination not found" });
     }
 
+    const destinations = rows.map(rowToDestination);
     res.setHeader("Cache-Control", "public, s-maxage=3600, stale-while-revalidate=86400");
-    return res.status(200).json(slug ? rows[0] : rows);
+    return res.status(200).json(slug ? destinations[0] : destinations);
   } catch (error) {
-    return res.status(500).json({
-      error: "Failed to load destinations",
-      message: error instanceof Error ? error.message : "unknown error",
-    });
+    // The message names the database host and role; it belongs in the log.
+    console.error("destinations", error);
+    return res.status(500).json({ error: "Failed to load destinations" });
   }
 }

@@ -20,6 +20,7 @@ export function JourneysPage() {
       />
       <Section className="pt-0 lg:pt-0">
         <Container>
+          <h2 className="sr-only">{t("pages.journeys.listHeading")}</h2>
           <m.div
             initial="hidden"
             whileInView="visible"

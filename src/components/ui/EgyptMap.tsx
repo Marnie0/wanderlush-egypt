@@ -94,7 +94,7 @@ export function EgyptMap({ destinations, activeSlug, onSelect, className }: Egyp
             tabIndex={0}
             aria-label={name}
             aria-pressed={isActive}
-            className="cursor-pointer focus:outline-none"
+            className="group cursor-pointer outline-none"
             onClick={() => onSelect(destination.slug)}
             onMouseEnter={() => onSelect(destination.slug)}
             onFocus={() => onSelect(destination.slug)}
@@ -124,12 +124,17 @@ export function EgyptMap({ destinations, activeSlug, onSelect, className }: Egyp
               fill={isActive ? destination.accent : "var(--color-charcoal-700)"}
               stroke="var(--color-ivory)"
               strokeWidth="2"
-              className="transition-all duration-300"
+              className="transition-all duration-300 group-focus-visible:stroke-ember-500 group-focus-visible:[stroke-width:3]"
             />
             <text
               x={x + label.dx}
               y={y + label.dy}
               textAnchor={label.anchor}
+              // SVG resolves "start" and "end" against the inherited text
+              // direction, so under dir="rtl" an end-anchored label would
+              // run the other way, across its own marker. The placements
+              // are geometric, so the text keeps a fixed direction.
+              direction="ltr"
               className={cn(
                 "pointer-events-none select-none font-body text-[15px] transition-opacity duration-300",
                 isActive ? "opacity-100" : "opacity-0",
