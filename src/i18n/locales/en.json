@@ -1,0 +1,243 @@
+{
+  "brand": {
+    "name": "Wanderlush Egypt",
+    "tagline": "Experience Egypt beyond the ordinary",
+    "shortDescription": "Explore Egyptian destinations, choose curated experiences, build a personalised itinerary and see a transparent estimate before you request a booking."
+  },
+  "nav": {
+    "destinations": "Destinations",
+    "experiences": "Experiences",
+    "journeys": "Journeys",
+    "tripBuilder": "Build Your Trip",
+    "about": "About",
+    "contact": "Contact",
+    "faq": "FAQ",
+    "privacy": "Privacy",
+    "startPlanning": "Start Planning",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "skipToContent": "Skip to content",
+    "primaryLabel": "Primary",
+    "footerLabel": "Footer"
+  },
+  "language": {
+    "switch": "Language",
+    "english": "English",
+    "arabic": "العربية",
+    "switchToArabic": "Switch to Arabic",
+    "switchToEnglish": "Switch to English"
+  },
+  "common": {
+    "explore": "Explore",
+    "exploreEgypt": "Explore Egypt",
+    "viewAll": "View all",
+    "readMore": "Read more",
+    "addToTrip": "Add to trip",
+    "inTrip": "In your trip",
+    "from": "From",
+    "perPerson": "per person",
+    "perNight": "per night",
+    "days": "{{count}} day",
+    "days_other": "{{count}} days",
+    "nights": "{{count}} night",
+    "nights_other": "{{count}} nights",
+    "hours": "{{count}} hour",
+    "hours_other": "{{count}} hours",
+    "minutes": "{{count}} minute",
+    "minutes_other": "{{count}} minutes",
+    "reviews": "{{count}} review",
+    "reviews_other": "{{count}} reviews",
+    "loading": "Loading",
+    "error": "Something went wrong",
+    "retry": "Try again",
+    "notFound": "Page not found",
+    "demoContent": "Demo content",
+    "comingInPhase": "Arriving in a later phase",
+    "backHome": "Back to the homepage"
+  },
+  "home": {
+    "heroHeadline": "Egypt, arranged around you",
+    "heroSupport": "Choose the places, pick the experiences, and shape a day-by-day journey with a price that updates as you go.",
+    "heroSearch": "Where do you want to go?",
+    "buildTrip": "Build Your Trip",
+    "finalCta": "Your Egyptian journey begins here."
+  },
+  "footer": {
+    "explore": "Explore",
+    "plan": "Plan",
+    "company": "Company",
+    "rights": "A fictional travel company, built as a portfolio project.",
+    "demoNotice": "All destinations, experiences, prices and testimonials on this site are demonstration content."
+  },
+  "meta": {
+    "destinations": "Destinations in Egypt",
+    "experiences": "Experiences and tours",
+    "journeys": "Curated journeys",
+    "tripBuilder": "Build your trip",
+    "tripSummary": "Your trip summary",
+    "booking": "Request your booking",
+    "confirmation": "Booking confirmed",
+    "about": "About Wanderlush Egypt",
+    "contact": "Contact us",
+    "faq": "Frequently asked questions",
+    "privacy": "Privacy"
+  },
+  "pages": {
+    "destinations": {
+      "eyebrow": "Egypt",
+      "title": "Eight places worth the journey",
+      "intro": "From the Giza plateau to a chalk desert with no light for two hundred kilometres. Each guide covers what to see, when to come and what a day actually costs."
+    },
+    "experiences": {
+      "eyebrow": "Experiences",
+      "title": "Tours, activities and local experiences",
+      "intro": "Twenty-four experiences across all eight destinations, from a sunrise balloon over the Valley of the Kings to a home-cooked lunch in a Nubian courtyard."
+    },
+    "journeys": {
+      "eyebrow": "Curated",
+      "title": "Journeys we would book ourselves",
+      "intro": "Six routes built around how Egypt actually travels. Take one as it is, or open it in the trip builder and make it yours."
+    },
+    "tripBuilder": {
+      "eyebrow": "Plan",
+      "title": "Build your trip",
+      "intro": "Choose destinations, set your dates and party, pick experiences and shape a day-by-day itinerary with a price that updates as you go."
+    },
+    "tripSummary": {
+      "eyebrow": "Review",
+      "title": "Your trip summary",
+      "intro": "The full itinerary, the cost breakdown and everything you have chosen, in one place."
+    },
+    "booking": {
+      "eyebrow": "Request",
+      "title": "Request your booking",
+      "intro": "Send your itinerary to a travel specialist. No payment, no commitment, and a reply within one working day."
+    },
+    "confirmation": {
+      "eyebrow": "Confirmed",
+      "title": "Your request is in",
+      "intro": "Keep your booking reference. A specialist will confirm availability and the final quotation."
+    },
+    "about": {
+      "eyebrow": "About",
+      "title": "Why we built Wanderlush Egypt"
+    },
+    "contact": {
+      "eyebrow": "Contact",
+      "title": "Talk to a travel specialist",
+      "intro": "Tell us roughly what you have in mind and we will come back within one working day."
+    },
+    "faq": {
+      "eyebrow": "Answers",
+      "title": "Frequently asked questions",
+      "intro": "Planning, prices, practicalities and what happens after you send a request."
+    },
+    "privacy": {
+      "eyebrow": "Privacy",
+      "title": "How we handle your information"
+    },
+    "notFound": {
+      "title": "We cannot find that page",
+      "intro": "The link may be out of date, or the page may have moved."
+    }
+  },
+  "placeholder": {
+    "label": "In development",
+    "body": "This part of the journey is being built. The foundation, content and design system it depends on are already in place."
+  },
+  "destination": {
+    "bestSeason": "Best season",
+    "recommendedStay": "Recommended stay",
+    "dailyBudget": "Daily budget from",
+    "gettingThere": "Getting there",
+    "whereToStay": "Where to stay",
+    "highlights": "Highlights",
+    "suggestedItinerary": "A suggested few days",
+    "localAdvice": "Local advice",
+    "relatedDestinations": "Nearby and next",
+    "experiencesHere": "Experiences here",
+    "dayLabel": "Day {{day}}"
+  },
+  "experience": {
+    "duration": "Duration",
+    "groupSize": "Group size",
+    "meetingPoint": "Meeting point",
+    "schedule": "Schedule",
+    "inclusions": "What is included",
+    "exclusions": "Not included",
+    "whatToBring": "What to bring",
+    "accessibility": "Accessibility",
+    "cancellation": "Cancellation",
+    "privateAvailable": "Private option available",
+    "familyFriendly": "Family friendly",
+    "minAge": "Minimum age {{age}}",
+    "upToPeople": "Up to {{count}} people"
+  },
+  "journey": {
+    "outline": "Day by day",
+    "included": "Destinations",
+    "suggestedTier": "Suggested accommodation",
+    "openInBuilder": "Open in the trip builder"
+  },
+  "faqPage": {
+    "stillStuck": "Still have a question?",
+    "contactUs": "Contact a specialist"
+  },
+  "categories": {
+    "culture": "Culture",
+    "history": "History",
+    "adventure": "Adventure",
+    "food": "Food",
+    "nature": "Nature",
+    "wellness": "Wellness",
+    "nightlife": "Nightlife",
+    "water": "Water"
+  },
+  "travelStyles": {
+    "history": "History",
+    "beach": "Beach",
+    "desert": "Desert",
+    "luxury": "Luxury",
+    "family": "Family",
+    "romantic": "Romantic",
+    "nature": "Nature"
+  },
+  "regions": {
+    "greater-cairo": "Greater Cairo",
+    "mediterranean": "Mediterranean coast",
+    "nile-valley": "Nile valley",
+    "western-desert": "Western Desert",
+    "red-sea": "Red Sea"
+  },
+  "months": {
+    "jan": "January",
+    "feb": "February",
+    "mar": "March",
+    "apr": "April",
+    "may": "May",
+    "jun": "June",
+    "jul": "July",
+    "aug": "August",
+    "sep": "September",
+    "oct": "October",
+    "nov": "November",
+    "dec": "December"
+  },
+  "tiers": {
+    "essential": "Essential",
+    "comfort": "Comfort",
+    "premium": "Premium",
+    "luxury": "Luxury"
+  },
+  "environments": {
+    "urban": "Urban",
+    "desert": "Desert",
+    "water": "On the water",
+    "indoor": "Indoor",
+    "outdoor": "Outdoor"
+  },
+  "groupFormat": {
+    "private": "Private",
+    "shared": "Shared"
+  }
+}

@@ -1,0 +1,148 @@
+import type { Review } from "./types";
+
+/**
+ * Fictional testimonials for a fictional company. Every card that renders one
+ * carries a visible "demo content" label, per the brief.
+ */
+export const reviews: Review[] = [
+  {
+    id: "rev-01",
+    author: { en: "Marta Nilsen", ar: "مارتا نيلسن" },
+    origin: { en: "Oslo, Norway", ar: "أوسلو، النرويج" },
+    journeySlug: "ancient-egypt-discovery",
+    destinationSlug: null,
+    rating: 5,
+    quote: {
+      en: "We had three days in Cairo and no idea how to use them. The itinerary put Giza at opening and the museum in the afternoon, and we never once queued. That single decision made the trip.",
+      ar: "كان أمامنا ثلاثة أيام في القاهرة ولم نعرف كيف نستغلها. وضع البرنامج الجيزة عند الفتح والمتحف بعد الظهر، ولم نقف في طابور ولا مرة. ذلك القرار وحده صنع الرحلة.",
+    },
+    travelledOn: "2026-02",
+    isDemo: true,
+  },
+  {
+    id: "rev-02",
+    author: { en: "Karim Abdelhady", ar: "كريم عبد الهادي" },
+    origin: { en: "Cairo, Egypt", ar: "القاهرة، مصر" },
+    journeySlug: "siwa-desert-adventure",
+    destinationSlug: "siwa-oasis",
+    rating: 5,
+    quote: {
+      en: "I am Egyptian and I had never been to Siwa. Booking a driver who actually knew the sand sea, rather than a tour bus, was the difference between a photo stop and a real desert night.",
+      ar: "أنا مصري ولم أزر سيوة من قبل. حجز سائق يعرف بحر الرمال فعلًا، بدل حافلة سياحية، كان الفارق بين وقفة تصوير وليلة صحراوية حقيقية.",
+    },
+    travelledOn: "2025-11",
+    isDemo: true,
+  },
+  {
+    id: "rev-03",
+    author: { en: "Yuki Tanaka", ar: "يوكي تاناكا" },
+    origin: { en: "Kyoto, Japan", ar: "كيوتو، اليابان" },
+    journeySlug: "luxury-nile-escape",
+    destinationSlug: "aswan",
+    rating: 5,
+    quote: {
+      en: "Four days on the river and the only decision I made was where to sit. Kom Ombo at dusk with almost nobody there is the image I kept.",
+      ar: "أربعة أيام على النهر، والقرار الوحيد الذي اتخذته كان أين أجلس. كوم أمبو عند الغسق وبلا أحد تقريبًا هي الصورة التي احتفظت بها.",
+    },
+    travelledOn: "2026-01",
+    isDemo: true,
+  },
+  {
+    id: "rev-04",
+    author: { en: "The Okonkwo family", ar: "عائلة أوكونكو" },
+    origin: { en: "Lagos, Nigeria", ar: "لاغوس، نيجيريا" },
+    journeySlug: "family-journey",
+    destinationSlug: null,
+    rating: 5,
+    quote: {
+      en: "Two children under ten, ten days, and nobody cried at a temple. Short morning visits and a pool by two in the afternoon is the whole trick, and they built it in from the start.",
+      ar: "طفلان دون العاشرة وعشرة أيام ولم يبكِ أحد في معبد. الحيلة كلها زيارات صباحية قصيرة ومسبح عند الثانية بعد الظهر، وقد وضعوا ذلك في البرنامج من البداية.",
+    },
+    travelledOn: "2026-04",
+    isDemo: true,
+  },
+  {
+    id: "rev-05",
+    author: { en: "Sofia Reyes", ar: "صوفيا رييس" },
+    origin: { en: "Madrid, Spain", ar: "مدريد، إسبانيا" },
+    journeySlug: "romantic-honeymoon",
+    destinationSlug: "luxor",
+    rating: 5,
+    quote: {
+      en: "The balloon was booked for our first morning in Luxor. It was cancelled for wind, and because there was a spare day we simply flew the next dawn instead.",
+      ar: "كان المنطاد محجوزًا في صباحنا الأول بالأقصر. أُلغي بسبب الرياح، ولأن هناك يومًا احتياطيًا طرنا ببساطة في فجر اليوم التالي.",
+    },
+    travelledOn: "2025-12",
+    isDemo: true,
+  },
+  {
+    id: "rev-06",
+    author: { en: "James Whitfield", ar: "جيمس ويتفيلد" },
+    origin: { en: "Manchester, United Kingdom", ar: "مانشستر، المملكة المتحدة" },
+    journeySlug: "red-sea-retreat",
+    destinationSlug: "sharm-el-sheikh",
+    rating: 4,
+    quote: {
+      en: "The Thistlegorm is a four-thirty start and worth every minute. My only note is to keep the last day clear of diving, which the plan already did.",
+      ar: "رحلة الثيسل غورم تبدأ في الرابعة والنصف فجرًا وتستحق كل دقيقة. وملاحظتي الوحيدة أن يبقى اليوم الأخير خاليًا من الغوص، وهو ما فعله البرنامج أصلًا.",
+    },
+    travelledOn: "2026-03",
+    isDemo: true,
+  },
+  {
+    id: "rev-07",
+    author: { en: "Amira Haddad", ar: "أميرة حداد" },
+    origin: { en: "Amman, Jordan", ar: "عمّان، الأردن" },
+    journeySlug: null,
+    destinationSlug: "alexandria",
+    rating: 5,
+    quote: {
+      en: "Booking in Arabic and getting the itinerary back in Arabic, with the dates written properly, is rarer than it should be. It made my parents comfortable coming along.",
+      ar: "أن أحجز بالعربية وأستلم البرنامج بالعربية وبتواريخ مكتوبة كما ينبغي أمر أندر مما يجب. وقد جعل ذلك والديّ مرتاحين للمجيء معي.",
+    },
+    travelledOn: "2026-05",
+    isDemo: true,
+  },
+  {
+    id: "rev-08",
+    author: { en: "Daniel Brandt", ar: "دانيال براندت" },
+    origin: { en: "Berlin, Germany", ar: "برلين، ألمانيا" },
+    journeySlug: null,
+    destinationSlug: "white-desert",
+    rating: 5,
+    quote: {
+      en: "One night in the White Desert reset my expectations for what a sky looks like. Bring the warm layer they tell you to bring, because January is genuinely cold.",
+      ar: "ليلة واحدة في الصحراء البيضاء أعادت ضبط تصوري لما تبدو عليه السماء. واحمل الطبقة الدافئة التي ينصحونك بها، فيناير بارد فعلًا.",
+    },
+    travelledOn: "2026-01",
+    isDemo: true,
+  },
+  {
+    id: "rev-09",
+    author: { en: "Priya Raman", ar: "بريا رامان" },
+    origin: { en: "Bengaluru, India", ar: "بنغالورو، الهند" },
+    journeySlug: null,
+    destinationSlug: "cairo",
+    rating: 4,
+    quote: {
+      en: "The estimate we saw while planning was within about five per cent of the final quotation. That honesty is the reason we booked at all.",
+      ar: "كان التقدير الذي رأيناه أثناء التخطيط في حدود خمسة بالمئة من العرض النهائي. وتلك المصارحة هي سبب حجزنا أصلًا.",
+    },
+    travelledOn: "2026-03",
+    isDemo: true,
+  },
+  {
+    id: "rev-10",
+    author: { en: "Nadia Bousaid", ar: "نادية بوسعيد" },
+    origin: { en: "Casablanca, Morocco", ar: "الدار البيضاء، المغرب" },
+    journeySlug: null,
+    destinationSlug: "hurghada",
+    rating: 5,
+    quote: {
+      en: "I wanted a beach week that was not only a beach week. Two reef days, one desert night, and the rest empty was exactly the right proportion.",
+      ar: "أردت أسبوع شاطئ لا يكون شاطئًا فحسب. يومان على الشعاب وليلة في الصحراء وبقية الأيام فارغة كانت النسبة الصحيحة تمامًا.",
+    },
+    travelledOn: "2025-10",
+    isDemo: true,
+  },
+];

@@ -1,0 +1,263 @@
+{
+  "brand": {
+    "name": "واندرلَش مصر",
+    "tagline": "عِش مصر على غير المعتاد",
+    "shortDescription": "استكشف الوجهات المصرية، واختر تجارب منتقاة، وابنِ برنامجًا يوميًا يخصك، واطّلع على تقدير واضح للتكلفة قبل أن ترسل طلب الحجز."
+  },
+  "nav": {
+    "destinations": "الوجهات",
+    "experiences": "التجارب",
+    "journeys": "الرحلات",
+    "tripBuilder": "ابنِ رحلتك",
+    "about": "من نحن",
+    "contact": "تواصل معنا",
+    "faq": "الأسئلة الشائعة",
+    "privacy": "الخصوصية",
+    "startPlanning": "ابدأ التخطيط",
+    "openMenu": "فتح القائمة",
+    "closeMenu": "إغلاق القائمة",
+    "skipToContent": "تخطَّ إلى المحتوى",
+    "primaryLabel": "الرئيسية",
+    "footerLabel": "تذييل الصفحة"
+  },
+  "language": {
+    "switch": "اللغة",
+    "english": "English",
+    "arabic": "العربية",
+    "switchToArabic": "التبديل إلى العربية",
+    "switchToEnglish": "التبديل إلى الإنجليزية"
+  },
+  "common": {
+    "explore": "استكشف",
+    "exploreEgypt": "استكشف مصر",
+    "viewAll": "عرض الكل",
+    "readMore": "اقرأ المزيد",
+    "addToTrip": "أضف إلى الرحلة",
+    "inTrip": "مضاف إلى رحلتك",
+    "from": "يبدأ من",
+    "perPerson": "للفرد",
+    "perNight": "لليلة",
+    "days_zero": "بدون أيام",
+    "days_one": "يوم واحد",
+    "days_two": "يومان",
+    "days_few": "{{count}} أيام",
+    "days_many": "{{count}} يومًا",
+    "days_other": "{{count}} يوم",
+    "nights_zero": "بدون ليالٍ",
+    "nights_one": "ليلة واحدة",
+    "nights_two": "ليلتان",
+    "nights_few": "{{count}} ليالٍ",
+    "nights_many": "{{count}} ليلة",
+    "nights_other": "{{count}} ليلة",
+    "hours_zero": "بدون ساعات",
+    "hours_one": "ساعة واحدة",
+    "hours_two": "ساعتان",
+    "hours_few": "{{count}} ساعات",
+    "hours_many": "{{count}} ساعة",
+    "hours_other": "{{count}} ساعة",
+    "minutes_zero": "بدون دقائق",
+    "minutes_one": "دقيقة واحدة",
+    "minutes_two": "دقيقتان",
+    "minutes_few": "{{count}} دقائق",
+    "minutes_many": "{{count}} دقيقة",
+    "minutes_other": "{{count}} دقيقة",
+    "reviews_zero": "لا توجد تقييمات",
+    "reviews_one": "تقييم واحد",
+    "reviews_two": "تقييمان",
+    "reviews_few": "{{count}} تقييمات",
+    "reviews_many": "{{count}} تقييمًا",
+    "reviews_other": "{{count}} تقييم",
+    "loading": "جارٍ التحميل",
+    "error": "حدث خطأ ما",
+    "retry": "أعد المحاولة",
+    "notFound": "الصفحة غير موجودة",
+    "demoContent": "محتوى تجريبي",
+    "comingInPhase": "يصل في مرحلة لاحقة",
+    "backHome": "العودة إلى الصفحة الرئيسية"
+  },
+  "home": {
+    "heroHeadline": "مصر، مرتَّبة على مقاسك",
+    "heroSupport": "اختر الأماكن، وانتقِ التجارب، وشكّل رحلة يومًا بيوم بسعر يتحدث معك خطوة بخطوة.",
+    "heroSearch": "إلى أين تريد أن تذهب؟",
+    "buildTrip": "ابنِ رحلتك",
+    "finalCta": "رحلتك المصرية تبدأ من هنا."
+  },
+  "footer": {
+    "explore": "استكشف",
+    "plan": "خطِّط",
+    "company": "الشركة",
+    "rights": "شركة سفر متخيَّلة، أُنشئت كمشروع لعرض الأعمال.",
+    "demoNotice": "جميع الوجهات والتجارب والأسعار والآراء في هذا الموقع محتوى تجريبي."
+  },
+  "meta": {
+    "destinations": "الوجهات في مصر",
+    "experiences": "التجارب والجولات",
+    "journeys": "رحلات منتقاة",
+    "tripBuilder": "ابنِ رحلتك",
+    "tripSummary": "ملخص رحلتك",
+    "booking": "اطلب حجزك",
+    "confirmation": "تم تأكيد الطلب",
+    "about": "عن واندرلَش مصر",
+    "contact": "تواصل معنا",
+    "faq": "الأسئلة الشائعة",
+    "privacy": "الخصوصية"
+  },
+  "pages": {
+    "destinations": {
+      "eyebrow": "مصر",
+      "title": "ثماني وجهات تستحق الرحلة",
+      "intro": "من هضبة الجيزة إلى صحراء طباشيرية بلا ضوء على مدى مئتي كيلومتر. يغطي كل دليل ما تراه ومتى تأتي وكم يكلفك اليوم فعلًا."
+    },
+    "experiences": {
+      "eyebrow": "التجارب",
+      "title": "جولات وأنشطة وتجارب محلية",
+      "intro": "أربع وعشرون تجربة في الوجهات الثماني، من منطاد عند الشروق فوق وادي الملوك إلى غداء منزلي في فناء نوبي."
+    },
+    "journeys": {
+      "eyebrow": "منتقاة",
+      "title": "رحلات كنا لنحجزها لأنفسنا",
+      "intro": "ستة مسارات مبنية على طريقة السفر الحقيقية في مصر. خذ أحدها كما هو، أو افتحه في بانِي الرحلات واجعله رحلتك."
+    },
+    "tripBuilder": {
+      "eyebrow": "خطِّط",
+      "title": "ابنِ رحلتك",
+      "intro": "اختر الوجهات، وحدد تواريخك وعدد المسافرين، وانتقِ التجارب، وشكّل برنامجًا يوميًا بسعر يتحدث معك خطوة بخطوة."
+    },
+    "tripSummary": {
+      "eyebrow": "المراجعة",
+      "title": "ملخص رحلتك",
+      "intro": "البرنامج الكامل وتفصيل التكلفة وكل ما اخترته في مكان واحد."
+    },
+    "booking": {
+      "eyebrow": "الطلب",
+      "title": "اطلب حجزك",
+      "intro": "أرسل برنامجك إلى مستشار سفر. بلا دفع وبلا التزام، ورد خلال يوم عمل واحد."
+    },
+    "confirmation": {
+      "eyebrow": "تم",
+      "title": "وصلنا طلبك",
+      "intro": "احتفظ برقمك المرجعي. سيؤكد أحد المستشارين التوافر والعرض النهائي."
+    },
+    "about": {
+      "eyebrow": "من نحن",
+      "title": "لماذا أنشأنا واندرلَش مصر"
+    },
+    "contact": {
+      "eyebrow": "تواصل",
+      "title": "تحدث إلى مستشار سفر",
+      "intro": "أخبرنا تقريبًا بما يدور في ذهنك ونعود إليك خلال يوم عمل واحد."
+    },
+    "faq": {
+      "eyebrow": "إجابات",
+      "title": "الأسئلة الشائعة",
+      "intro": "التخطيط والأسعار والأمور العملية وما يحدث بعد إرسال الطلب."
+    },
+    "privacy": {
+      "eyebrow": "الخصوصية",
+      "title": "كيف نتعامل مع بياناتك"
+    },
+    "notFound": {
+      "title": "لم نعثر على هذه الصفحة",
+      "intro": "قد يكون الرابط قديمًا أو تكون الصفحة قد انتقلت."
+    }
+  },
+  "placeholder": {
+    "label": "قيد التطوير",
+    "body": "هذا الجزء من الرحلة قيد الإنشاء. أما الأساس والمحتوى ونظام التصميم الذي يعتمد عليه فجاهز بالفعل."
+  },
+  "destination": {
+    "bestSeason": "أفضل موسم",
+    "recommendedStay": "المدة المقترحة",
+    "dailyBudget": "ميزانية اليوم من",
+    "gettingThere": "كيف تصل",
+    "whereToStay": "أين تقيم",
+    "highlights": "أبرز المعالم",
+    "suggestedItinerary": "أيام مقترحة",
+    "localAdvice": "نصائح محلية",
+    "relatedDestinations": "قريب منها وبعدها",
+    "experiencesHere": "تجارب هنا",
+    "dayLabel": "اليوم {{day}}"
+  },
+  "experience": {
+    "duration": "المدة",
+    "groupSize": "حجم المجموعة",
+    "meetingPoint": "نقطة اللقاء",
+    "schedule": "المواعيد",
+    "inclusions": "ما يشمله السعر",
+    "exclusions": "غير مشمول",
+    "whatToBring": "ماذا تحضر معك",
+    "accessibility": "إمكانية الوصول",
+    "cancellation": "الإلغاء",
+    "privateAvailable": "يتوفر خيار خاص",
+    "familyFriendly": "مناسب للعائلات",
+    "minAge": "الحد الأدنى للعمر {{age}}",
+    "upToPeople": "حتى {{count}} أشخاص"
+  },
+  "journey": {
+    "outline": "يومًا بيوم",
+    "included": "الوجهات",
+    "suggestedTier": "الإقامة المقترحة",
+    "openInBuilder": "افتحها في بانِي الرحلات"
+  },
+  "faqPage": {
+    "stillStuck": "ما زال لديك سؤال؟",
+    "contactUs": "تواصل مع مستشار"
+  },
+  "categories": {
+    "culture": "ثقافة",
+    "history": "تاريخ",
+    "adventure": "مغامرة",
+    "food": "طعام",
+    "nature": "طبيعة",
+    "wellness": "استجمام",
+    "nightlife": "سهرات",
+    "water": "أنشطة مائية"
+  },
+  "travelStyles": {
+    "history": "تاريخ",
+    "beach": "شواطئ",
+    "desert": "صحراء",
+    "luxury": "فخامة",
+    "family": "عائلات",
+    "romantic": "رومانسية",
+    "nature": "طبيعة"
+  },
+  "regions": {
+    "greater-cairo": "القاهرة الكبرى",
+    "mediterranean": "ساحل البحر المتوسط",
+    "nile-valley": "وادي النيل",
+    "western-desert": "الصحراء الغربية",
+    "red-sea": "البحر الأحمر"
+  },
+  "months": {
+    "jan": "يناير",
+    "feb": "فبراير",
+    "mar": "مارس",
+    "apr": "أبريل",
+    "may": "مايو",
+    "jun": "يونيو",
+    "jul": "يوليو",
+    "aug": "أغسطس",
+    "sep": "سبتمبر",
+    "oct": "أكتوبر",
+    "nov": "نوفمبر",
+    "dec": "ديسمبر"
+  },
+  "tiers": {
+    "essential": "الأساسي",
+    "comfort": "المريح",
+    "premium": "المتميز",
+    "luxury": "الفاخر"
+  },
+  "environments": {
+    "urban": "حضري",
+    "desert": "صحراوي",
+    "water": "على الماء",
+    "indoor": "داخلي",
+    "outdoor": "في الهواء الطلق"
+  },
+  "groupFormat": {
+    "private": "خاص",
+    "shared": "مشترك"
+  }
+}
