@@ -62,6 +62,60 @@ export const brand = {
       },
     },
   ],
+  /**
+   * The six promises the homepage makes, in the order the brief lists them.
+   * `icon` maps to a shape in `src/components/ui/Icon.tsx`.
+   */
+  promises: [
+    {
+      icon: "route",
+      title: { en: "Itineraries built around you", ar: "برامج مبنية على مقاسك" },
+      body: {
+        en: "Choose the places and the pace. We tell you how many days each one deserves and how you get between them.",
+        ar: "اختر الأماكن والإيقاع. ونحن نخبرك بعدد الأيام التي تستحقها كل وجهة وكيف تنتقل بينها.",
+      },
+    },
+    {
+      icon: "compass",
+      title: { en: "Experiences worth the day", ar: "تجارب تستحق اليوم" },
+      body: {
+        en: "Twenty-seven of them, each one chosen because it is better than the obvious alternative, not because it sells.",
+        ar: "سبع وعشرون تجربة، اختيرت كل واحدة لأنها أفضل من البديل الواضح، لا لأنها الأكثر مبيعًا.",
+      },
+    },
+    {
+      icon: "pin",
+      title: { en: "Local knowledge, written down", ar: "معرفة محلية مكتوبة" },
+      body: {
+        en: "Which hour to arrive, which tomb needs the extra ticket, which night the desert drops near freezing.",
+        ar: "أي ساعة تصل، وأي مقبرة تحتاج تذكرة إضافية، وأي ليلة تقترب فيها الصحراء من الصفر.",
+      },
+    },
+    {
+      icon: "shuffle",
+      title: { en: "Nothing locked in", ar: "لا شيء مثبَّت" },
+      body: {
+        en: "Reorder days, swap an experience, change the accommodation level. A request is a starting point, not a contract.",
+        ar: "أعد ترتيب الأيام، وبدّل تجربة، وغيّر مستوى الإقامة. الطلب نقطة انطلاق لا عقد.",
+      },
+    },
+    {
+      icon: "receipt",
+      title: { en: "Estimates you can read", ar: "تقديرات واضحة" },
+      body: {
+        en: "Accommodation, activities, transport and the fee, itemised and moving as you build. What is excluded is written down.",
+        ar: "الإقامة والأنشطة والتنقل والرسوم، مفصّلة وتتحرك أثناء البناء. وما هو مستثنى مكتوب صراحة.",
+      },
+    },
+    {
+      icon: "language",
+      title: { en: "Arabic, properly", ar: "العربية كما ينبغي" },
+      body: {
+        en: "Not a translation layer. Dates, prices, layout and typography are built for both languages from the start.",
+        ar: "ليست طبقة ترجمة. فالتواريخ والأسعار والتخطيط والخطوط مبنية للغتين معًا منذ البداية.",
+      },
+    },
+  ],
   personality: {
     en: "Confident, warm and specific. We sound like a well-travelled friend who happens to live in Cairo, not like a brochure.",
     ar: "واثقون ودافئون ومحددون. نبدو كصديق كثير الترحال يقيم في القاهرة، لا ككتيّب دعائي.",

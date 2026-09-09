@@ -59,8 +59,50 @@
     "heroHeadline": "Egypt, arranged around you",
     "heroSupport": "Choose the places, pick the experiences, and shape a day-by-day journey with a price that updates as you go.",
     "heroSearch": "Where do you want to go?",
+    "searchLabel": "Search destinations",
+    "searchNoResults": "No destination matches that.",
+    "searchHint": "Start typing a place, or browse all ten.",
     "buildTrip": "Build Your Trip",
-    "finalCta": "Your Egyptian journey begins here."
+    "scrollHint": "Scroll",
+    "finalCta": "Your Egyptian journey begins here.",
+    "mapLabel": "Map of Egypt with selectable destinations",
+    "destinations": {
+      "eyebrow": "Where to go",
+      "title": "Ten places worth the journey",
+      "lead": "From the Giza plateau to a chalk desert with no light for two hundred kilometres. Each one says how long it deserves and what a day actually costs."
+    },
+    "map": {
+      "eyebrow": "The country at a glance",
+      "title": "Egypt is bigger than the map suggests",
+      "lead": "Cairo to Aswan is a two-hour flight. Siwa is eight hours from the coast. Choose a place to see what it holds and how long it takes to reach.",
+      "openGuide": "Open the guide",
+      "pickPrompt": "Select a destination"
+    },
+    "journeys": {
+      "eyebrow": "Curated",
+      "title": "Journeys we would book ourselves",
+      "lead": "Six routes built around how Egypt actually travels. Take one as it is, or open it in the trip builder and make it yours."
+    },
+    "experiences": {
+      "eyebrow": "What to do",
+      "title": "The experiences people remember",
+      "lead": "A balloon over the Valley of the Kings, four nights on the river, a night under the chalk formations, a wall of coral that drops into open blue."
+    },
+    "promises": {
+      "eyebrow": "How we work",
+      "title": "Planning that behaves like a person",
+      "lead": "No account, no payment, no pressure. Build the trip, see the estimate move, and send it when it looks right."
+    },
+    "testimonials": {
+      "eyebrow": "Travellers",
+      "title": "What people say afterwards",
+      "note": "Demonstration content for a fictional company. These travellers are invented."
+    },
+    "cta": {
+      "body": "Pick a destination, add the experiences you want, and watch the estimate settle. It takes about five minutes and commits you to nothing.",
+      "primary": "Build Your Trip",
+      "secondary": "Browse destinations"
+    }
   },
   "footer": {
     "explore": "Explore",

@@ -16,10 +16,12 @@ export function DestinationCard({
   destination,
   className,
   featured = false,
+  sizes = CARD_SIZES,
 }: {
   destination: Destination;
   className?: string;
   featured?: boolean;
+  sizes?: string;
 }) {
   const { t, i18n } = useTranslation();
   const language = i18n.resolvedLanguage ?? "en";
@@ -31,7 +33,7 @@ export function DestinationCard({
           src={destination.heroImage.src}
           alt={pick(destination.heroImage.alt, language)}
           accent={destination.accent}
-          sizes={CARD_SIZES}
+          sizes={sizes}
           className={cn(
             "w-full",
             featured ? "aspect-[4/5] lg:aspect-[3/4]" : "aspect-[4/3]",

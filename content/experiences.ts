@@ -1018,6 +1018,26 @@ export const experiences: Experience[] = [
 
 export const experienceBySlug = new Map(experiences.map((e) => [e.slug, e]));
 
+/**
+ * The six the homepage leads with, matching the categories the brief names:
+ * a balloon ride, a Nile cruise, a pyramid tour, desert camping, diving and a
+ * Nubian village visit.
+ */
+export const homepageExperienceSlugs = [
+  "luxor-hot-air-balloon",
+  "nile-cruise-aswan-to-luxor",
+  "giza-pyramids-at-sunrise",
+  "white-desert-overnight-camp",
+  "ras-mohammed-diving-day",
+  "nubian-village-lunch",
+] as const;
+
+export const homepageExperiences = homepageExperienceSlugs.map((slug) => {
+  const experience = experiences.find((e) => e.slug === slug);
+  if (!experience) throw new Error(`Unknown homepage experience: ${slug}`);
+  return experience;
+});
+
 export const experiencesByDestination = experiences.reduce<Record<string, Experience[]>>(
   (acc, exp) => {
     (acc[exp.destinationSlug] ??= []).push(exp);

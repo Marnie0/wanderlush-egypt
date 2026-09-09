@@ -40,6 +40,7 @@ npm run dev
 | `npm run db:migrate` | Apply `db/schema.sql` |
 | `npm run db:seed` | Upsert every row from `content/` |
 | `node scripts/images/build.mjs` | Rebuild responsive photography and its manifest |
+| `node scripts/screenshot.mjs <url> <out.png>` | Screenshot a page, optionally scrolled to a section |
 
 ## Layout
 
