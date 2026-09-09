@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "db:migrate": "tsx db/seed.ts --migrate-only",
     "db:seed": "tsx db/seed.ts",
-    "typecheck": "tsc -b"
+    "typecheck": "tsc -b",
+    "check:content": "tsx scripts/check-content.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",

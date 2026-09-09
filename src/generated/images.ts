@@ -20,13 +20,13 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
       1600,
       2400
     ],
-    "width": 5472,
-    "height": 3648,
-    "lqip": "data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAADwAwCdASoUAA0APu1qrU8ppiQiMAgBMB2JagCdMoRgAATuBOAZt+vgAMqR+FKTy7lnuILKkK2cwBEWqKYmhkDr2bcAmy6XKIrhRRmcPPImTTsYAAA=",
+    "width": 3896,
+    "height": 2380,
+    "lqip": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAADwAwCdASoUAAwAPu1iqk2ppaQiMAgBMB2JQBOkBshgW8rVMhGFDHAAAP6VuFuT1ZT8q1Prvek0TeUBOAFFec3rNeUORadn4AAAAA==",
     "credit": {
-      "artist": "Petar Milošević",
-      "license": "CC BY-SA 4.0",
-      "source": "https://commons.wikimedia.org/wiki/File:Great_Sphinx_of_Giza_(أبو_الهول).jpg"
+      "artist": "Ahmed Al.Badawy from Cairo, Egypt",
+      "license": "CC BY-SA 2.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Flickr_-_HuTect_ShOts_-_Citadel_of_Salah_El.Din_and_Masjid_Muhammad_Ali_قلعة_صلاح_الدين_الأيوبي_ومسجد_محمد_علي_-_Cairo_-_Egypt_-_17_04_2010_(4).jpg"
     }
   },
   "/images/destinations/cairo-01.webp": {
@@ -52,11 +52,11 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
     ],
     "width": 1920,
     "height": 1440,
-    "lqip": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAACQAwCdASoUAA8APu1iqk2ppaQiMAgBMB2JZQCsAB97O6iXzRAAAP47zAd6pQK3qnYAx1EfiUNxvOx8UH+w0kubgdEzFIAA",
+    "lqip": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAADQAwCdASoUAA8APu1krU2ppaSiMAgBMB2JQBOgAt64HhAGLiPXNAAA/m/EWgSuVAO6EdwF5Wk/wigX3HWo9Zjy/FzvH2E0iPsCFONPVNJAgu65T+lgAAAA",
     "credit": {
-      "artist": "Amr F.Nagy",
-      "license": "Public domain",
-      "source": "https://commons.wikimedia.org/wiki/File:Grand_Egyptian_Museum_2025.jpg"
+      "artist": "Marsupium",
+      "license": "CC BY 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Al_Qasby_Alley_at_the_corner_with_Muizz_Street_01.jpg"
     }
   },
   "/images/destinations/cairo-03.webp": {
@@ -72,21 +72,6 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
       "artist": "Mahmoud elhashash",
       "license": "CC BY-SA 4.0",
       "source": "https://commons.wikimedia.org/wiki/File:Sunset_at_cairo_tower.jpg"
-    }
-  },
-  "/images/destinations/cairo-04.webp": {
-    "widths": [
-      480,
-      800,
-      1200
-    ],
-    "width": 1920,
-    "height": 1440,
-    "lqip": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAADQAwCdASoUAA8APu1krU2ppaSiMAgBMB2JQBOgAt64HhAGLiPXNAAA/m/EWgSuVAO6EdwF5Wk/wigX3HWo9Zjy/FzvH2E0iPsCFONPVNJAgu65T+lgAAAA",
-    "credit": {
-      "artist": "Marsupium",
-      "license": "CC BY 4.0",
-      "source": "https://commons.wikimedia.org/wiki/File:Al_Qasby_Alley_at_the_corner_with_Muizz_Street_01.jpg"
     }
   },
   "/images/destinations/alexandria-hero.webp": {
@@ -158,12 +143,12 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
       2400
     ],
     "width": 4288,
-    "height": 2848,
-    "lqip": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAAAQBACdASoUAA0APu1iqk4ppaQiMAgBMB2JZgCdMoADgcGVria80V+UAAD+zyFhnjPeellUQxhZk+wmrdNaGWYcB4BlxwmTyhnrt6mpiIZ1rAAA",
+    "height": 2584,
+    "lqip": "data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAADQAwCdASoUAAwAPu1kq04ppaQiMAgBMB2JZACdACHPLGyF2oUCwIAA/lE3B/kzl9vGXytuK6pOLpImhF8KmAFum0ExhtqfMICWAiQAAAA=",
     "credit": {
-      "artist": "Marcosleal",
-      "license": "CC BY-SA 3.0",
-      "source": "https://commons.wikimedia.org/wiki/File:Balloon_over_Luxor_-_Egypt.jpg"
+      "artist": "Marc Ryckaert",
+      "license": "CC BY 3.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Luxor_Temple_R04.jpg"
     }
   },
   "/images/destinations/luxor-01.webp": {
@@ -995,6 +980,173 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
       "artist": "Sara Nabih",
       "license": "CC BY-SA 4.0",
       "source": "https://commons.wikimedia.org/wiki/File:Sunrise_from_the_summit_of_Mount_Sinai_or_Gabal_Musa.jpg"
+    }
+  },
+  "/images/destinations/giza-hero.webp": {
+    "widths": [
+      640,
+      1024,
+      1600,
+      2400
+    ],
+    "width": 5472,
+    "height": 3648,
+    "lqip": "data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAADwAwCdASoUAA0APu1qrU8ppiQiMAgBMB2JagCdMoRgAATuBOAZt+vgAMqR+FKTy7lnuILKkK2cwBEWqKYmhkDr2bcAmy6XKIrhRRmcPPImTTsYAAA=",
+    "credit": {
+      "artist": "Petar Milošević",
+      "license": "CC BY-SA 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Great_Sphinx_of_Giza_(أبو_الهول).jpg"
+    }
+  },
+  "/images/destinations/giza-01.webp": {
+    "widths": [
+      480,
+      800,
+      1200
+    ],
+    "width": 1920,
+    "height": 1440,
+    "lqip": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAACQAwCdASoUAA8APu1iqk2ppaQiMAgBMB2JZQCsAB97O6iXzRAAAP47zAd6pQK3qnYAx1EfiUNxvOx8UH+w0kubgdEzFIAA",
+    "credit": {
+      "artist": "Amr F.Nagy",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:Grand_Egyptian_Museum_2025.jpg"
+    }
+  },
+  "/images/destinations/giza-02.webp": {
+    "widths": [
+      480,
+      800,
+      1200
+    ],
+    "width": 1920,
+    "height": 1280,
+    "lqip": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAACwAwCdASoUAA0APu1kqU2ppaQiMAgBMB2JYgCdMoACgrRZsLrGeAD+r3OOaV9i/HEvKiUiyqNQ2BhbDFWu3IpNkAtaksgHkNAAAA==",
+    "credit": {
+      "artist": "Vyacheslav Argenberg",
+      "license": "CC BY 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Saqqara,_Pyramid_of_Djoser,_Ancient_Egypt.jpg"
+    }
+  },
+  "/images/destinations/giza-03.webp": {
+    "widths": [
+      480,
+      800,
+      1200
+    ],
+    "width": 1920,
+    "height": 1440,
+    "lqip": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAAAQBACdASoUAA8APu1krU6ppaSiMAgBMB2JZACdLwABY9t2tCYynny7MAD3pIwxQasc60ibA9wGItVSzjhwZXS92Dm2fACaTx1KVNIA",
+    "credit": {
+      "artist": "Daniel Mayer",
+      "license": "CC BY-SA 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Dahshur_-_Red_Pyramid_-_Tourist_policemen_on_camel.JPG"
+    }
+  },
+  "/images/destinations/fayoum-hero.webp": {
+    "widths": [
+      640,
+      1024,
+      1600,
+      2400
+    ],
+    "width": 6000,
+    "height": 4000,
+    "lqip": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAACQAwCdASoUAA0APu1krU2ppaSiMAgBMB2JYwC7ABVFc2HLtOKQAP7AJD31HhIxaly4MwcSOzbRBNhxEpdLNEChMXItUkD9OMqCD9V54+ZgAAAA",
+    "credit": {
+      "artist": "Harby6020",
+      "license": "CC BY-SA 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:The_Path_of_life.jpg"
+    }
+  },
+  "/images/destinations/fayoum-01.webp": {
+    "widths": [
+      480,
+      800,
+      1200
+    ],
+    "width": 1920,
+    "height": 1440,
+    "lqip": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAADQAwCdASoUAA8APu1Ct1apoqakGAEwHYlAE6ZQYwAJMaVt4n1FYDAA/sMc4ppiSyavUxeGCgAPzjLwjAbwGV2Q093lQAAA",
+    "credit": {
+      "artist": "لا روسا",
+      "license": "CC BY-SA 3.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Lake_Moeris_031.JPG"
+    }
+  },
+  "/images/destinations/fayoum-02.webp": {
+    "widths": [
+      480,
+      800,
+      1200
+    ],
+    "width": 1920,
+    "height": 1280,
+    "lqip": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAADwAwCdASoUAA0APu1qrU8ppiQiMAgBMB2JbACdMoRwIr+ADd+CQ3wgAPnSy0vUCkauEns+KYzu0PJ63ycu2L9bG1B2mTjQt1pFX/E07qwikltxRbExTCAA",
+    "credit": {
+      "artist": "Maaly Saeed",
+      "license": "CC BY-SA 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Wadi_Al_Hitan,_Fayoum.jpg"
+    }
+  },
+  "/images/destinations/fayoum-03.webp": {
+    "widths": [
+      480,
+      800,
+      1200
+    ],
+    "width": 1920,
+    "height": 1272,
+    "lqip": "data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAACQAwCdASoUAA0APu1oqk6ppiQiMAgBMB2JZwABDOB8dXaRsMqAAP2YhGWBDB/LGic9HkhzhTDstG5yaDe5DmKpIkSorZd4AAA=",
+    "credit": {
+      "artist": "Hatem Moushir",
+      "license": "CC BY-SA 3.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Tunis_village_-Fayoum_by_Hatem_Moushir_10.JPG"
+    }
+  },
+  "/images/experiences/wadi-rayan.webp": {
+    "widths": [
+      480,
+      800,
+      1200
+    ],
+    "width": 1920,
+    "height": 1280,
+    "lqip": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAACQAwCdASoUAA0APu1iqk2ppaQiMAgBMB2JQBOgBC0lfqQ4wKAAAMs+U3kJjtsH94FBiQKmiYHjEZXc+kbmSmzDfqtrZQN2BkpN8q87zebEgAAA",
+    "credit": {
+      "artist": "Ibrahim El-Mezayen",
+      "license": "CC BY-SA 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:Waterfalls_of_Wadi_El_Rayan,_Fayoum,_Egypt.jpg"
+    }
+  },
+  "/images/experiences/tunis-village.webp": {
+    "widths": [
+      480,
+      800,
+      1200
+    ],
+    "width": 1920,
+    "height": 1280,
+    "lqip": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAACwAwCdASoUAA0APu1kqk4ppaQiMAgBMB2JYwCdAB6JNtsyN9PPgAD+3HAQAadS66n9qxQ1bs4I9hdE+x78Hey+K7aWqha0NIJ7oAAA",
+    "credit": {
+      "artist": "Adelbayoumi",
+      "license": "CC BY-SA 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:خزاف.jpg"
+    }
+  },
+  "/images/experiences/lake-qarun.webp": {
+    "widths": [
+      480,
+      800,
+      1200
+    ],
+    "width": 1920,
+    "height": 1280,
+    "lqip": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAADQAwCdASoUAA0APu1krU6ppaSiMAgBMB2JZwDCgCHWdJJ92V8tAKAA/sStXdw5RYmPXVKERei5QusV0lE9C5w8S/+MAA==",
+    "credit": {
+      "artist": "Myousry6666",
+      "license": "CC BY-SA 4.0",
+      "source": "https://commons.wikimedia.org/wiki/File:As_free_as_the_birds.jpg"
     }
   }
 };

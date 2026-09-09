@@ -6,8 +6,8 @@ and `db/seed.ts` mirrors it into PostgreSQL. Nothing else writes content.
 ```
 content/
   types.ts          shared types, including Localized { en, ar }
-  destinations.ts   8 destinations with full guides
-  experiences.ts    24 bookable experiences
+  destinations.ts   10 destinations with full guides
+  experiences.ts    27 bookable experiences
   journeys.ts       6 curated routes
   accommodation.ts  4 levels with nightly rates
   reviews.ts        10 fictional testimonials, all flagged isDemo
@@ -29,6 +29,18 @@ price, duration) are real columns with indexes. See `db/schema.sql`.
 
 Run `npm run db:migrate` to apply the schema and `npm run db:seed` to upsert
 every row. Both are idempotent.
+
+## Integrity check
+
+`npm run check:content` resolves every slug, image and cross-reference:
+experiences pointing at a destination that exists, journeys that only include
+experiences in places they actually visit, destinations nothing links to, and
+images with no file behind them. Run it after any content edit.
+
+Geography is by governorate. Giza is not Cairo: the pyramids, the Grand
+Egyptian Museum, Saqqara and Dahshur belong to Giza. The White Desert entry
+deliberately spans the Bahariya to Farafra corridor, which crosses from Giza
+into New Valley, because that is how the trip is actually run; the copy says so.
 
 ## Images
 

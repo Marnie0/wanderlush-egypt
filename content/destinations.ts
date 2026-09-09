@@ -11,8 +11,8 @@ export const destinations: Destination[] = [
     slug: "cairo",
     name: { en: "Cairo", ar: "القاهرة" },
     tagline: {
-      en: "Five thousand years, stacked one street at a time",
-      ar: "خمسة آلاف عام تتراكم شارعًا بعد شارع",
+      en: "A thousand minarets and a market that never closed",
+      ar: "ألف مئذنة وسوق لم يغلق قط",
     },
     region: "greater-cairo",
     coordinates: { lat: 30.0444, lng: 31.2357 },
@@ -22,26 +22,161 @@ export const destinations: Destination[] = [
       en: "October to April keeps the afternoons walkable. Summer visits are best planned around early mornings and late evenings.",
       ar: "من أكتوبر إلى أبريل يظل الطقس مناسبًا للتجوّل بعد الظهر. أما في الصيف فيُفضَّل ترتيب الزيارات في الصباح الباكر أو المساء.",
     },
-    recommendedDays: { min: 3, max: 5 },
+    recommendedDays: { min: 2, max: 4 },
     nightlyRates: { essential: 55, comfort: 110, premium: 210, luxury: 420 },
-    dailyBudgetFrom: 95,
+    dailyBudgetFrom: 85,
     intro: {
-      en: "Cairo does not ease you in. The Giza plateau sits at the end of a city street, a medieval bazaar trades beside a Fatimid mosque, and the Grand Egyptian Museum holds Tutankhamun's complete collection under one roof for the first time. Give it three days and it rearranges what you thought ancient meant.",
-      ar: "القاهرة لا تستقبلك على مهل. هضبة الجيزة تقف عند نهاية شارع من شوارع المدينة، وسوق من العصور الوسطى يعمل إلى جوار مسجد فاطمي، والمتحف المصري الكبير يضم مقتنيات توت عنخ آمون كاملة تحت سقف واحد لأول مرة. امنحها ثلاثة أيام تُعِد ترتيب ما ظننت أنك تعرفه عن القِدَم.",
+      en: "The pyramids are across the river in Giza. Cairo itself is the other thousand years: a Fatimid street still trading after dark, a medieval citadel above the haze, churches and a synagogue standing shoulder to shoulder in the old quarter, and a river that the whole city turns to face at sunset.",
+      ar: "الأهرامات على الضفة الأخرى في الجيزة. أما القاهرة نفسها فهي الألف عام الأخرى: شارع فاطمي ما زال يعمل بعد الغروب، وقلعة من العصور الوسطى فوق الضباب، وكنائس ومعبد يهودي متجاورة في الحي القديم، ونهر تلتفت إليه المدينة كلها عند المغيب.",
     },
     heroImage: {
       src: "/images/destinations/cairo-hero.webp",
-      alt: { en: "The Great Sphinx with the pyramid of Khafre behind", ar: "أبو الهول ومن خلفه هرم خفرع" },
+      alt: {
+        en: "The Citadel of Salah al-Din and the Muhammad Ali Mosque",
+        ar: "قلعة صلاح الدين ومسجد محمد علي",
+      },
     },
     gallery: [
-      { src: "/images/destinations/cairo-01.webp", alt: { en: "Lanterns in Khan el-Khalili", ar: "فوانيس في خان الخليلي" } },
-      { src: "/images/destinations/cairo-02.webp", alt: { en: "The Grand Egyptian Museum atrium", ar: "بهو المتحف المصري الكبير" } },
-      { src: "/images/destinations/cairo-03.webp", alt: { en: "The Nile at sunset beneath Cairo Tower", ar: "النيل عند الغروب تحت برج القاهرة" } },
-      { src: "/images/destinations/cairo-04.webp", alt: { en: "An alley off Al-Muizz Street", ar: "زقاق متفرع من شارع المعز" } },
+      {
+        src: "/images/destinations/cairo-01.webp",
+        alt: { en: "Lanterns in Khan el-Khalili", ar: "فوانيس في خان الخليلي" },
+      },
+      {
+        src: "/images/destinations/cairo-02.webp",
+        alt: { en: "An alley off Al-Muizz Street", ar: "زقاق متفرع من شارع المعز" },
+      },
+      {
+        src: "/images/destinations/cairo-03.webp",
+        alt: { en: "The Nile at sunset beneath Cairo Tower", ar: "النيل عند الغروب تحت برج القاهرة" },
+      },
     ],
     attractions: [
       {
-        name: { en: "The Giza Pyramids and Sphinx", ar: "أهرامات الجيزة وأبو الهول" },
+        name: { en: "Khan el-Khalili", ar: "خان الخليلي" },
+        blurb: {
+          en: "A working market since the fourteenth century. Coffee at El Fishawy is part of the visit, not a detour.",
+          ar: "سوق عامل منذ القرن الرابع عشر. القهوة في الفيشاوي جزء من الزيارة وليست انحرافًا عنها.",
+        },
+      },
+      {
+        name: { en: "Al-Muizz Street by night", ar: "شارع المعز ليلًا" },
+        blurb: {
+          en: "An open-air museum of Fatimid, Ayyubid and Mamluk architecture, lit and pedestrianised after dark.",
+          ar: "متحف مفتوح للعمارة الفاطمية والأيوبية والمملوكية، مضاء ومخصص للمشاة بعد الغروب.",
+        },
+      },
+      {
+        name: { en: "The Citadel and Sultan Hassan", ar: "القلعة ومسجد السلطان حسن" },
+        blurb: {
+          en: "Salah al-Din's fortress on the ridge, and beneath it the mosque most Egyptian architects will tell you is the finest in the city.",
+          ar: "حصن صلاح الدين على الحافة، وتحته المسجد الذي يعده معظم المعماريين المصريين أجمل مساجد المدينة.",
+        },
+      },
+      {
+        name: { en: "Coptic Cairo", ar: "القاهرة القبطية" },
+        blurb: {
+          en: "The Hanging Church, Ben Ezra Synagogue and Abu Serga sit within a few quiet minutes of each other.",
+          ar: "الكنيسة المعلقة ومعبد بن عزرا وكنيسة أبي سرجة على بعد دقائق هادئة من بعضها.",
+        },
+      },
+      {
+        name: { en: "The Egyptian Museum in Tahrir", ar: "المتحف المصري بالتحرير" },
+        blurb: {
+          en: "The original 1902 museum, still holding the royal mummies' neighbours and a century of cataloguing history.",
+          ar: "المتحف الأصلي الذي افتُتح عام 1902، وما زال يضم مقتنيات لا تُحصى وقرنًا من تاريخ الفهرسة.",
+        },
+      },
+    ],
+    suggestedItinerary: [
+      {
+        day: 1,
+        title: { en: "Islamic Cairo", ar: "القاهرة الإسلامية" },
+        detail: {
+          en: "The Citadel and Sultan Hassan in the morning, Khan el-Khalili after lunch, Al-Muizz Street once the lamps come on.",
+          ar: "القلعة ومسجد السلطان حسن صباحًا، وخان الخليلي بعد الغداء، وشارع المعز حين تُضاء المصابيح.",
+        },
+      },
+      {
+        day: 2,
+        title: { en: "Coptic Cairo and the river", ar: "القاهرة القبطية والنهر" },
+        detail: {
+          en: "The old churches in the morning, the Tahrir museum through the heat, a felucca hour before dinner.",
+          ar: "الكنائس القديمة صباحًا، ومتحف التحرير خلال الحر، وساعة في فلوكة قبل العشاء.",
+        },
+      },
+    ],
+    localAdvice: {
+      en: [
+        "Traffic decides your day. Keep the morning and the afternoon on the same side of the river.",
+        "Carry small notes for tips and entry extras.",
+        "Dress covers shoulders and knees for mosques; women should carry a light scarf for head covering.",
+        "Ride-hailing apps work well and remove the fare negotiation entirely.",
+      ],
+      ar: [
+        "الزحام هو ما يحدد يومك. اجعل الصباح وما بعد الظهر على الضفة نفسها.",
+        "احمل فئات نقدية صغيرة للإكراميات ورسوم الدخول الإضافية.",
+        "يغطي اللباس الكتفين والركبتين في المساجد، ويُستحسن أن تحمل السيدات وشاحًا خفيفًا لتغطية الرأس.",
+        "تطبيقات النقل الذكي تعمل بكفاءة وتعفيك من مساومة الأجرة تمامًا.",
+      ],
+    },
+    gettingThere: {
+      en: "Cairo International is Egypt's main gateway, forty to ninety minutes from the centre depending on traffic. Trains run north to Alexandria and south along the Nile valley.",
+      ar: "مطار القاهرة الدولي هو البوابة الرئيسية لمصر، ويبعد عن الوسط من أربعين إلى تسعين دقيقة بحسب الزحام. وتسير القطارات شمالًا إلى الإسكندرية وجنوبًا بمحاذاة وادي النيل.",
+    },
+    accommodationNote: {
+      en: "Zamalek and Garden City suit travellers who want quiet streets and river views. Downtown is louder, cheaper and walkable to the Tahrir museum.",
+      ar: "تناسب الزمالك وجاردن سيتي من يريد شوارع هادئة وإطلالات على النهر. أما وسط البلد فأكثر صخبًا وأقل تكلفة ويمكن المشي منه إلى متحف التحرير.",
+    },
+    relatedSlugs: ["giza", "fayoum", "alexandria"],
+    accent: "#a8853b",
+  },
+  {
+    id: "dst-giza",
+    slug: "giza",
+    name: { en: "Giza", ar: "الجيزة" },
+    tagline: {
+      en: "The last standing wonder, at the end of a city street",
+      ar: "العجيبة الوحيدة الباقية، عند نهاية شارع في المدينة",
+    },
+    region: "greater-cairo",
+    coordinates: { lat: 29.9773, lng: 31.1325 },
+    travelStyles: ["history", "family", "luxury"],
+    bestSeason: ["oct", "nov", "dec", "jan", "feb", "mar", "apr"],
+    bestSeasonNote: {
+      en: "October to April. In summer the plateau is only comfortable in the first two hours after opening.",
+      ar: "من أكتوبر إلى أبريل. أما في الصيف فلا تكون الهضبة محتملة إلا في الساعتين الأوليين بعد الفتح.",
+    },
+    recommendedDays: { min: 2, max: 3 },
+    nightlyRates: { essential: 50, comfort: 105, premium: 200, luxury: 430 },
+    dailyBudgetFrom: 95,
+    intro: {
+      en: "Giza is its own governorate on the west bank, and it holds almost everything people picture when they picture Egypt. The plateau sits where the city stops and the desert starts. The Grand Egyptian Museum faces it across the road. Half an hour south, Saqqara and Dahshur show the same idea being worked out, two centuries earlier, in stone that had never been stacked that high before.",
+      ar: "الجيزة محافظة قائمة بذاتها على الضفة الغربية، وتضم تقريبًا كل ما يتخيله الناس حين يتخيلون مصر. تقف الهضبة حيث تنتهي المدينة وتبدأ الصحراء، ويواجهها المتحف المصري الكبير عبر الطريق. وعلى بعد نصف ساعة جنوبًا تُظهر سقارة ودهشور الفكرة نفسها وهي تتشكل قبل قرنين، في حجر لم يُرفع إلى هذا العلو من قبل.",
+    },
+    heroImage: {
+      src: "/images/destinations/giza-hero.webp",
+      alt: {
+        en: "The Great Sphinx with the pyramid of Khafre behind",
+        ar: "أبو الهول ومن خلفه هرم خفرع",
+      },
+    },
+    gallery: [
+      {
+        src: "/images/destinations/giza-01.webp",
+        alt: { en: "The Grand Egyptian Museum atrium", ar: "بهو المتحف المصري الكبير" },
+      },
+      {
+        src: "/images/destinations/giza-02.webp",
+        alt: { en: "The Step Pyramid of Djoser at Saqqara", ar: "هرم زوسر المدرج في سقارة" },
+      },
+      {
+        src: "/images/destinations/giza-03.webp",
+        alt: { en: "The Red Pyramid at Dahshur", ar: "الهرم الأحمر في دهشور" },
+      },
+    ],
+    attractions: [
+      {
+        name: { en: "The Great Pyramid and the Sphinx", ar: "الهرم الأكبر وأبو الهول" },
         blurb: {
           en: "Arrive at opening or stay for the last hour. Both avoid the coach crowds and give you the low, gold light the plateau deserves.",
           ar: "احضر عند الفتح أو ابقَ في الساعة الأخيرة. كلاهما يجنّبك ازدحام الحافلات ويمنحك الضوء الذهبي المنخفض الذي تستحقه الهضبة.",
@@ -55,77 +190,193 @@ export const destinations: Destination[] = [
         },
       },
       {
-        name: { en: "Khan el-Khalili", ar: "خان الخليلي" },
+        name: { en: "Saqqara", ar: "سقارة" },
         blurb: {
-          en: "A working market since the fourteenth century. Coffee at El Fishawy is part of the visit, not a detour.",
-          ar: "سوق عامل منذ القرن الرابع عشر. القهوة في الفيشاوي جزء من الزيارة وليست انحرافًا عنها.",
+          en: "Djoser's Step Pyramid is the oldest stone building on earth, and the mastabas around it carry finer carving than anything on the plateau.",
+          ar: "هرم زوسر المدرج أقدم بناء حجري على وجه الأرض، والمصاطب حوله تحمل نقوشًا أدق من أي شيء في الهضبة.",
         },
       },
       {
-        name: { en: "Coptic Cairo", ar: "القاهرة القبطية" },
+        name: { en: "Dahshur", ar: "دهشور" },
         blurb: {
-          en: "The Hanging Church, Ben Ezra Synagogue and Abu Serga sit within a few quiet minutes of each other.",
-          ar: "الكنيسة المعلقة ومعبد بن عزرا وكنيسة أبي سرجة على بعد دقائق هادئة من بعضها.",
+          en: "The Bent Pyramid and the Red Pyramid, where the geometry was solved. You can walk down inside the Red with no queue at all.",
+          ar: "الهرم المائل والهرم الأحمر، حيث حُلّت مسألة الهندسة. ويمكنك النزول داخل الأحمر بلا طابور إطلاقًا.",
         },
       },
       {
-        name: { en: "Al-Muizz Street by night", ar: "شارع المعز ليلًا" },
+        name: { en: "Memphis at Mit Rahina", ar: "منف في ميت رهينة" },
         blurb: {
-          en: "An open-air museum of Fatimid, Ayyubid and Mamluk architecture, lit and pedestrianised after dark.",
-          ar: "متحف مفتوح للعمارة الفاطمية والأيوبية والمملوكية، مضاء ومخصص للمشاة بعد الغروب.",
+          en: "The capital that ran all of this, now an open field with a colossal reclining Ramesses under a shelter.",
+          ar: "العاصمة التي أدارت كل ذلك، وهي اليوم حقل مفتوح فيه تمثال ضخم مضطجع لرمسيس تحت مظلة.",
         },
       },
     ],
     suggestedItinerary: [
       {
         day: 1,
-        title: { en: "Giza plateau and the Grand Egyptian Museum", ar: "هضبة الجيزة والمتحف المصري الكبير" },
+        title: { en: "The plateau and the museum", ar: "الهضبة والمتحف" },
         detail: {
-          en: "Pyramids at opening, the Sphinx from the causeway, then the museum across the road in the afternoon.",
-          ar: "الأهرامات عند الفتح، وأبو الهول من الطريق الصاعد، ثم المتحف المقابل بعد الظهر.",
+          en: "Pyramids at opening, the Sphinx from the causeway, then the Grand Egyptian Museum across the road in the afternoon.",
+          ar: "الأهرامات عند الفتح، وأبو الهول من الطريق الصاعد، ثم المتحف المصري الكبير المقابل بعد الظهر.",
         },
       },
       {
         day: 2,
-        title: { en: "Islamic and Coptic Cairo", ar: "القاهرة الإسلامية والقبطية" },
+        title: { en: "Saqqara, Dahshur and Memphis", ar: "سقارة ودهشور ومنف" },
         detail: {
-          en: "The Citadel and Sultan Hassan in the morning, Coptic Cairo after lunch, Al-Muizz Street once the lamps come on.",
-          ar: "القلعة ومسجد السلطان حسن صباحًا، والقاهرة القبطية بعد الغداء، وشارع المعز حين تُضاء المصابيح.",
-        },
-      },
-      {
-        day: 3,
-        title: { en: "Saqqara, Dahshur and the Nile", ar: "سقارة ودهشور والنيل" },
-        detail: {
-          en: "The Step Pyramid and the Bent Pyramid without the crowds, then a felucca hour before dinner.",
-          ar: "الهرم المدرج والهرم المائل بلا زحام، ثم ساعة في فلوكة قبل العشاء.",
+          en: "The earlier pyramids without the crowds, and the painted mastabas most visitors never reach.",
+          ar: "الأهرامات الأقدم بلا زحام، والمصاطب المزخرفة التي لا يصلها معظم الزوار.",
         },
       },
     ],
     localAdvice: {
       en: [
-        "Traffic decides your day. Book the Giza plateau first thing and keep the afternoon on the same side of the river.",
-        "Carry small notes for tips, entry extras and the photography fee inside tombs.",
-        "Dress covers shoulders and knees for mosques; women should carry a light scarf for head covering.",
-        "Ride-hailing apps work well and remove the fare negotiation entirely.",
+        "Book the plateau first thing. By ten the coaches have arrived and the light has gone flat.",
+        "Entry inside the Great Pyramid is a separate ticket, sold at the gate and capped each day.",
+        "The camel and horse handlers work on commission. Agree a price and a duration before you sit down.",
+        "Saqqara and Dahshur are half an hour apart on the same road. Do them together or not at all.",
       ],
       ar: [
-        "الزحام هو ما يحدد يومك. احجز هضبة الجيزة في أول النهار وابقَ بعد الظهر على الضفة نفسها.",
-        "احمل فئات نقدية صغيرة للإكراميات ورسوم الدخول الإضافية وتصوير المقابر من الداخل.",
-        "يغطي اللباس الكتفين والركبتين في المساجد، ويُستحسن أن تحمل السيدات وشاحًا خفيفًا لتغطية الرأس.",
-        "تطبيقات النقل الذكي تعمل بكفاءة وتعفيك من مساومة الأجرة تمامًا.",
+        "احجز الهضبة في أول النهار. فبحلول العاشرة تكون الحافلات قد وصلت وفقد الضوء حِدّته.",
+        "الدخول إلى داخل الهرم الأكبر بتذكرة منفصلة تُباع عند البوابة بعدد محدود يوميًا.",
+        "أصحاب الجمال والخيل يعملون بالعمولة. اتفق على السعر والمدة قبل أن تركب.",
+        "سقارة ودهشور على بعد نصف ساعة من بعضهما على الطريق نفسه. زُرهما معًا أو لا تزرهما.",
       ],
     },
     gettingThere: {
-      en: "Cairo International is Egypt's main gateway, forty to ninety minutes from the city depending on traffic. Trains run north to Alexandria and south along the Nile valley.",
-      ar: "مطار القاهرة الدولي هو البوابة الرئيسية لمصر، ويبعد عن المدينة من أربعين إلى تسعين دقيقة بحسب الزحام. وتسير القطارات شمالًا إلى الإسكندرية وجنوبًا بمحاذاة وادي النيل.",
+      en: "Forty-five to seventy-five minutes from Cairo International, or twenty from central Cairo outside rush hour. Sphinx International, north-west of the plateau, takes a growing number of regional flights.",
+      ar: "من خمس وأربعين إلى خمس وسبعين دقيقة من مطار القاهرة الدولي، أو عشرين دقيقة من وسط القاهرة خارج ساعات الذروة. ويستقبل مطار سفنكس الدولي شمال غرب الهضبة عددًا متزايدًا من الرحلات الإقليمية.",
     },
     accommodationNote: {
-      en: "Zamalek and Garden City suit travellers who want quiet streets and river views. Giza puts the pyramids outside the window but adds a commute to the old city.",
-      ar: "تناسب الزمالك وجاردن سيتي من يريد شوارع هادئة وإطلالات على النهر. أما الجيزة فتضع الأهرامات خارج النافذة لكنها تضيف مسافة إلى القاهرة القديمة.",
+      en: "Nazlet El-Semman puts the pyramids outside the window, and a handful of rooftops there face them directly. Sheikh Zayed is newer, quieter and twenty minutes away.",
+      ar: "تضع نزلة السمان الأهرامات خارج نافذتك، وفيها أسطح قليلة تواجهها مباشرة. أما الشيخ زايد فأحدث وأهدأ وعلى بعد عشرين دقيقة.",
     },
-    relatedSlugs: ["alexandria", "luxor", "white-desert"],
+    relatedSlugs: ["cairo", "fayoum", "white-desert"],
     accent: "#c85f26",
+  },
+  {
+    id: "dst-fayoum",
+    slug: "fayoum",
+    name: { en: "Fayoum", ar: "الفيوم" },
+    tagline: {
+      en: "Waterfalls, whale fossils and a lake older than the pharaohs",
+      ar: "شلالات وأحافير حيتان وبحيرة أقدم من الفراعنة",
+    },
+    region: "fayoum",
+    coordinates: { lat: 29.3084, lng: 30.8428 },
+    travelStyles: ["nature", "desert", "family"],
+    bestSeason: ["oct", "nov", "dec", "jan", "feb", "mar", "apr"],
+    bestSeasonNote: {
+      en: "October to April. The desert sections are unpleasant from June onward, and the lake is at its best in the cool months.",
+      ar: "من أكتوبر إلى أبريل. تصبح المقاطع الصحراوية شاقة اعتبارًا من يونيو، والبحيرة في أفضل حالاتها في الأشهر الباردة.",
+    },
+    recommendedDays: { min: 1, max: 2 },
+    nightlyRates: { essential: 35, comfort: 75, premium: 140, luxury: 260 },
+    dailyBudgetFrom: 60,
+    intro: {
+      en: "Ninety minutes from Cairo, a depression in the desert fills with water and turns green. Fayoum has Egypt's only waterfalls, a valley of forty-million-year-old whale skeletons that UNESCO protects, a lake that fishermen have worked since the Middle Kingdom, and a village of potters who fire everything they sell. It is the easiest day out of the capital that feels nothing like it.",
+      ar: "على بعد تسعين دقيقة من القاهرة، ينخفض سطح الصحراء فيمتلئ بالماء ويخضرّ. في الفيوم شلالات مصر الوحيدة، ووادٍ فيه هياكل حيتان عمرها أربعون مليون سنة تحميه اليونسكو، وبحيرة يعمل فيها الصيادون منذ الدولة الوسطى، وقرية خزّافين يحرقون كل ما يبيعونه. إنها أسهل رحلة يوم من العاصمة ولا تشبهها في شيء.",
+    },
+    heroImage: {
+      src: "/images/destinations/fayoum-hero.webp",
+      alt: {
+        en: "Water falling into the lakes at Wadi El Rayan",
+        ar: "الماء يتساقط إلى بحيرات وادي الريان",
+      },
+    },
+    gallery: [
+      {
+        src: "/images/destinations/fayoum-01.webp",
+        alt: { en: "The shore of Lake Qarun", ar: "شاطئ بحيرة قارون" },
+      },
+      {
+        src: "/images/destinations/fayoum-02.webp",
+        alt: { en: "Eroded sandstone at Wadi Al-Hitan", ar: "حجر رملي متآكل في وادي الحيتان" },
+      },
+      {
+        src: "/images/destinations/fayoum-03.webp",
+        alt: { en: "Egrets around a fishing boat on the lake", ar: "بلشونات حول قارب صيد في البحيرة" },
+      },
+    ],
+    attractions: [
+      {
+        name: { en: "Wadi El Rayan", ar: "وادي الريان" },
+        blurb: {
+          en: "Two lakes joined by the only waterfalls in Egypt, with dunes running down to the water on the far side.",
+          ar: "بحيرتان تصلهما شلالات مصر الوحيدة، وكثبان تنحدر إلى الماء في الجهة المقابلة.",
+        },
+      },
+      {
+        name: { en: "Wadi Al-Hitan", ar: "وادي الحيتان" },
+        blurb: {
+          en: "A UNESCO World Heritage site holding the skeletons of early whales that still had legs. The walk is a marked loop through open desert.",
+          ar: "موقع تراث عالمي لليونسكو يضم هياكل حيتان بدائية ما زالت لها أرجل. والمسار حلقة معلّمة في صحراء مفتوحة.",
+        },
+      },
+      {
+        name: { en: "Lake Qarun", ar: "بحيرة قارون" },
+        blurb: {
+          en: "A remnant of the ancient Lake Moeris, fished since the Middle Kingdom and full of migratory birds in winter.",
+          ar: "بقية من بحيرة موريس القديمة، يُصطاد فيها منذ الدولة الوسطى وتمتلئ بالطيور المهاجرة شتاءً.",
+        },
+      },
+      {
+        name: { en: "Tunis Village", ar: "قرية تونس" },
+        blurb: {
+          en: "A hillside of potters above the lake, where a Swiss ceramicist started a school in the 1980s and the whole village followed.",
+          ar: "تل من الخزّافين فوق البحيرة، بدأت فيه خزّافة سويسرية مدرسة في الثمانينيات فتبعتها القرية كلها.",
+        },
+      },
+      {
+        name: { en: "Qasr Qarun", ar: "قصر قارون" },
+        blurb: {
+          en: "A Ptolemaic temple at the desert edge of the lake, almost intact, and usually empty.",
+          ar: "معبد بطلمي عند الطرف الصحراوي للبحيرة، شبه كامل، وخالٍ من الزوار عادة.",
+        },
+      },
+    ],
+    suggestedItinerary: [
+      {
+        day: 1,
+        title: { en: "The lakes and the falls", ar: "البحيرات والشلالات" },
+        detail: {
+          en: "Wadi El Rayan in the morning, lunch by the water, Tunis Village and the potters in the afternoon.",
+          ar: "وادي الريان صباحًا، وغداء بجوار الماء، وقرية تونس والخزّافون بعد الظهر.",
+        },
+      },
+      {
+        day: 2,
+        title: { en: "Whale Valley and Qasr Qarun", ar: "وادي الحيتان وقصر قارون" },
+        detail: {
+          en: "An early run into the protected area, the fossil trail on foot, then the temple on the way back.",
+          ar: "انطلاقة مبكرة إلى المحمية، ومسار الأحافير سيرًا، ثم المعبد في طريق العودة.",
+        },
+      },
+    ],
+    localAdvice: {
+      en: [
+        "Wadi Al-Hitan needs a four-wheel drive for the last stretch, and the gate closes at four.",
+        "Buy pottery in Tunis Village directly from the workshops rather than the roadside stalls.",
+        "Weekends fill with Cairo day-trippers. Come on a weekday and the falls are almost yours.",
+        "There is very little shade anywhere. Water and a hat matter more here than the distance suggests.",
+      ],
+      ar: [
+        "يتطلب وادي الحيتان سيارة دفع رباعي في المقطع الأخير، وتغلق البوابة عند الرابعة.",
+        "اشترِ الفخار في قرية تونس من الورش مباشرة لا من أكشاك الطريق.",
+        "تمتلئ عطلات الأسبوع بزوار القاهرة. تعال في يوم عمل تكن الشلالات لك وحدك تقريبًا.",
+        "الظل نادر في كل مكان هنا. الماء والقبعة أهم مما توحي به قصر المسافة.",
+      ],
+    },
+    gettingThere: {
+      en: "Ninety minutes to two hours by road from Cairo or Giza. There is no airport and no useful train; this is a drive.",
+      ar: "من تسعين دقيقة إلى ساعتين برًا من القاهرة أو الجيزة. لا يوجد مطار ولا قطار مفيد؛ هذه رحلة بالسيارة.",
+    },
+    accommodationNote: {
+      en: "The eco-lodges above Tunis Village are the reason to stay a night rather than come for the day. Mudbrick rooms, lake views, no television.",
+      ar: "النُّزل البيئية فوق قرية تونس هي سبب المبيت ليلة بدل المجيء ليوم واحد. غرف من الطوب اللبن وإطلالات على البحيرة وبلا تلفاز.",
+    },
+    relatedSlugs: ["giza", "cairo", "white-desert"],
+    accent: "#2c6e67",
   },
   {
     id: "dst-alexandria",
@@ -346,7 +597,7 @@ export const destinations: Destination[] = [
       en: "East bank keeps you near restaurants and the night-lit temple. West bank guesthouses trade convenience for silence and field views.",
       ar: "تبقيك الضفة الشرقية قريبًا من المطاعم والمعبد المضاء ليلًا. أما بيوت الضيافة في الضفة الغربية فتستبدل بالراحة صمتًا وإطلالات على الحقول.",
     },
-    relatedSlugs: ["aswan", "cairo", "hurghada"],
+    relatedSlugs: ["aswan", "giza", "hurghada"],
     accent: "#a8853b",
   },
   {
@@ -805,8 +1056,8 @@ export const destinations: Destination[] = [
     nightlyRates: { essential: 60, comfort: 110, premium: 180, luxury: 300 },
     dailyBudgetFrom: 105,
     intro: {
-      en: "Wind has spent millennia carving a chalk plateau into mushrooms, towers and animals, and left them white against orange sand. You come to sleep here. One night in a desert camp, with no light for two hundred kilometres, is the reason this place is on the list.",
-      ar: "أمضت الرياح آلاف السنين تنحت هضبة طباشيرية إلى فطر وأبراج وحيوانات، وتركتها بيضاء على رمل برتقالي. تأتي إلى هنا لتنام. ليلة واحدة في مخيم صحراوي، بلا ضوء على مدى مئتي كيلومتر، هي سبب وجود هذا المكان في القائمة.",
+      en: "The route runs from Bahariya, on the Giza side, into the White Desert protectorate in New Valley. Wind has spent millennia carving a chalk plateau into mushrooms, towers and animals, and left them white against orange sand. You come to sleep here. One night in a desert camp, with no light for two hundred kilometres, is the reason this place is on the list.",
+      ar: "يمتد المسار من الباويطي في جهة الجيزة إلى محمية الصحراء البيضاء في الوادي الجديد. وقد أمضت الرياح آلاف السنين تنحت هضبة طباشيرية إلى فطر وأبراج وحيوانات، وتركتها بيضاء على رمل برتقالي. تأتي إلى هنا لتنام. ليلة واحدة في مخيم صحراوي، بلا ضوء على مدى مئتي كيلومتر، هي سبب وجود هذا المكان في القائمة.",
     },
     heroImage: {
       src: "/images/destinations/white-desert-hero.webp",
@@ -842,8 +1093,8 @@ export const destinations: Destination[] = [
       {
         name: { en: "Bahariya Oasis", ar: "واحة الباويطي" },
         blurb: {
-          en: "The gateway village, with hot springs and the Valley of the Golden Mummies nearby.",
-          ar: "القرية البوابة، وفيها عيون ساخنة ووادي المومياوات الذهبية على مقربة.",
+          en: "The gateway oasis, four hours from Cairo and still inside Giza governorate. Hot springs, and the Valley of the Golden Mummies nearby.",
+          ar: "الواحة البوابة، على بعد أربع ساعات من القاهرة وما زالت ضمن محافظة الجيزة. فيها عيون ساخنة ووادي المومياوات الذهبية على مقربة.",
         },
       },
     ],
@@ -885,7 +1136,7 @@ export const destinations: Destination[] = [
       en: "Overnight is a guided desert camp. Comfort tiers add private tents, proper bedding and a cook rather than a building.",
       ar: "المبيت في مخيم صحراوي بصحبة مرشد. وترفع الفئات الأعلى مستوى الخيام الخاصة والفرش الجيد والطاهي، لا المباني.",
     },
-    relatedSlugs: ["siwa-oasis", "cairo", "aswan"],
+    relatedSlugs: ["siwa-oasis", "fayoum", "giza"],
     accent: "#7c6144",
   },
 ];
@@ -894,13 +1145,13 @@ export const destinationBySlug = new Map(destinations.map((d) => [d.slug, d]));
 
 /**
  * The six the homepage leads with, chosen to show the whole country rather
- * than the six most famous names: the pharaonic core (Cairo, Luxor), the
+ * than the six most famous names: the pharaonic core (Giza, Luxor), the
  * softer south (Aswan), a true oasis (Siwa), the reef coast (Sharm) and the
- * desert nobody expects (White Desert). Alexandria and Hurghada are strong
- * guides but repeat a region already represented above.
+ * desert nobody expects (White Desert). Cairo, Alexandria, Fayoum and
+ * Hurghada are strong guides but each repeats a region already represented.
  */
 export const homepageDestinationSlugs = [
-  "cairo",
+  "giza",
   "luxor",
   "aswan",
   "siwa-oasis",

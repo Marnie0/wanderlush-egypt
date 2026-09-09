@@ -85,13 +85,13 @@
   "pages": {
     "destinations": {
       "eyebrow": "Egypt",
-      "title": "Eight places worth the journey",
+      "title": "Ten places worth the journey",
       "intro": "From the Giza plateau to a chalk desert with no light for two hundred kilometres. Each guide covers what to see, when to come and what a day actually costs."
     },
     "experiences": {
       "eyebrow": "Experiences",
       "title": "Tours, activities and local experiences",
-      "intro": "Twenty-four experiences across all eight destinations, from a sunrise balloon over the Valley of the Kings to a home-cooked lunch in a Nubian courtyard."
+      "intro": "Twenty-seven experiences across all ten destinations, from a sunrise balloon over the Valley of the Kings to a home-cooked lunch in a Nubian courtyard."
     },
     "journeys": {
       "eyebrow": "Curated",
@@ -204,6 +204,7 @@
   },
   "regions": {
     "greater-cairo": "Greater Cairo",
+    "fayoum": "Fayoum",
     "mediterranean": "Mediterranean coast",
     "nile-valley": "Nile valley",
     "western-desert": "Western Desert",

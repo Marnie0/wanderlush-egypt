@@ -36,6 +36,7 @@ npm run dev
 | `npm run build` | Type-check then production build |
 | `npm run preview` | Serve the production build |
 | `npm run typecheck` | `tsc -b` across app, API and content |
+| `npm run check:content` | Resolve every content slug, link and image |
 | `npm run db:migrate` | Apply `db/schema.sql` |
 | `npm run db:seed` | Upsert every row from `content/` |
 | `node scripts/images/build.mjs` | Rebuild responsive photography and its manifest |

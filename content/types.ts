@@ -22,6 +22,7 @@ export interface LocalizedList {
 
 export type Region =
   | "greater-cairo"
+  | "fayoum"
   | "mediterranean"
   | "nile-valley"
   | "western-desert"

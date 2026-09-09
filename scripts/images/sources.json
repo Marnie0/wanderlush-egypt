@@ -1,16 +1,16 @@
 {
  "destinations/cairo-hero": {
-  "title": "File:Great Sphinx of Giza (أبو الهول).jpg",
-  "source": "https://commons.wikimedia.org/wiki/File:Great_Sphinx_of_Giza_(أبو_الهول).jpg",
-  "artist": "Petar Milošević",
-  "license": "CC BY-SA 4.0",
-  "width": 5472,
-  "height": 3648,
+  "title": "File:Flickr - HuTect ShOts - Citadel of Salah El.Din and Masjid Muhammad Ali قلعة صلاح الدين الأيوبي ومسجد محمد علي - Cairo - Egypt - 17 04 2010 (4).jpg",
+  "source": "https://commons.wikimedia.org/wiki/File:Flickr_-_HuTect_ShOts_-_Citadel_of_Salah_El.Din_and_Masjid_Muhammad_Ali_قلعة_صلاح_الدين_الأيوبي_ومسجد_محمد_علي_-_Cairo_-_Egypt_-_17_04_2010_(4).jpg",
+  "artist": "Ahmed Al.Badawy from Cairo, Egypt",
+  "license": "CC BY-SA 2.0",
+  "width": 3896,
+  "height": 2380,
   "download": [
-   "https://upload.wikimedia.org/wikipedia/commons/d/db/Great_Sphinx_of_Giza_%28%D8%A3%D8%A8%D9%88_%D8%A7%D9%84%D9%87%D9%88%D9%84%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-   "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/Great_Sphinx_of_Giza_%28%D8%A3%D8%A8%D9%88_%D8%A7%D9%84%D9%87%D9%88%D9%84%29.jpg/2560px-Great_Sphinx_of_Giza_%28%D8%A3%D8%A8%D9%88_%D8%A7%D9%84%D9%87%D9%88%D9%84%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-   "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/Great_Sphinx_of_Giza_%28%D8%A3%D8%A8%D9%88_%D8%A7%D9%84%D9%87%D9%88%D9%84%29.jpg/1920px-Great_Sphinx_of_Giza_%28%D8%A3%D8%A8%D9%88_%D8%A7%D9%84%D9%87%D9%88%D9%84%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-   "https://upload.wikimedia.org/wikipedia/commons/d/db/Great_Sphinx_of_Giza_%28%D8%A3%D8%A8%D9%88_%D8%A7%D9%84%D9%87%D9%88%D9%84%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+   "https://upload.wikimedia.org/wikipedia/commons/9/93/Flickr_-_HuTect_ShOts_-_Citadel_of_Salah_El.Din_and_Masjid_Muhammad_Ali_%D9%82%D9%84%D8%B9%D8%A9_%D8%B5%D9%84%D8%A7%D8%AD_%D8%A7%D9%84%D8%AF%D9%8A%D9%86_%D8%A7%D9%84%D8%A3%D9%8A%D9%88%D8%A8%D9%8A_%D9%88%D9%85%D8%B3%D8%AC%D8%AF_%D9%85%D8%AD%D9%85%D8%AF_%D8%B9%D9%84%D9%8A_-_Cairo_-_Egypt_-_17_04_2010_%284%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/Flickr_-_HuTect_ShOts_-_Citadel_of_Salah_El.Din_and_Masjid_Muhammad_Ali_%D9%82%D9%84%D8%B9%D8%A9_%D8%B5%D9%84%D8%A7%D8%AD_%D8%A7%D9%84%D8%AF%D9%8A%D9%86_%D8%A7%D9%84%D8%A3%D9%8A%D9%88%D8%A8%D9%8A_%D9%88%D9%85%D8%B3%D8%AC%D8%AF_%D9%85%D8%AD%D9%85%D8%AF_%D8%B9%D9%84%D9%8A_-_Cairo_-_Egypt_-_17_04_2010_%284%29.jpg/2560px-thumbnail.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/Flickr_-_HuTect_ShOts_-_Citadel_of_Salah_El.Din_and_Masjid_Muhammad_Ali_%D9%82%D9%84%D8%B9%D8%A9_%D8%B5%D9%84%D8%A7%D8%AD_%D8%A7%D9%84%D8%AF%D9%8A%D9%86_%D8%A7%D9%84%D8%A3%D9%8A%D9%88%D8%A8%D9%8A_%D9%88%D9%85%D8%B3%D8%AC%D8%AF_%D9%85%D8%AD%D9%85%D8%AF_%D8%B9%D9%84%D9%8A_-_Cairo_-_Egypt_-_17_04_2010_%284%29.jpg/1920px-thumbnail.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "https://upload.wikimedia.org/wikipedia/commons/9/93/Flickr_-_HuTect_ShOts_-_Citadel_of_Salah_El.Din_and_Masjid_Muhammad_Ali_%D9%82%D9%84%D8%B9%D8%A9_%D8%B5%D9%84%D8%A7%D8%AD_%D8%A7%D9%84%D8%AF%D9%8A%D9%86_%D8%A7%D9%84%D8%A3%D9%8A%D9%88%D8%A8%D9%8A_%D9%88%D9%85%D8%B3%D8%AC%D8%AF_%D9%85%D8%AD%D9%85%D8%AF_%D8%B9%D9%84%D9%8A_-_Cairo_-_Egypt_-_17_04_2010_%284%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
   ]
  },
  "destinations/cairo-01": {
@@ -27,16 +27,16 @@
   ]
  },
  "destinations/cairo-02": {
-  "title": "File:Grand Egyptian Museum 2025.jpg",
-  "source": "https://commons.wikimedia.org/wiki/File:Grand_Egyptian_Museum_2025.jpg",
-  "artist": "Amr F.Nagy",
-  "license": "Public domain",
+  "title": "File:Al Qasby Alley at the corner with Muizz Street 01.jpg",
+  "source": "https://commons.wikimedia.org/wiki/File:Al_Qasby_Alley_at_the_corner_with_Muizz_Street_01.jpg",
+  "artist": "Marsupium",
+  "license": "CC BY 4.0",
   "width": 4000,
   "height": 3000,
   "download": [
-   "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/04/Grand_Egyptian_Museum_2025.jpg/2560px-Grand_Egyptian_Museum_2025.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-   "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/04/Grand_Egyptian_Museum_2025.jpg/1920px-Grand_Egyptian_Museum_2025.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-   "https://upload.wikimedia.org/wikipedia/commons/0/04/Grand_Egyptian_Museum_2025.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+   "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/Al_Qasby_Alley_at_the_corner_with_Muizz_Street_01.jpg/2560px-Al_Qasby_Alley_at_the_corner_with_Muizz_Street_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/Al_Qasby_Alley_at_the_corner_with_Muizz_Street_01.jpg/1920px-Al_Qasby_Alley_at_the_corner_with_Muizz_Street_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "https://upload.wikimedia.org/wikipedia/commons/5/57/Al_Qasby_Alley_at_the_corner_with_Muizz_Street_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
   ]
  },
  "destinations/cairo-03": {
@@ -50,19 +50,6 @@
    "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/09/Sunset_at_cairo_tower.jpg/2560px-Sunset_at_cairo_tower.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
    "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/09/Sunset_at_cairo_tower.jpg/1920px-Sunset_at_cairo_tower.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
    "https://upload.wikimedia.org/wikipedia/commons/0/09/Sunset_at_cairo_tower.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
-  ]
- },
- "destinations/cairo-04": {
-  "title": "File:Al Qasby Alley at the corner with Muizz Street 01.jpg",
-  "source": "https://commons.wikimedia.org/wiki/File:Al_Qasby_Alley_at_the_corner_with_Muizz_Street_01.jpg",
-  "artist": "Marsupium",
-  "license": "CC BY 4.0",
-  "width": 4000,
-  "height": 3000,
-  "download": [
-   "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/Al_Qasby_Alley_at_the_corner_with_Muizz_Street_01.jpg/2560px-Al_Qasby_Alley_at_the_corner_with_Muizz_Street_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-   "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/Al_Qasby_Alley_at_the_corner_with_Muizz_Street_01.jpg/1920px-Al_Qasby_Alley_at_the_corner_with_Muizz_Street_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-   "https://upload.wikimedia.org/wikipedia/commons/5/57/Al_Qasby_Alley_at_the_corner_with_Muizz_Street_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
   ]
  },
  "destinations/alexandria-hero": {
@@ -119,17 +106,17 @@
   ]
  },
  "destinations/luxor-hero": {
-  "title": "File:Balloon over Luxor - Egypt.jpg",
-  "source": "https://commons.wikimedia.org/wiki/File:Balloon_over_Luxor_-_Egypt.jpg",
-  "artist": "Marcosleal",
-  "license": "CC BY-SA 3.0",
+  "title": "File:Luxor Temple R04.jpg",
+  "source": "https://commons.wikimedia.org/wiki/File:Luxor_Temple_R04.jpg",
+  "artist": "Marc Ryckaert",
+  "license": "CC BY 3.0",
   "width": 4288,
-  "height": 2848,
+  "height": 2584,
   "download": [
-   "https://upload.wikimedia.org/wikipedia/commons/1/1a/Balloon_over_Luxor_-_Egypt.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-   "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1a/Balloon_over_Luxor_-_Egypt.jpg/2560px-Balloon_over_Luxor_-_Egypt.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-   "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1a/Balloon_over_Luxor_-_Egypt.jpg/1920px-Balloon_over_Luxor_-_Egypt.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-   "https://upload.wikimedia.org/wikipedia/commons/1/1a/Balloon_over_Luxor_-_Egypt.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+   "https://upload.wikimedia.org/wikipedia/commons/e/e0/Luxor_Temple_R04.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e0/Luxor_Temple_R04.jpg/2560px-Luxor_Temple_R04.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e0/Luxor_Temple_R04.jpg/1920px-Luxor_Temple_R04.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "https://upload.wikimedia.org/wikipedia/commons/e/e0/Luxor_Temple_R04.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
   ]
  },
  "destinations/luxor-01": {
@@ -854,5 +841,150 @@
    "https://upload.wikimedia.org/wikipedia/commons/6/6a/Sunrise_from_the_summit_of_Mount_Sinai_or_Gabal_Musa.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
   ],
   "alias_of": "destinations/sharm-03"
+ },
+ "destinations/giza-hero": {
+  "title": "File:Great Sphinx of Giza (أبو الهول).jpg",
+  "source": "https://commons.wikimedia.org/wiki/File:Great_Sphinx_of_Giza_(أبو_الهول).jpg",
+  "artist": "Petar Milošević",
+  "license": "CC BY-SA 4.0",
+  "width": 5472,
+  "height": 3648,
+  "download": [
+   "https://upload.wikimedia.org/wikipedia/commons/d/db/Great_Sphinx_of_Giza_%28%D8%A3%D8%A8%D9%88_%D8%A7%D9%84%D9%87%D9%88%D9%84%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/Great_Sphinx_of_Giza_%28%D8%A3%D8%A8%D9%88_%D8%A7%D9%84%D9%87%D9%88%D9%84%29.jpg/2560px-Great_Sphinx_of_Giza_%28%D8%A3%D8%A8%D9%88_%D8%A7%D9%84%D9%87%D9%88%D9%84%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/Great_Sphinx_of_Giza_%28%D8%A3%D8%A8%D9%88_%D8%A7%D9%84%D9%87%D9%88%D9%84%29.jpg/1920px-Great_Sphinx_of_Giza_%28%D8%A3%D8%A8%D9%88_%D8%A7%D9%84%D9%87%D9%88%D9%84%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "https://upload.wikimedia.org/wikipedia/commons/d/db/Great_Sphinx_of_Giza_%28%D8%A3%D8%A8%D9%88_%D8%A7%D9%84%D9%87%D9%88%D9%84%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+  ]
+ },
+ "destinations/giza-01": {
+  "title": "File:Grand Egyptian Museum 2025.jpg",
+  "source": "https://commons.wikimedia.org/wiki/File:Grand_Egyptian_Museum_2025.jpg",
+  "artist": "Amr F.Nagy",
+  "license": "Public domain",
+  "width": 4000,
+  "height": 3000,
+  "download": [
+   "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/04/Grand_Egyptian_Museum_2025.jpg/2560px-Grand_Egyptian_Museum_2025.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/04/Grand_Egyptian_Museum_2025.jpg/1920px-Grand_Egyptian_Museum_2025.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "https://upload.wikimedia.org/wikipedia/commons/0/04/Grand_Egyptian_Museum_2025.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+  ]
+ },
+ "destinations/giza-02": {
+  "title": "File:Saqqara, Pyramid of Djoser, Ancient Egypt.jpg",
+  "source": "https://commons.wikimedia.org/wiki/File:Saqqara,_Pyramid_of_Djoser,_Ancient_Egypt.jpg",
+  "artist": "Vyacheslav Argenberg",
+  "license": "CC BY 4.0",
+  "width": 3072,
+  "height": 2048,
+  "download": [
+   "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4f/Saqqara%2C_Pyramid_of_Djoser%2C_Ancient_Egypt.jpg/2560px-Saqqara%2C_Pyramid_of_Djoser%2C_Ancient_Egypt.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4f/Saqqara%2C_Pyramid_of_Djoser%2C_Ancient_Egypt.jpg/1920px-Saqqara%2C_Pyramid_of_Djoser%2C_Ancient_Egypt.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "https://upload.wikimedia.org/wikipedia/commons/4/4f/Saqqara%2C_Pyramid_of_Djoser%2C_Ancient_Egypt.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+  ]
+ },
+ "destinations/giza-03": {
+  "title": "File:Dahshur - Red Pyramid - Tourist policemen on camel.JPG",
+  "source": "https://commons.wikimedia.org/wiki/File:Dahshur_-_Red_Pyramid_-_Tourist_policemen_on_camel.JPG",
+  "artist": "Daniel Mayer",
+  "license": "CC BY-SA 4.0",
+  "width": 3264,
+  "height": 2448,
+  "download": [
+   "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/21/Dahshur_-_Red_Pyramid_-_Tourist_policemen_on_camel.JPG/2560px-Dahshur_-_Red_Pyramid_-_Tourist_policemen_on_camel.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/21/Dahshur_-_Red_Pyramid_-_Tourist_policemen_on_camel.JPG/1920px-Dahshur_-_Red_Pyramid_-_Tourist_policemen_on_camel.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "https://upload.wikimedia.org/wikipedia/commons/2/21/Dahshur_-_Red_Pyramid_-_Tourist_policemen_on_camel.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+  ]
+ },
+ "destinations/fayoum-hero": {
+  "title": "File:The Path of life.jpg",
+  "source": "https://commons.wikimedia.org/wiki/File:The_Path_of_life.jpg",
+  "artist": "Harby6020",
+  "license": "CC BY-SA 4.0",
+  "width": 6000,
+  "height": 4000,
+  "download": [
+   "https://upload.wikimedia.org/wikipedia/commons/6/63/The_Path_of_life.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+   "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/63/The_Path_of_life.jpg/2560px-The_Path_of_life.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/63/The_Path_of_life.jpg/1920px-The_Path_of_life.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "https://upload.wikimedia.org/wikipedia/commons/6/63/The_Path_of_life.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+  ]
+ },
+ "destinations/fayoum-01": {
+  "title": "File:Lake Moeris 031.JPG",
+  "source": "https://commons.wikimedia.org/wiki/File:Lake_Moeris_031.JPG",
+  "artist": "لا روسا",
+  "license": "CC BY-SA 3.0",
+  "width": 4288,
+  "height": 3216,
+  "download": [
+   "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8d/Lake_Moeris_031.JPG/2560px-Lake_Moeris_031.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8d/Lake_Moeris_031.JPG/1920px-Lake_Moeris_031.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "https://upload.wikimedia.org/wikipedia/commons/8/8d/Lake_Moeris_031.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+  ]
+ },
+ "destinations/fayoum-02": {
+  "title": "File:Wadi Al Hitan, Fayoum.jpg",
+  "source": "https://commons.wikimedia.org/wiki/File:Wadi_Al_Hitan,_Fayoum.jpg",
+  "artist": "Maaly Saeed",
+  "license": "CC BY-SA 4.0",
+  "width": 6000,
+  "height": 4000,
+  "download": [
+   "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/34/Wadi_Al_Hitan%2C_Fayoum.jpg/2560px-Wadi_Al_Hitan%2C_Fayoum.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/34/Wadi_Al_Hitan%2C_Fayoum.jpg/1920px-Wadi_Al_Hitan%2C_Fayoum.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "https://upload.wikimedia.org/wikipedia/commons/3/34/Wadi_Al_Hitan%2C_Fayoum.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+  ]
+ },
+ "destinations/fayoum-03": {
+  "title": "File:Tunis village -Fayoum by Hatem Moushir 10.JPG",
+  "source": "https://commons.wikimedia.org/wiki/File:Tunis_village_-Fayoum_by_Hatem_Moushir_10.JPG",
+  "artist": "Hatem Moushir",
+  "license": "CC BY-SA 3.0",
+  "width": 4928,
+  "height": 3264,
+  "download": [
+   "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a0/Tunis_village_-Fayoum_by_Hatem_Moushir_10.JPG/2560px-Tunis_village_-Fayoum_by_Hatem_Moushir_10.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a0/Tunis_village_-Fayoum_by_Hatem_Moushir_10.JPG/1920px-Tunis_village_-Fayoum_by_Hatem_Moushir_10.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "https://upload.wikimedia.org/wikipedia/commons/a/a0/Tunis_village_-Fayoum_by_Hatem_Moushir_10.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+  ]
+ },
+ "experiences/wadi-rayan": {
+  "title": "File:Waterfalls of Wadi El Rayan, Fayoum, Egypt.jpg",
+  "source": "https://commons.wikimedia.org/wiki/File:Waterfalls_of_Wadi_El_Rayan,_Fayoum,_Egypt.jpg",
+  "artist": "Ibrahim El-Mezayen",
+  "license": "CC BY-SA 4.0",
+  "width": 3383,
+  "height": 2255,
+  "download": [
+   "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a0/Waterfalls_of_Wadi_El_Rayan%2C_Fayoum%2C_Egypt.jpg/2560px-Waterfalls_of_Wadi_El_Rayan%2C_Fayoum%2C_Egypt.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a0/Waterfalls_of_Wadi_El_Rayan%2C_Fayoum%2C_Egypt.jpg/1920px-Waterfalls_of_Wadi_El_Rayan%2C_Fayoum%2C_Egypt.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "https://upload.wikimedia.org/wikipedia/commons/a/a0/Waterfalls_of_Wadi_El_Rayan%2C_Fayoum%2C_Egypt.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+  ]
+ },
+ "experiences/tunis-village": {
+  "title": "File:خزاف.jpg",
+  "source": "https://commons.wikimedia.org/wiki/File:خزاف.jpg",
+  "artist": "Adelbayoumi",
+  "license": "CC BY-SA 4.0",
+  "width": 2121,
+  "height": 1414,
+  "download": [
+   "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/44/%D8%AE%D8%B2%D8%A7%D9%81.jpg/2560px-%D8%AE%D8%B2%D8%A7%D9%81.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/44/%D8%AE%D8%B2%D8%A7%D9%81.jpg/1920px-%D8%AE%D8%B2%D8%A7%D9%81.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "https://upload.wikimedia.org/wikipedia/commons/4/44/%D8%AE%D8%B2%D8%A7%D9%81.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+  ]
+ },
+ "experiences/lake-qarun": {
+  "title": "File:As free as the birds.jpg",
+  "source": "https://commons.wikimedia.org/wiki/File:As_free_as_the_birds.jpg",
+  "artist": "Myousry6666",
+  "license": "CC BY-SA 4.0",
+  "width": 5315,
+  "height": 3543,
+  "download": [
+   "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/85/As_free_as_the_birds.jpg/2560px-As_free_as_the_birds.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/85/As_free_as_the_birds.jpg/1920px-As_free_as_the_birds.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "https://upload.wikimedia.org/wikipedia/commons/8/85/As_free_as_the_birds.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+  ]
  }
 }
