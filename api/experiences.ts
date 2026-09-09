@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { query } from "../db/client";
+import { query } from "../db/client.js";
 
 /**
  * GET /api/experiences

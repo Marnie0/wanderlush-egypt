@@ -11,6 +11,7 @@ import { AboutPage } from "./AboutPage";
 import { FaqPage } from "./FaqPage";
 import { PrivacyPage } from "./PrivacyPage";
 import { NotFoundPage } from "./NotFoundPage";
+import { RouteError } from "./RouteError";
 import {
   BookingConfirmationPage,
   BookingPage,
@@ -24,7 +25,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
-    errorElement: <RootLayout />,
+    errorElement: <RouteError />,
     children: [
       { index: true, element: <HomePage /> },
       { path: "destinations", element: <DestinationsPage /> },
