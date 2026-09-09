@@ -4,7 +4,7 @@ import { Placeholder } from "@/components/ui/Placeholder";
 import { usePageMeta } from "@/hooks/usePageMeta";
 
 /**
- * Routes whose feature is delivered in Phases 5 to 7. They exist now so the
+ * Routes whose feature is delivered in Phases 6 and 7. They exist now so the
  * navigation, layouts and deep links are all real from the first deployment.
  */
 function StubPage({ page, metaKey }: { page: string; metaKey: string }) {
@@ -22,7 +22,6 @@ function StubPage({ page, metaKey }: { page: string; metaKey: string }) {
   );
 }
 
-export const TripBuilderPage = () => <StubPage page="tripBuilder" metaKey="meta.tripBuilder" />;
 export const TripSummaryPage = () => <StubPage page="tripSummary" metaKey="meta.tripSummary" />;
 export const BookingPage = () => <StubPage page="booking" metaKey="meta.booking" />;
 export const BookingConfirmationPage = () => (

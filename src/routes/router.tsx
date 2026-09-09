@@ -34,7 +34,7 @@ const NotFoundPage = lazy(() =>
   import("./NotFoundPage").then((m) => ({ default: m.NotFoundPage })),
 );
 const TripBuilderPage = lazy(() =>
-  import("./StubPages").then((m) => ({ default: m.TripBuilderPage })),
+  import("./TripBuilderPage").then((m) => ({ default: m.TripBuilderPage })),
 );
 const TripSummaryPage = lazy(() =>
   import("./StubPages").then((m) => ({ default: m.TripSummaryPage })),
@@ -59,6 +59,7 @@ export function warmMainRoutes() {
     void import("./ExperiencesPage");
     void import("./ExperienceDetailPage");
     void import("./JourneysPage");
+    void import("./TripBuilderPage");
   };
   if (typeof window.requestIdleCallback === "function") {
     window.requestIdleCallback(warm, { timeout: 4000 });

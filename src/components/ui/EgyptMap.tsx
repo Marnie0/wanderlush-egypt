@@ -18,8 +18,12 @@ import type { Destination } from "@content/types";
 
 interface EgyptMapProps {
   destinations: Destination[];
-  activeSlug: string;
-  onSelect: (slug: string) => void;
+  activeSlug?: string;
+  onSelect?: (slug: string) => void;
+  /** Places in the trip, in order: they are numbered and joined by a route. */
+  route?: string[];
+  /** Selecting on hover suits browsing; a trip map only follows clicks. */
+  selectOnHover?: boolean;
   className?: string;
 }
 
@@ -30,9 +34,33 @@ interface EgyptMapProps {
  *
  * Phase 3 reuses this component for the full destination explorer.
  */
-export function EgyptMap({ destinations, activeSlug, onSelect, className }: EgyptMapProps) {
+export function EgyptMap({
+  destinations,
+  activeSlug,
+  onSelect,
+  route = [],
+  selectOnHover = true,
+  className,
+}: EgyptMapProps) {
   const { t, i18n } = useTranslation();
   const language = i18n.resolvedLanguage ?? "en";
+  const bySlug = new Map(destinations.map((destination) => [destination.slug, destination]));
+  const position = (slug: string) => {
+    const destination = bySlug.get(slug);
+    if (!destination) return null;
+    const base = projectToMap(destination.coordinates.lat, destination.coordinates.lng);
+    const nudge = MARKER_NUDGE[slug] ?? { x: 0, y: 0 };
+    return { x: base.x + nudge.x, y: base.y + nudge.y };
+  };
+  // Consecutive repeats collapse: Cairo, Luxor, Cairo is two legs, not three.
+  const routePoints = route
+    .filter((slug, index) => index === 0 || slug !== route[index - 1])
+    .map(position)
+    .filter((point): point is { x: number; y: number } => point !== null);
+  const routeIndex = new Map<string, number>();
+  route.forEach((slug) => {
+    if (!routeIndex.has(slug)) routeIndex.set(slug, routeIndex.size + 1);
+  });
 
   return (
     <svg
@@ -78,28 +106,43 @@ export function EgyptMap({ destinations, activeSlug, onSelect, className }: Egyp
         />
       ))}
 
+      {routePoints.length > 1 && (
+        <path
+          d={routePoints.map((p, i) => `${i === 0 ? "M" : "L"}${p.x} ${p.y}`).join(" ")}
+          fill="none"
+          stroke="var(--color-ember-600)"
+          strokeWidth="2.5"
+          strokeDasharray="6 6"
+          strokeLinejoin="round"
+          strokeLinecap="round"
+          opacity="0.85"
+        />
+      )}
+
       {destinations.map((destination) => {
         const base = projectToMap(destination.coordinates.lat, destination.coordinates.lng);
         const nudge = MARKER_NUDGE[destination.slug] ?? { x: 0, y: 0 };
         const x = base.x + nudge.x;
         const y = base.y + nudge.y;
         const isActive = destination.slug === activeSlug;
+        const stopNumber = routeIndex.get(destination.slug);
+        const inRoute = stopNumber !== undefined;
         const name = pick(destination.name, language);
         const label = LABEL_PLACEMENT[destination.slug] ?? DEFAULT_LABEL;
 
         return (
           <g
             key={destination.slug}
-            role="button"
-            tabIndex={0}
-            aria-label={name}
-            aria-pressed={isActive}
-            className="group cursor-pointer outline-none"
-            onClick={() => onSelect(destination.slug)}
-            onMouseEnter={() => onSelect(destination.slug)}
-            onFocus={() => onSelect(destination.slug)}
+            role={onSelect ? "button" : undefined}
+            tabIndex={onSelect ? 0 : undefined}
+            aria-label={stopNumber ? `${stopNumber}. ${name}` : name}
+            aria-pressed={onSelect ? isActive || inRoute : undefined}
+            className={cn("group outline-none", onSelect && "cursor-pointer")}
+            onClick={() => onSelect?.(destination.slug)}
+            onMouseEnter={() => selectOnHover && onSelect?.(destination.slug)}
+            onFocus={() => selectOnHover && onSelect?.(destination.slug)}
             onKeyDown={(event) => {
-              if (event.key === "Enter" || event.key === " ") {
+              if (onSelect && (event.key === "Enter" || event.key === " ")) {
                 event.preventDefault();
                 onSelect(destination.slug);
               }
@@ -120,12 +163,27 @@ export function EgyptMap({ destinations, activeSlug, onSelect, className }: Egyp
             <circle
               cx={x}
               cy={y}
-              r={isActive ? 7 : 5}
-              fill={isActive ? destination.accent : "var(--color-charcoal-700)"}
+              r={isActive || inRoute ? 7 : 5}
+              fill={isActive || inRoute ? destination.accent : "var(--color-charcoal-700)"}
               stroke="var(--color-ivory)"
               strokeWidth="2"
               className="transition-all duration-300 group-focus-visible:stroke-ember-500 group-focus-visible:[stroke-width:3]"
             />
+            {stopNumber !== undefined && (
+              <>
+                <circle cx={x} cy={y} r="10" fill="var(--color-ember-600)" stroke="var(--color-ivory)" strokeWidth="2" />
+                <text
+                  x={x}
+                  y={y + 4}
+                  textAnchor="middle"
+                  direction="ltr"
+                  className="pointer-events-none select-none font-body text-[11px] font-semibold"
+                  fill="var(--color-ivory)"
+                >
+                  {stopNumber}
+                </text>
+              </>
+            )}
             <text
               x={x + label.dx}
               y={y + label.dy}
@@ -137,7 +195,7 @@ export function EgyptMap({ destinations, activeSlug, onSelect, className }: Egyp
               direction="ltr"
               className={cn(
                 "pointer-events-none select-none font-body text-[15px] transition-opacity duration-300",
-                isActive ? "opacity-100" : "opacity-0",
+                isActive || inRoute ? "opacity-100" : "opacity-0",
               )}
               fill="var(--color-charcoal-900)"
               stroke="var(--color-ivory)"

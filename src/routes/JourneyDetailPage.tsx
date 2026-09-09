@@ -1,11 +1,12 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { m } from "framer-motion";
 import { journeyBySlug } from "@content/journeys";
 import { destinationBySlug } from "@content/destinations";
 import { accommodationById } from "@content/accommodation";
 import { Container, Eyebrow, Rule, Section } from "@/components/ui/Layout";
-import { ButtonLink } from "@/components/ui/Button";
+import { Button, ButtonLink } from "@/components/ui/Button";
+import { useTripStore } from "@/lib/trip-store";
 import { SmartImage, FULL_SIZES } from "@/components/ui/SmartImage";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { useSolidHeader } from "@/lib/header-store";
@@ -18,6 +19,9 @@ export function JourneyDetailPage() {
   const language = i18n.resolvedLanguage ?? "en";
   const journey = journeyBySlug.get(slug);
   useSolidHeader(!journey);
+  const navigate = useNavigate();
+  const loadJourney = useTripStore((state) => state.loadJourney);
+  const hasTrip = useTripStore((state) => state.days.length > 0);
 
   usePageMeta(
     journey ? pick(journey.name, language) : undefined,
@@ -153,9 +157,20 @@ export function JourneyDetailPage() {
                 {pick(journey.bestSeasonNote, language)}
               </p>
 
-              <ButtonLink to="/trip-builder" className="mt-6 w-full">
+              {/* The curated route becomes the traveller's own draft: places,
+                  nights, experiences and tier, all editable from there. */}
+              <Button
+                className="mt-6 w-full"
+                onClick={() => {
+                  loadJourney(journey);
+                  navigate("/trip-builder?step=itinerary");
+                }}
+              >
                 {t("journey.openInBuilder")}
-              </ButtonLink>
+              </Button>
+              {hasTrip && (
+                <p className="mt-2 text-center text-xs text-ink-muted">{t("journey.replacesTrip")}</p>
+              )}
             </div>
           </aside>
         </Container>

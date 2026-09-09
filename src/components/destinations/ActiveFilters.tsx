@@ -48,11 +48,12 @@ export function ActiveFilters({
         onChange({ ...filters, durations: filters.durations.filter((item) => item !== bucket) }),
     });
   }
-  if (filters.month) {
+  if (filters.monthRange) {
+    const [from, to] = filters.monthRange;
     chips.push({
       key: "month",
-      label: t(`months.${filters.month}`),
-      clear: () => onChange({ ...filters, month: null }),
+      label: from === to ? t(`months.${from}`) : `${t(`months.${from}`)} – ${t(`months.${to}`)}`,
+      clear: () => onChange({ ...filters, monthRange: null }),
     });
   }
 
@@ -75,7 +76,7 @@ export function ActiveFilters({
       ))}
       <button
         type="button"
-        onClick={() => onChange({ query: "", regions: [], styles: [], durations: [], month: null })}
+        onClick={() => onChange({ query: "", regions: [], styles: [], durations: [], monthRange: null })}
         className="px-2 py-1.5 text-sm text-ember-600 underline decoration-ember-600/40 underline-offset-4 transition-colors hover:decoration-ember-600"
       >
         {t("explore.clearAll")}

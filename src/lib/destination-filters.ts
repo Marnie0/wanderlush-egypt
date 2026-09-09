@@ -8,7 +8,11 @@ export interface DestinationFilterState {
   regions: Region[];
   styles: TravelStyle[];
   durations: DurationBucket[];
-  month: Month | null;
+  /**
+   * The window the trip falls in, inclusive, and it may wrap the new year:
+   * October to April is one range. A single month is a range of one.
+   */
+  monthRange: [Month, Month] | null;
 }
 
 export const emptyFilters: DestinationFilterState = {
@@ -16,8 +20,28 @@ export const emptyFilters: DestinationFilterState = {
   regions: [],
   styles: [],
   durations: [],
-  month: null,
+  monthRange: null,
 };
+
+/** The months from one to another, wrapping December into January. */
+export function monthsInRange([from, to]: [Month, Month]): Month[] {
+  const start = MONTHS.indexOf(from);
+  const end = MONTHS.indexOf(to);
+  const length = ((end - start + 12) % 12) + 1;
+  return Array.from({ length }, (_, i) => MONTHS[(start + i) % 12]);
+}
+
+/**
+ * Tapping months builds a range: the first tap starts it, the second ends
+ * it, a tap inside an existing range starts over, and tapping the only
+ * month of a range clears it.
+ */
+export function nextMonthRange(current: [Month, Month] | null, month: Month): [Month, Month] | null {
+  if (!current) return [month, month];
+  const [from, to] = current;
+  if (from === to) return month === from ? null : [from, month];
+  return [month, month];
+}
 
 export const DURATION_BUCKETS: DurationBucket[] = ["short", "medium", "long"];
 
@@ -95,7 +119,11 @@ export function filterDestinations(
       return false;
     }
 
-    if (filters.month && !destination.bestSeason.includes(filters.month)) {
+    // At its best for the whole window, because the trip spans it.
+    if (
+      filters.monthRange &&
+      !monthsInRange(filters.monthRange).every((month) => destination.bestSeason.includes(month))
+    ) {
       return false;
     }
 
@@ -109,7 +137,7 @@ export function countActiveFilters(filters: DestinationFilterState): number {
     filters.regions.length +
     filters.styles.length +
     filters.durations.length +
-    (filters.month ? 1 : 0)
+    (filters.monthRange ? 1 : 0)
   );
 }
 
@@ -120,7 +148,10 @@ export function filtersToParams(filters: DestinationFilterState): URLSearchParam
   if (filters.regions.length) params.set("region", filters.regions.join(","));
   if (filters.styles.length) params.set("style", filters.styles.join(","));
   if (filters.durations.length) params.set("days", filters.durations.join(","));
-  if (filters.month) params.set("month", filters.month);
+  if (filters.monthRange) {
+    const [from, to] = filters.monthRange;
+    params.set("month", from === to ? from : `${from}-${to}`);
+  }
   return params;
 }
 
@@ -135,6 +166,10 @@ export function filtersFromParams(params: URLSearchParams): DestinationFilterSta
   };
 
   const month = params.get("month");
+  const [from, to = from] = (month ?? "").split("-");
+  const validMonths = MONTHS as string[];
+  const monthRange: [Month, Month] | null =
+    from && validMonths.includes(from) && validMonths.includes(to) ? [from as Month, to as Month] : null;
   return {
     query: params.get("q") ?? "",
     regions: list("region", [
@@ -144,6 +179,6 @@ export function filtersFromParams(params: URLSearchParams): DestinationFilterSta
       "history", "beach", "desert", "luxury", "family", "romantic", "nature",
     ] as const),
     durations: list("days", DURATION_BUCKETS),
-    month: month && (MONTHS as string[]).includes(month) ? (month as Month) : null,
+    monthRange,
   };
 }

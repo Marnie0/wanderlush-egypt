@@ -226,7 +226,8 @@
     "outline": "Day by day",
     "included": "Destinations",
     "suggestedTier": "Suggested accommodation",
-    "openInBuilder": "Open in the trip builder"
+    "openInBuilder": "Open in the trip builder",
+    "replacesTrip": "This replaces the trip you have started."
   },
   "faqPage": {
     "stillStuck": "Still have a question?",
@@ -320,7 +321,9 @@
     "experiencesHere_one": "{{count}} experience here",
     "experiencesHere_other": "{{count}} experiences here",
     "startingFrom": "Starting from",
-    "resultsHeading": "Results"
+    "resultsHeading": "Results",
+    "monthRangeHint": "Tap one month, or two for a range.",
+    "monthRangeNext": "Tap a second month to make it a range."
   },
   "trip": {
     "add": "Add to trip",
@@ -395,6 +398,178 @@
     "emptySaved": {
       "title": "You have not saved anything yet",
       "body": "Use the bookmark on any experience to keep it here while you decide. Saved experiences stay in this browser."
+    }
+  },
+  "builder": {
+    "stepsLabel": "Trip builder steps",
+    "steps": {
+      "basics": "Basics",
+      "places": "Places",
+      "stay": "Stay",
+      "experiences": "Experiences",
+      "itinerary": "Itinerary"
+    },
+    "next": {
+      "places": "Choose places",
+      "stay": "Choose where to stay",
+      "experiences": "Choose experiences",
+      "itinerary": "Build the itinerary"
+    },
+    "back": "Back to {{step}}",
+    "interests": {
+      "history": "History",
+      "culture": "Culture",
+      "adventure": "Adventure",
+      "beaches": "Beaches",
+      "food": "Food",
+      "luxury": "Luxury",
+      "relaxation": "Relaxation",
+      "family": "Family activities",
+      "photography": "Photography"
+    },
+    "basics": {
+      "whenTitle": "When are you thinking of?",
+      "whenHint": "A month is enough to start. If you know the date, add it and the itinerary picks up real days.",
+      "monthLabel": "Month of travel",
+      "exactDate": "Exact start date",
+      "clearDate": "Clear the date",
+      "whoTitle": "Who is travelling, and for how long?",
+      "duration": "Days",
+      "durationHint": "The itinerary is checked against this.",
+      "fewerDays": "One day fewer",
+      "moreDays": "One day more",
+      "adults": "Adults",
+      "fewerAdults": "One adult fewer",
+      "moreAdults": "One adult more",
+      "children": "Children",
+      "childrenHint": "Under twelve. Some experiences have a minimum age.",
+      "fewerChildren": "One child fewer",
+      "moreChildren": "One child more",
+      "currency": "Show prices in",
+      "interestsTitle": "What do you care about?",
+      "interestsHint": "Optional. It orders the experiences we suggest; it never hides any.",
+      "interestsCount_one": "{{count}} interest chosen",
+      "interestsCount_other": "{{count}} interests chosen"
+    },
+    "places": {
+      "chooseTitle": "Where do you want to go?",
+      "chooseHint": "Pick as many as you like. Each joins the route at its shortest sensible stay; you set the nights below.",
+      "recommended": "Recommended stay: {{days}}",
+      "outOfSeason": "Not at its best in the month you chose",
+      "routeTitle": "Your route, in order",
+      "daysExact": "That fills your trip exactly.",
+      "nights": "Nights",
+      "fewerNights": "One night fewer in {{place}}",
+      "moreNights": "One night more in {{place}}",
+      "moveEarlier": "Move {{place}} earlier",
+      "moveLater": "Move {{place}} later",
+      "mapHint": "Tap a place on the map to add or remove it.",
+      "daysLeft_one": "{{count}} day of your trip is still unplanned.",
+      "daysLeft_other": "{{count}} days of your trip are still unplanned.",
+      "daysOver_one": "This route is {{count}} day longer than your trip.",
+      "daysOver_other": "This route is {{count}} days longer than your trip."
+    },
+    "transport": {
+      "flight": "Flight",
+      "train": "Train",
+      "road": "By road",
+      "km": "{{km}} km",
+      "via": "via {{place}}",
+      "long": "A long transfer: this takes the whole day.",
+      "none": "There is no sensible way to do this transfer in one day. Add a night in Cairo between them.",
+      "hours_one": "about {{count}} hour",
+      "hours_other": "about {{count}} hours"
+    },
+    "stay": {
+      "title": "Where would you like to stay?",
+      "perNight": "{{low}} – {{high}} per room per night",
+      "perNightOne": "{{amount}} per room per night",
+      "hint_one": "Priced for the places on your route. {{count}} room, two to a room.",
+      "hint_other": "Priced for the places on your route. {{count}} rooms, two to a room.",
+      "forTrip_one": "{{amount}} for {{count}} night on this route",
+      "forTrip_other": "{{amount}} for {{count}} nights on this route"
+    },
+    "experiences": {
+      "title": "What would you like to do?",
+      "hint": "Ordered by what you told us you care about. Adding one puts it on the emptiest day in that place; you can move it later.",
+      "noPlacesTitle": "Choose some places first",
+      "noPlacesBody": "Experiences are picked per place, so the trip needs at least one place before this step has anything to show.",
+      "forYou": "For you",
+      "perPerson": "{{amount}} per person",
+      "browseMore": "Looking for something else?",
+      "browseLink": "Browse all experiences",
+      "chosenCount_one": "{{count}} chosen",
+      "chosenCount_other": "{{count}} chosen"
+    },
+    "itinerary": {
+      "title": "Your day-by-day itinerary",
+      "hint": "Drag days and experiences into order, or use the arrows. Add free time and transfers so the days read the way they will feel.",
+      "emptyTitle": "Nothing planned yet",
+      "emptyBody": "Choose a place or two and the days appear here, ready to arrange.",
+      "emptyAction": "Choose places",
+      "dayLabel": "Day {{day}}",
+      "planned": "{{duration}} planned",
+      "freeDay": "A free day. Add something, or leave it: a holiday needs a few of these.",
+      "dragDay": "Drag day {{day}} to reorder",
+      "dragItem": "Drag to move",
+      "dayEarlier": "Move day {{day}} earlier",
+      "dayLater": "Move day {{day}} later",
+      "itemEarlier": "Move earlier in the day",
+      "itemLater": "Move later in the day",
+      "moveToDay": "Move to another day",
+      "dayOption": "Day {{day}} · {{place}}",
+      "removeItem": "Remove from the trip",
+      "addLabel": "Add to this day",
+      "addPrompt": "Add to this day…",
+      "addExperiences": "Experiences here",
+      "addOther": "Other",
+      "freeTime": "Free time",
+      "transfer": "Transfer",
+      "freePlaceholder": "A late breakfast, the pool, a walk…",
+      "transferPlaceholder": "Morning flight, the sleeper train…",
+      "whatNext": "The estimate and the booking request come in the next phases.",
+      "mapCaption_one": "{{count}} place on the route",
+      "mapCaption_other": "{{count}} places on the route"
+    },
+    "warnings": {
+      "label": "Things to check",
+      "warning": "Fix",
+      "note": "Note",
+      "exceedsDuration": "Your itinerary runs to {{planned}} days but the trip is {{duration}}. Drop {{extra}} night(s) or make the trip longer.",
+      "underDuration": "You have {{missing}} unplanned day(s): the itinerary is {{planned}} days of a {{duration}}-day trip.",
+      "crowdedDay": "Day {{day}} is overloaded, with about {{hours}} hours of activities. Move something to another day.",
+      "duplicate": "Day {{day}} repeats an experience already on day {{first}}.",
+      "longTransfer": "Day {{day}} starts with a transfer of about {{hours}} hours. Keep the rest of that day free.",
+      "noRoute": "There is no sensible one-day transfer into day {{day}}. Add a night in Cairo between the two places.",
+      "outOfSeason": "The place you reach on day {{day}} is not at its best in the month you chose.",
+      "minAge": "An experience on day {{day}} has a minimum age of {{age}}.",
+      "multiDay": "An experience on day {{day}} lasts {{span}} days; keep the days after it free.",
+      "empty": "Nothing planned yet."
+    },
+    "summary": {
+      "title": "Your trip so far",
+      "when": "When",
+      "datesOpen": "Dates open",
+      "travellers": "Travellers",
+      "length": "Length",
+      "planned": "{{planned}} of {{duration}} days planned",
+      "stay": "Stay",
+      "estimate": "Estimated total",
+      "perPerson": "{{amount}} per person",
+      "estimateNote": "An estimate, not a quote: accommodation at the chosen level, experiences at their shared price, the quickest transfer between places, and our fee. Flights to Egypt are not included.",
+      "adults_one": "{{count}} adult",
+      "adults_other": "{{count}} adults",
+      "children_one": "{{count}} child",
+      "children_other": "{{count}} children",
+      "problems_one": "{{count}} thing to fix before this can be requested",
+      "problems_other": "{{count}} things to fix before this can be requested"
+    },
+    "reset": {
+      "action": "Start over",
+      "title": "Clear this trip?",
+      "body": "Everything you have planned is removed from this browser. Your shortlist is cleared too. Nothing has been sent to us.",
+      "keep": "Keep it",
+      "confirm": "Yes, clear it"
     }
   }
 }

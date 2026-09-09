@@ -13,6 +13,7 @@ content/
   reviews.ts        10 fictional testimonials, all flagged isDemo
   faqs.ts           12 questions in 4 categories
   currencies.ts     6 currencies with static indicative rates
+  transport.ts      direct links between destinations: mode, hours, indicative fare
   brand.ts          purpose, story, values, privacy copy
 ```
 
@@ -62,6 +63,16 @@ carrying a hash of its own bytes so the immutable cache header is safe.
 falls back to a warm gradient built from the item's `accent` for anything not
 in the manifest. Credits are shown on hero images, as CC BY and CC BY-SA
 require.
+
+## Trips
+
+The trip a visitor builds lives in their browser (`src/lib/trip-store.ts`,
+version 3). Its itinerary is the source of truth: destinations, nights and
+chosen experiences are all read off the ordered list of days, so the setup
+steps and the editor can never disagree. `src/lib/trip-plan.ts` holds the
+placement and warning rules, `src/lib/estimate.ts` the per-day and total
+estimate, and `src/lib/transport.ts` routes between places using
+`content/transport.ts`, falling back to a hub when there is no direct link.
 
 ## Prices
 

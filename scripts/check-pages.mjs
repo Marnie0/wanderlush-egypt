@@ -14,7 +14,8 @@ const base = (process.argv[2] ?? "http://localhost:4173").replace(/\/$/, "");
 const ROUTES = [
   "/", "/destinations", "/destinations/giza", "/destinations/fayoum",
   "/experiences", "/experiences/wadi-el-rayan-and-whale-valley", "/journeys",
-  "/journeys/family-journey", "/trip-builder", "/trip-summary", "/booking",
+  "/journeys/family-journey", "/trip-builder", "/trip-builder?step=places", "/trip-builder?step=stay",
+  "/trip-builder?step=experiences", "/trip-builder?step=itinerary", "/trip-summary", "/booking",
   "/booking/confirmation", "/about", "/contact", "/faq", "/privacy", "/no-such-page",
   // Arabic runs last: the detector caches the choice, so every route visited
   // after this one would report as RTL and hide a real direction problem.

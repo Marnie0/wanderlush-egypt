@@ -7,6 +7,8 @@ import {
 import {
   DURATION_BUCKETS,
   MONTHS,
+  monthsInRange,
+  nextMonthRange,
   type DestinationFilterState,
   type DurationBucket,
 } from "@/lib/destination-filters";
@@ -96,18 +98,23 @@ export function DestinationFilters({
       </Group>
 
       <Group label={t("explore.season")}>
-        <Toggle active={filters.month === null} onClick={() => onChange({ ...filters, month: null })}>
+        <Toggle active={filters.monthRange === null} onClick={() => onChange({ ...filters, monthRange: null })}>
           {t("explore.anyMonth")}
         </Toggle>
         {MONTHS.map((month: Month) => (
           <Toggle
             key={month}
-            active={filters.month === month}
-            onClick={() => onChange({ ...filters, month: filters.month === month ? null : month })}
+            active={filters.monthRange !== null && monthsInRange(filters.monthRange).includes(month)}
+            onClick={() => onChange({ ...filters, monthRange: nextMonthRange(filters.monthRange, month) })}
           >
             {t(`months.${month}`)}
           </Toggle>
         ))}
+        <p className="basis-full text-xs text-ink-muted">
+          {filters.monthRange && filters.monthRange[0] === filters.monthRange[1]
+            ? t("explore.monthRangeNext")
+            : t("explore.monthRangeHint")}
+        </p>
       </Group>
     </div>
   );
