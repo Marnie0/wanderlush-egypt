@@ -50,24 +50,32 @@ export function DestinationSearch({ className }: { className?: string }) {
 
   // Names, taglines, regions, the intro and the sights themselves, so
   // "pyramids" suggests Giza rather than reporting that nothing matches.
+  // A hit on the name or a sight ranks above a hit in the intro, so
+  // "pyramids" lists Giza before the places that only mention them.
   const matches = useMemo(() => {
     const needle = normalizeSearch(query.trim());
     if (!needle) return destinations;
-    return destinations.filter((destination) =>
-      normalizeSearch(
-        [
-          destination.name.en,
-          destination.name.ar,
-          destination.tagline.en,
-          destination.tagline.ar,
-          destination.region.replace(/-/g, " "),
-          t(`regions.${destination.region}`),
-          destination.intro.en,
-          destination.intro.ar,
-          ...destination.attractions.flatMap((attraction) => [attraction.name.en, attraction.name.ar]),
-        ].join(" "),
-      ).includes(needle),
-    );
+    const tiers = destinations.map((destination) => {
+      const has = (parts: string[]) => normalizeSearch(parts.join(" ")).includes(needle);
+      const tier = has([destination.name.en, destination.name.ar])
+        ? 0
+        : has([
+              destination.tagline.en,
+              destination.tagline.ar,
+              destination.region.replace(/-/g, " "),
+              t(`regions.${destination.region}`),
+              ...destination.attractions.flatMap((a) => [a.name.en, a.name.ar]),
+            ])
+          ? 1
+          : has([destination.intro.en, destination.intro.ar])
+            ? 2
+            : null;
+      return { destination, tier };
+    });
+    return tiers
+      .filter((entry): entry is { destination: Destination; tier: number } => entry.tier !== null)
+      .sort((a, b) => a.tier - b.tier)
+      .map((entry) => entry.destination);
   }, [query, destinations, t]);
 
   /**

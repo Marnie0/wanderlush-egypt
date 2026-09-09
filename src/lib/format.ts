@@ -140,13 +140,16 @@ export function formatMonthRuns(
 }
 
 /**
- * Lower-cases, and folds the Arabic spellings a visitor may or may not type:
+ * Lower-cases, folds simple English plurals ("pyramids" finds "Great
+ * Pyramid"), and folds the Arabic spellings a visitor may or may not type:
  * the hamza forms of alef, the dotted taa marbuta and the final yaa, and the
  * short-vowel marks that content carries but nobody types into a search box.
+ * Applied to both sides of a match, so it only has to be consistent.
  */
 export function normalizeSearch(text: string): string {
   return text
     .toLowerCase()
+    .replace(/\b([a-z]{3,})s\b/g, "$1")
     .replace(/[\u064B-\u0652\u0640]/g, "")
     .replace(/[أإآ]/g, "ا")
     .replace(/ة/g, "ه")
