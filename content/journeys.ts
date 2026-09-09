@@ -18,7 +18,7 @@ export const journeys: Journey[] = [
     suggestedTier: "comfort",
     priceFrom: 1980,
     bestSeasonNote: { en: "Best from October to April, when the south is comfortable before ten in the morning.", ar: "الأفضل من أكتوبر إلى أبريل، حين يكون الجنوب مريحًا قبل العاشرة صباحًا." },
-    heroImage: { src: "/images/journeys/ancient-egypt.jpg", alt: { en: "Temple columns at Karnak", ar: "أعمدة معبد الكرنك" } },
+    heroImage: { src: "/images/journeys/ancient-egypt.webp", alt: { en: "The avenue of ram sphinxes at Karnak", ar: "طريق الكباش في الكرنك" } },
     outline: [
       { day: 1, title: { en: "Arrive Cairo", ar: "الوصول إلى القاهرة" }, detail: { en: "Airport transfer, an evening to settle, dinner on the river.", ar: "انتقال من المطار، ومساء للاستقرار، وعشاء على النهر." } },
       { day: 2, title: { en: "Giza and the museum", ar: "الجيزة والمتحف" }, detail: { en: "Plateau at opening, Grand Egyptian Museum after lunch.", ar: "الهضبة عند الفتح، والمتحف المصري الكبير بعد الغداء." } },
@@ -48,7 +48,7 @@ export const journeys: Journey[] = [
     suggestedTier: "luxury",
     priceFrom: 4250,
     bestSeasonNote: { en: "November to March, when the river runs cool in the evening and the decks are usable all day.", ar: "من نوفمبر إلى مارس، حين يبرد النهر مساءً وتكون الأسطح صالحة طوال النهار." },
-    heroImage: { src: "/images/journeys/luxury-nile.jpg", alt: { en: "A cruiser deck facing the Nile bank", ar: "سطح مركب يطل على ضفة النيل" } },
+    heroImage: { src: "/images/journeys/luxury-nile.webp", alt: { en: "Morning mist on the Nile", ar: "ضباب الصباح على النيل" } },
     outline: [
       { day: 1, title: { en: "Cairo, arrival", ar: "القاهرة، الوصول" }, detail: { en: "Private transfer, a suite on the river, dinner reserved.", ar: "انتقال خاص، وجناح على النهر، وعشاء محجوز." } },
       { day: 2, title: { en: "Giza privately", ar: "الجيزة بصحبة خاصة" }, detail: { en: "The plateau at opening with a private Egyptologist, museum in the afternoon.", ar: "الهضبة عند الفتح مع عالم مصريات خاص، والمتحف بعد الظهر." } },
@@ -76,7 +76,7 @@ export const journeys: Journey[] = [
     suggestedTier: "comfort",
     priceFrom: 1740,
     bestSeasonNote: { en: "October to March. The desert is unusable in high summer and camps close.", ar: "من أكتوبر إلى مارس. الصحراء غير صالحة في أوج الصيف وتغلق المخيمات." },
-    heroImage: { src: "/images/journeys/siwa-desert.jpg", alt: { en: "Dunes at the edge of the Great Sand Sea", ar: "كثبان على حافة بحر الرمال الأعظم" } },
+    heroImage: { src: "/images/journeys/siwa-desert.webp", alt: { en: "Dunes at the edge of the Great Sand Sea", ar: "كثبان على حافة بحر الرمال الأعظم" } },
     outline: [
       { day: 1, title: { en: "Cairo to Alexandria", ar: "من القاهرة إلى الإسكندرية" }, detail: { en: "Train north, an afternoon on the corniche.", ar: "قطار شمالًا، وأصيل على الكورنيش." } },
       { day: 2, title: { en: "Greco-Roman Alexandria", ar: "الإسكندرية اليونانية الرومانية" }, detail: { en: "Catacombs, library and citadel, seafood at the harbour.", ar: "السراديب والمكتبة والقلعة، ومأكولات بحرية عند الميناء." } },
@@ -105,7 +105,7 @@ export const journeys: Journey[] = [
     suggestedTier: "premium",
     priceFrom: 1490,
     bestSeasonNote: { en: "Diveable all year. March to May and September to November are the sweet spots.", ar: "الغوص متاح طوال العام. ومن مارس إلى مايو ومن سبتمبر إلى نوفمبر هي الفترات المثلى." },
-    heroImage: { src: "/images/journeys/red-sea.jpg", alt: { en: "Coral shallows in the Red Sea", ar: "شعاب ضحلة في البحر الأحمر" } },
+    heroImage: { src: "/images/journeys/red-sea.webp", alt: { en: "The Red Sea shore below the mountains", ar: "ساحل البحر الأحمر أسفل الجبال" } },
     outline: [
       { day: 1, title: { en: "Arrive Sharm", ar: "الوصول إلى شرم" }, detail: { en: "Transfer, check in, an afternoon on the house reef.", ar: "الانتقال والتسجيل وأصيل على شعاب الفندق." } },
       { day: 2, title: { en: "Ras Mohammed", ar: "رأس محمد" }, detail: { en: "Two dives or a snorkel day at Shark and Yolanda.", ar: "غوصتان أو يوم غطس في شارك ويولاندا." } },
@@ -132,7 +132,7 @@ export const journeys: Journey[] = [
     suggestedTier: "comfort",
     priceFrom: 1860,
     bestSeasonNote: { en: "School holidays in spring and autumn work best. Avoid July and August in the Nile valley.", ar: "تناسبها العطلات المدرسية في الربيع والخريف. وتجنب يوليو وأغسطس في وادي النيل." },
-    heroImage: { src: "/images/journeys/family.jpg", alt: { en: "A family walking near the pyramids", ar: "عائلة تسير قرب الأهرامات" } },
+    heroImage: { src: "/images/journeys/family.webp", alt: { en: "Visitors and camels at the Giza pyramids", ar: "زوار وجمال عند أهرامات الجيزة" } },
     outline: [
       { day: 1, title: { en: "Arrive Cairo", ar: "الوصول إلى القاهرة" }, detail: { en: "Transfer and an early night.", ar: "الانتقال ونوم مبكر." } },
       { day: 2, title: { en: "Pyramids, early", ar: "الأهرامات مبكرًا" }, detail: { en: "Plateau at opening, pool in the afternoon.", ar: "الهضبة عند الفتح، والمسبح بعد الظهر." } },
@@ -163,7 +163,7 @@ export const journeys: Journey[] = [
     suggestedTier: "premium",
     priceFrom: 2680,
     bestSeasonNote: { en: "October to April. Aswan in particular is at its best in the winter months.", ar: "من أكتوبر إلى أبريل. وأسوان خاصة في أفضل حالاتها في أشهر الشتاء." },
-    heroImage: { src: "/images/journeys/honeymoon.jpg", alt: { en: "A felucca at sunset on the Nile", ar: "فلوكة عند الغروب على النيل" } },
+    heroImage: { src: "/images/journeys/honeymoon.webp", alt: { en: "Two feluccas at sunset on the Nile", ar: "فلوكتان عند الغروب على النيل" } },
     outline: [
       { day: 1, title: { en: "Cairo", ar: "القاهرة" }, detail: { en: "Arrival, a river-facing suite, dinner on the water.", ar: "الوصول وجناح مطل على النهر وعشاء على الماء." } },
       { day: 2, title: { en: "Giza at first light", ar: "الجيزة عند أول الضوء" }, detail: { en: "Private guiding on the plateau, afternoon free.", ar: "إرشاد خاص في الهضبة، وبعد الظهر حر." } },

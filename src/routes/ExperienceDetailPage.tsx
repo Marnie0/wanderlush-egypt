@@ -1,10 +1,11 @@
 import { Navigate, Link, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { experienceBySlug, destinationBySlug } from "@content/index";
+import { experienceBySlug } from "@content/experiences";
+import { destinationBySlug } from "@content/destinations";
 import { Container, Eyebrow, Rule, Section } from "@/components/ui/Layout";
 import { SmartImage } from "@/components/ui/SmartImage";
 import { usePageMeta } from "@/hooks/usePageMeta";
-import { pick, pickList, formatMoney } from "@/lib/format";
+import { pick, pickList, formatMoney, formatDuration } from "@/lib/format";
 
 function DetailList({ title, items }: { title: string; items: string[] }) {
   if (items.length === 0) return null;
@@ -38,7 +39,6 @@ export function ExperienceDetailPage() {
   if (!experience) return <Navigate to="/experiences" replace />;
 
   const destination = destinationBySlug.get(experience.destinationSlug);
-  const hours = Math.round(experience.durationMinutes / 60);
 
   return (
     <Section className="pt-8">
@@ -66,6 +66,8 @@ export function ExperienceDetailPage() {
               alt={pick(experience.heroImage.alt, language)}
               accent={experience.accent}
               priority
+              showCredit
+              sizes="(min-width: 1024px) 60vw, 100vw"
               className="mt-10 aspect-[16/9] w-full"
             />
 
@@ -107,9 +109,7 @@ export function ExperienceDetailPage() {
                 <div className="flex justify-between gap-4 py-3">
                   <dt className="text-ink-muted">{t("experience.duration")}</dt>
                   <dd className="text-charcoal-800">
-                    {hours >= 24
-                      ? t("common.days", { count: Math.round(hours / 24) })
-                      : t("common.hours", { count: hours })}
+                    {formatDuration(experience.durationMinutes, t)}
                   </dd>
                 </div>
                 <div className="flex justify-between gap-4 py-3">

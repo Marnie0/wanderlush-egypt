@@ -23,7 +23,7 @@ export function RouteError() {
           title={is404 ? t("pages.notFound.title") : t("common.error")}
           intro={is404 ? t("pages.notFound.intro") : undefined}
         />
-        <Section className="pt-0">
+        <Section className="pt-0 lg:pt-0">
           <Container>
             <ButtonLink to="/">{t("common.backHome")}</ButtonLink>
           </Container>

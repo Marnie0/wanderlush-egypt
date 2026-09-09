@@ -30,14 +30,14 @@ export const destinations: Destination[] = [
       ar: "القاهرة لا تستقبلك على مهل. هضبة الجيزة تقف عند نهاية شارع من شوارع المدينة، وسوق من العصور الوسطى يعمل إلى جوار مسجد فاطمي، والمتحف المصري الكبير يضم مقتنيات توت عنخ آمون كاملة تحت سقف واحد لأول مرة. امنحها ثلاثة أيام تُعِد ترتيب ما ظننت أنك تعرفه عن القِدَم.",
     },
     heroImage: {
-      src: "/images/destinations/cairo-hero.jpg",
-      alt: { en: "The Pyramids of Giza at first light", ar: "أهرامات الجيزة عند أول الضوء" },
+      src: "/images/destinations/cairo-hero.webp",
+      alt: { en: "The Great Sphinx with the pyramid of Khafre behind", ar: "أبو الهول ومن خلفه هرم خفرع" },
     },
     gallery: [
-      { src: "/images/destinations/cairo-01.jpg", alt: { en: "Lanterns in Khan el-Khalili", ar: "فوانيس في خان الخليلي" } },
-      { src: "/images/destinations/cairo-02.jpg", alt: { en: "The Grand Egyptian Museum atrium", ar: "بهو المتحف المصري الكبير" } },
-      { src: "/images/destinations/cairo-03.jpg", alt: { en: "Feluccas on the Nile at sunset", ar: "فلوكة على النيل عند الغروب" } },
-      { src: "/images/destinations/cairo-04.jpg", alt: { en: "Rooftops of Islamic Cairo", ar: "أسطح القاهرة الإسلامية" } },
+      { src: "/images/destinations/cairo-01.webp", alt: { en: "Lanterns in Khan el-Khalili", ar: "فوانيس في خان الخليلي" } },
+      { src: "/images/destinations/cairo-02.webp", alt: { en: "The Grand Egyptian Museum atrium", ar: "بهو المتحف المصري الكبير" } },
+      { src: "/images/destinations/cairo-03.webp", alt: { en: "The Nile at sunset beneath Cairo Tower", ar: "النيل عند الغروب تحت برج القاهرة" } },
+      { src: "/images/destinations/cairo-04.webp", alt: { en: "An alley off Al-Muizz Street", ar: "زقاق متفرع من شارع المعز" } },
     ],
     attractions: [
       {
@@ -151,13 +151,13 @@ export const destinations: Destination[] = [
       ar: "أسسها الإسكندر، وحكمها البطالمة، وما زالت تتجه شمالًا نحو أوروبا لا جنوبًا نحو الصحراء. تستبدل الإسكندرية بالأهرامات كورنيشًا بحريًا وسراديب يونانية رومانية ومكتبة وُلدت من جديد وأفضل مأكولات بحرية في مصر.",
     },
     heroImage: {
-      src: "/images/destinations/alexandria-hero.jpg",
-      alt: { en: "The Corniche curving toward Qaitbay Citadel", ar: "الكورنيش ينحني نحو قلعة قايتباي" },
+      src: "/images/destinations/alexandria-hero.webp",
+      alt: { en: "Qaitbay Citadel above the eastern harbour", ar: "قلعة قايتباي فوق الميناء الشرقي" },
     },
     gallery: [
-      { src: "/images/destinations/alexandria-01.jpg", alt: { en: "Qaitbay Citadel on the harbour wall", ar: "قلعة قايتباي على سور الميناء" } },
-      { src: "/images/destinations/alexandria-02.jpg", alt: { en: "Reading hall of the Bibliotheca Alexandrina", ar: "قاعة المطالعة في مكتبة الإسكندرية" } },
-      { src: "/images/destinations/alexandria-03.jpg", alt: { en: "Fishing boats in the Eastern Harbour", ar: "قوارب صيد في الميناء الشرقي" } },
+      { src: "/images/destinations/alexandria-01.webp", alt: { en: "The Corniche looking along the seafront", ar: "الكورنيش بامتداد الواجهة البحرية" } },
+      { src: "/images/destinations/alexandria-02.webp", alt: { en: "Reading hall of the Bibliotheca Alexandrina", ar: "قاعة المطالعة في مكتبة الإسكندرية" } },
+      { src: "/images/destinations/alexandria-03.webp", alt: { en: "Fishing boats in the Eastern Harbour", ar: "قوارب صيد في الميناء الشرقي" } },
     ],
     attractions: [
       {
@@ -254,14 +254,14 @@ export const destinations: Destination[] = [
       ar: "وضعت طيبة القديمة أحياءها على الضفة الشرقية وموتاها على الغربية، وبقي النصفان. الكرنك وحده يمتد على كيلومترين مربعين. وعلى الضفة المقابلة يخفي وادي الملوك مقابر مزخرفة خلف حافة جيرية لا تلفت النظر من الطريق.",
     },
     heroImage: {
-      src: "/images/destinations/luxor-hero.jpg",
-      alt: { en: "Balloons rising over the Theban hills at dawn", ar: "مناطيد ترتفع فوق جبال طيبة عند الفجر" },
+      src: "/images/destinations/luxor-hero.webp",
+      alt: { en: "A balloon at sunrise over the Theban west bank", ar: "منطاد عند الشروق فوق الضفة الغربية بطيبة" },
     },
     gallery: [
-      { src: "/images/destinations/luxor-01.jpg", alt: { en: "The hypostyle hall at Karnak", ar: "بهو الأعمدة في الكرنك" } },
-      { src: "/images/destinations/luxor-02.jpg", alt: { en: "Hatshepsut's terraces at Deir el-Bahari", ar: "مدرجات حتشبسوت في الدير البحري" } },
-      { src: "/images/destinations/luxor-03.jpg", alt: { en: "Painted ceiling inside a royal tomb", ar: "سقف مزخرف داخل مقبرة ملكية" } },
-      { src: "/images/destinations/luxor-04.jpg", alt: { en: "Luxor Temple lit after dark", ar: "معبد الأقصر مضاءً بعد الغروب" } },
+      { src: "/images/destinations/luxor-01.webp", alt: { en: "The hypostyle hall at Karnak", ar: "بهو الأعمدة في الكرنك" } },
+      { src: "/images/destinations/luxor-02.webp", alt: { en: "Hatshepsut's terraces at Deir el-Bahari", ar: "مدرجات حتشبسوت في الدير البحري" } },
+      { src: "/images/destinations/luxor-03.webp", alt: { en: "Painted ceiling inside a royal tomb", ar: "سقف مزخرف داخل مقبرة ملكية" } },
+      { src: "/images/destinations/luxor-04.webp", alt: { en: "Colossi and colonnade at Luxor Temple", ar: "التماثيل والأعمدة في معبد الأقصر" } },
     ],
     attractions: [
       {
@@ -373,13 +373,13 @@ export const destinations: Destination[] = [
       ar: "يتسع النهر هنا، ويتفرع حول جزر من الجرانيت، ويتحول إلى زرقة عميقة غير عجولة. أسوان ألطف مدن مصر: قرى نوبية مصبوغة بكتل من اللون، ومعبد نُقل حجرًا حجرًا هربًا من بحيرة صاعدة، وأصائل لا تطلب منك سوى شراع.",
     },
     heroImage: {
-      src: "/images/destinations/aswan-hero.jpg",
+      src: "/images/destinations/aswan-hero.webp",
       alt: { en: "Feluccas among the granite islands at Aswan", ar: "فلائك بين جزر الجرانيت في أسوان" },
     },
     gallery: [
-      { src: "/images/destinations/aswan-01.jpg", alt: { en: "Painted Nubian houses above the river", ar: "بيوت نوبية ملونة فوق النهر" } },
-      { src: "/images/destinations/aswan-02.jpg", alt: { en: "The Temple of Philae on its island", ar: "معبد فيلة على جزيرته" } },
-      { src: "/images/destinations/aswan-03.jpg", alt: { en: "Abu Simbel's colossi at sunrise", ar: "تماثيل أبو سمبل عند الشروق" } },
+      { src: "/images/destinations/aswan-01.webp", alt: { en: "A painted Nubian house at Gharb Soheil", ar: "بيت نوبي ملوّن في غرب سهيل" } },
+      { src: "/images/destinations/aswan-02.webp", alt: { en: "The Temple of Philae on its island", ar: "معبد فيلة على جزيرته" } },
+      { src: "/images/destinations/aswan-03.webp", alt: { en: "Abu Simbel's colossi at sunrise", ar: "تماثيل أبو سمبل عند الشروق" } },
     ],
     attractions: [
       {
@@ -476,13 +476,13 @@ export const destinations: Destination[] = [
       ar: "ثماني ساعات من الساحل، وعالم كامل بعيدًا عن كل مكان. تتحدث سيوة السيوية لا العربية، وتبني بالملح والطين، وتطفو بك في بحيرات لا تغرق فيها، وتحتفظ بمعبد الوحي الذي أخبر الإسكندر أنه إله.",
     },
     heroImage: {
-      src: "/images/destinations/siwa-hero.jpg",
+      src: "/images/destinations/siwa-hero.webp",
       alt: { en: "The Shali fortress at golden hour", ar: "قلعة شالي في الساعة الذهبية" },
     },
     gallery: [
-      { src: "/images/destinations/siwa-01.jpg", alt: { en: "A salt lake with white crystalline banks", ar: "بحيرة ملحية بضفاف بلورية بيضاء" } },
-      { src: "/images/destinations/siwa-02.jpg", alt: { en: "Palm groves and mudbrick walls", ar: "بساتين نخيل وجدران من الطوب اللبن" } },
-      { src: "/images/destinations/siwa-03.jpg", alt: { en: "Dunes of the Great Sand Sea", ar: "كثبان بحر الرمال الأعظم" } },
+      { src: "/images/destinations/siwa-01.webp", alt: { en: "A salt lake with white crystalline banks", ar: "بحيرة ملحية بضفاف بلورية بيضاء" } },
+      { src: "/images/destinations/siwa-02.webp", alt: { en: "Palm groves reflected in an oasis lake", ar: "بساتين نخيل تنعكس في بحيرة الواحة" } },
+      { src: "/images/destinations/siwa-03.webp", alt: { en: "Dunes of the Great Sand Sea", ar: "كثبان بحر الرمال الأعظم" } },
     ],
     attractions: [
       {
@@ -587,13 +587,13 @@ export const destinations: Destination[] = [
       ar: "بلدة صيد عاملة تحولت إلى أكثر قواعد البحر الأحمر عملية في مصر. تبدأ الشعاب على بعد عشرين دقيقة من الشاطئ، وتنفتح الجبال خلف المدينة على الصحراء خلال نصف ساعة، وهي أسهل ساحل يُوصل إليه من الأقصر.",
     },
     heroImage: {
-      src: "/images/destinations/hurghada-hero.jpg",
-      alt: { en: "Turquoise shallows over a Red Sea reef", ar: "مياه ضحلة فيروزية فوق شعاب البحر الأحمر" },
+      src: "/images/destinations/hurghada-hero.webp",
+      alt: { en: "Table corals on a Red Sea reef", ar: "مرجان مائدي على شعاب البحر الأحمر" },
     },
     gallery: [
-      { src: "/images/destinations/hurghada-01.jpg", alt: { en: "A dive boat moored above coral", ar: "قارب غوص راسٍ فوق الشعاب" } },
-      { src: "/images/destinations/hurghada-02.jpg", alt: { en: "Giftun Island sandbank", ar: "لسان رملي في جزيرة الجفتون" } },
-      { src: "/images/destinations/hurghada-03.jpg", alt: { en: "Eastern Desert mountains at sunset", ar: "جبال الصحراء الشرقية عند الغروب" } },
+      { src: "/images/destinations/hurghada-01.webp", alt: { en: "A dive boat moored above coral", ar: "قارب غوص راسٍ فوق الشعاب" } },
+      { src: "/images/destinations/hurghada-02.webp", alt: { en: "Giftun Island sandbank", ar: "لسان رملي في جزيرة الجفتون" } },
+      { src: "/images/destinations/hurghada-03.webp", alt: { en: "A track through the Eastern Desert mountains", ar: "مسار بين جبال الصحراء الشرقية" } },
     ],
     attractions: [
       {
@@ -698,13 +698,13 @@ export const destinations: Destination[] = [
       ar: "ينحدر رأس محمد من شعاب لا تغطي الكاحل إلى جدار أزرق في خطوة واحدة، ولهذا يقصده الغواصون منذ خمسين عامًا. وفوق الماء تمنحك جبال سيناء دير سانت كاترين وشروقًا من فوق الجبل وصحراء تبدأ حيث تنتهي المارينا.",
     },
     heroImage: {
-      src: "/images/destinations/sharm-hero.jpg",
-      alt: { en: "The reef wall dropping into deep blue at Ras Mohammed", ar: "جدار الشعاب ينحدر إلى الزرقة العميقة في رأس محمد" },
+      src: "/images/destinations/sharm-hero.webp",
+      alt: { en: "The Sinai shore at Sharm El Sheikh", ar: "ساحل سيناء في شرم الشيخ" },
     },
     gallery: [
-      { src: "/images/destinations/sharm-01.jpg", alt: { en: "Coral garden in shallow water", ar: "حديقة مرجانية في مياه ضحلة" } },
-      { src: "/images/destinations/sharm-02.jpg", alt: { en: "Sinai mountains behind the bay", ar: "جبال سيناء خلف الخليج" } },
-      { src: "/images/destinations/sharm-03.jpg", alt: { en: "Sunrise from the summit of Mount Sinai", ar: "شروق الشمس من قمة جبل موسى" } },
+      { src: "/images/destinations/sharm-01.webp", alt: { en: "Coral garden in shallow water", ar: "حديقة مرجانية في مياه ضحلة" } },
+      { src: "/images/destinations/sharm-02.webp", alt: { en: "The red mountains of southern Sinai", ar: "الجبال الحمراء في جنوب سيناء" } },
+      { src: "/images/destinations/sharm-03.webp", alt: { en: "Sunrise from the summit of Mount Sinai", ar: "شروق الشمس من قمة جبل موسى" } },
     ],
     attractions: [
       {
@@ -809,13 +809,13 @@ export const destinations: Destination[] = [
       ar: "أمضت الرياح آلاف السنين تنحت هضبة طباشيرية إلى فطر وأبراج وحيوانات، وتركتها بيضاء على رمل برتقالي. تأتي إلى هنا لتنام. ليلة واحدة في مخيم صحراوي، بلا ضوء على مدى مئتي كيلومتر، هي سبب وجود هذا المكان في القائمة.",
     },
     heroImage: {
-      src: "/images/destinations/white-desert-hero.jpg",
+      src: "/images/destinations/white-desert-hero.webp",
       alt: { en: "Chalk formations glowing at sunset in the White Desert", ar: "تكوينات طباشيرية تتوهج عند الغروب في الصحراء البيضاء" },
     },
     gallery: [
-      { src: "/images/destinations/white-desert-01.jpg", alt: { en: "A mushroom rock against orange sand", ar: "صخرة على شكل فطر أمام رمل برتقالي" } },
-      { src: "/images/destinations/white-desert-02.jpg", alt: { en: "Camp fire under a full night sky", ar: "نار مخيم تحت سماء ليل كاملة" } },
-      { src: "/images/destinations/white-desert-03.jpg", alt: { en: "The black basalt hills of the Black Desert", ar: "تلال البازلت السوداء في الصحراء السوداء" } },
+      { src: "/images/destinations/white-desert-01.webp", alt: { en: "Chalk pillars rising from the desert floor", ar: "أعمدة طباشيرية تنهض من أرض الصحراء" } },
+      { src: "/images/destinations/white-desert-02.webp", alt: { en: "Late light over the Bahariya escarpment", ar: "ضوء آخر النهار فوق حافة الباويطي" } },
+      { src: "/images/destinations/white-desert-03.webp", alt: { en: "A black basalt cone in the Black Desert", ar: "مخروط بازلتي أسود في الصحراء السوداء" } },
     ],
     attractions: [
       {
@@ -891,3 +891,25 @@ export const destinations: Destination[] = [
 ];
 
 export const destinationBySlug = new Map(destinations.map((d) => [d.slug, d]));
+
+/**
+ * The six the homepage leads with, chosen to show the whole country rather
+ * than the six most famous names: the pharaonic core (Cairo, Luxor), the
+ * softer south (Aswan), a true oasis (Siwa), the reef coast (Sharm) and the
+ * desert nobody expects (White Desert). Alexandria and Hurghada are strong
+ * guides but repeat a region already represented above.
+ */
+export const homepageDestinationSlugs = [
+  "cairo",
+  "luxor",
+  "aswan",
+  "siwa-oasis",
+  "sharm-el-sheikh",
+  "white-desert",
+] as const;
+
+export const homepageDestinations = homepageDestinationSlugs.map((slug) => {
+  const destination = destinationBySlug.get(slug);
+  if (!destination) throw new Error(`Unknown homepage destination: ${slug}`);
+  return destination;
+});

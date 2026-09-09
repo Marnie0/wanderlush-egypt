@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Container, Eyebrow, Rule } from "./Layout";
 import { riseIn, stagger } from "@/lib/motion";
 
@@ -14,24 +14,24 @@ export function PageHeader({
 }) {
   return (
     <Container className="pt-16 pb-12 lg:pt-24 lg:pb-16">
-      <motion.div initial="hidden" animate="visible" variants={stagger()} className="max-w-3xl">
+      <m.div initial="hidden" animate="visible" variants={stagger()} className="max-w-3xl">
         {eyebrow && (
-          <motion.div variants={riseIn}>
+          <m.div variants={riseIn}>
             <Eyebrow>{eyebrow}</Eyebrow>
-          </motion.div>
+          </m.div>
         )}
-        <motion.h1 variants={riseIn} className="mt-4 text-display text-charcoal-900">
+        <m.h1 variants={riseIn} className="mt-4 text-display text-charcoal-900">
           {title}
-        </motion.h1>
-        <motion.div variants={riseIn} className="mt-6">
+        </m.h1>
+        <m.div variants={riseIn} className="mt-6">
           <Rule />
-        </motion.div>
+        </m.div>
         {intro && (
-          <motion.p variants={riseIn} className="mt-6 text-lead text-charcoal-600">
+          <m.p variants={riseIn} className="mt-6 text-lead text-charcoal-600">
             {intro}
-          </motion.p>
+          </m.p>
         )}
-      </motion.div>
+      </m.div>
     </Container>
   );
 }

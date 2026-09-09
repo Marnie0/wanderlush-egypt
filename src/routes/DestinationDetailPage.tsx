@@ -1,12 +1,13 @@
 import { Navigate, useParams, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
-import { destinationBySlug, experiencesByDestination } from "@content/index";
+import { m } from "framer-motion";
+import { destinationBySlug } from "@content/destinations";
+import { experiencesByDestination } from "@content/experiences";
 import { Container, Eyebrow, Rule, Section } from "@/components/ui/Layout";
-import { SmartImage } from "@/components/ui/SmartImage";
+import { SmartImage, FULL_SIZES } from "@/components/ui/SmartImage";
 import { ExperienceCard } from "@/components/ui/Cards";
 import { usePageMeta } from "@/hooks/usePageMeta";
-import { pick, pickList, formatMoney } from "@/lib/format";
+import { pick, pickList, formatMoney, formatDayRange } from "@/lib/format";
 import { riseIn, stagger, transitions, viewportOnce } from "@/lib/motion";
 
 /**
@@ -37,27 +38,30 @@ export function DestinationDetailPage() {
           alt={pick(destination.heroImage.alt, language)}
           accent={destination.accent}
           priority
+          showCredit
+          sizes={FULL_SIZES}
           className="absolute inset-0 h-full w-full"
         />
         <div aria-hidden className="absolute inset-0 scrim-full" />
+        <div aria-hidden className="absolute inset-0 scrim-inline" />
         <Container className="relative pb-16 lg:pb-20">
-          <motion.div initial="hidden" animate="visible" variants={stagger(0.1, 0.1)}>
-            <motion.p variants={riseIn} className="eyebrow text-gold-300">
+          <m.div initial="hidden" animate="visible" variants={stagger(0.1, 0.1)}>
+            <m.p variants={riseIn} className="eyebrow on-photo text-gold-200">
               {t(`regions.${destination.region}`)}
-            </motion.p>
-            <motion.h1
+            </m.p>
+            <m.h1
               variants={{
                 hidden: { opacity: 0, y: 32 },
                 visible: { opacity: 1, y: 0, transition: transitions.cinematic },
               }}
-              className="mt-4 text-hero text-ivory"
+              className="mt-4 text-hero text-ivory on-photo"
             >
               {pick(destination.name, language)}
-            </motion.h1>
-            <motion.p variants={riseIn} className="mt-4 max-w-2xl text-lead text-ivory/85">
+            </m.h1>
+            <m.p variants={riseIn} className="mt-4 max-w-2xl text-lead text-ivory/90 on-photo">
               {pick(destination.tagline, language)}
-            </motion.p>
-          </motion.div>
+            </m.p>
+          </m.div>
         </Container>
       </section>
 
@@ -128,9 +132,12 @@ export function DestinationDetailPage() {
               <div className="py-4">
                 <dt className="eyebrow text-ink-muted">{t("destination.recommendedStay")}</dt>
                 <dd className="mt-2 text-charcoal-900">
-                  {t("common.days", { count: destination.recommendedDays.min })}
-                  {"–"}
-                  {t("common.days", { count: destination.recommendedDays.max })}
+                  {formatDayRange(
+                    destination.recommendedDays.min,
+                    destination.recommendedDays.max,
+                    t,
+                    language,
+                  )}
                 </dd>
               </div>
               <div className="py-4">
@@ -187,11 +194,11 @@ export function DestinationDetailPage() {
       </Section>
 
       {localExperiences.length > 0 && (
-        <Section className="bg-sand-50 pt-0 pb-section">
+        <Section className="bg-sand-50 pt-0 pb-section lg:pt-0">
           <Container className="pt-section">
             <Eyebrow>{t("destination.experiencesHere")}</Eyebrow>
             <Rule className="mt-4" />
-            <motion.div
+            <m.div
               initial="hidden"
               whileInView="visible"
               viewport={viewportOnce}
@@ -201,7 +208,7 @@ export function DestinationDetailPage() {
               {localExperiences.map((experience) => (
                 <ExperienceCard key={experience.slug} experience={experience} />
               ))}
-            </motion.div>
+            </m.div>
           </Container>
         </Section>
       )}

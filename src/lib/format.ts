@@ -1,4 +1,4 @@
-import { currencies } from "@content/index";
+import { currencies } from "@content/currencies";
 import type { Localized, LocalizedList } from "@content/types";
 
 export type Language = "en" | "ar";
@@ -38,6 +38,9 @@ export function formatMoney(
   return new Intl.NumberFormat(localeTag[lang(language)], {
     style: "currency",
     currency: currencyCode,
+    // "$95", not "US$95": the currency is stated in the selector, not repeated
+    // in every price on the page.
+    currencyDisplay: "narrowSymbol",
     maximumFractionDigits: 0,
   }).format(value);
 }
@@ -53,6 +56,34 @@ export function formatDate(
 ): string {
   const date = typeof value === "string" ? new Date(value) : value;
   return new Intl.DateTimeFormat(localeTag[lang(language)], options).format(date);
+}
+
+/**
+ * "3–5 days", not "3 days–5 days". Reads correctly in both directions
+ * because the digits form their own bidi run.
+ */
+export function formatDayRange(
+  min: number,
+  max: number,
+  t: (key: string, options?: Record<string, unknown>) => string,
+  language: string,
+): string {
+  if (min === max) return t("common.days", { count: min });
+  return `${formatNumber(min, language)}\u2013${t("common.days", { count: max })}`;
+}
+
+/**
+ * Experiences run from 90 minutes to four days. Anything past a long day is
+ * rounded up to whole days, so an overnight camp reads as two days, not one.
+ */
+export function formatDuration(
+  minutes: number,
+  t: (key: string, options?: Record<string, unknown>) => string,
+): string {
+  if (minutes < 60) return t("common.minutes", { count: minutes });
+  const hours = minutes / 60;
+  if (hours < 20) return t("common.hours", { count: Math.round(hours) });
+  return t("common.days", { count: Math.ceil(hours / 24) });
 }
 
 export function formatMonthYear(value: string, language: string): string {

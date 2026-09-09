@@ -1,19 +1,25 @@
 # Photography
 
-Drop image files here using the exact paths referenced in `content/`. Until a
-file exists, `SmartImage` renders a gradient placeholder built from the item's
-accent colour, so no layout breaks and no request 404s in a way that hurts.
+Images are generated, not hand-placed. The curated selection lives in
+`scripts/images/sources.json`, one Wikimedia Commons file per slot with its
+photographer and licence.
 
-Expected structure:
+```bash
+node scripts/images/build.mjs
+```
+
+This downloads each original into `.cache/images` (gitignored), writes the
+responsive WebP variants in this directory, refreshes `CREDITS.md`, and
+regenerates `src/generated/images.ts`.
 
 ```
 public/images/
-  hero/egypt-hero.jpg
-  destinations/<slug>-hero.jpg, <slug>-01.jpg …
-  experiences/<name>.jpg
-  journeys/<slug>.jpg
+  hero/egypt-hero-{640,1024,1600,2400}.webp
+  destinations/<slug>-hero-*.webp, <slug>-01-*.webp …
+  experiences/<name>-{480,800,1200}.webp
+  journeys/<slug>-{480,800,1200}.webp
 ```
 
-Guidance: landscape 3:2 or 16:9, at least 2000px wide for heroes, warm and
-cinematic, people small in frame. Compress to WebP or AVIF before committing.
-Record the photographer in the content module's `credit` field when one applies.
+To change a photograph, edit its entry in `sources.json`, delete the matching
+file in `.cache/images`, and run the script again. Attribution is required for
+the CC BY and CC BY-SA images and is rendered on hero images by `SmartImage`.

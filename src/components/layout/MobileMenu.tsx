@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { primaryNav } from "./navItems";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { ButtonLink } from "@/components/ui/Button";
@@ -12,18 +12,47 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
   const { t } = useTranslation();
   const { isRtl } = useDirection();
   const closeRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
 
-  // Escape closes, and the page behind must not scroll while the panel is up.
+  // Escape closes, Tab stays inside the panel, and the page behind must not
+  // scroll while the panel is up.
   useEffect(() => {
     if (!open) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+        return;
+      }
+      if (event.key !== "Tab" || !panelRef.current) return;
+
+      const focusable = panelRef.current.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])',
+      );
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const active = document.activeElement;
+
+      if (event.shiftKey && (active === first || !panelRef.current.contains(active))) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && active === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
     document.addEventListener("keydown", onKey);
     const previous = document.body.style.overflow;
+    const restoreFocus = document.activeElement as HTMLElement | null;
     document.body.style.overflow = "hidden";
     closeRef.current?.focus();
+
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = previous;
+      restoreFocus?.focus?.();
     };
   }, [open, onClose]);
 
@@ -33,13 +62,13 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
   return (
     <AnimatePresence>
       {open && (
-        <motion.div
+        <m.div
           className="fixed inset-0 z-50 lg:hidden"
           initial="hidden"
           animate="visible"
           exit="hidden"
         >
-          <motion.button
+          <m.button
             type="button"
             aria-label={t("nav.closeMenu")}
             onClick={onClose}
@@ -47,7 +76,8 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
             variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
             transition={transitions.soft}
           />
-          <motion.div
+          <m.div
+            ref={panelRef}
             role="dialog"
             aria-modal="true"
             aria-label={t("nav.primaryLabel")}
@@ -96,8 +126,8 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
                 {t("nav.startPlanning")}
               </ButtonLink>
             </div>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       )}
     </AnimatePresence>
   );

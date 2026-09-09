@@ -38,6 +38,7 @@ npm run dev
 | `npm run typecheck` | `tsc -b` across app, API and content |
 | `npm run db:migrate` | Apply `db/schema.sql` |
 | `npm run db:seed` | Upsert every row from `content/` |
+| `node scripts/images/build.mjs` | Rebuild responsive photography and its manifest |
 
 ## Layout
 
@@ -60,6 +61,7 @@ src/
 - [Design system](docs/design-system.md)
 - [Content model](docs/content-model.md)
 - [Photography](public/images/README.md)
+- [Photo credits](public/images/CREDITS.md)
 
 ## Build phases
 

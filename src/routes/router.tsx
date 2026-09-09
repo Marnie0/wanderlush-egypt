@@ -1,24 +1,49 @@
+import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import { RootLayout } from "@/components/layout/RootLayout";
-import { HomePage } from "./HomePage";
-import { DestinationsPage } from "./DestinationsPage";
-import { DestinationDetailPage } from "./DestinationDetailPage";
-import { ExperiencesPage } from "./ExperiencesPage";
-import { ExperienceDetailPage } from "./ExperienceDetailPage";
-import { JourneysPage } from "./JourneysPage";
-import { JourneyDetailPage } from "./JourneyDetailPage";
-import { AboutPage } from "./AboutPage";
-import { FaqPage } from "./FaqPage";
-import { PrivacyPage } from "./PrivacyPage";
-import { NotFoundPage } from "./NotFoundPage";
 import { RouteError } from "./RouteError";
-import {
-  BookingConfirmationPage,
-  BookingPage,
-  ContactPage,
-  TripBuilderPage,
-  TripSummaryPage,
-} from "./StubPages";
+import { HomePage } from "./HomePage";
+
+/**
+ * The homepage is bundled with the entry chunk because it is the landing
+ * route. Everything else is split, so a first visit downloads the shell, the
+ * hero and nothing it does not need.
+ */
+const DestinationsPage = lazy(() =>
+  import("./DestinationsPage").then((m) => ({ default: m.DestinationsPage })),
+);
+const DestinationDetailPage = lazy(() =>
+  import("./DestinationDetailPage").then((m) => ({ default: m.DestinationDetailPage })),
+);
+const ExperiencesPage = lazy(() =>
+  import("./ExperiencesPage").then((m) => ({ default: m.ExperiencesPage })),
+);
+const ExperienceDetailPage = lazy(() =>
+  import("./ExperienceDetailPage").then((m) => ({ default: m.ExperienceDetailPage })),
+);
+const JourneysPage = lazy(() =>
+  import("./JourneysPage").then((m) => ({ default: m.JourneysPage })),
+);
+const JourneyDetailPage = lazy(() =>
+  import("./JourneyDetailPage").then((m) => ({ default: m.JourneyDetailPage })),
+);
+const AboutPage = lazy(() => import("./AboutPage").then((m) => ({ default: m.AboutPage })));
+const FaqPage = lazy(() => import("./FaqPage").then((m) => ({ default: m.FaqPage })));
+const PrivacyPage = lazy(() => import("./PrivacyPage").then((m) => ({ default: m.PrivacyPage })));
+const NotFoundPage = lazy(() =>
+  import("./NotFoundPage").then((m) => ({ default: m.NotFoundPage })),
+);
+const TripBuilderPage = lazy(() =>
+  import("./StubPages").then((m) => ({ default: m.TripBuilderPage })),
+);
+const TripSummaryPage = lazy(() =>
+  import("./StubPages").then((m) => ({ default: m.TripSummaryPage })),
+);
+const BookingPage = lazy(() => import("./StubPages").then((m) => ({ default: m.BookingPage })));
+const BookingConfirmationPage = lazy(() =>
+  import("./StubPages").then((m) => ({ default: m.BookingConfirmationPage })),
+);
+const ContactPage = lazy(() => import("./StubPages").then((m) => ({ default: m.ContactPage })));
 
 /** The route table from the brief, in full, from the first deployment. */
 export const router = createBrowserRouter([

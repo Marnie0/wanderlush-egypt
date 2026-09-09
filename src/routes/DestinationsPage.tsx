@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
-import { destinations } from "@content/index";
+import { m } from "framer-motion";
+import { destinations } from "@content/destinations";
 import { Container, Section } from "@/components/ui/Layout";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { DestinationCard } from "@/components/ui/Cards";
@@ -19,9 +19,9 @@ export function DestinationsPage() {
         title={t("pages.destinations.title")}
         intro={t("pages.destinations.intro")}
       />
-      <Section className="pt-0">
+      <Section className="pt-0 lg:pt-0">
         <Container>
-          <motion.div
+          <m.div
             initial="hidden"
             whileInView="visible"
             viewport={viewportOnce}
@@ -31,7 +31,7 @@ export function DestinationsPage() {
             {destinations.map((destination) => (
               <DestinationCard key={destination.slug} destination={destination} />
             ))}
-          </motion.div>
+          </m.div>
         </Container>
       </Section>
     </>

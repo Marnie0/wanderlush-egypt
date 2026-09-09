@@ -26,7 +26,9 @@ void i18n
     supportedLngs: [...supportedLanguages],
     nonExplicitSupportedLngs: true,
     detection: {
-      order: ["localStorage", "navigator", "htmlTag"],
+      // `?lng=ar` wins, so a language can be linked to and shared.
+      order: ["querystring", "localStorage", "navigator", "htmlTag"],
+      lookupQuerystring: "lng",
       lookupLocalStorage: STORAGE_KEY,
       caches: ["localStorage"],
     },

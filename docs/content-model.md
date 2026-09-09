@@ -32,10 +32,23 @@ every row. Both are idempotent.
 
 ## Images
 
-Content references `/images/...` paths. Files are dropped into `public/images/`
-using the exact names in the content modules. Until a file exists, `SmartImage`
-renders a warm gradient built from that item's `accent`, so nothing collapses
-and layout can be judged without photography.
+Photography comes from Wikimedia Commons. `scripts/images/sources.json` holds
+the curated selection: one Commons file per slot, with photographer and licence.
+
+```bash
+node scripts/images/build.mjs
+```
+
+downloads each original into `.cache/images` (gitignored), writes responsive
+WebP variants into `public/images/`, records attribution in
+`public/images/CREDITS.md`, and regenerates `src/generated/images.ts` with each
+image's intrinsic size, variant widths, blur placeholder and credit.
+
+Heroes render at 640/1024/1600/2400, cards at 480/800/1200. `SmartImage` picks
+the right file through `srcset`, paints the blur placeholder underneath, and
+falls back to a warm gradient built from the item's `accent` for anything not
+in the manifest. Credits are shown on hero images, as CC BY and CC BY-SA
+require.
 
 ## Prices
 

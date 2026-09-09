@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
-import { brand, accommodationLevels } from "@content/index";
+import { brand } from "@content/brand";
+import { accommodationLevels } from "@content/accommodation";
 import { Container, Eyebrow, Rule, Section } from "@/components/ui/Layout";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { usePageMeta } from "@/hooks/usePageMeta";
@@ -18,7 +19,7 @@ export function AboutPage() {
         intro={pick(brand.valueProposition, language)}
       />
 
-      <Section className="pt-0">
+      <Section className="pt-0 lg:pt-0">
         <Container className="grid gap-14 lg:grid-cols-[1.5fr_1fr]">
           <div className="space-y-6">
             {brand.story.map((paragraph) => (
@@ -38,7 +39,7 @@ export function AboutPage() {
         </Container>
       </Section>
 
-      <Section className="bg-sand-50 pt-0 pb-section">
+      <Section className="bg-sand-50 pt-0 pb-section lg:pt-0">
         <Container className="pt-section">
           <Eyebrow>{t("footer.company")}</Eyebrow>
           <Rule className="mt-4" />

@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
-import { experiences } from "@content/index";
+import { m } from "framer-motion";
+import { experiences } from "@content/experiences";
 import { Container, Section } from "@/components/ui/Layout";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { ExperienceCard } from "@/components/ui/Cards";
@@ -19,9 +19,9 @@ export function ExperiencesPage() {
         title={t("pages.experiences.title")}
         intro={t("pages.experiences.intro")}
       />
-      <Section className="pt-0">
+      <Section className="pt-0 lg:pt-0">
         <Container>
-          <motion.div
+          <m.div
             initial="hidden"
             whileInView="visible"
             viewport={viewportOnce}
@@ -31,7 +31,7 @@ export function ExperiencesPage() {
             {experiences.map((experience) => (
               <ExperienceCard key={experience.slug} experience={experience} />
             ))}
-          </motion.div>
+          </m.div>
         </Container>
       </Section>
     </>

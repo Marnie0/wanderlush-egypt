@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
-import { SmartImage } from "./SmartImage";
-import { pick, formatMoney } from "@/lib/format";
+import { m } from "framer-motion";
+import { SmartImage, CARD_SIZES, HALF_SIZES } from "./SmartImage";
+import { pick, formatMoney, formatDayRange, formatDuration } from "@/lib/format";
 import { riseIn } from "@/lib/motion";
 import { cn } from "@/lib/cn";
 import type { Destination, Experience, Journey } from "@content/types";
@@ -25,37 +25,43 @@ export function DestinationCard({
   const language = i18n.resolvedLanguage ?? "en";
 
   return (
-    <motion.article {...cardMotion} className={cn(cardMotion.className, className)}>
+    <m.article {...cardMotion} className={cn(cardMotion.className, className)}>
       <Link to={`/destinations/${destination.slug}`} className="block">
         <SmartImage
           src={destination.heroImage.src}
           alt={pick(destination.heroImage.alt, language)}
           accent={destination.accent}
+          sizes={CARD_SIZES}
           className={cn(
-            "w-full transition-[border-radius] duration-500",
+            "w-full",
             featured ? "aspect-[4/5] lg:aspect-[3/4]" : "aspect-[4/3]",
           )}
           imgClassName="transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
         >
           <div className="absolute inset-x-0 bottom-0 h-2/3 scrim-bottom" />
           <div className="absolute inset-x-0 bottom-0 p-6">
-            <h3 className="font-display text-3xl text-ivory">{pick(destination.name, language)}</h3>
-            <p className="mt-1 text-sm text-ivory/80">{pick(destination.tagline, language)}</p>
+            <h3 className="font-display text-3xl text-ivory on-photo">{pick(destination.name, language)}</h3>
+            <p className="mt-1 line-clamp-2 text-sm text-ivory/80">
+              {pick(destination.tagline, language)}
+            </p>
           </div>
         </SmartImage>
       </Link>
       <div className="mt-4 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 text-sm text-ink-muted">
         <span>
-          {t("common.days", { count: destination.recommendedDays.min })}
-          {"–"}
-          {t("common.days", { count: destination.recommendedDays.max })}
+          {formatDayRange(
+            destination.recommendedDays.min,
+            destination.recommendedDays.max,
+            t,
+            language,
+          )}
         </span>
         <span>
           {t("common.from")} {formatMoney(destination.dailyBudgetFrom, "USD", language)}{" "}
           <span className="text-ink-muted/80">{t("common.perPerson")}</span>
         </span>
       </div>
-    </motion.article>
+    </m.article>
   );
 }
 
@@ -68,15 +74,15 @@ export function ExperienceCard({
 }) {
   const { t, i18n } = useTranslation();
   const language = i18n.resolvedLanguage ?? "en";
-  const hours = Math.round(experience.durationMinutes / 60);
 
   return (
-    <motion.article {...cardMotion} className={cn(cardMotion.className, className)}>
+    <m.article {...cardMotion} className={cn(cardMotion.className, className)}>
       <Link to={`/experiences/${experience.slug}`} className="block">
         <SmartImage
           src={experience.heroImage.src}
           alt={pick(experience.heroImage.alt, language)}
           accent={experience.accent}
+          sizes={CARD_SIZES}
           className="aspect-[3/2] w-full"
           imgClassName="transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
         />
@@ -92,15 +98,13 @@ export function ExperienceCard({
       </Link>
       <div className="mt-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-t border-line pt-3 text-sm">
         <span className="text-ink-muted">
-          {hours >= 24
-            ? t("common.days", { count: Math.round(hours / 24) })
-            : t("common.hours", { count: hours })}
+          {formatDuration(experience.durationMinutes, t)}
         </span>
         <span className="text-charcoal-800">
           {t("common.from")} {formatMoney(experience.priceFrom, "USD", language)}
         </span>
       </div>
-    </motion.article>
+    </m.article>
   );
 }
 
@@ -109,12 +113,13 @@ export function JourneyCard({ journey, className }: { journey: Journey; classNam
   const language = i18n.resolvedLanguage ?? "en";
 
   return (
-    <motion.article {...cardMotion} className={cn(cardMotion.className, className)}>
+    <m.article {...cardMotion} className={cn(cardMotion.className, className)}>
       <Link to={`/journeys/${journey.slug}`} className="block">
         <SmartImage
           src={journey.heroImage.src}
           alt={pick(journey.heroImage.alt, language)}
           accent={journey.accent}
+          sizes={HALF_SIZES}
           className="aspect-[16/10] w-full"
           imgClassName="transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
         >
@@ -136,6 +141,6 @@ export function JourneyCard({ journey, className }: { journey: Journey; classNam
           </p>
         </div>
       </Link>
-    </motion.article>
+    </m.article>
   );
 }

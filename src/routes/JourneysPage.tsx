@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
-import { journeys } from "@content/index";
+import { m } from "framer-motion";
+import { journeys } from "@content/journeys";
 import { Container, Section } from "@/components/ui/Layout";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { JourneyCard } from "@/components/ui/Cards";
@@ -18,9 +18,9 @@ export function JourneysPage() {
         title={t("pages.journeys.title")}
         intro={t("pages.journeys.intro")}
       />
-      <Section className="pt-0">
+      <Section className="pt-0 lg:pt-0">
         <Container>
-          <motion.div
+          <m.div
             initial="hidden"
             whileInView="visible"
             viewport={viewportOnce}
@@ -30,7 +30,7 @@ export function JourneysPage() {
             {journeys.map((journey) => (
               <JourneyCard key={journey.slug} journey={journey} />
             ))}
-          </motion.div>
+          </m.div>
         </Container>
       </Section>
     </>

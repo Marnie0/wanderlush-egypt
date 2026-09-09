@@ -11,7 +11,7 @@ export function NotFoundPage() {
   return (
     <>
       <PageHeader title={t("pages.notFound.title")} intro={t("pages.notFound.intro")} />
-      <Section className="pt-0">
+      <Section className="pt-0 lg:pt-0">
         <Container>
           <ButtonLink to="/">{t("common.backHome")}</ButtonLink>
         </Container>

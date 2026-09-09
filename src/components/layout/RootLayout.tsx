@@ -1,8 +1,9 @@
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { Outlet, ScrollRestoration, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
+import { RouteFallback } from "@/components/ui/RouteFallback";
 
 /**
  * The homepage and destination guides open on full-bleed photography, so the
@@ -30,7 +31,9 @@ export function RootLayout() {
       </a>
       <Header transparent={transparent} />
       <main id="main" className={transparent ? "flex-1" : "flex-1 pt-20"}>
-        <Outlet />
+        <Suspense fallback={<RouteFallback />}>
+          <Outlet />
+        </Suspense>
       </main>
       <Footer />
       <ScrollRestoration />

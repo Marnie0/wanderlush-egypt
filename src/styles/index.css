@@ -214,30 +214,77 @@
   }
 
   /* Cinematic scrim: keeps white type legible over photography. */
+  /* Card overlays. Strong enough for white type over a bright photograph. */
   .scrim-bottom {
     background: linear-gradient(
       to top,
-      color-mix(in oklab, var(--color-charcoal-950) 82%, transparent) 0%,
-      color-mix(in oklab, var(--color-charcoal-950) 46%, transparent) 38%,
-      transparent 78%
+      color-mix(in oklab, var(--color-charcoal-950) 88%, transparent) 0%,
+      color-mix(in oklab, var(--color-charcoal-950) 58%, transparent) 34%,
+      color-mix(in oklab, var(--color-charcoal-950) 18%, transparent) 62%,
+      transparent 85%
     );
   }
 
+  /* Full-bleed heroes: dark enough for white type at the bottom, dark again
+     at the very top for the navigation, and close to clear through the
+     middle so the photograph is actually visible. */
   .scrim-full {
     background: linear-gradient(
       to top,
-      color-mix(in oklab, var(--color-charcoal-950) 74%, transparent) 0%,
-      color-mix(in oklab, var(--color-charcoal-950) 28%, transparent) 55%,
-      color-mix(in oklab, var(--color-charcoal-950) 40%, transparent) 100%
+      color-mix(in oklab, var(--color-charcoal-950) 66%, transparent) 0%,
+      color-mix(in oklab, var(--color-charcoal-950) 38%, transparent) 42%,
+      color-mix(in oklab, var(--color-charcoal-950) 14%, transparent) 68%,
+      color-mix(in oklab, var(--color-charcoal-950) 38%, transparent) 100%
     );
   }
 
-  .rule-gold {
+  /* Horizontal wash behind hero copy. Mirrors with the reading direction. */
+  .scrim-inline {
     background: linear-gradient(
-      to var(--rule-direction, right),
-      var(--color-gold-400),
-      transparent
+      to right,
+      color-mix(in oklab, var(--color-charcoal-950) 52%, transparent) 0%,
+      color-mix(in oklab, var(--color-charcoal-950) 26%, transparent) 38%,
+      transparent 66%
     );
+  }
+
+  [dir="rtl"] .scrim-inline {
+    background: linear-gradient(
+      to left,
+      color-mix(in oklab, var(--color-charcoal-950) 52%, transparent) 0%,
+      color-mix(in oklab, var(--color-charcoal-950) 26%, transparent) 38%,
+      transparent 66%
+    );
+  }
+
+  /* Arabic display type needs room to breathe: the Latin scale's tight
+     leading and negative tracking are wrong for a connected script. */
+  [dir="rtl"] .text-hero {
+    line-height: 1.28;
+    letter-spacing: normal;
+  }
+
+  [dir="rtl"] .text-display {
+    line-height: 1.3;
+    letter-spacing: normal;
+  }
+
+  [dir="rtl"] .text-title {
+    line-height: 1.4;
+  }
+
+  /* Small, warm lift for type set directly over photography. Enough to hold
+     an eyebrow against a bright sky without visible shadowing. */
+  .on-photo {
+    text-shadow: 0 1px 20px color-mix(in oklab, var(--color-charcoal-950) 55%, transparent);
+  }
+
+  .rule-gold {
+    background: linear-gradient(to right, var(--color-gold-400), transparent);
+  }
+
+  [dir="rtl"] .rule-gold {
+    background: linear-gradient(to left, var(--color-gold-400), transparent);
   }
 }
 

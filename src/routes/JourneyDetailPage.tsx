@@ -1,10 +1,12 @@
 import { Link, Navigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
-import { journeyBySlug, destinationBySlug, accommodationById } from "@content/index";
+import { m } from "framer-motion";
+import { journeyBySlug } from "@content/journeys";
+import { destinationBySlug } from "@content/destinations";
+import { accommodationById } from "@content/accommodation";
 import { Container, Eyebrow, Rule, Section } from "@/components/ui/Layout";
 import { ButtonLink } from "@/components/ui/Button";
-import { SmartImage } from "@/components/ui/SmartImage";
+import { SmartImage, FULL_SIZES } from "@/components/ui/SmartImage";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { pick, formatMoney } from "@/lib/format";
 import { riseIn, stagger, transitions } from "@/lib/motion";
@@ -32,27 +34,30 @@ export function JourneyDetailPage() {
           alt={pick(journey.heroImage.alt, language)}
           accent={journey.accent}
           priority
+          showCredit
+          sizes={FULL_SIZES}
           className="absolute inset-0 h-full w-full"
         />
         <div aria-hidden className="absolute inset-0 scrim-full" />
+        <div aria-hidden className="absolute inset-0 scrim-inline" />
         <Container className="relative pb-16">
-          <motion.div initial="hidden" animate="visible" variants={stagger(0.1, 0.1)}>
-            <motion.p variants={riseIn} className="eyebrow text-gold-300">
+          <m.div initial="hidden" animate="visible" variants={stagger(0.1, 0.1)}>
+            <m.p variants={riseIn} className="eyebrow on-photo text-gold-200">
               {t("common.days", { count: journey.days })}
-            </motion.p>
-            <motion.h1
+            </m.p>
+            <m.h1
               variants={{
                 hidden: { opacity: 0, y: 32 },
                 visible: { opacity: 1, y: 0, transition: transitions.cinematic },
               }}
-              className="mt-4 text-hero text-ivory"
+              className="mt-4 text-hero text-ivory on-photo"
             >
               {pick(journey.name, language)}
-            </motion.h1>
-            <motion.p variants={riseIn} className="mt-4 max-w-2xl text-lead text-ivory/85">
+            </m.h1>
+            <m.p variants={riseIn} className="mt-4 max-w-2xl text-lead text-ivory/90 on-photo">
               {pick(journey.tagline, language)}
-            </motion.p>
-          </motion.div>
+            </m.p>
+          </m.div>
         </Container>
       </section>
 

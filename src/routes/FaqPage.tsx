@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { faqCategories, faqs } from "@content/index";
+import { faqCategories, faqs } from "@content/faqs";
 import { Container, Eyebrow, Rule, Section } from "@/components/ui/Layout";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { ButtonLink } from "@/components/ui/Button";
@@ -18,7 +18,7 @@ export function FaqPage() {
         title={t("pages.faq.title")}
         intro={t("pages.faq.intro")}
       />
-      <Section className="pt-0">
+      <Section className="pt-0 lg:pt-0">
         <Container className="max-w-3xl">
           {faqCategories.map((category) => (
             <section key={category.id} className="mb-16 last:mb-0">
