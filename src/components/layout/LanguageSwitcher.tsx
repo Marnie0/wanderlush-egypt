@@ -29,7 +29,7 @@ export function LanguageSwitcher({
     if (searchParams.has("lng")) {
       const rest = new URLSearchParams(searchParams);
       rest.delete("lng");
-      setSearchParams(rest, { replace: true });
+      setSearchParams(rest, { replace: true, preventScrollReset: true });
     }
   };
 

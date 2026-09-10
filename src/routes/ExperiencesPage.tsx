@@ -33,7 +33,9 @@ export function ExperiencesPage() {
   usePageMeta(t("meta.experiences"), t("pages.experiences.intro"));
 
   // Filters and the sort order live in the URL, so a shortlist of criteria
-  // survives a reload and can be sent to whoever is travelling with you.
+  // survives a reload and can be sent to whoever is travelling with you. Each
+  // change is a navigation to the router, which would scroll to the top as if
+  // a new page had opened, on every keystroke; the reader stays put.
   const [searchParams, setSearchParams] = useSearchParams();
   const filters = useMemo(
     () => experienceFiltersFromParams(searchParams, destinationSlugs),
@@ -41,7 +43,7 @@ export function ExperiencesPage() {
   );
   const setFilters = useCallback(
     (next: ExperienceFilterState) =>
-      setSearchParams(experienceFiltersToParams(next), { replace: true }),
+      setSearchParams(experienceFiltersToParams(next), { replace: true, preventScrollReset: true }),
     [setSearchParams],
   );
 

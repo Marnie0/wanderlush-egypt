@@ -32,11 +32,12 @@ export function DestinationsPage() {
   usePageMeta(t("meta.destinations"), t("pages.destinations.intro"));
 
   // Filters live in the URL, so a filtered view survives a reload and can be
-  // shared as a link.
+  // shared as a link. Each change is a navigation to the router, which would
+  // scroll to the top as if a new page had opened; the reader stays put.
   const [searchParams, setSearchParams] = useSearchParams();
   const filters = useMemo(() => filtersFromParams(searchParams), [searchParams]);
   const setFilters = useCallback(
-    (next: DestinationFilterState) => setSearchParams(filtersToParams(next), { replace: true }),
+    (next: DestinationFilterState) => setSearchParams(filtersToParams(next), { replace: true, preventScrollReset: true }),
     [setSearchParams],
   );
 
