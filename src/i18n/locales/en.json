@@ -106,6 +106,21 @@
     },
     "heroAlt": "The Pyramid of Khafre on the Giza plateau under a clear sky"
   },
+  "pdf": {
+    "download": "Download as PDF",
+    "preparing": "Preparing your PDF…",
+    "failed": "The PDF could not be prepared. Check your connection and try again.",
+    "hint": "The whole trip on paper: the route, every day, the estimate and how it was worked out.",
+    "eyebrow": "Trip summary",
+    "untitled": "Your trip to Egypt",
+    "prepared": "Prepared {{date}}",
+    "page": "Page {{page}} of {{total}}",
+    "route": "The route",
+    "transfers": "Getting between places",
+    "estimate": "The estimate",
+    "notes": "Things to know",
+    "footer": "Built with the trip builder at {{host}}. An estimate, not a quotation."
+  },
   "footer": {
     "explore": "Explore",
     "plan": "Plan",

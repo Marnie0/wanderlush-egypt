@@ -82,3 +82,10 @@ aside go; the reference, the itinerary, the estimate and the details stay.
 Vite's preview has no API. `npx tsx scripts/serve-local.mjs` serves `dist/`
 with the API routes attached and `DATABASE_URL` from `.env.local`, so the
 whole journey runs against the real database from this machine.
+
+## The confirmation as a file
+
+The confirmation page offers the request as a PDF as well as the print
+stylesheet. See `docs/pdf.md`: the same document the trip summary page
+produces, with the reference on it and, in the browser that sent the
+request, the traveller's details and preferences.

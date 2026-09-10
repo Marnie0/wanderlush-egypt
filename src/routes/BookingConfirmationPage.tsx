@@ -7,6 +7,8 @@ import { Button, ButtonLink } from "@/components/ui/Button";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { riseIn, stagger, transitions } from "@/lib/motion";
 import { TripReview } from "@/components/booking/TripReview";
+import { DownloadPdfButton } from "@/components/trip/DownloadPdfButton";
+import { buildTripPdfData, tripPdfFileName } from "@/lib/trip-pdf";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { useBookingStore, type SentRequest } from "@/lib/booking-store";
 import { countryName, preferenceSummary } from "@/lib/booking-request";
@@ -94,6 +96,19 @@ export function BookingConfirmationPage() {
   const { record } = loaded;
   const sent = "traveller" in record ? record : null;
   const preferences = sent ? preferenceSummary(sent.preferences, t) : [];
+  // The same receipt as a file: the trip and the estimate for anyone with the
+  // reference, the contact details only in the browser that sent them.
+  const buildPdf = () =>
+    buildTripPdfData({
+      t,
+      language,
+      siteHost: window.location.host,
+      trip: record.trip,
+      estimate: record.estimate,
+      reference: { value: record.reference, createdAt: record.createdAt },
+      traveller: sent?.traveller ?? null,
+      preferences: sent?.preferences ?? null,
+    });
 
   return (
     <>
@@ -139,7 +154,8 @@ export function BookingConfirmationPage() {
               {t("booking.confirmation.referenceHint")}
             </m.p>
             <m.div variants={riseIn} className="mt-6 flex flex-wrap gap-3 print:hidden">
-              <Button onClick={() => window.print()}>{t("booking.confirmation.printAction")}</Button>
+              <DownloadPdfButton build={buildPdf} fileName={tripPdfFileName(record.reference)} variant="primary" className="[&>button]:w-auto" />
+              <Button variant="secondary" onClick={() => window.print()}>{t("booking.confirmation.printAction")}</Button>
               <ButtonLink to="/trip-builder" variant="secondary">
                 {t("booking.confirmation.anotherTrip")}
               </ButtonLink>

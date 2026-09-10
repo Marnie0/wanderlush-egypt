@@ -8,6 +8,7 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { ButtonLink } from "@/components/ui/Button";
 import { TripWarnings } from "@/components/trip/TripWarnings";
+import { DownloadPdfButton } from "@/components/trip/DownloadPdfButton";
 import { ConfirmNotice } from "@/components/trip/ConfirmNotice";
 import {
   ConversionNote,
@@ -22,6 +23,8 @@ import { usePageMeta } from "@/hooks/usePageMeta";
 import { unconfirmedSteps, useTripStore } from "@/lib/trip-store";
 import { estimateTrip } from "@/lib/estimate";
 import { stopsFromDays, tripWarnings } from "@/lib/trip-plan";
+import { buildTripPdfData, tripPdfFileName } from "@/lib/trip-pdf";
+import { journeyBySlug } from "@content/journeys";
 import { addDays, formatDate, formatMoney, formatNumber, pick } from "@/lib/format";
 import { cn } from "@/lib/cn";
 
@@ -57,6 +60,18 @@ export function TripSummaryPage() {
   const problems = warnings.filter((warning) => warning.severity === "warning");
   const unconfirmed = unconfirmedSteps(trip);
   const stops = stopsFromDays(trip.days);
+  // Built at the click, so the file says what the page says at that moment.
+  const buildPdf = () =>
+    buildTripPdfData({
+      t,
+      language,
+      siteHost: window.location.host,
+      trip,
+      estimate,
+      warnings,
+      unconfirmed,
+      journeyName: trip.journeySlug ? pick(journeyBySlug.get(trip.journeySlug)?.name ?? { en: "", ar: "" }, language) || null : null,
+    });
   // The next click is "Request this trip"; have its chunk ready before it comes.
   useEffect(() => {
     const warm = () => void import("./BookingPage");
@@ -112,6 +127,8 @@ export function TripSummaryPage() {
                   {t("estimate.page.request")}
                 </ButtonLink>
                 <p className="mt-2 text-center text-xs leading-relaxed text-ink-muted">{t("estimate.page.requestHint")}</p>
+                <DownloadPdfButton build={buildPdf} fileName={tripPdfFileName()} className="mt-4 border-t border-line pt-4" />
+                <p className="mt-2 text-xs leading-relaxed text-ink-muted">{t("pdf.hint")}</p>
                 <EstimateDisclaimer compact className="mt-4 border-t border-line pt-4" />
               </div>
             </aside>
