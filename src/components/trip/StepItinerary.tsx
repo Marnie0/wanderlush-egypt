@@ -27,19 +27,13 @@ import { TripWarnings } from "./TripWarnings";
 import { useTripStore } from "@/lib/trip-store";
 import { dayLoadMinutes, experienceSlugsInDays, stopsFromDays, type TripDay, type TripItem, type TripWarning } from "@/lib/trip-plan";
 import type { TripEstimate } from "@/lib/estimate";
-import { formatDate, formatDuration, formatMoney, formatNumber, pick } from "@/lib/format";
+import { addDays, formatDate, formatDuration, formatMoney, formatNumber, pick } from "@/lib/format";
 import { cn } from "@/lib/cn";
 
 type DragData =
   | { type: "day"; index: number }
   | { type: "item"; dayId: string }
   | { type: "dayDrop"; dayId: string };
-
-/** "2027-03-10" plus n days, as a local date, so it does not slip a day west of Greenwich. */
-function addDays(iso: string, days: number): Date {
-  const [year, month, day] = iso.split("-").map(Number);
-  return new Date(year, month - 1, day + days);
-}
 
 /**
  * Only containers of the active kind count: a day being dragged never lands
@@ -149,7 +143,7 @@ export function StepItinerary({ estimate, warnings }: { estimate: TripEstimate; 
       <div className="grid gap-8 lg:grid-cols-[1fr_16rem]">
         <DndContext sensors={sensors} collisionDetection={collision} accessibility={accessibility} onDragStart={onDragStart} onDragEnd={onDragEnd} onDragCancel={() => setActive(null)}>
           <SortableContext items={days.map((day) => day.id)} strategy={verticalListSortingStrategy}>
-            <ol className="space-y-4">
+            <ol className="min-w-0 space-y-4">
               {days.map((day, index) => (
                 <DayCard
                   key={day.id}
@@ -306,7 +300,7 @@ function DayCard({
           <select
             value=""
             onChange={(event) => onAdd(event.target.value)}
-            className="w-full border border-dashed border-charcoal-800/30 bg-transparent px-3 py-2 text-sm text-charcoal-700 focus:border-ember-500 focus:outline-none"
+            className="w-full max-w-full border border-dashed border-charcoal-800/30 bg-transparent px-3 py-2 text-sm text-charcoal-700 focus:border-ember-500 focus:outline-none"
           >
             <option value="">{t("builder.itinerary.addPrompt")}</option>
             {available.length > 0 && (

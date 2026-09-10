@@ -78,3 +78,4 @@ estimate, and `src/lib/transport.ts` routes between places using
 
 All figures are USD and are estimates. `formatMoney()` converts with the static
 rates in `currencies.ts`. Live foreign exchange is deliberately out of scope.
+The estimate's rules, with a worked example, are in `docs/pricing.md`.

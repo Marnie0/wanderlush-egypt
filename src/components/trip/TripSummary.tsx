@@ -2,7 +2,8 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { destinationBySlug } from "@content/destinations";
 import { Button } from "@/components/ui/Button";
-import { formatDate, formatMoney, formatNumber, pick } from "@/lib/format";
+import { CostLines, CostTotal, EstimateControls, EstimateDisclaimer } from "./CostBreakdown";
+import { formatDate, formatNumber, pick } from "@/lib/format";
 import type { TripEstimate } from "@/lib/estimate";
 import type { TripWarning } from "@/lib/trip-plan";
 import type { TripState } from "@/lib/trip-store";
@@ -11,8 +12,8 @@ import { cn } from "@/lib/cn";
 
 /**
  * The running total and the shape of the trip, always in view. On a wide
- * screen it is the sticky column beside the step; on a phone it collapses
- * to a bar along the bottom with the number that matters and the next step.
+ * screen it is the sticky column beside the step; on a phone the builder
+ * shows the number in a bar along the bottom, with this breakdown a tap away.
  */
 export function TripSummary({
   trip,
@@ -23,7 +24,7 @@ export function TripSummary({
   onReset,
   className,
 }: {
-  trip: Pick<TripState, "startDate" | "month" | "adults" | "children" | "durationDays" | "currency" | "days" | "tier">;
+  trip: Pick<TripState, "startDate" | "month" | "adults" | "children" | "durationDays" | "currency" | "days" | "tier" | "tourStyle" | "serviceIncluded" | "setPricing">;
   estimate: TripEstimate;
   warnings: TripWarning[];
   nextLabel: string | null;
@@ -36,7 +37,6 @@ export function TripSummary({
   const stops = stopsFromDays(trip.days);
   const problems = warnings.filter((w) => w.severity === "warning");
   const shownProblems = problems.slice(0, 3);
-  const money = (usd: number) => formatMoney(usd, trip.currency, language);
   const when = trip.startDate
     ? formatDate(trip.startDate, language, { day: "numeric", month: "short", year: "numeric" })
     : trip.month
@@ -99,14 +99,24 @@ export function TripSummary({
       </div>
 
       <div className="border-t border-line p-6">
-        <div className="flex items-baseline justify-between gap-4">
-          <p className="text-sm text-ink-muted">{t("builder.summary.estimate")}</p>
-          <p className="font-display text-3xl text-charcoal-900" aria-live="polite">{money(estimate.total)}</p>
-        </div>
-        <p className="mt-1 text-end text-sm text-ink-muted">
-          {t("builder.summary.perPerson", { amount: money(estimate.perPerson) })}
-        </p>
-        <p className="mt-3 text-xs leading-relaxed text-ink-muted">{t("builder.summary.estimateNote")}</p>
+        <CostLines estimate={estimate} currency={trip.currency} tier={trip.tier} />
+        <CostTotal estimate={estimate} currency={trip.currency} size="md" className="mt-3 border-t border-line pt-3" />
+        <EstimateControls
+          compact
+          idPrefix="aside"
+          tourStyle={trip.tourStyle}
+          serviceIncluded={trip.serviceIncluded}
+          currency={trip.currency}
+          onChange={trip.setPricing}
+          className="mt-5 border-t border-line pt-4"
+        />
+        <EstimateDisclaimer compact className="mt-4" />
+        <Link
+          to="/trip-summary"
+          className="mt-2 inline-block text-sm text-charcoal-800 underline decoration-charcoal-800/30 underline-offset-4 transition-colors hover:text-ember-700"
+        >
+          {t("estimate.fullLink")}
+        </Link>
         {/* The problems themselves, not a count of them: each one names the
             day and links to it, so fixing it is one click away. */}
         {problems.length > 0 && (

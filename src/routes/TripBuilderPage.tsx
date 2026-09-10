@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Container, Section } from "@/components/ui/Layout";
 import { Button } from "@/components/ui/Button";
@@ -10,11 +10,14 @@ import { StepPlaces } from "@/components/trip/StepPlaces";
 import { StepStay } from "@/components/trip/StepStay";
 import { StepExperiences } from "@/components/trip/StepExperiences";
 import { StepItinerary } from "@/components/trip/StepItinerary";
+import { CostLines, CostTotal, EstimateControls, EstimateDisclaimer } from "@/components/trip/CostBreakdown";
+import { Icon } from "@/components/ui/Icon";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { useTripStore } from "@/lib/trip-store";
 import { estimateTrip } from "@/lib/estimate";
 import { experienceSlugsInDays, tripWarnings } from "@/lib/trip-plan";
 import { formatMoney } from "@/lib/format";
+import { cn } from "@/lib/cn";
 
 function isStep(value: string | null): value is TripStep {
   return TRIP_STEPS.includes(value as TripStep);
@@ -31,6 +34,7 @@ export function TripBuilderPage() {
   usePageMeta(t("meta.tripBuilder"), t("pages.tripBuilder.intro"));
 
   const trip = useTripStore();
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const requested = searchParams.get("step");
   // Someone who already has days lands on the itinerary; a first visit starts at the beginning.
@@ -41,8 +45,16 @@ export function TripBuilderPage() {
   };
 
   const estimate = useMemo(
-    () => estimateTrip({ days: trip.days, tier: trip.tier, adults: trip.adults, children: trip.children }),
-    [trip.days, trip.tier, trip.adults, trip.children],
+    () =>
+      estimateTrip({
+        days: trip.days,
+        tier: trip.tier,
+        adults: trip.adults,
+        children: trip.children,
+        tourStyle: trip.tourStyle,
+        serviceIncluded: trip.serviceIncluded,
+      }),
+    [trip.days, trip.tier, trip.adults, trip.children, trip.tourStyle, trip.serviceIncluded],
   );
   const warnings = useMemo(
     () => tripWarnings({ days: trip.days, durationDays: trip.durationDays, month: trip.month, children: trip.children }),
@@ -87,7 +99,9 @@ export function TripBuilderPage() {
   const index = TRIP_STEPS.indexOf(step);
   const next = TRIP_STEPS[index + 1];
   const previous = TRIP_STEPS[index - 1];
-  const nextLabel = next ? t(`builder.next.${next}`) : null;
+  // After the last step comes the full estimate, on its own page.
+  const nextLabel = next ? t(`builder.next.${next}`) : t("builder.next.estimate");
+  const goNext = () => (next ? goTo(next) : navigate("/trip-summary"));
 
   const [confirmReset, setConfirmReset] = useState(false);
   const keepRef = useRef<HTMLButtonElement>(null);
@@ -123,6 +137,9 @@ export function TripBuilderPage() {
     target?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, [step]);
   const firstProblem = warnings.find((warning) => warning.severity === "warning");
+  // The phone's cost panel: closed by default, and closed again on every step change.
+  const [costOpen, setCostOpen] = useState(false);
+  useEffect(() => setCostOpen(false), [step]);
 
   return (
     <>
@@ -155,22 +172,22 @@ export function TripBuilderPage() {
                 ) : (
                   <span />
                 )}
-                {nextLabel ? (
-                  <Button onClick={() => goTo(next)}>{nextLabel}</Button>
-                ) : (
-                  <p className="text-sm text-ink-muted">{t("builder.itinerary.whatNext")}</p>
-                )}
+                <div className="flex flex-col items-end gap-2">
+                  <Button onClick={goNext}>{nextLabel}</Button>
+                  {!next && <p className="max-w-xs text-end text-xs text-ink-muted">{t("builder.itinerary.whatNext")}</p>}
+                </div>
               </div>
             </div>
 
             <aside className="hidden lg:block">
-              <div className="sticky top-28">
+              {/* Taller than a short viewport once the breakdown is in; it scrolls inside itself rather than pinning its top out of reach. */}
+              <div className="sticky top-28 max-h-[calc(100vh-8rem)] overflow-y-auto">
                 <TripSummary
                   trip={trip}
                   estimate={estimate}
                   warnings={warnings}
                   nextLabel={nextLabel}
-                  onNext={() => next && goTo(next)}
+                  onNext={goNext}
                   onReset={() => setConfirmReset(true)}
                 />
               </div>
@@ -179,8 +196,37 @@ export function TripBuilderPage() {
         </Container>
       </Section>
 
-      {/* The phone gets the number and the next step, pinned to the bottom. */}
+      {/* The phone gets the number and the next step, pinned to the bottom,
+          and the breakdown behind the number, a tap away. */}
       <div className="sticky bottom-0 z-30 border-t border-line bg-canvas/95 backdrop-blur-sm lg:hidden">
+        {costOpen && (
+          <div id="mobile-cost-panel" className="max-h-[60vh] overflow-y-auto border-b border-line bg-sand-50 px-5 py-4">
+            <CostLines estimate={estimate} currency={trip.currency} tier={trip.tier} />
+            <CostTotal estimate={estimate} currency={trip.currency} size="md" className="mt-3 border-t border-line pt-3" />
+            <EstimateControls
+              compact
+              idPrefix="mobile"
+              tourStyle={trip.tourStyle}
+              serviceIncluded={trip.serviceIncluded}
+              currency={trip.currency}
+              onChange={trip.setPricing}
+              className="mt-4 border-t border-line pt-4"
+            />
+            <EstimateDisclaimer compact className="mt-4" />
+            <div className="mt-2 flex flex-wrap items-center justify-between gap-x-6 gap-y-1">
+              <Link to="/trip-summary" className="inline-flex min-h-11 items-center text-sm text-charcoal-800 underline underline-offset-4">
+                {t("estimate.fullLink")}
+              </Link>
+              <button
+                type="button"
+                onClick={() => setConfirmReset(true)}
+                className="min-h-11 text-sm text-ink-muted underline underline-offset-4"
+              >
+                {t("builder.reset.action")}
+              </button>
+            </div>
+          </div>
+        )}
         {firstProblem && (
           <Link
             to={`/trip-builder?step=itinerary${firstProblem.dayIndex !== undefined ? `#day-${firstProblem.dayIndex + 1}` : ""}`}
@@ -190,24 +236,24 @@ export function TripBuilderPage() {
           </Link>
         )}
         <Container className="flex items-center justify-between gap-4 py-3">
-          <div>
-            <p className="text-xs text-ink-muted">{t("builder.summary.estimate")}</p>
-            <p className="font-display text-xl text-charcoal-900" aria-live="polite">{formatMoney(estimate.total, trip.currency, language)}</p>
-          </div>
-          <div className="flex items-center gap-3">
-            <button
-              type="button"
-              onClick={() => setConfirmReset(true)}
-              className="min-h-11 px-2 text-xs text-ink-muted underline underline-offset-4"
-            >
-              {t("builder.reset.action")}
-            </button>
-            {nextLabel && (
-              <Button size="sm" onClick={() => next && goTo(next)}>
-                {nextLabel}
-              </Button>
-            )}
-          </div>
+          <button
+            type="button"
+            onClick={() => setCostOpen((open) => !open)}
+            aria-expanded={costOpen}
+            aria-controls="mobile-cost-panel"
+            className="flex min-h-11 items-center gap-2 text-start"
+          >
+            <span>
+              <span className="block text-xs text-ink-muted">{t("estimate.total")}</span>
+              <span className="block font-display text-xl text-charcoal-900" aria-live="polite">{formatMoney(estimate.total, trip.currency, language)}</span>
+            </span>
+            <Icon name="chevronDown" className={cn("h-4 w-4 text-ink-muted transition-transform", costOpen && "rotate-180")} />
+            <span className="sr-only">{costOpen ? t("estimate.hideBreakdown") : t("estimate.showBreakdown")}</span>
+          </button>
+          {/* "Start over" lives in the panel: the bar keeps to the number and the next step. */}
+          <Button size="sm" onClick={goNext} className="shrink-0">
+            {nextLabel}
+          </Button>
         </Container>
       </div>
 

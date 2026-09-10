@@ -6,6 +6,7 @@ import { SmartImage } from "@/components/ui/SmartImage";
 import { Rating } from "@/components/ui/Rating";
 import { ButtonLink } from "@/components/ui/Button";
 import { useTripStore } from "@/lib/trip-store";
+import { canBePrivate, experiencePrice } from "@/lib/estimate";
 import { experienceSlugsInDays, interestScore, rankForInterests, stopsFromDays } from "@/lib/trip-plan";
 import { formatDuration, formatMoney, formatNumber, pick } from "@/lib/format";
 import { cn } from "@/lib/cn";
@@ -22,6 +23,7 @@ export function StepExperiences() {
   const interests = useTripStore((state) => state.interests);
   const children = useTripStore((state) => state.children);
   const currency = useTripStore((state) => state.currency);
+  const tourStyle = useTripStore((state) => state.tourStyle);
   const saved = useTripStore((state) => state.savedExperienceSlugs);
   const toggleExperience = useTripStore((state) => state.toggleExperience);
   const stops = stopsFromDays(days);
@@ -116,7 +118,12 @@ export function StepExperiences() {
                           <span className="text-ink-muted">
                             {formatDuration(experience.durationMinutes, t)}
                             {" · "}
-                            {t("builder.experiences.perPerson", { amount: money(experience.priceFrom) })}
+                            {t(
+                              tourStyle === "private" && canBePrivate(experience)
+                                ? "builder.experiences.perPersonPrivate"
+                                : "builder.experiences.perPerson",
+                              { amount: money(experiencePrice(experience, tourStyle)) },
+                            )}
                             {experience.minAge !== null && (
                               <>
                                 {" · "}

@@ -150,7 +150,7 @@
     "tripSummary": {
       "eyebrow": "Review",
       "title": "Your trip summary",
-      "intro": "The full itinerary, the cost breakdown and everything you have chosen, in one place."
+      "intro": "Every cost line, what it is made of, and the same figures day by day. Change the tour style, the fee or the currency and the estimate follows."
     },
     "booking": {
       "eyebrow": "Request",
@@ -414,7 +414,8 @@
       "places": "Choose places",
       "stay": "Choose where to stay",
       "experiences": "Choose experiences",
-      "itinerary": "Build the itinerary"
+      "itinerary": "Build the itinerary",
+      "estimate": "See your estimate"
     },
     "back": "Back to {{step}}",
     "interests": {
@@ -501,7 +502,8 @@
       "browseMore": "Looking for something else?",
       "browseLink": "Browse all experiences",
       "chosenCount_one": "{{count}} chosen",
-      "chosenCount_other": "{{count}} chosen"
+      "chosenCount_other": "{{count}} chosen",
+      "perPersonPrivate": "{{amount}} per person, private"
     },
     "itinerary": {
       "title": "Your day-by-day itinerary",
@@ -529,7 +531,7 @@
       "transfer": "Transfer",
       "freePlaceholder": "A late breakfast, the pool, a walk…",
       "transferPlaceholder": "Morning flight, the sleeper train…",
-      "whatNext": "Next comes the booking request, in the following phase. The estimate beside you already reflects every change.",
+      "whatNext": "The full estimate comes next: every cost line, day by day and per traveller, with the options that move it.",
       "mapCaption_one": "{{count}} place on the route",
       "mapCaption_other": "{{count}} places on the route",
       "hintTouch": "Use the arrows to reorder days and activities, and the day menu on each activity to move it. Add free time and transfers so the days read the way they will feel."
@@ -563,7 +565,7 @@
       "stay": "Stay",
       "estimate": "Estimated total",
       "perPerson": "{{amount}} per person",
-      "estimateNote": "An estimate, not a quote: a hotel night for every day but the last at the chosen level, experiences at their shared price, the quickest transfer between places, and our fee. Flights to Egypt are not included.",
+      "estimateNote": "An estimate, not a quote. Flights to Egypt are not included.",
       "adults_one": "{{count}} adult",
       "adults_other": "{{count}} adults",
       "children_one": "{{count}} child",
@@ -589,6 +591,97 @@
       "overNothing": "{{item}} is no longer over a drop area.",
       "end": "{{item}} was dropped on {{target}}.",
       "cancel": "Dragging {{item}} was cancelled."
+    }
+  },
+  "estimate": {
+    "title": "Cost breakdown",
+    "barLabel": "Share of the total by cost line",
+    "accommodation": "Accommodation",
+    "experiences": "Experiences",
+    "transport": "Transportation",
+    "serviceFee": "Planning and support",
+    "serviceFeeExcluded": "Planning and support",
+    "subtotal": "Subtotal",
+    "total": "Estimated total",
+    "perTraveller": "{{amount}} per traveller",
+    "perAdultChild": "Adults {{adult}} each, children {{child}} each",
+    "feeRate": "{{rate}} of experiences and transport",
+    "feeExcluded": "Not included",
+    "feeExcludedHint": "Left out at your choice. Tick the option to add it back.",
+    "rooms_one": "{{count}} room",
+    "rooms_other": "{{count}} rooms",
+    "experienceCount_one": "{{count}} experience",
+    "experienceCount_other": "{{count}} experiences",
+    "style": {
+      "shared": "shared departures",
+      "private": "private, where offered"
+    },
+    "sharedOnly_one": "{{count}} only runs shared",
+    "sharedOnly_other": "{{count}} only run shared",
+    "childRate": "children at half price",
+    "childFree_one": "{{count}} not open to children, so not charged for them",
+    "childFree_other": "{{count}} not open to children, so not charged for them",
+    "transferCount_one": "{{count}} transfer between places",
+    "transferCount_other": "{{count}} transfers between places",
+    "noTransfers": "One place, no transfers",
+    "showBreakdown": "Show the cost breakdown",
+    "hideBreakdown": "Hide the cost breakdown",
+    "fullLink": "See the full estimate",
+    "converted": "Converted from US dollars at an indicative rate of {{rate}}. The final quotation is in US dollars.",
+    "controls": {
+      "title": "Adjust the estimate",
+      "hint": "None of these changes the itinerary. The estimate updates as you choose.",
+      "tours": "Tours",
+      "shared": "Shared",
+      "sharedHint": "A seat on a scheduled departure with other travellers.",
+      "private": "Private",
+      "privateHint": "Your own guide and vehicle, on every experience that offers it.",
+      "fee": "Include planning and on-the-ground support ({{rate}})",
+      "feeHint": "A specialist plans, books and stays on call throughout the trip. Untick to see the bare cost.",
+      "currency": "Currency"
+    },
+    "disclaimer": {
+      "title": "About this estimate",
+      "short": "An estimate, not a quotation. Availability can change the total, flights to Egypt are not included, and a travel specialist confirms the final figure.",
+      "estimate": "This is an estimate, not a quotation, built from indicative rates.",
+      "availability": "Availability, season and room type can change the total.",
+      "flights": "Flights to and from Egypt are not included.",
+      "specialist": "A travel specialist confirms the final quotation before anything is booked."
+    },
+    "rules": {
+      "title": "How this is calculated",
+      "accommodationTitle": "Accommodation.",
+      "accommodation": "A room for every night but the last, at the chosen level's rate for that place. {{perRoom}} people to a room; a night already covered by a cruise cabin or a desert camp is not charged.",
+      "experiencesTitle": "Experiences.",
+      "experiences": "Each experience at its per-person price, for every adult on the trip.",
+      "childrenTitle": "Children.",
+      "children": "Under {{childAge}}. A child pays {{childRate}} of the adult price on each experience, and nothing on one with a minimum age they do not meet. Children count towards rooms.",
+      "privateTitle": "Private tours.",
+      "private": "Adds each experience's private supplement per person, on the experiences that offer a private option. The others stay shared.",
+      "transportTitle": "Transportation.",
+      "transport": "The quickest transfer between each pair of places on the route, per traveller. Anything without a direct link routes through Cairo.",
+      "feeTitle": "Planning and support.",
+      "fee": "{{rate}} of experiences and transport, never of accommodation. Optional: without it, you get the bare cost and no specialist.",
+      "perTravellerTitle": "Per traveller.",
+      "perTraveller": "The total divided equally. The adult and child figures split rooms, transfers and the fee equally and charge each person their own experiences.",
+      "currencyTitle": "Currency.",
+      "currency": "Everything is priced in US dollars and shown in your currency at an indicative rate, rounded to whole units."
+    },
+    "page": {
+      "emptyTitle": "Nothing to estimate yet",
+      "emptyBody": "Build a trip and the full cost breakdown appears here, updating with every change.",
+      "emptyAction": "Build your trip",
+      "tripTitle": "The trip",
+      "editTrip": "Edit the itinerary",
+      "request": "Request this trip",
+      "requestHint": "No payment. A travel specialist replies within one working day.",
+      "daysTitle": "Day by day",
+      "daysHint": "The same estimate, laid out by day. A transfer is charged on the day it happens; a hotel night on the day it begins.",
+      "day": "Day",
+      "plan": "What is on",
+      "dayTotal": "Day total",
+      "freeDay": "Free day",
+      "tableNote": "The subtotal is before planning and support. The last day carries no hotel night: it is the journey home."
     }
   }
 }

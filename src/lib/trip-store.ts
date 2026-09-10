@@ -4,6 +4,7 @@ import { destinationBySlug } from "@content/destinations";
 import { experienceBySlug } from "@content/experiences";
 import { defaultCurrency } from "@content/currencies";
 import type { AccommodationTierId, Journey, Month } from "@content/types";
+import type { TourStyle } from "./estimate";
 import {
   experienceSlugsInDays,
   makeDays,
@@ -28,6 +29,10 @@ export interface TripState {
   currency: string;
   interests: Interest[];
   tier: AccommodationTierId;
+  /** Seats on scheduled departures, or a guide and vehicle of your own where offered. */
+  tourStyle: TourStyle;
+  /** Whether the planning and support fee is part of the estimate. */
+  serviceIncluded: boolean;
   /**
    * The itinerary is the trip. Destinations, nights and experiences are all
    * read off it, so the setup steps and the editor can never disagree.
@@ -39,6 +44,7 @@ export interface TripState {
   setBasics: (basics: Partial<Pick<TripState, "startDate" | "month" | "adults" | "children" | "durationDays" | "currency">>) => void;
   toggleInterest: (interest: Interest) => void;
   setTier: (tier: AccommodationTierId) => void;
+  setPricing: (pricing: Partial<Pick<TripState, "tourStyle" | "serviceIncluded" | "currency">>) => void;
 
   addDestination: (slug: string, nights?: number) => void;
   /** Every visit to the place, wherever it sits in the route. */
@@ -80,6 +86,8 @@ const initialTrip = {
   currency: defaultCurrency,
   interests: [] as Interest[],
   tier: "comfort" as AccommodationTierId,
+  tourStyle: "shared" as TourStyle,
+  serviceIncluded: true,
   days: [] as TripDay[],
 };
 
@@ -153,6 +161,7 @@ export const useTripStore = create<TripState>()(
             : [...state.interests, interest],
         })),
       setTier: (tier) => set({ tier }),
+      setPricing: (pricing) => set(pricing),
 
       addDestination: (slug, nights) =>
         set((state) => ({
@@ -282,6 +291,8 @@ export const useTripStore = create<TripState>()(
         currency: state.currency,
         interests: state.interests,
         tier: state.tier,
+        tourStyle: state.tourStyle,
+        serviceIncluded: state.serviceIncluded,
         days: state.days,
         savedExperienceSlugs: state.savedExperienceSlugs,
       }),

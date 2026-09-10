@@ -9,6 +9,7 @@ export type IconName =
   | "language"
   | "search"
   | "arrow"
+  | "chevronDown"
   | "quote";
 
 const paths: Record<IconName, React.ReactNode> = {
@@ -56,6 +57,7 @@ const paths: Record<IconName, React.ReactNode> = {
     </>
   ),
   arrow: <path d="M4 12h15m-5-6 6 6-6 6" />,
+  chevronDown: <path d="m6 9 6 6 6-6" />,
   quote: <path d="M9 6c-3 1.5-4.5 4-4.5 7.5V18h6v-6H7c0-2 .7-3.4 2-4.2zm10 0c-3 1.5-4.5 4-4.5 7.5V18h6v-6H17c0-2 .7-3.4 2-4.2z" />,
 };
 

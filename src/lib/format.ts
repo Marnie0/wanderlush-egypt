@@ -46,6 +46,14 @@ export function formatMoney(
   }).format(value);
 }
 
+/** "8%", "42%": whole percentages, for fee rates and shares of a total. */
+export function formatPercent(fraction: number, language: string): string {
+  return new Intl.NumberFormat(localeTag[lang(language)], {
+    style: "percent",
+    maximumFractionDigits: 0,
+  }).format(fraction);
+}
+
 export function formatNumber(value: number, language: string): string {
   return new Intl.NumberFormat(localeTag[lang(language)]).format(value);
 }
@@ -66,6 +74,12 @@ export function parseIsoDate(value: string): Date {
   const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
   if (!match) return new Date(value);
   return new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
+}
+
+/** "2027-03-10" plus n days, as a local date, so it does not slip a day west of Greenwich. */
+export function addDays(iso: string, days: number): Date {
+  const [year, month, day] = iso.split("-").map(Number);
+  return new Date(year, month - 1, day + days);
 }
 
 export function formatDate(
