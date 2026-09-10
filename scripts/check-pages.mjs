@@ -20,8 +20,11 @@ const ROUTES = [
   "/about", "/contact", "/faq", "/privacy", "/no-such-page",
   // Arabic runs last: the detector caches the choice, so every route visited
   // after this one would report as RTL and hide a real direction problem.
-  "/?lng=ar", "/destinations", "/destinations/luxor", "/experiences", "/journeys", "/trip-summary",
-  "/booking?step=details", "/booking/confirmation?ref=WL-QA2X-TEST",
+  "/?lng=ar", "/destinations", "/destinations/luxor", "/experiences", "/experiences/wadi-el-rayan-and-whale-valley",
+  "/journeys", "/journeys/family-journey", "/trip-builder", "/trip-builder?step=places", "/trip-builder?step=stay",
+  "/trip-builder?step=experiences", "/trip-builder?step=itinerary", "/trip-summary", "/booking",
+  "/booking?step=details", "/booking?step=preferences", "/booking?step=send", "/booking/confirmation?ref=WL-QA2X-TEST",
+  "/about", "/contact", "/faq", "/privacy", "/no-such-page",
 ];
 
 /**

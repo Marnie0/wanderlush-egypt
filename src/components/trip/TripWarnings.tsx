@@ -20,6 +20,15 @@ export function TripWarnings({
   const { t } = useTranslation();
   const shown = warnings.filter((warning) => warning.kind !== "empty");
   if (shown.length === 0) return null;
+  // Counts of hours and days are phrased here rather than in the string, so
+  // each language applies its own plural rules to them ("9 hours", "٩ ساعات").
+  const phrase = (params: NonNullable<TripWarning["params"]> = {}) => {
+    const out: Record<string, unknown> = { ...params };
+    if (typeof params.hours === "number") out.duration = t("common.hours", { count: params.hours });
+    if (typeof params.planned === "number") out.planned = t("common.days", { count: params.planned });
+    if (typeof params.duration === "number") out.duration = t("common.days", { count: params.duration });
+    return out;
+  };
   return (
     <ul className={cn("space-y-2", className)} aria-label={t("builder.warnings.label")}>
       {shown.map((warning, index) => (
@@ -40,10 +49,10 @@ export function TripWarnings({
               to={`/trip-builder?step=itinerary${warning.dayIndex !== undefined ? `#day-${warning.dayIndex + 1}` : ""}`}
               className="underline decoration-current/40 underline-offset-4 hover:decoration-current"
             >
-              {t(`builder.warnings.${warning.kind}`, warning.params)}
+              {t(`builder.warnings.${warning.kind}`, phrase(warning.params))}
             </Link>
           ) : (
-            <span>{t(`builder.warnings.${warning.kind}`, warning.params)}</span>
+            <span>{t(`builder.warnings.${warning.kind}`, phrase(warning.params))}</span>
           )}
         </li>
       ))}

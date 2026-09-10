@@ -35,15 +35,20 @@ export function formatMoney(
   language: string,
 ): string {
   const value = convertFromUsd(amountUsd, currencyCode);
-  return new Intl.NumberFormat(localeTag[lang(language)], {
+  const currency = currencies.find((c) => c.code === currencyCode);
+  const parts = new Intl.NumberFormat(localeTag[lang(language)], {
     style: "currency",
     currency: currencyCode,
-    // "$95", not "US$95": the currency is stated in the selector, not repeated
-    // in every price on the page.
     currencyDisplay: "narrowSymbol",
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
-  }).format(value);
+  }).formatToParts(value);
+  // The locale decides where the symbol goes and which digits and separators
+  // to use; the symbol itself comes from the currency list. "$95", not
+  // "US$95", and "ج.م" rather than the "E£" that Arabic locales fall back to.
+  return parts
+    .map((part) => (part.type === "currency" && currency ? currency.symbol[lang(language)] : part.value))
+    .join("");
 }
 
 /** "8%", "42%": whole percentages, for fee rates and shares of a total. */

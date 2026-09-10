@@ -26,7 +26,7 @@ export const transportLinks: TransportLink[] = [
   {
     between: ["cairo", "alexandria"],
     options: [
-      { mode: "train", hours: 2.5, priceFrom: 15, note: { en: "First-class express from Ramses station", ar: "قطار سريع درجة أولى من محطة رمسيس" } },
+      { mode: "train", hours: 2.5, priceFrom: 15, note: { en: "First-class express from Ramses station", ar: "قطار سريع بالدرجة الأولى من محطة رمسيس" } },
       { mode: "road", hours: 3, priceFrom: 40 },
     ],
   },
@@ -35,15 +35,15 @@ export const transportLinks: TransportLink[] = [
   {
     between: ["cairo", "luxor"],
     options: [
-      { mode: "flight", hours: 2.5, priceFrom: 110, note: { en: "One hour in the air, with the airport at each end", ar: "ساعة في الجو، مع المطار في الطرفين" } },
-      { mode: "train", hours: 10, priceFrom: 90, note: { en: "Overnight sleeper, a cabin for two", ar: "قطار نوم ليلي، كابينة لشخصين" } },
+      { mode: "flight", hours: 2.5, priceFrom: 110, note: { en: "One hour in the air, with the airport at each end", ar: "ساعة في الجو، والباقي في المطارين" } },
+      { mode: "train", hours: 10, priceFrom: 90, note: { en: "Overnight sleeper, a cabin for two", ar: "قطار النوم الليلي، بكابينة لشخصين" } },
     ],
   },
   {
     between: ["cairo", "aswan"],
     options: [
       { mode: "flight", hours: 3, priceFrom: 120 },
-      { mode: "train", hours: 12, priceFrom: 95, note: { en: "Overnight sleeper, a cabin for two", ar: "قطار نوم ليلي، كابينة لشخصين" } },
+      { mode: "train", hours: 12, priceFrom: 95, note: { en: "Overnight sleeper, a cabin for two", ar: "قطار النوم الليلي، بكابينة لشخصين" } },
     ],
   },
   {
@@ -62,31 +62,31 @@ export const transportLinks: TransportLink[] = [
   },
   {
     between: ["cairo", "siwa-oasis"],
-    options: [{ mode: "road", hours: 8.5, priceFrom: 70, note: { en: "Via Marsa Matrouh; the last three hours are open desert", ar: "عبر مرسى مطروح؛ الساعات الثلاث الأخيرة صحراء مفتوحة" } }],
+    options: [{ mode: "road", hours: 8.5, priceFrom: 70, note: { en: "Via Marsa Matrouh; the last three hours are open desert", ar: "عبر مرسى مطروح، وآخر ثلاث ساعات في صحراء مفتوحة" } }],
   },
   {
     between: ["alexandria", "siwa-oasis"],
-    options: [{ mode: "road", hours: 7, priceFrom: 65, note: { en: "The coast road to Marsa Matrouh, then inland", ar: "الطريق الساحلي إلى مرسى مطروح، ثم إلى الداخل" } }],
+    options: [{ mode: "road", hours: 7, priceFrom: 65, note: { en: "The coast road to Marsa Matrouh, then inland", ar: "الطريق الساحلي حتى مرسى مطروح، ثم تتجه إلى الداخل" } }],
   },
   {
     between: ["cairo", "white-desert"],
-    options: [{ mode: "road", hours: 5, priceFrom: 60, note: { en: "To Bahariya, where the 4x4 takes over", ar: "إلى الواحات البحرية، حيث تتولى سيارة الدفع الرباعي" } }],
+    options: [{ mode: "road", hours: 5, priceFrom: 60, note: { en: "To Bahariya, where the 4x4 takes over", ar: "حتى الواحات البحرية، ومن هناك تكمل بسيارة الدفع الرباعي" } }],
   },
   {
     between: ["siwa-oasis", "white-desert"],
-    options: [{ mode: "road", hours: 7.5, priceFrom: 130, note: { en: "A permit and a 4x4 for the desert track to Bahariya", ar: "تصريح وسيارة دفع رباعي لمسار الصحراء إلى الواحات البحرية" } }],
+    options: [{ mode: "road", hours: 7.5, priceFrom: 130, note: { en: "A permit and a 4x4 for the desert track to Bahariya", ar: "يلزمك تصريح وسيارة دفع رباعي للطريق الصحراوي إلى الواحات البحرية" } }],
   },
   {
     between: ["luxor", "aswan"],
     options: [
-      { mode: "road", hours: 3.5, priceFrom: 40, note: { en: "Edfu and Kom Ombo sit on the way", ar: "إدفو وكوم أمبو على الطريق" } },
+      { mode: "road", hours: 3.5, priceFrom: 40, note: { en: "Edfu and Kom Ombo sit on the way", ar: "تمر بإدفو وكوم أمبو في الطريق" } },
       { mode: "train", hours: 3, priceFrom: 20 },
     ],
   },
   { between: ["luxor", "hurghada"], options: [{ mode: "road", hours: 4, priceFrom: 45 }] },
   {
     between: ["hurghada", "sharm-el-sheikh"],
-    options: [{ mode: "flight", hours: 3, priceFrom: 110, note: { en: "Usually connecting through Cairo", ar: "عادةً عبر القاهرة" } }],
+    options: [{ mode: "flight", hours: 3, priceFrom: 110, note: { en: "Usually connecting through Cairo", ar: "غالبًا بترانزيت في القاهرة" } }],
   },
 ];
 

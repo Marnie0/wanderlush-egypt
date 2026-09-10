@@ -220,6 +220,13 @@
     text-transform: none;
   }
 
+  /* Tracking pulls a connected script apart. Small labels that are spaced
+     and capitalised in Latin are set plain in Arabic. */
+  [dir="rtl"] .tracking-wide,
+  [dir="rtl"] .tracking-tight {
+    letter-spacing: 0;
+  }
+
   /* Cinematic scrim: keeps white type legible over photography. */
   /* Card overlays. Strong enough for white type over a bright photograph. */
   .scrim-bottom {

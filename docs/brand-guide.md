@@ -59,6 +59,6 @@ prices scannable.
 
 ## Naming
 
-- Company: Wanderlush Egypt / واندرلَش مصر
+- Company: Wanderlush Egypt / واندرلاش مصر
 - The planner is "the trip builder", never "the wizard" or "the configurator".
 - A saved plan is "your trip". A curated route we wrote is "a journey".
