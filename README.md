@@ -1,91 +1,172 @@
 # Wanderlush Egypt
 
-An immersive, bilingual travel discovery and itinerary-building experience for a
-fictional premium Egyptian travel company. Visitors explore destinations, choose
-curated experiences, build a day-by-day journey, watch a transparent estimate
-update as they go, and submit a booking request. English LTR and Arabic RTL are
-both first-class.
+A bilingual travel discovery and trip-building site for a fictional premium
+Egyptian travel company. Visitors explore ten destinations and twenty-seven
+experiences, pick places and put nights to them, arrange a day-by-day
+itinerary, watch a transparent estimate move with every change, and send a
+booking request that comes back with a reference. English and Arabic are both
+written natively, right to left included, and the whole trip can be taken
+away as a PDF.
 
-> Portfolio project. Every destination, experience, price and testimonial on the
-> site is demonstration content.
+**Live:** https://wanderlush-egypt.vercel.app · **Arabic:** https://wanderlush-egypt.vercel.app/?lng=ar
+
+> A portfolio project. Every destination, experience, price and testimonial is
+> demonstration content, and the company does not exist. Designed and built by
+> [Ibrahim Hassan](https://portfolio-ih18.vercel.app/).
+
+![The homepage: a full-bleed photograph of the Giza plateau with the search and the two ways in](docs/portfolio/home.jpg)
+
+## What it does
+
+- **Discovery.** A cinematic homepage, an interactive SVG map of Egypt that
+  drives a spotlight, guides for every destination with galleries and
+  seasons, and an experiences marketplace with search, seven filter groups
+  and four sort orders, all held in the URL so a view can be shared.
+- **Trip builder.** Five steps that are really one editable thing: dates and
+  party, places and nights (with the transfer between each pair spelled
+  out), a stay level priced for the actual route, experiences ranked by the
+  traveller's interests, and a day-by-day itinerary with drag-and-drop,
+  keyboard and arrow alternatives, free time and transfer notes.
+- **A price that explains itself.** Accommodation, experiences, transport
+  and a planning fee, per traveller and per day, in six currencies, with the
+  rules written out and warnings when a day is overloaded or a transfer is
+  too long. The number travels to its new value rather than jumping.
+- **Booking request.** A four-step form with validation that names the
+  field, a review of exactly what will be sent, a reference on
+  confirmation, and a lookup by reference that shows the trip but never the
+  personal details. Requests land in PostgreSQL through a rate-limited API.
+- **On paper.** The trip summary and the confirmation both download as a
+  real PDF: the route drawn on the map, every day, the estimate and how it
+  was worked out, in either language.
+- **Two languages, one site.** Arabic is written by hand rather than
+  translated, with its own typefaces, plural rules for six categories,
+  mirrored layout and Western digits as Egyptian readers expect. The Arabic
+  strings and content ship as their own chunk, so an English visitor never
+  downloads a word of it.
+- **Motion with a purpose.** A handful of signature sequences (the hero,
+  the map, the price, the confirmation) and nothing else, all transform and
+  opacity, all gone under `prefers-reduced-motion`.
+
+| | |
+| --- | --- |
+| ![The map on the destinations page driving the spotlight](docs/portfolio/destinations-map.jpg) | ![The itinerary editor with a week in Giza, Luxor and Aswan](docs/portfolio/trip-builder-itinerary.jpg) |
+| ![The trip summary with the estimate explained line by line](docs/portfolio/trip-summary.jpg) | ![The confirmation with its reference and the download](docs/portfolio/booking-confirmation.jpg) |
+| ![The Arabic homepage, right to left](docs/portfolio/arabic-home.jpg) | ![The Arabic itinerary editor](docs/portfolio/arabic-trip-builder.jpg) |
+
+More in [docs/portfolio](docs/portfolio), and the story of how it was built in
+the [case study](docs/case-study.md).
 
 ## Stack
 
 | Layer | Choice |
 | --- | --- |
-| Frontend | React 19 + TypeScript, Vite |
-| Styling | Tailwind CSS v4, CSS-first design tokens |
-| Motion | Framer Motion |
-| Routing | React Router |
-| i18n | i18next with English and Arabic locale files |
-| Backend | Node.js serverless functions on Vercel |
+| Frontend | React 19, TypeScript, Vite |
+| Styling | Tailwind CSS v4 with CSS-first design tokens; logical properties throughout, so right-to-left is a document attribute rather than a second stylesheet |
+| Motion | Framer Motion, the `domAnimation` feature set only |
+| Routing | React Router 7, every route split into its own chunk |
+| Localisation | i18next; English bundled, Arabic fetched on demand |
+| State | Zustand, persisted in the browser (the trip, the shortlist, the booking draft) |
+| Drag and drop | dnd-kit, with keyboard and arrow-button alternatives |
+| PDF | `@react-pdf/renderer`, fetched on the first click |
+| Backend | Node serverless functions on Vercel |
 | Database | PostgreSQL on Neon |
-| Hosting | Vercel |
+| Hosting | Vercel, deploying from `main` |
 
-## Running locally
+## How it is put together
 
-Requires Node 22 or newer.
+- `content/` is the single source of truth: every destination, experience,
+  journey, review and price, written once with `{ en, ar }` pairs. The seed
+  script and the API read it as written; a Vite plugin
+  (`scripts/vite-content-split.ts`) rewrites the pairs for the browser so
+  the Arabic side ships as a separate chunk.
+- The trip is the itinerary. Destinations, nights and experiences are all
+  read off the day list, so the setup steps and the editor can never
+  disagree, and the estimate (`src/lib/estimate.ts`) is a pure function of
+  it. `docs/pricing.md` documents the rules the page shows.
+- Filters, sort orders and builder steps live in the URL. The browser holds
+  the trip, the shortlist and the booking draft, so a refresh loses nothing
+  and nothing personal is stored anywhere until a request is sent.
+- Photography is rendered at four widths with a blur placeholder by
+  `scripts/images/build.mjs`, credited in `public/images/CREDITS.md`, and
+  served with content-hashed names and long cache lives.
+- Every page carries its title, description, canonical and alternate-language
+  addresses, a social card with its own photograph, and structured data
+  (a travel agency, tourist destinations, attractions with prices, trips).
+
+## Running it
+
+Requires Node 22 or newer and a PostgreSQL connection string.
 
 ```bash
 npm install
-cp .env.example .env.local     # then paste your Neon connection string
-npm run dev                    # the React app, with content bundled in
-npx vercel dev                 # the app plus the /api functions against Neon
+cp .env.example .env.local        # paste a Neon connection string
+npm run db:migrate && npm run db:seed
+npm run dev                       # the site; content is bundled, no database needed to browse
+npx vercel dev                    # the site plus the /api functions
 ```
 
-`npm run dev` serves the frontend only; the pages read their content from the
-bundled modules, so nothing on the site needs the database to render. The
-serverless functions under `api/` run with `vercel dev`, which reads
-`.env.local` for `DATABASE_URL`.
+The booking API can also be served locally against the production build:
 
-| Script | What it does |
+```bash
+npm run build && npx tsx scripts/serve-local.mjs 4174
+```
+
+## Quality checks
+
+| Command | What it does |
 | --- | --- |
-| `npm run dev` | Vite dev server |
-| `npm run build` | Type-check then production build |
-| `npm run preview` | Serve the production build |
-| `npm run typecheck` | `tsc -b` across app, API and content |
-| `npm run check:content` | Resolve every content slug, link and image |
-| `npm run check:pages` | Load every route at desktop and phone widths, in both languages, and report console errors, failed requests, missing headings and overflow. Needs `npm run preview` running on port 4173 and a `google-chrome` binary |
-| `npm run db:migrate` | Apply `db/schema.sql` |
-| `npm run db:seed` | Upsert every row from `content/` |
-| `node scripts/images/build.mjs` | Rebuild responsive photography, its manifest and the credits file from `scripts/images/sources.json` |
-| `npm run fonts` | Regenerate the size-adjusted font fallbacks in `src/styles/font-fallbacks.css` |
-| `npm run sitemap` | Regenerate `public/sitemap.xml` (also runs inside `npm run build`) |
-| `node scripts/screenshot.mjs <url> <out.png>` | Screenshot a page, optionally scrolled to a section |
+| `npm run typecheck` | `tsc -b` across the app, the API and the content |
+| `npm run lint` | oxlint |
+| `npm run check:content` | Resolves every content slug, link and image |
+| `node scripts/check-locales.mjs` | Key parity, Arabic plural completeness, placeholder parity, nothing left in English |
+| `npm run check:pages -- <url>` | Every route at desktop and phone widths in both languages: console errors, failed requests, missing headings, overflow, broken links |
+| `npm run check:responsive -- <url>` | Twelve routes at five widths in both languages, with screenshots |
+| `npm run e2e -- <url>` | Eighty-three end-to-end checks in headless Chrome, from search to a real booking and its lookup, against a build with the API |
+| `npx tsx --tsconfig tsconfig.app.json scripts/pdf-sample.tsx out/` | Renders a sample trip PDF in both languages |
+
+Production was reviewed with Lighthouse on every page type in both languages:
+accessibility, best practices and SEO at 100 throughout, performance in the
+seventies to high eighties on a throttled phone, with no layout shift on the
+English pages.
 
 ## Layout
 
 ```
-api/          Vercel serverless functions (Node)
+api/          Vercel serverless functions
 content/      All demo content, the single source of truth
 db/           Schema, pooled client, row mappers, seed script
-docs/         Brand guide, design system, content model
+docs/         Brand guide, design system, content model, pricing, booking,
+              localisation, PDF, case study, portfolio screenshots
 public/
   images/     Rendered photography (generated, committed) and its credits
-scripts/      Content and page checkers, image pipeline, sitemap, fonts
+  fonts/pdf/  The typefaces embedded in the PDF
+scripts/      The checks above, the image pipeline, the sitemap, the fonts,
+              the social image, the screenshots
 src/
-  components/ layout shell, homepage sections, explorer and marketplace UI
-  generated/  Image manifest written by the image pipeline (committed)
-  hooks/      page metadata, reading direction
-  i18n/       i18next setup and en/ar locale files
-  lib/        formatting, filters, stores, motion vocabulary, class merging
+  components/ layout, homepage, explorer, marketplace, trip builder, booking
+  hooks/      page metadata, reading direction, the price tween
+  i18n/       i18next setup and the two locale files
+  lib/        estimate, trip plan, filters, formatting, stores, motion, SEO
+  pdf/        the trip document and its download
   routes/     one file per route plus the router
-  styles/     design tokens, base styles and the generated font fallbacks
+  styles/     design tokens, base styles, generated font fallbacks
 ```
 
 ## Documentation
 
+- [Case study](docs/case-study.md)
 - [Brand and message guide](docs/brand-guide.md)
-- [Design system](docs/design-system.md)
+- [Design system](docs/design-system.md), including the motion system
 - [Content model](docs/content-model.md)
-- [Photography](public/images/README.md)
-- [Photo credits](public/images/CREDITS.md)
+- [How the estimate is calculated](docs/pricing.md)
+- [The booking request](docs/booking.md)
+- [English and Arabic](docs/localization.md)
+- [The trip on paper](docs/pdf.md)
+- [Photography](public/images/README.md) and [credits](public/images/CREDITS.md)
 
-## Build phases
+## Credits
 
-The project is delivered in ten phases. Phase 1 covers the brand, the design
-system, the route table, the localisation foundation, the demo content and the
-first production deployment. Later phases add the cinematic homepage, the
-destination explorer and map, the experiences marketplace, the trip builder,
-the price estimator, the booking request, the full Arabic pass, motion polish
-and final QA.
+Photography from Wikimedia Commons under the licences listed in the credits
+file. Typefaces: Fraunces, Inter, Amiri and IBM Plex Sans Arabic, all under
+the SIL Open Font License. The brief was a ten-phase project plan; the
+phases and their decisions are told in the case study.

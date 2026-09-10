@@ -43,15 +43,20 @@ function link(rel: string, extra: Record<string, string> = {}): HTMLLinkElement 
   return tag;
 }
 
-/** The address of this page in the other language, and the canonical one without any language mark. */
-function addresses() {
+/**
+ * This page's address in each language. Each version is its own canonical
+ * (the Arabic page points at the Arabic address, not at the English one),
+ * and the two are tied together by the alternate links; a canonical that
+ * crossed languages would contradict them.
+ */
+function addresses(isArabic: boolean) {
   const url = new URL(window.location.href);
   url.searchParams.delete("lng");
   url.hash = "";
-  const canonical = `${ORIGIN}${url.pathname}${url.search}`;
-  const arabic = new URL(canonical);
+  const english = `${ORIGIN}${url.pathname}${url.search}`;
+  const arabic = new URL(english);
   arabic.searchParams.set("lng", "ar");
-  return { canonical, english: canonical, arabic: arabic.toString() };
+  return { canonical: isArabic ? arabic.toString() : english, english, arabic: arabic.toString() };
 }
 
 export function usePageMeta(title?: string, description?: string, options: PageMetaOptions = {}) {
@@ -64,8 +69,8 @@ export function usePageMeta(title?: string, description?: string, options: PageM
   useEffect(() => {
     const fullTitle = title ? `${title} — ${brand}` : `${brand} — ${t("brand.tagline")}`;
     const text = description ?? t("brand.shortDescription");
-    const { canonical, english, arabic } = addresses();
     const isArabic = language.startsWith("ar");
+    const { canonical, english, arabic } = addresses(isArabic);
 
     document.title = fullTitle;
     meta("name", "description").content = text;
@@ -79,7 +84,7 @@ export function usePageMeta(title?: string, description?: string, options: PageM
     meta("property", "og:site_name").content = brand;
     meta("property", "og:title").content = title ?? brand;
     meta("property", "og:description").content = text;
-    meta("property", "og:url").content = isArabic ? arabic : canonical;
+    meta("property", "og:url").content = canonical;
     meta("property", "og:image").content = image ?? SOCIAL_IMAGE;
     meta("property", "og:image:width").content = "1200";
     meta("property", "og:image:height").content = "630";

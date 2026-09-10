@@ -75,7 +75,7 @@ export function StepBasics() {
             min={todayIso()}
             value={trip.startDate ?? ""}
             onChange={(event) => chooseDate(event.target.value)}
-            className="border border-line bg-canvas px-3 py-2 text-sm text-charcoal-900 focus:border-ember-500 focus:outline-none"
+            className="w-48 border border-line bg-canvas px-3 py-2 text-sm text-charcoal-900 focus:border-ember-500 focus:outline-none"
           />
           {trip.startDate && (
             <button

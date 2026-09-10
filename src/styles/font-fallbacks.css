@@ -16,3 +16,21 @@
   descent-override: 24.2386%;
   size-adjust: 105.2039%;
 }
+
+@font-face {
+  font-family: "IBM Plex Sans Arabic Fallback";
+  src: local('Arial'), local('ArialMT');
+  ascent-override: 107.2492%;
+  descent-override: 41.0216%;
+  line-gap-override: 0%;
+  size-adjust: 101.1663%;
+}
+
+@font-face {
+  font-family: "Amiri Fallback";
+  src: local('Times New Roman'), local('TimesNewRomanPSMT');
+  ascent-override: 112.4692%;
+  descent-override: 63.439%;
+  line-gap-override: 0%;
+  size-adjust: 99.9385%;
+}

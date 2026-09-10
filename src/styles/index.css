@@ -86,8 +86,8 @@
   /* Typography. Latin and Arabic families are swapped by direction. */
   --font-display: "Fraunces Variable", "Fraunces Variable Fallback", Georgia, serif;
   --font-body: "Inter", "Inter Fallback", ui-sans-serif, system-ui, sans-serif;
-  --font-arabic-display: "Amiri", "Times New Roman", serif;
-  --font-arabic-body: "IBM Plex Sans Arabic", ui-sans-serif, system-ui, sans-serif;
+  --font-arabic-display: "Amiri", "Amiri Fallback", "Times New Roman", serif;
+  --font-arabic-body: "IBM Plex Sans Arabic", "IBM Plex Sans Arabic Fallback", ui-sans-serif, system-ui, sans-serif;
 
   /* Fluid editorial type scale */
   --text-hero: clamp(2.75rem, 7.5vw, 6rem);

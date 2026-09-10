@@ -223,7 +223,10 @@ export function TripBuilderPage() {
       </Section>
 
       {/* The phone gets the number and the next step, pinned to the bottom,
-          and the breakdown behind the number, a tap away. */}
+          and the breakdown behind the number, a tap away. Not before there is
+          anything to price: an empty trip has no number, and a bar over the
+          first step would only cover the controls it is meant to follow. */}
+      {trip.days.length > 0 && (
       <div className="sticky bottom-0 z-30 border-t border-line bg-canvas/95 backdrop-blur-sm lg:hidden">
         {/* Always in the tree so aria-controls has something to point at; hidden when closed. */}
         <div id="mobile-cost-panel" hidden={!costOpen} className="max-h-[60vh] overflow-y-auto border-b border-line bg-sand-50 px-5 py-4">
@@ -285,6 +288,7 @@ export function TripBuilderPage() {
           </Button>
         </Container>
       </div>
+      )}
 
       {confirmReset && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-charcoal-950/60 p-4" role="dialog" aria-modal="true" aria-labelledby="reset-title">
