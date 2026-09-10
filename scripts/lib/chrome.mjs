@@ -142,5 +142,7 @@ export async function launch({ port = 9222 + Math.floor(Math.random() * 400), wi
     ws.close();
     chrome.kill();
   };
-  return { send, ev, go, until, click, key, type, fill, viewport, shot, sleep, drain, close };
+  /** The raw DevTools socket, for scripts that need to listen to events the driver does not surface. */
+  const socket = async () => ws;
+  return { send, ev, go, until, click, key, type, fill, viewport, shot, sleep, drain, close, socket };
 }

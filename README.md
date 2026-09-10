@@ -53,8 +53,9 @@ away as a PDF.
 | ![The trip summary with the estimate explained line by line](docs/portfolio/trip-summary.jpg) | ![The confirmation with its reference and the download](docs/portfolio/booking-confirmation.jpg) |
 | ![The Arabic homepage, right to left](docs/portfolio/arabic-home.jpg) | ![The Arabic itinerary editor](docs/portfolio/arabic-trip-builder.jpg) |
 
-More in [docs/portfolio](docs/portfolio), and the story of how it was built in
-the [case study](docs/case-study.md).
+More in [docs/portfolio](docs/portfolio), a seventy-second walkthrough in
+[docs/portfolio/demo.mp4](docs/portfolio/demo.mp4), and the story of how it
+was built in the [case study](docs/case-study.md).
 
 ## Stack
 
@@ -123,11 +124,15 @@ npm run build && npx tsx scripts/serve-local.mjs 4174
 | `npm run check:responsive -- <url>` | Twelve routes at five widths in both languages, with screenshots |
 | `npm run e2e -- <url>` | Eighty-three end-to-end checks in headless Chrome, from search to a real booking and its lookup, against a build with the API |
 | `npx tsx --tsconfig tsconfig.app.json scripts/pdf-sample.tsx out/` | Renders a sample trip PDF in both languages |
+| `node scripts/portfolio-shots.mjs <url>` | The portfolio screenshots |
+| `node scripts/demo-video.mjs <url>` | Records the walkthrough video (needs the API and ffmpeg) |
+| `npm run social` | Renders the social preview image and the favicon set |
 
 Production was reviewed with Lighthouse on every page type in both languages:
-accessibility, best practices and SEO at 100 throughout, performance in the
-seventies to high eighties on a throttled phone, with no layout shift on the
-English pages.
+accessibility, best practices and SEO at 100 throughout; performance between
+75 and 93 on a throttled phone, lower on the Arabic listing pages, which
+carry their own typefaces; cumulative layout shift under 0.02 on the English
+pages and under 0.1 everywhere.
 
 ## Layout
 
