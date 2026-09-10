@@ -36,9 +36,9 @@ export function Counter({
   return (
     <div className={cn("flex items-center justify-between gap-6", className)}>
       <div>
-        <label htmlFor={id} className="block text-charcoal-900">
+        <span id={`${id}-label`} className="block text-charcoal-900">
           {label}
-        </label>
+        </span>
         {hint && <p className="mt-0.5 text-sm text-ink-muted">{hint}</p>}
       </div>
       <div className="flex items-center gap-2" role="group" aria-labelledby={`${id}-label`}>
@@ -51,7 +51,7 @@ export function Counter({
         >
           <span aria-hidden>−</span>
         </button>
-        <output id={id} htmlFor={`${id}-dec ${id}-inc`} className="w-10 text-center font-display text-2xl tabular-nums text-charcoal-900">
+        <output id={id} aria-live="polite" className="w-10 text-center font-display text-2xl tabular-nums text-charcoal-900">
           {formatNumber(value, language)}
         </output>
         <button

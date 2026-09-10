@@ -8,6 +8,7 @@ import {
   TouchSensor,
   closestCenter,
   pointerWithin,
+  useDndContext,
   useDroppable,
   useSensor,
   useSensors,
@@ -34,10 +35,10 @@ type DragData =
   | { type: "item"; dayId: string }
   | { type: "dayDrop"; dayId: string };
 
+/** "2027-03-10" plus n days, as a local date, so it does not slip a day west of Greenwich. */
 function addDays(iso: string, days: number): Date {
-  const date = new Date(iso);
-  date.setDate(date.getDate() + days);
-  return date;
+  const [year, month, day] = iso.split("-").map(Number);
+  return new Date(year, month - 1, day + days);
 }
 
 /**
@@ -100,6 +101,26 @@ export function StepItinerary({ estimate, warnings }: { estimate: TripEstimate; 
 
   const route = useMemo(() => stopsFromDays(days).map((stop) => stop.destinationSlug), [days]);
 
+  // dnd-kit's spoken instructions are English by default; these follow the page language.
+  const describe = (id: UniqueIdentifier) => {
+    const day = days.find((d) => d.id === id);
+    if (day) return t("builder.dnd.day", { day: days.indexOf(day) + 1 });
+    const item = days.flatMap((d) => d.items).find((i) => i.id === id);
+    const experience = item?.experienceSlug ? experienceBySlug.get(item.experienceSlug) : undefined;
+    return experience ? pick(experience.name, language) : item?.note || t("builder.itinerary.freeTime");
+  };
+  const accessibility = {
+    screenReaderInstructions: { draggable: t("builder.dnd.instructions") },
+    announcements: {
+      onDragStart: ({ active }: { active: { id: UniqueIdentifier } }) => t("builder.dnd.start", { item: describe(active.id) }),
+      onDragOver: ({ active, over }: { active: { id: UniqueIdentifier }; over: { id: UniqueIdentifier } | null }) =>
+        over ? t("builder.dnd.over", { item: describe(active.id), target: describe(over.id) }) : t("builder.dnd.overNothing", { item: describe(active.id) }),
+      onDragEnd: ({ active, over }: { active: { id: UniqueIdentifier }; over: { id: UniqueIdentifier } | null }) =>
+        over ? t("builder.dnd.end", { item: describe(active.id), target: describe(over.id) }) : t("builder.dnd.cancel", { item: describe(active.id) }),
+      onDragCancel: ({ active }: { active: { id: UniqueIdentifier } }) => t("builder.dnd.cancel", { item: describe(active.id) }),
+    },
+  };
+
   if (days.length === 0) {
     return (
       <div className="border border-line bg-sand-50 px-6 py-14 text-center">
@@ -119,13 +140,14 @@ export function StepItinerary({ estimate, warnings }: { estimate: TripEstimate; 
     <div className="space-y-8">
       <div>
         <h2 className="font-display text-2xl text-charcoal-900">{t("builder.itinerary.title")}</h2>
-        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-muted">{t("builder.itinerary.hint")}</p>
+        <p className="mt-2 hidden max-w-2xl text-sm leading-relaxed text-ink-muted sm:block">{t("builder.itinerary.hint")}</p>
+        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-muted sm:hidden">{t("builder.itinerary.hintTouch")}</p>
       </div>
 
       <TripWarnings warnings={warnings} />
 
       <div className="grid gap-8 lg:grid-cols-[1fr_16rem]">
-        <DndContext sensors={sensors} collisionDetection={collision} onDragStart={onDragStart} onDragEnd={onDragEnd} onDragCancel={() => setActive(null)}>
+        <DndContext sensors={sensors} collisionDetection={collision} accessibility={accessibility} onDragStart={onDragStart} onDragEnd={onDragEnd} onDragCancel={() => setActive(null)}>
           <SortableContext items={days.map((day) => day.id)} strategy={verticalListSortingStrategy}>
             <ol className="space-y-4">
               {days.map((day, index) => (
@@ -201,6 +223,10 @@ function DayCard({
     id: `drop-${day.id}`,
     data: { type: "dayDrop", dayId: day.id } satisfies DragData,
   });
+  // Hovering one of this day's items should light the day up too, not only its empty space.
+  const { over } = useDndContext();
+  const overData = over?.data.current as DragData | undefined;
+  const receiving = isOver || (overData !== undefined && overData.type !== "day" && overData.dayId === day.id);
   const chosen = new Set(experienceSlugsInDays(days));
   const available = (experiencesByDestination[day.destinationSlug] ?? []).filter((e) => !chosen.has(e.slug));
   const load = dayLoadMinutes(day);
@@ -214,9 +240,10 @@ function DayCard({
   return (
     <li
       ref={setNodeRef}
+      id={`day-${index + 1}`}
       style={{ transform: CSS.Transform.toString(transform), transition }}
       className={cn(
-        "border bg-canvas",
+        "scroll-mt-28 border bg-canvas",
         hasProblem ? "border-ember-600/60" : "border-line",
         isDragging && "opacity-40",
       )}
@@ -253,16 +280,16 @@ function DayCard({
         </div>
         <p className="text-sm text-charcoal-800">{formatMoney(cost, currency, language)}</p>
         <div className="flex gap-1">
-          <button type="button" onClick={() => moveDay(index, index - 1)} disabled={index === 0} aria-label={t("builder.itinerary.dayEarlier", { day: index + 1 })} className="rounded-sm border border-charcoal-800/25 p-1.5 text-charcoal-700 hover:bg-sand-100 disabled:opacity-30">
+          <button type="button" onClick={() => moveDay(index, index - 1)} disabled={index === 0} aria-label={t("builder.itinerary.dayEarlier", { day: index + 1 })} className="rounded-sm border border-charcoal-800/25 p-2.5 text-charcoal-700 hover:bg-sand-100 disabled:opacity-30">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden><path d="m6 15 6-6 6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
           </button>
-          <button type="button" onClick={() => moveDay(index, index + 1)} disabled={index === total - 1} aria-label={t("builder.itinerary.dayLater", { day: index + 1 })} className="rounded-sm border border-charcoal-800/25 p-1.5 text-charcoal-700 hover:bg-sand-100 disabled:opacity-30">
+          <button type="button" onClick={() => moveDay(index, index + 1)} disabled={index === total - 1} aria-label={t("builder.itinerary.dayLater", { day: index + 1 })} className="rounded-sm border border-charcoal-800/25 p-2.5 text-charcoal-700 hover:bg-sand-100 disabled:opacity-30">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden><path d="m6 9 6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
           </button>
         </div>
       </div>
 
-      <div ref={setDropRef} className={cn("px-4 py-3 transition-colors", isOver && "bg-sand-100")}>
+      <div ref={setDropRef} className={cn("px-4 py-3 transition-colors", receiving && "bg-sand-100")}>
         <SortableContext items={day.items.map((item) => item.id)} strategy={verticalListSortingStrategy}>
           {day.items.length === 0 ? (
             <p className="py-2 text-sm text-ink-muted">{t("builder.itinerary.freeDay")}</p>
@@ -349,10 +376,10 @@ function ItemRow({
         }
         controls={
         <div className="flex items-center gap-1">
-          <button type="button" onClick={() => moveItem(item.id, day.id, itemIndex - 1)} disabled={itemIndex === 0} aria-label={t("builder.itinerary.itemEarlier")} className="rounded-sm p-1 text-charcoal-600 hover:bg-sand-100 disabled:opacity-30">
+          <button type="button" onClick={() => moveItem(item.id, day.id, itemIndex - 1)} disabled={itemIndex === 0} aria-label={t("builder.itinerary.itemEarlier")} className="rounded-sm p-2 text-charcoal-600 hover:bg-sand-100 disabled:opacity-30">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden><path d="m6 15 6-6 6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
           </button>
-          <button type="button" onClick={() => moveItem(item.id, day.id, itemIndex + 1)} disabled={itemIndex === day.items.length - 1} aria-label={t("builder.itinerary.itemLater")} className="rounded-sm p-1 text-charcoal-600 hover:bg-sand-100 disabled:opacity-30">
+          <button type="button" onClick={() => moveItem(item.id, day.id, itemIndex + 1)} disabled={itemIndex === day.items.length - 1} aria-label={t("builder.itinerary.itemLater")} className="rounded-sm p-2 text-charcoal-600 hover:bg-sand-100 disabled:opacity-30">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden><path d="m6 9 6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
           </button>
           <label className="ms-1">
@@ -363,7 +390,7 @@ function ItemRow({
                 const target = days[Number(event.target.value)];
                 if (target) moveItem(item.id, target.id, target.items.length);
               }}
-              className="max-w-28 border border-line bg-canvas px-1.5 py-1 text-xs text-charcoal-700 focus:border-ember-500 focus:outline-none"
+              className="max-w-40 border border-line bg-canvas px-1.5 py-1.5 text-xs text-charcoal-700 focus:border-ember-500 focus:outline-none"
             >
               {days.map((d, i) => (
                 <option key={d.id} value={i}>
@@ -372,7 +399,7 @@ function ItemRow({
               ))}
             </select>
           </label>
-          <button type="button" onClick={() => removeItem(item.id)} aria-label={t("builder.itinerary.removeItem")} className="rounded-sm p-1 text-charcoal-500 hover:bg-sand-100 hover:text-ember-700">
+          <button type="button" onClick={() => removeItem(item.id)} aria-label={t("builder.itinerary.removeItem")} className="rounded-sm p-2 text-charcoal-500 hover:bg-sand-100 hover:text-ember-700">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
           </button>
         </div>

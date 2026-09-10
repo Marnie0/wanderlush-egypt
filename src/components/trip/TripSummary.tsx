@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import { destinationBySlug } from "@content/destinations";
 import { Button } from "@/components/ui/Button";
 import { formatDate, formatMoney, formatNumber, pick } from "@/lib/format";
@@ -33,7 +34,8 @@ export function TripSummary({
   const { t, i18n } = useTranslation();
   const language = i18n.resolvedLanguage ?? "en";
   const stops = stopsFromDays(trip.days);
-  const problems = warnings.filter((w) => w.severity === "warning").length;
+  const problems = warnings.filter((w) => w.severity === "warning");
+  const shownProblems = problems.slice(0, 3);
   const money = (usd: number) => formatMoney(usd, trip.currency, language);
   const when = trip.startDate
     ? formatDate(trip.startDate, language, { day: "numeric", month: "short", year: "numeric" })
@@ -65,7 +67,7 @@ export function TripSummary({
                 trip.days.length > trip.durationDays ? "text-ember-700" : "text-charcoal-800",
               )}
             >
-              {t("builder.summary.planned", {
+              {t(trip.days.length > trip.durationDays ? "builder.summary.plannedOver" : "builder.summary.planned", {
                 planned: formatNumber(trip.days.length, language),
                 duration: formatNumber(trip.durationDays, language),
               })}
@@ -88,7 +90,7 @@ export function TripSummary({
                 >
                   <span className="text-ink-muted tabular-nums">{formatNumber(index + 1, language)}</span>
                   {destination ? pick(destination.name, language) : stop.destinationSlug}
-                  <span className="text-ink-muted">· {t("common.nights", { count: stop.nights })}</span>
+                  <span className="text-ink-muted">· {t("common.days", { count: stop.nights })}</span>
                 </li>
               );
             })}
@@ -99,16 +101,37 @@ export function TripSummary({
       <div className="border-t border-line p-6">
         <div className="flex items-baseline justify-between gap-4">
           <p className="text-sm text-ink-muted">{t("builder.summary.estimate")}</p>
-          <p className="font-display text-3xl text-charcoal-900">{money(estimate.total)}</p>
+          <p className="font-display text-3xl text-charcoal-900" aria-live="polite">{money(estimate.total)}</p>
         </div>
         <p className="mt-1 text-end text-sm text-ink-muted">
           {t("builder.summary.perPerson", { amount: money(estimate.perPerson) })}
         </p>
         <p className="mt-3 text-xs leading-relaxed text-ink-muted">{t("builder.summary.estimateNote")}</p>
-        {problems > 0 && (
-          <p className="mt-3 text-sm text-ember-700">
-            {t("builder.summary.problems", { count: problems })}
-          </p>
+        {/* The problems themselves, not a count of them: each one names the
+            day and links to it, so fixing it is one click away. */}
+        {problems.length > 0 && (
+          <div className="mt-4 border-t border-line pt-4">
+            <p className="text-sm font-medium text-ember-700" aria-live="polite">
+              {t("builder.summary.problems", { count: problems.length })}
+            </p>
+            <ul className="mt-2 space-y-2">
+              {shownProblems.map((warning, index) => (
+                <li key={`${warning.kind}-${warning.dayIndex ?? "trip"}-${index}`} className="text-sm leading-snug text-charcoal-700">
+                  <Link
+                    to={`/trip-builder?step=itinerary${warning.dayIndex !== undefined ? `#day-${warning.dayIndex + 1}` : ""}`}
+                    className="underline decoration-ember-600/40 underline-offset-4 transition-colors hover:text-ember-700"
+                  >
+                    {t(`builder.warnings.${warning.kind}`, warning.params)}
+                  </Link>
+                </li>
+              ))}
+              {problems.length > shownProblems.length && (
+                <li className="text-sm text-ink-muted">
+                  {t("builder.summary.moreProblems", { count: problems.length - shownProblems.length })}
+                </li>
+              )}
+            </ul>
+          </div>
         )}
         {nextLabel && (
           <Button className="mt-5 w-full" onClick={onNext}>

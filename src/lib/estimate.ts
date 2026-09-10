@@ -8,6 +8,21 @@ import { stopsFromDays, type TripDay } from "./trip-plan";
 export const SERVICE_FEE_RATE = 0.08;
 /** Two to a room; a lone traveller still needs a room. */
 export const GUESTS_PER_ROOM = 2;
+/** An experience this long sleeps its guests: a cruise cabin, a desert camp. */
+const OVERNIGHT_MINUTES = 20 * 60;
+
+/** A trip of n days has n - 1 hotel nights; the last day is the flight home. */
+export function nightsOf(days: readonly unknown[]): number {
+  return Math.max(0, days.length - 1);
+}
+
+/** Whether a day's own plan covers the night, so no hotel is charged for it. */
+export function dayCoversNight(day: TripDay): boolean {
+  return day.items.some((item) => {
+    const experience = item.experienceSlug ? experienceBySlug.get(item.experienceSlug) : undefined;
+    return experience !== undefined && experience.durationMinutes >= OVERNIGHT_MINUTES;
+  });
+}
 
 export interface DayEstimate {
   accommodation: number;
@@ -36,10 +51,11 @@ export interface EstimateInput {
 }
 
 /**
- * All figures USD. Every night is charged at the destination's rate for the
- * chosen tier, every experience at its shared price per traveller, and every
- * change of place at the quickest transfer. Children are charged as adults:
- * honest rather than optimistic, and the specialist can do better.
+ * All figures USD. Every night but the last is charged at the destination's
+ * rate for the chosen tier, unless that day's plan already sleeps its guests;
+ * every experience at its shared price per traveller; every change of place
+ * at the quickest transfer. Children are charged as adults: honest rather
+ * than optimistic, and the specialist can do better.
  */
 export function estimateTrip({ days, tier, adults, children }: EstimateInput): TripEstimate {
   const travellers = Math.max(1, adults + children);
@@ -53,7 +69,9 @@ export function estimateTrip({ days, tier, adults, children }: EstimateInput): T
 
   const perDay = days.map((day, index): DayEstimate => {
     const destination = destinationBySlug.get(day.destinationSlug);
-    const accommodation = (destination?.nightlyRates[tier] ?? 0) * rooms;
+    const lastDay = index === days.length - 1;
+    const accommodation =
+      lastDay || dayCoversNight(day) ? 0 : (destination?.nightlyRates[tier] ?? 0) * rooms;
     const experiences = day.items.reduce((sum, item) => {
       const experience = item.experienceSlug ? experienceBySlug.get(item.experienceSlug) : undefined;
       return sum + (experience ? experience.priceFrom * travellers : 0);

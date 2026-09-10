@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/cn";
 import { formatNumber } from "@/lib/format";
@@ -23,9 +24,17 @@ export function Stepper({
 }) {
   const { t, i18n } = useTranslation();
   const language = i18n.resolvedLanguage ?? "en";
+  const navRef = useRef<HTMLElement>(null);
+
+  // Five steps do not fit a phone; the current one must not be the one off-screen.
+  useEffect(() => {
+    navRef.current
+      ?.querySelector<HTMLElement>('[aria-current="step"]')
+      ?.scrollIntoView({ inline: "center", block: "nearest" });
+  }, [current]);
 
   return (
-    <nav aria-label={t("builder.stepsLabel")} className="overflow-x-auto">
+    <nav ref={navRef} aria-label={t("builder.stepsLabel")} className="overflow-x-auto">
       <ol className="flex min-w-max gap-2 sm:gap-4">
         {TRIP_STEPS.map((step, index) => {
           const isCurrent = step === current;

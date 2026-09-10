@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { m } from "framer-motion";
@@ -22,6 +23,11 @@ export function JourneyDetailPage() {
   const navigate = useNavigate();
   const loadJourney = useTripStore((state) => state.loadJourney);
   const hasTrip = useTripStore((state) => state.days.length > 0);
+  const [confirmReplace, setConfirmReplace] = useState(false);
+  const replaceRef = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (confirmReplace) replaceRef.current?.focus();
+  }, [confirmReplace]);
 
   usePageMeta(
     journey ? pick(journey.name, language) : undefined,
@@ -159,17 +165,40 @@ export function JourneyDetailPage() {
 
               {/* The curated route becomes the traveller's own draft: places,
                   nights, experiences and tier, all editable from there. */}
-              <Button
-                className="mt-6 w-full"
-                onClick={() => {
-                  loadJourney(journey);
-                  navigate("/trip-builder?step=itinerary");
-                }}
-              >
-                {t("journey.openInBuilder")}
-              </Button>
-              {hasTrip && (
-                <p className="mt-2 text-center text-xs text-ink-muted">{t("journey.replacesTrip")}</p>
+              {confirmReplace ? (
+                <div className="mt-6 border border-ember-600/40 bg-ember-50 p-4">
+                  <p className="text-sm leading-relaxed text-ember-800">{t("journey.replacesTrip")}</p>
+                  <div className="mt-3 flex gap-2">
+                    <Button
+                      ref={replaceRef}
+                      size="sm"
+                      className="flex-1"
+                      onClick={() => {
+                        loadJourney(journey);
+                        navigate("/trip-builder?step=itinerary");
+                      }}
+                    >
+                      {t("journey.replaceConfirm")}
+                    </Button>
+                    <Button size="sm" variant="secondary" onClick={() => setConfirmReplace(false)}>
+                      {t("builder.reset.keep")}
+                    </Button>
+                  </div>
+                </div>
+              ) : (
+                <Button
+                  className="mt-6 w-full"
+                  onClick={() => {
+                    if (hasTrip) {
+                      setConfirmReplace(true);
+                      return;
+                    }
+                    loadJourney(journey);
+                    navigate("/trip-builder?step=itinerary");
+                  }}
+                >
+                  {t("journey.openInBuilder")}
+                </Button>
               )}
             </div>
           </aside>

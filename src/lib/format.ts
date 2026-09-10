@@ -58,12 +58,22 @@ export function formatRating(value: number, language: string): string {
   }).format(value);
 }
 
+/**
+ * "2027-03-01" as a local date. `new Date("2027-03-01")` is UTC midnight,
+ * which is still the evening of 28 February for anyone west of Greenwich.
+ */
+export function parseIsoDate(value: string): Date {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
+  if (!match) return new Date(value);
+  return new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
+}
+
 export function formatDate(
   value: Date | string,
   language: string,
   options: Intl.DateTimeFormatOptions = { day: "numeric", month: "long", year: "numeric" },
 ): string {
-  const date = typeof value === "string" ? new Date(value) : value;
+  const date = typeof value === "string" ? parseIsoDate(value) : value;
   return new Intl.DateTimeFormat(localeTag[lang(language)], options).format(date);
 }
 

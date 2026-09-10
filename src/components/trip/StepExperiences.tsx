@@ -6,7 +6,7 @@ import { SmartImage } from "@/components/ui/SmartImage";
 import { Rating } from "@/components/ui/Rating";
 import { ButtonLink } from "@/components/ui/Button";
 import { useTripStore } from "@/lib/trip-store";
-import { experienceSlugsInDays, rankForInterests, stopsFromDays } from "@/lib/trip-plan";
+import { experienceSlugsInDays, interestScore, rankForInterests, stopsFromDays } from "@/lib/trip-plan";
 import { formatDuration, formatMoney, formatNumber, pick } from "@/lib/format";
 import { cn } from "@/lib/cn";
 
@@ -52,6 +52,10 @@ export function StepExperiences() {
         const destination = destinationBySlug.get(stop.destinationSlug);
         if (!destination) return null;
         const ranked = rankForInterests(experiencesByDestination[stop.destinationSlug] ?? [], interests, children > 0);
+        // The badge means "answers what you told us", so it needs a real match, not just a top rank.
+        const forYou = new Set(
+          ranked.filter((e) => interestScore(e, interests) > 0).slice(0, 2).map((e) => e.slug),
+        );
         const nights = days.filter((day) => day.destinationSlug === stop.destinationSlug).length;
         return (
           <section key={stop.destinationSlug} aria-labelledby={`exp-${stop.destinationSlug}`}>
@@ -68,9 +72,9 @@ export function StepExperiences() {
               </p>
             </div>
             <ul className="mt-4 space-y-3">
-              {ranked.map((experience, index) => {
+              {ranked.map((experience) => {
                 const active = chosen.has(experience.slug);
-                const recommended = interests.length > 0 && index < 2;
+                const recommended = forYou.has(experience.slug);
                 return (
                   <li key={experience.slug}>
                     <div

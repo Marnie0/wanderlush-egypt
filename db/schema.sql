@@ -100,9 +100,13 @@ create table if not exists journeys (
   best_season_note  jsonb not null,
   hero_image        jsonb not null,
   outline           jsonb not null default '[]',
+  stop_nights       jsonb not null default '[]',
   accent            text not null,
   updated_at        timestamptz not null default now()
 );
+
+-- Added after the first deployment; create-if-not-exists above skips it on an existing table.
+alter table journeys add column if not exists stop_nights jsonb not null default '[]';
 
 create table if not exists reviews (
   id               text primary key,

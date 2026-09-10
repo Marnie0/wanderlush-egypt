@@ -41,10 +41,16 @@ export interface TripState {
   setTier: (tier: AccommodationTierId) => void;
 
   addDestination: (slug: string, nights?: number) => void;
+  /** Every visit to the place, wherever it sits in the route. */
   removeDestination: (slug: string) => void;
   toggleDestination: (slug: string) => void;
-  setNights: (slug: string, nights: number) => void;
-  moveStop: (slug: string, direction: -1 | 1) => void;
+  /**
+   * Stops are addressed by position, because Cairo at the start and Cairo
+   * at the end of a route are two different stays with their own nights.
+   */
+  setStopNights: (stopIndex: number, nights: number) => void;
+  moveStop: (stopIndex: number, direction: -1 | 1) => void;
+  removeStop: (stopIndex: number) => void;
 
   addExperience: (slug: string, dayId?: string) => void;
   removeExperience: (slug: string) => void;
@@ -88,29 +94,38 @@ function withDestination(days: TripDay[], slug: string, nights: number): TripDay
   return [...days.slice(0, lastIndex + 1), ...fresh, ...days.slice(lastIndex + 1)];
 }
 
-/** Drops days from the end of a place's run, keeping what was planned on the rest. */
-function withFewerNights(days: TripDay[], slug: string, nights: number): TripDay[] {
-  let remaining = days.filter((day) => day.destinationSlug === slug).length - nights;
-  if (remaining <= 0) return days;
-  const result = [...days];
-  for (let i = result.length - 1; i >= 0 && remaining > 0; i--) {
-    if (result[i].destinationSlug !== slug) continue;
-    const removed = result.splice(i, 1)[0];
-    remaining -= 1;
-    // Anything planned on a removed day moves to the place's remaining days.
-    const target = pickDayFor(result, slug);
-    if (target >= 0 && removed.items.length > 0) {
-      result[target] = { ...result[target], items: [...result[target].items, ...removed.items] };
+/**
+ * Resizes one run of days. Extra days go on the end of the run; days taken
+ * away come off its end, and anything planned on them moves to the run's
+ * emptiest remaining day rather than disappearing.
+ */
+function withRunLength(days: TripDay[], stop: { destinationSlug: string; nights: number; firstDayIndex: number }, nights: number): TripDay[] {
+  const before = days.slice(0, stop.firstDayIndex);
+  let run = days.slice(stop.firstDayIndex, stop.firstDayIndex + stop.nights);
+  const after = days.slice(stop.firstDayIndex + stop.nights);
+  if (nights > run.length) {
+    run = [...run, ...makeDays(stop.destinationSlug, nights - run.length)];
+  } else {
+    while (run.length > nights) {
+      const removed = run.pop() as TripDay;
+      if (removed.items.length > 0) {
+        const target = pickDayFor(run, stop.destinationSlug);
+        run[target] = { ...run[target], items: [...run[target].items, ...removed.items] };
+      }
     }
   }
-  return result;
+  return [...before, ...run, ...after];
 }
 
 function placeExperience(days: TripDay[], slug: string, dayId?: string): TripDay[] {
   const experience = experienceBySlug.get(slug);
   if (!experience) return days;
+  // Without a chosen day, an experience already in the trip stays where it is.
+  if (!dayId && experienceSlugsInDays(days).includes(slug)) return days;
   let next = days;
   let index = dayId ? next.findIndex((day) => day.id === dayId) : -1;
+  // A day in another place is not a home for it; fall back to its own place.
+  if (index >= 0 && next[index].destinationSlug !== experience.destinationSlug) index = -1;
   if (index < 0) {
     // No day in that place yet: the place joins the trip at its shortest stay.
     if (!next.some((day) => day.destinationSlug === experience.destinationSlug)) {
@@ -150,26 +165,33 @@ export const useTripStore = create<TripState>()(
         if (days.some((day) => day.destinationSlug === slug)) removeDestination(slug);
         else addDestination(slug);
       },
-      setNights: (slug, nights) =>
+      setStopNights: (stopIndex, nights) =>
         set((state) => {
+          const stop = stopsFromDays(state.days)[stopIndex];
+          if (!stop) return {};
           const wanted = Math.max(1, Math.min(14, Math.round(nights)));
-          const current = state.days.filter((day) => day.destinationSlug === slug).length;
-          if (wanted === current) return {};
-          return {
-            days: wanted > current
-              ? withDestination(state.days, slug, wanted)
-              : withFewerNights(state.days, slug, wanted),
-          };
+          if (wanted === stop.nights) return {};
+          return { days: withRunLength(state.days, stop, wanted) };
         }),
-      moveStop: (slug, direction) =>
+      moveStop: (stopIndex, direction) =>
         set((state) => {
           const stops = stopsFromDays(state.days);
-          const index = stops.findIndex((stop) => stop.destinationSlug === slug);
-          const target = index + direction;
-          if (index < 0 || target < 0 || target >= stops.length) return {};
+          const target = stopIndex + direction;
+          if (stopIndex < 0 || stopIndex >= stops.length || target < 0 || target >= stops.length) return {};
           const blocks = stops.map((stop) => state.days.slice(stop.firstDayIndex, stop.firstDayIndex + stop.nights));
-          [blocks[index], blocks[target]] = [blocks[target], blocks[index]];
+          [blocks[stopIndex], blocks[target]] = [blocks[target], blocks[stopIndex]];
           return { days: blocks.flat() };
+        }),
+      removeStop: (stopIndex) =>
+        set((state) => {
+          const stop = stopsFromDays(state.days)[stopIndex];
+          if (!stop) return {};
+          return {
+            days: [
+              ...state.days.slice(0, stop.firstDayIndex),
+              ...state.days.slice(stop.firstDayIndex + stop.nights),
+            ],
+          };
         }),
 
       addExperience: (slug, dayId) => set((state) => ({ days: placeExperience(state.days, slug, dayId) })),
@@ -196,6 +218,7 @@ export const useTripStore = create<TripState>()(
         }),
       moveItem: (itemId, toDayId, toIndex) =>
         set((state) => {
+          if (!state.days.some((day) => day.id === toDayId)) return {};
           let moving: TripItem | undefined;
           const stripped = state.days.map((day) => {
             const found = day.items.find((item) => item.id === itemId);
@@ -238,19 +261,10 @@ export const useTripStore = create<TripState>()(
       // with the nights its outline gives them, its experiences placed, its
       // suggested tier. Everything after that is editable.
       loadJourney: (journey) => {
-        const nightsFor = new Map<string, number>();
-        for (const slug of journey.destinationSlugs) nightsFor.set(slug, 0);
-        // Share the days out in outline order, then correct the rounding.
-        const share = Math.max(1, Math.floor(journey.days / journey.destinationSlugs.length));
-        for (const slug of journey.destinationSlugs) nightsFor.set(slug, share);
-        let leftover = journey.days - share * journey.destinationSlugs.length;
-        for (const slug of journey.destinationSlugs) {
-          if (leftover <= 0) break;
-          nightsFor.set(slug, (nightsFor.get(slug) ?? 0) + 1);
-          leftover -= 1;
-        }
         let days: TripDay[] = [];
-        for (const slug of journey.destinationSlugs) days = [...days, ...makeDays(slug, nightsFor.get(slug) ?? 1)];
+        journey.destinationSlugs.forEach((slug, index) => {
+          days = [...days, ...makeDays(slug, journey.stopNights[index] ?? 1)];
+        });
         for (const slug of journey.experienceSlugs) days = placeExperience(days, slug);
         set({ days, durationDays: journey.days, tier: journey.suggestedTier });
       },

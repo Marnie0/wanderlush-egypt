@@ -27,7 +27,8 @@ export function buttonClasses(variant: Variant = "primary", size: Size = "md", c
   return cn(base, variants[variant], sizes[size], className);
 }
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+/** `ref` is an ordinary prop in React 19, so a dialog can focus its safe choice. */
+interface ButtonProps extends React.ComponentPropsWithRef<"button"> {
   variant?: Variant;
   size?: Size;
 }

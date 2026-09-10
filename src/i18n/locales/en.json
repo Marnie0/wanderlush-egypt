@@ -227,7 +227,8 @@
     "included": "Destinations",
     "suggestedTier": "Suggested accommodation",
     "openInBuilder": "Open in the trip builder",
-    "replacesTrip": "This replaces the trip you have started."
+    "replacesTrip": "This replaces the trip you have started.",
+    "replaceConfirm": "Replace it with this journey"
   },
   "faqPage": {
     "stillStuck": "Still have a question?",
@@ -453,21 +454,23 @@
     },
     "places": {
       "chooseTitle": "Where do you want to go?",
-      "chooseHint": "Pick as many as you like. Each joins the route at its shortest sensible stay; you set the nights below.",
+      "chooseHint": "Pick as many as you like. Each joins the route at its shortest sensible stay; you set the days below. The last day of the trip is the journey home.",
       "recommended": "Recommended stay: {{days}}",
       "outOfSeason": "Not at its best in the month you chose",
       "routeTitle": "Your route, in order",
       "daysExact": "That fills your trip exactly.",
-      "nights": "Nights",
-      "fewerNights": "One night fewer in {{place}}",
-      "moreNights": "One night more in {{place}}",
+      "nights": "Days",
+      "fewerNights": "One day fewer in {{place}}",
+      "moreNights": "One day more in {{place}}",
       "moveEarlier": "Move {{place}} earlier",
       "moveLater": "Move {{place}} later",
       "mapHint": "Tap a place on the map to add or remove it.",
       "daysLeft_one": "{{count}} day of your trip is still unplanned.",
       "daysLeft_other": "{{count}} days of your trip are still unplanned.",
       "daysOver_one": "This route is {{count}} day longer than your trip.",
-      "daysOver_other": "This route is {{count}} days longer than your trip."
+      "daysOver_other": "This route is {{count}} days longer than your trip.",
+      "removeStop": "Remove this stay in {{place}}",
+      "routeEmpty": "Nothing chosen yet. Pick places above, or tap them on the map."
     },
     "transport": {
       "flight": "Flight",
@@ -477,8 +480,7 @@
       "via": "via {{place}}",
       "long": "A long transfer: this takes the whole day.",
       "none": "There is no sensible way to do this transfer in one day. Add a night in Cairo between them.",
-      "hours_one": "about {{count}} hour",
-      "hours_other": "about {{count}} hours"
+      "about": "about {{duration}}"
     },
     "stay": {
       "title": "Where would you like to stay?",
@@ -527,24 +529,29 @@
       "transfer": "Transfer",
       "freePlaceholder": "A late breakfast, the pool, a walk…",
       "transferPlaceholder": "Morning flight, the sleeper train…",
-      "whatNext": "The estimate and the booking request come in the next phases.",
+      "whatNext": "Next comes the booking request, in the following phase. The estimate beside you already reflects every change.",
       "mapCaption_one": "{{count}} place on the route",
-      "mapCaption_other": "{{count}} places on the route"
+      "mapCaption_other": "{{count}} places on the route",
+      "hintTouch": "Use the arrows to reorder days and activities, and the day menu on each activity to move it. Add free time and transfers so the days read the way they will feel."
     },
     "warnings": {
       "label": "Things to check",
       "warning": "Fix",
       "note": "Note",
-      "exceedsDuration": "Your itinerary runs to {{planned}} days but the trip is {{duration}}. Drop {{extra}} night(s) or make the trip longer.",
-      "underDuration": "You have {{missing}} unplanned day(s): the itinerary is {{planned}} days of a {{duration}}-day trip.",
       "crowdedDay": "Day {{day}} is overloaded, with about {{hours}} hours of activities. Move something to another day.",
       "duplicate": "Day {{day}} repeats an experience already on day {{first}}.",
       "longTransfer": "Day {{day}} starts with a transfer of about {{hours}} hours. Keep the rest of that day free.",
       "noRoute": "There is no sensible one-day transfer into day {{day}}. Add a night in Cairo between the two places.",
       "outOfSeason": "The place you reach on day {{day}} is not at its best in the month you chose.",
       "minAge": "An experience on day {{day}} has a minimum age of {{age}}.",
-      "multiDay": "An experience on day {{day}} lasts {{span}} days; keep the days after it free.",
-      "empty": "Nothing planned yet."
+      "empty": "Nothing planned yet.",
+      "exceedsDuration_one": "Your itinerary runs to {{planned}} days but the trip is {{duration}}. Drop one night, or make the trip longer.",
+      "exceedsDuration_other": "Your itinerary runs to {{planned}} days but the trip is {{duration}}. Drop {{count}} nights, or make the trip longer.",
+      "underDuration_one": "One day of your {{duration}}-day trip is still unplanned: the itinerary covers {{planned}}.",
+      "underDuration_other": "{{count}} days of your {{duration}}-day trip are still unplanned: the itinerary covers {{planned}}.",
+      "multiDay_one": "An experience on day {{day}} lasts a full day; nothing else fits on it.",
+      "multiDay_other": "An experience on day {{day}} lasts {{count}} days; keep the days after it free.",
+      "duplicateSameDay": "Day {{day}} has the same experience twice."
     },
     "summary": {
       "title": "Your trip so far",
@@ -556,13 +563,16 @@
       "stay": "Stay",
       "estimate": "Estimated total",
       "perPerson": "{{amount}} per person",
-      "estimateNote": "An estimate, not a quote: accommodation at the chosen level, experiences at their shared price, the quickest transfer between places, and our fee. Flights to Egypt are not included.",
+      "estimateNote": "An estimate, not a quote: a hotel night for every day but the last at the chosen level, experiences at their shared price, the quickest transfer between places, and our fee. Flights to Egypt are not included.",
       "adults_one": "{{count}} adult",
       "adults_other": "{{count}} adults",
       "children_one": "{{count}} child",
       "children_other": "{{count}} children",
-      "problems_one": "{{count}} thing to fix before this can be requested",
-      "problems_other": "{{count}} things to fix before this can be requested"
+      "problems_one": "One thing to fix before this can be requested",
+      "problems_other": "{{count}} things to fix before this can be requested",
+      "moreProblems_one": "and one more on the itinerary",
+      "moreProblems_other": "and {{count}} more on the itinerary",
+      "plannedOver": "{{planned}} days planned for a {{duration}}-day trip"
     },
     "reset": {
       "action": "Start over",
@@ -570,6 +580,15 @@
       "body": "Everything you have planned is removed from this browser. Your shortlist is cleared too. Nothing has been sent to us.",
       "keep": "Keep it",
       "confirm": "Yes, clear it"
+    },
+    "dnd": {
+      "instructions": "To pick up a day or an activity, press Space or Enter while focused on its handle. Use the arrow keys to move it, Space or Enter to drop it, Escape to cancel.",
+      "day": "Day {{day}}",
+      "start": "Picked up {{item}}.",
+      "over": "{{item}} is over {{target}}.",
+      "overNothing": "{{item}} is no longer over a drop area.",
+      "end": "{{item}} was dropped on {{target}}.",
+      "cancel": "Dragging {{item}} was cancelled."
     }
   }
 }

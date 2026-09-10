@@ -99,13 +99,19 @@ export function dayLoadMinutes(day: TripDay): number {
  * Orders experiences for a traveller: the ones matching what they said they
  * care about first, then by the same weighted rating the marketplace uses.
  */
+/** How much of what the traveller said they care about this experience answers. */
+export function interestScore(experience: Experience, interests: readonly Interest[]): number {
+  let points = 0;
+  for (const interest of interests) {
+    if (INTEREST_CATEGORIES[interest].includes(experience.category)) points += 2;
+    if (INTEREST_STYLES[interest].some((style) => experience.travelStyles.includes(style))) points += 1;
+  }
+  return points;
+}
+
 export function rankForInterests(experiences: Experience[], interests: readonly Interest[], hasChildren: boolean): Experience[] {
   const score = (experience: Experience) => {
-    let points = 0;
-    for (const interest of interests) {
-      if (INTEREST_CATEGORIES[interest].includes(experience.category)) points += 2;
-      if (INTEREST_STYLES[interest].some((style) => experience.travelStyles.includes(style))) points += 1;
-    }
+    let points = interestScore(experience, interests);
     if (hasChildren && experience.familyFriendly) points += 1;
     if (hasChildren && experience.minAge !== null && experience.minAge >= 12) points -= 2;
     return points * 10 + experience.rating * Math.log10(experience.reviewCount + 10);
@@ -142,6 +148,7 @@ export type TripWarningKind =
   | "underDuration"
   | "crowdedDay"
   | "duplicate"
+  | "duplicateSameDay"
   | "longTransfer"
   | "noRoute"
   | "outOfSeason"
@@ -174,9 +181,9 @@ export function tripWarnings({ days, durationDays, month, children }: TripFacts)
   if (days.length === 0) return [{ kind: "empty", severity: "note" }];
 
   if (days.length > durationDays) {
-    warnings.push({ kind: "exceedsDuration", severity: "warning", params: { planned: days.length, duration: durationDays, extra: days.length - durationDays } });
+    warnings.push({ kind: "exceedsDuration", severity: "warning", params: { planned: days.length, duration: durationDays, count: days.length - durationDays } });
   } else if (days.length < durationDays) {
-    warnings.push({ kind: "underDuration", severity: "note", params: { planned: days.length, duration: durationDays, missing: durationDays - days.length } });
+    warnings.push({ kind: "underDuration", severity: "note", params: { planned: days.length, duration: durationDays, count: durationDays - days.length } });
   }
 
   const seen = new Map<string, number>();
@@ -191,13 +198,18 @@ export function tripWarnings({ days, durationDays, month, children }: TripFacts)
     for (const experience of experiences) {
       const first = seen.get(experience.slug);
       if (first !== undefined) {
-        warnings.push({ kind: "duplicate", severity: "warning", dayIndex: index, params: { day: index + 1, first: first + 1 } });
+        warnings.push({
+          kind: first === index ? "duplicateSameDay" : "duplicate",
+          severity: "warning",
+          dayIndex: index,
+          params: { day: index + 1, first: first + 1 },
+        });
       } else {
         seen.set(experience.slug, index);
       }
       if (experience.durationMinutes > 20 * 60) {
         const span = Math.ceil(experience.durationMinutes / (24 * 60));
-        warnings.push({ kind: "multiDay", severity: "note", dayIndex: index, params: { day: index + 1, span } });
+        warnings.push({ kind: "multiDay", severity: "note", dayIndex: index, params: { day: index + 1, count: span } });
       }
       if (children > 0 && experience.minAge !== null && experience.minAge >= 12) {
         warnings.push({ kind: "minAge", severity: "note", dayIndex: index, params: { day: index + 1, age: experience.minAge } });

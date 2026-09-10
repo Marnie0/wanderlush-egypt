@@ -12,7 +12,9 @@ const MONTHS: Month[] = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug",
 
 /** Today's date as the input's minimum, so nobody plans a trip into last year. */
 function todayIso(): string {
-  return new Date().toISOString().slice(0, 10);
+  const now = new Date();
+  const pad = (n: number) => String(n).padStart(2, "0");
+  return `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
 }
 
 /**
@@ -25,9 +27,25 @@ export function StepBasics() {
   const language = i18n.resolvedLanguage ?? "en";
   const trip = useTripStore();
 
+  // With a date set, the chips move that date to the chosen month rather
+  // than throwing the date away; without one, they toggle a month alone.
+  const chooseMonth = (month: Month) => {
+    if (trip.startDate) {
+      if (month === trip.month) return;
+      const [year, , day] = trip.startDate.split("-").map(Number);
+      const index = MONTHS.indexOf(month) + 1;
+      const safeDay = Math.min(day, 28);
+      trip.setBasics({ month, startDate: `${year}-${String(index).padStart(2, "0")}-${String(safeDay).padStart(2, "0")}` });
+      return;
+    }
+    trip.setBasics({ month: trip.month === month ? null : month });
+  };
+
   const chooseDate = (value: string) => {
     if (!value) return trip.setBasics({ startDate: null });
-    const month = MONTHS[new Date(value).getMonth()];
+    // Read the month off the string: parsing "2027-03-01" as a Date gives UTC
+    // midnight, which is still February for anyone west of Greenwich.
+    const month = MONTHS[Number(value.slice(5, 7)) - 1];
     trip.setBasics({ startDate: value, month });
   };
 
@@ -41,7 +59,7 @@ export function StepBasics() {
             <FilterToggle
               key={month}
               active={trip.month === month}
-              onClick={() => trip.setBasics({ month: trip.month === month ? null : month, startDate: null })}
+              onClick={() => chooseMonth(month)}
             >
               {t(`months.${month}`)}
             </FilterToggle>

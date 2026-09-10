@@ -134,6 +134,9 @@ for (const j of journeys) {
     if (entry.day !== index + 1) fail(j.slug, `outline day ${entry.day} is out of sequence`);
   });
   if (j.priceFrom <= 0) fail(j.slug, "price must be positive");
+  if (j.stopNights.length !== j.destinationSlugs.length) fail(j.slug, "stopNights must match destinationSlugs");
+  if (j.stopNights.reduce((sum, n) => sum + n, 0) !== j.days) fail(j.slug, "stopNights must add up to the days");
+  if (j.stopNights.some((n) => n < 1)) fail(j.slug, "every stop needs at least one night");
   if (!imageManifest[j.heroImage.src]) fail(j.slug, `missing image ${j.heroImage.src}`);
 }
 

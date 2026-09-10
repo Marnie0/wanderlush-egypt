@@ -1,5 +1,5 @@
-import { useMemo, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Container, Section } from "@/components/ui/Layout";
 import { Button } from "@/components/ui/Button";
@@ -49,8 +49,27 @@ export function TripBuilderPage() {
     [trip.days, trip.durationDays, trip.month, trip.children],
   );
 
-  const reached = new Set<TripStep>(["basics"]);
-  if (trip.days.length > 0) reached.add("places").add("stay").add("itinerary");
+  // A step counts as done once it has been seen or already holds something;
+  // "Stay" is never ticked on the strength of a default the visitor never saw.
+  const [visited, setVisited] = useState<Set<TripStep>>(() => {
+    try {
+      return new Set(JSON.parse(sessionStorage.getItem("wanderlush.visited-steps") ?? "[]") as TripStep[]);
+    } catch {
+      return new Set();
+    }
+  });
+  useEffect(() => {
+    if (visited.has(step)) return;
+    const next = new Set(visited).add(step);
+    setVisited(next);
+    try {
+      sessionStorage.setItem("wanderlush.visited-steps", JSON.stringify([...next]));
+    } catch {
+      // Storage can be unavailable; the ticks are a courtesy, not state.
+    }
+  }, [step, visited]);
+  const reached = new Set<TripStep>(visited);
+  if (trip.days.length > 0) reached.add("places").add("itinerary");
   if (experienceSlugsInDays(trip.days).length > 0) reached.add("experiences");
   reached.add(step);
 
@@ -60,11 +79,39 @@ export function TripBuilderPage() {
   const nextLabel = next ? t(`builder.next.${next}`) : null;
 
   const [confirmReset, setConfirmReset] = useState(false);
+  const keepRef = useRef<HTMLButtonElement>(null);
+  const confirmRef = useRef<HTMLButtonElement>(null);
   const reset = () => {
     trip.reset();
     setConfirmReset(false);
     goTo("basics");
   };
+  // A small dialog still owes the keyboard an Escape and a starting focus.
+  useEffect(() => {
+    if (!confirmReset) return;
+    const opener = document.activeElement as HTMLElement | null;
+    keepRef.current?.focus();
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setConfirmReset(false);
+      // Two buttons; Tab goes between them and nowhere else.
+      if (event.key === "Tab") {
+        event.preventDefault();
+        (document.activeElement === keepRef.current ? confirmRef.current : keepRef.current)?.focus();
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      opener?.focus?.();
+    };
+  }, [confirmReset]);
+  // The summary's problem links carry a day anchor; scroll to it once the step has rendered.
+  useEffect(() => {
+    if (step !== "itinerary" || !window.location.hash) return;
+    const target = document.querySelector(window.location.hash);
+    target?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [step]);
+  const firstProblem = warnings.find((warning) => warning.severity === "warning");
 
   return (
     <>
@@ -123,16 +170,24 @@ export function TripBuilderPage() {
 
       {/* The phone gets the number and the next step, pinned to the bottom. */}
       <div className="sticky bottom-0 z-30 border-t border-line bg-canvas/95 backdrop-blur-sm lg:hidden">
+        {firstProblem && (
+          <Link
+            to={`/trip-builder?step=itinerary${firstProblem.dayIndex !== undefined ? `#day-${firstProblem.dayIndex + 1}` : ""}`}
+            className="block border-b border-ember-600/30 bg-ember-50 px-5 py-2 text-xs leading-snug text-ember-800"
+          >
+            {t(`builder.warnings.${firstProblem.kind}`, firstProblem.params)}
+          </Link>
+        )}
         <Container className="flex items-center justify-between gap-4 py-3">
           <div>
             <p className="text-xs text-ink-muted">{t("builder.summary.estimate")}</p>
-            <p className="font-display text-xl text-charcoal-900">{formatMoney(estimate.total, trip.currency, language)}</p>
+            <p className="font-display text-xl text-charcoal-900" aria-live="polite">{formatMoney(estimate.total, trip.currency, language)}</p>
           </div>
           <div className="flex items-center gap-3">
             <button
               type="button"
               onClick={() => setConfirmReset(true)}
-              className="text-xs text-ink-muted underline underline-offset-4"
+              className="min-h-11 px-2 text-xs text-ink-muted underline underline-offset-4"
             >
               {t("builder.reset.action")}
             </button>
@@ -151,10 +206,10 @@ export function TripBuilderPage() {
             <h2 id="reset-title" className="font-display text-xl text-charcoal-900">{t("builder.reset.title")}</h2>
             <p className="mt-2 text-sm leading-relaxed text-charcoal-600">{t("builder.reset.body")}</p>
             <div className="mt-6 flex justify-end gap-3">
-              <Button variant="secondary" size="sm" onClick={() => setConfirmReset(false)} autoFocus>
+              <Button ref={keepRef} variant="secondary" size="sm" onClick={() => setConfirmReset(false)}>
                 {t("builder.reset.keep")}
               </Button>
-              <Button size="sm" onClick={reset}>
+              <Button ref={confirmRef} size="sm" onClick={reset}>
                 {t("builder.reset.confirm")}
               </Button>
             </div>

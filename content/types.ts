@@ -166,6 +166,8 @@ export interface Journey {
   summary: Localized;
   days: number;
   destinationSlugs: string[];
+  /** Nights at each entry of `destinationSlugs`, in order; sums to `days`. */
+  stopNights: number[];
   experienceSlugs: string[];
   travelStyles: TravelStyle[];
   suggestedTier: AccommodationTierId;

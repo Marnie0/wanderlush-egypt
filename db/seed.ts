@@ -138,8 +138,8 @@ async function seed(pool: Pool) {
         `insert into journeys
            (slug, id, name, tagline, summary, days, destination_slugs, experience_slugs,
             travel_styles, suggested_tier, price_from, best_season_note, hero_image,
-            outline, accent, updated_at)
-         values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15, now())
+            outline, stop_nights, accent, updated_at)
+         values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16, now())
          on conflict (slug) do update set
            name = excluded.name, tagline = excluded.tagline, summary = excluded.summary,
            days = excluded.days, destination_slugs = excluded.destination_slugs,
@@ -147,11 +147,11 @@ async function seed(pool: Pool) {
            travel_styles = excluded.travel_styles, suggested_tier = excluded.suggested_tier,
            price_from = excluded.price_from, best_season_note = excluded.best_season_note,
            hero_image = excluded.hero_image, outline = excluded.outline,
-           accent = excluded.accent, updated_at = now()`,
+           stop_nights = excluded.stop_nights, accent = excluded.accent, updated_at = now()`,
         [
           j.slug, j.id, j.name, j.tagline, j.summary, j.days, j.destinationSlugs,
           j.experienceSlugs, j.travelStyles, j.suggestedTier, j.priceFrom, j.bestSeasonNote,
-          j.heroImage, JSON.stringify(j.outline), j.accent,
+          j.heroImage, JSON.stringify(j.outline), JSON.stringify(j.stopNights), j.accent,
         ],
       );
     }
