@@ -68,10 +68,21 @@ export function TripBuilderPage() {
       // Storage can be unavailable; the ticks are a courtesy, not state.
     }
   }, [step, visited]);
-  const reached = new Set<TripStep>(visited);
-  if (trip.days.length > 0) reached.add("places").add("itinerary");
-  if (experienceSlugsInDays(trip.days).length > 0) reached.add("experiences");
-  reached.add(step);
+  // What "done" means for each step, and a tick only once every step before
+  // it is done too. Any step can still be opened and read at any time.
+  const problems = warnings.filter((warning) => warning.severity === "warning").length;
+  const complete: Record<TripStep, boolean> = {
+    basics: visited.has("basics"),
+    places: trip.days.length > 0,
+    stay: visited.has("stay"),
+    experiences: experienceSlugsInDays(trip.days).length > 0,
+    itinerary: visited.has("itinerary") && trip.days.length > 0 && problems === 0,
+  };
+  const reached = new Set<TripStep>();
+  for (const candidate of TRIP_STEPS) {
+    if (!complete[candidate]) break;
+    reached.add(candidate);
+  }
 
   const index = TRIP_STEPS.indexOf(step);
   const next = TRIP_STEPS[index + 1];

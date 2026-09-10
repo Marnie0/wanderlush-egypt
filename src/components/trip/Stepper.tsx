@@ -7,10 +7,10 @@ export const TRIP_STEPS = ["basics", "places", "stay", "experiences", "itinerary
 export type TripStep = (typeof TRIP_STEPS)[number];
 
 /**
- * Five steps, every one of them reachable at any time. The order is a
- * suggestion for a first pass, not a gate: someone who arrives from a
- * journey page already has an itinerary and should be able to go straight
- * to it.
+ * Five steps, every one of them reachable at any time: the order is a
+ * suggestion for a first pass, not a gate. The tick is stricter than the
+ * click, though: a step is only ticked once it and every step before it
+ * are done, so five ticks mean the trip is ready, not that it was looked at.
  */
 export function Stepper({
   current,
@@ -19,7 +19,7 @@ export function Stepper({
 }: {
   current: TripStep;
   onSelect: (step: TripStep) => void;
-  /** Steps the traveller has visited or that already hold something. */
+  /** Steps that are done, with everything before them done too. */
   reached: Set<TripStep>;
 }) {
   const { t, i18n } = useTranslation();
