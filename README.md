@@ -160,6 +160,7 @@ src/
 ## Documentation
 
 - [Case study](docs/case-study.md)
+- [Architecture](docs/architecture.md): schema, components, hosting, key flows and trip states, as diagrams
 - [Brand and message guide](docs/brand-guide.md)
 - [Design system](docs/design-system.md), including the motion system
 - [Content model](docs/content-model.md)
