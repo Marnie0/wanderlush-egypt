@@ -3,7 +3,7 @@ import { accommodationLevels } from "@content/accommodation";
 import { destinationBySlug } from "@content/destinations";
 import { useTripStore } from "@/lib/trip-store";
 import { stopsFromDays } from "@/lib/trip-plan";
-import { GUESTS_PER_ROOM, dayCoversNight, nightsOf } from "@/lib/estimate";
+import { GUESTS_PER_ROOM, coveredNights } from "@/lib/estimate";
 import { formatMoney, pick, pickList } from "@/lib/format";
 import { cn } from "@/lib/cn";
 
@@ -23,6 +23,9 @@ export function StepStay() {
   const setTier = useTripStore((state) => state.setTier);
   const stops = stopsFromDays(days);
   const rooms = Math.max(1, Math.ceil((adults + children) / GUESTS_PER_ROOM));
+  // The same nights the estimate charges: every day but the last, minus any a cruise or camp covers.
+  const covered = coveredNights(days);
+  const chargedNights = days.slice(0, -1).filter((_, index) => !covered.has(index)).length;
   const money = (usd: number) => formatMoney(usd, currency, language);
 
   return (
@@ -41,7 +44,7 @@ export function StepStay() {
           const active = level.id === tier;
           const tripNights = days
             .slice(0, -1)
-            .map((day) => (dayCoversNight(day) ? 0 : destinationBySlug.get(day.destinationSlug)?.nightlyRates[level.id] ?? 0))
+            .map((day, index) => (covered.has(index) ? 0 : destinationBySlug.get(day.destinationSlug)?.nightlyRates[level.id] ?? 0))
             .reduce((sum, rate) => sum + rate * rooms, 0);
           const rates = stops.map((stop) => destinationBySlug.get(stop.destinationSlug)?.nightlyRates[level.id] ?? 0);
           const low = Math.min(...rates);
@@ -90,7 +93,7 @@ export function StepStay() {
                         : t("builder.stay.perNight", { low: money(low), high: money(high) })}
                     </span>
                     <span className="block text-ink-muted">
-                      {t("builder.stay.forTrip", { amount: money(tripNights), count: nightsOf(days) })}
+                      {t("builder.stay.forTrip", { amount: money(tripNights), count: chargedNights })}
                     </span>
                   </>
                 ) : (

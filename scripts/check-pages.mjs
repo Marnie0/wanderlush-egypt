@@ -19,8 +19,34 @@ const ROUTES = [
   "/booking/confirmation", "/about", "/contact", "/faq", "/privacy", "/no-such-page",
   // Arabic runs last: the detector caches the choice, so every route visited
   // after this one would report as RTL and hide a real direction problem.
-  "/?lng=ar", "/destinations", "/destinations/luxor", "/experiences", "/journeys",
+  "/?lng=ar", "/destinations", "/destinations/luxor", "/experiences", "/journeys", "/trip-summary",
 ];
+
+/**
+ * The trip pages render an empty state without a trip, which would leave the
+ * cost table, the sticky aside and the day cards unchecked. This one is seeded
+ * into the browser before those routes: three places, a child, a cruise, an
+ * overloaded day, and Egyptian pounds for the widest figures.
+ */
+const SEEDED_TRIP = JSON.stringify({
+  state: {
+    startDate: "2027-03-10", month: "mar", adults: 2, children: 1, durationDays: 6, currency: "EGP",
+    interests: [], tier: "comfort", tourStyle: "private", serviceIncluded: true, savedExperienceSlugs: [],
+    days: [
+      { id: "a", destinationSlug: "cairo", items: [] },
+      { id: "b", destinationSlug: "aswan", items: [{ id: "b1", kind: "experience", experienceSlug: "nile-cruise-aswan-to-luxor" }] },
+      { id: "c", destinationSlug: "aswan", items: [] },
+      { id: "d", destinationSlug: "luxor", items: [
+        { id: "d1", kind: "experience", experienceSlug: "luxor-hot-air-balloon" },
+        { id: "d2", kind: "experience", experienceSlug: "valley-of-the-kings-private" },
+        { id: "d3", kind: "free", note: "Pool afternoon" },
+      ] },
+      { id: "e", destinationSlug: "luxor", items: [] },
+    ],
+  },
+  version: 3,
+});
+const SEEDED_ROUTES = ["/trip-builder", "/trip-summary"];
 
 const VIEWPORTS = [
   { name: "desktop", width: 1440, height: 900, mobile: false },
@@ -111,6 +137,11 @@ for (const viewport of VIEWPORTS) {
   for (const route of ROUTES) {
     consoleErrors = [];
     failedRequests = [];
+    if (SEEDED_ROUTES.some((prefix) => route.startsWith(prefix))) {
+      await send("Runtime.evaluate", {
+        expression: `localStorage.setItem("wanderlush.trip", ${JSON.stringify(SEEDED_TRIP)})`,
+      });
+    }
     await send("Page.navigate", { url: base + route });
     await sleep(3200);
 

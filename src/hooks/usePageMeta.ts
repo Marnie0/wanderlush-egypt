@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 /** The description index.html shipped with, restored on pages without their own. */
 let defaultDescription: string | undefined;
 
-export function usePageMeta(title?: string, description?: string) {
+export function usePageMeta(title?: string, description?: string, options: { noindex?: boolean } = {}) {
   const { t, i18n } = useTranslation();
   const brand = t("brand.name");
 
@@ -23,5 +23,17 @@ export function usePageMeta(title?: string, description?: string) {
     defaultDescription ??= tag.content;
     // Otherwise the previous page's description would travel with the visitor.
     tag.content = description ?? defaultDescription;
-  }, [title, description, brand, t, i18n.resolvedLanguage]);
+    // A page that only shows the visitor's own trip has nothing for a search engine.
+    let robots = document.querySelector<HTMLMetaElement>('meta[name="robots"]');
+    if (options.noindex) {
+      if (!robots) {
+        robots = document.createElement("meta");
+        robots.name = "robots";
+        document.head.appendChild(robots);
+      }
+      robots.content = "noindex";
+    } else {
+      robots?.remove();
+    }
+  }, [title, description, brand, t, i18n.resolvedLanguage, options.noindex]);
 }

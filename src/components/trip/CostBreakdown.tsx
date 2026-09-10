@@ -1,7 +1,15 @@
 import { useTranslation } from "react-i18next";
 import { currencies } from "@content/currencies";
 import type { AccommodationTierId } from "@content/types";
-import { SERVICE_FEE_RATE, TOUR_STYLES, type TourStyle, type TripEstimate } from "@/lib/estimate";
+import {
+  CHILD_MAX_AGE,
+  CHILD_RATE,
+  GUESTS_PER_ROOM,
+  SERVICE_FEE_RATE,
+  TOUR_STYLES,
+  type TourStyle,
+  type TripEstimate,
+} from "@/lib/estimate";
 import { formatMoney, formatNumber, formatPercent, pick } from "@/lib/format";
 import { cn } from "@/lib/cn";
 
@@ -142,7 +150,7 @@ export function CostLines({
   );
 }
 
-/** Total and what it means for each person. `aria-live` because it changes under the reader's hands. */
+/** Total and what it means for each person. The figure is live: it changes under the reader's hands. */
 export function CostTotal({
   estimate,
   currency,
@@ -158,10 +166,13 @@ export function CostTotal({
   const language = i18n.resolvedLanguage ?? "en";
   const money = (usd: number) => formatMoney(usd, currency, language);
   return (
-    <div className={className} aria-live="polite">
+    <div className={className}>
       <div className="flex items-baseline justify-between gap-4">
         <p className="text-sm font-medium text-charcoal-900">{t("estimate.total")}</p>
-        <p className={cn("font-display text-charcoal-900", size === "lg" ? "text-3xl" : "text-2xl")}>{money(estimate.total)}</p>
+        {/* Only the figure is announced, once per change, not the three lines around it. */}
+        <p className={cn("font-display text-charcoal-900", size === "lg" ? "text-3xl" : "text-2xl")} aria-live="polite" aria-atomic="true">
+          {money(estimate.total)}
+        </p>
       </div>
       <p className="mt-1 text-end text-sm text-ink-muted">{t("estimate.perTraveller", { amount: money(estimate.perPerson) })}</p>
       {estimate.children > 0 && (
@@ -200,33 +211,39 @@ export function EstimateControls({
   const rate = formatPercent(SERVICE_FEE_RATE, language);
   return (
     <div className={cn("space-y-4", className)}>
+      {/* Native radios, visually hidden: arrow keys move between the two, and
+          the card around each one shows which is chosen. */}
       <fieldset>
         <legend className={cn("text-charcoal-900", compact ? "text-sm" : "font-medium")}>{t("estimate.controls.tours")}</legend>
-        <div className={cn("mt-2 grid grid-cols-2 gap-2", !compact && "sm:max-w-md")} role="radiogroup" aria-label={t("estimate.controls.tours")}>
+        <div className={cn("mt-2 grid grid-cols-2 gap-2", !compact && "sm:max-w-md")}>
           {TOUR_STYLES.map((style) => {
             const active = style === tourStyle;
             return (
-              <button
+              <label
                 key={style}
-                type="button"
-                role="radio"
-                aria-checked={active}
-                onClick={() => onChange({ tourStyle: style })}
                 className={cn(
-                  "rounded-sm border px-3 text-start transition-colors",
+                  "cursor-pointer rounded-sm border px-3 text-start transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ember-500 has-[:focus-visible]:ring-offset-2",
                   compact ? "py-2" : "py-3",
                   active
                     ? "border-charcoal-800 bg-charcoal-800 text-ivory"
                     : "border-line text-charcoal-700 hover:border-charcoal-800/50 hover:bg-sand-100",
                 )}
               >
+                <input
+                  type="radio"
+                  name={`${idPrefix}-tours`}
+                  value={style}
+                  checked={active}
+                  onChange={() => onChange({ tourStyle: style })}
+                  className="sr-only"
+                />
                 <span className="block text-sm font-medium">{t(`estimate.controls.${style}`)}</span>
                 {!compact && (
                   <span className={cn("mt-0.5 block text-xs leading-snug", active ? "text-ivory/80" : "text-ink-muted")}>
                     {t(`estimate.controls.${style}Hint`)}
                   </span>
                 )}
-              </button>
+              </label>
             );
           })}
         </div>
@@ -308,9 +325,9 @@ export function EstimateRules({ className }: { className?: string }) {
   const language = i18n.resolvedLanguage ?? "en";
   const params = {
     rate: formatPercent(SERVICE_FEE_RATE, language),
-    childRate: formatPercent(0.5, language),
-    childAge: formatNumber(12, language),
-    perRoom: formatNumber(2, language),
+    childRate: formatPercent(CHILD_RATE, language),
+    childAge: formatNumber(CHILD_MAX_AGE + 1, language),
+    perRoom: formatNumber(GUESTS_PER_ROOM, language),
   };
   return (
     <div className={className}>

@@ -56,7 +56,7 @@ export function TripSummary({
             <dt className="text-ink-muted">{t("builder.summary.travellers")}</dt>
             <dd className="text-end text-charcoal-800">
               {t("builder.summary.adults", { count: trip.adults })}
-              {trip.children > 0 && `, ${t("builder.summary.children", { count: trip.children })}`}
+              {trip.children > 0 && `${t("common.listSeparator")}${t("builder.summary.children", { count: trip.children })}`}
             </dd>
           </div>
           <div className="flex justify-between gap-4">

@@ -23,17 +23,30 @@ const OVERNIGHT_MINUTES = 20 * 60;
 export type TourStyle = "shared" | "private";
 export const TOUR_STYLES: TourStyle[] = ["shared", "private"];
 
-/** A trip of n days has n - 1 hotel nights; the last day is the flight home. */
-export function nightsOf(days: readonly unknown[]): number {
-  return Math.max(0, days.length - 1);
+/**
+ * How many nights an experience sleeps its guests: a four-day cruise is
+ * three nights, an overnight camp one. Zero for anything shorter than a night.
+ */
+export function nightsCoveredBy(experience: Experience): number {
+  if (experience.durationMinutes < OVERNIGHT_MINUTES) return 0;
+  return Math.max(1, Math.ceil(experience.durationMinutes / (24 * 60)) - 1);
 }
 
-/** Whether a day's own plan covers the night, so no hotel is charged for it. */
-export function dayCoversNight(day: TripDay): boolean {
-  return day.items.some((item) => {
-    const experience = item.experienceSlug ? experienceBySlug.get(item.experienceSlug) : undefined;
-    return experience !== undefined && experience.durationMinutes >= OVERNIGHT_MINUTES;
+/**
+ * The indices of days whose night is already covered by something on the
+ * itinerary, so no hotel is charged for them. A cruise placed on day 2 of a
+ * six-day trip covers the nights of days 2, 3 and 4.
+ */
+export function coveredNights(days: TripDay[]): Set<number> {
+  const covered = new Set<number>();
+  days.forEach((day, index) => {
+    for (const item of day.items) {
+      const experience = item.experienceSlug ? experienceBySlug.get(item.experienceSlug) : undefined;
+      if (!experience) continue;
+      for (let n = 0; n < nightsCoveredBy(experience); n++) covered.add(index + n);
+    }
   });
+  return covered;
 }
 
 /** Whether a child can come along, so whether one is charged. */
@@ -101,7 +114,8 @@ export interface EstimateInput {
 
 /**
  * All figures USD. Every night but the last is charged at the destination's
- * rate for the chosen tier, unless that day's plan already sleeps its guests;
+ * rate for the chosen tier, unless a cruise or camp already sleeps its guests
+ * that night;
  * every experience per traveller, children at half and not at all where the
  * minimum age rules them out, with the private supplement when private tours
  * are chosen and the experience offers them; every change of place at the
@@ -120,6 +134,7 @@ export function estimateTrip({
   const travellers = safeAdults + safeChildren;
   const rooms = Math.max(1, Math.ceil(travellers / GUESTS_PER_ROOM));
   const stops = stopsFromDays(days);
+  const covered = coveredNights(days);
   const transferDays = new Map<number, number>();
   for (let i = 1; i < stops.length; i++) {
     const route = findRoute(stops[i - 1].destinationSlug, stops[i].destinationSlug);
@@ -137,7 +152,7 @@ export function estimateTrip({
   const perDay = days.map((day, index): DayEstimate => {
     const destination = destinationBySlug.get(day.destinationSlug);
     const lastDay = index === days.length - 1;
-    const charged = !lastDay && !dayCoversNight(day);
+    const charged = !lastDay && !covered.has(index);
     if (charged) nights += 1;
     const accommodation = charged ? (destination?.nightlyRates[tier] ?? 0) * rooms : 0;
     let experiences = 0;

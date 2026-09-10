@@ -27,9 +27,11 @@ Children are under twelve. There is no separate infant category.
 1. **Accommodation.** Every day but the last is a hotel night, charged at the
    destination's nightly rate for the chosen level (`nightlyRates` in
    `content/destinations.ts`, USD per room per night). The last day is the
-   journey home. A day whose plan includes an experience of twenty hours or
-   more (a cruise cabin, a desert camp) already sleeps its guests, so that
-   night is not charged. Rooms hold two people; children count towards rooms;
+   journey home. An experience of twenty hours or more (a cruise cabin, a
+   desert camp) sleeps its guests, so no hotel is charged for the nights it
+   covers: one for an overnight camp, three for a four-day cruise (the days
+   it spans, less one), counted from the day it sits on. Rooms hold two
+   people; children count towards rooms;
    `rooms = ceil((adults + children) / 2)`, and a lone traveller still needs
    one room.
 2. **Experiences.** Each experience on the itinerary is charged per adult at

@@ -32,7 +32,7 @@ import { cn } from "@/lib/cn";
 export function TripSummaryPage() {
   const { t, i18n } = useTranslation();
   const language = i18n.resolvedLanguage ?? "en";
-  usePageMeta(t("meta.tripSummary"), t("pages.tripSummary.intro"));
+  usePageMeta(t("meta.tripSummary"), t("pages.tripSummary.intro"), { noindex: true });
   const trip = useTripStore();
   const money = (usd: number) => formatMoney(usd, trip.currency, language);
 
@@ -112,7 +112,7 @@ export function TripSummaryPage() {
                     label={t("builder.summary.travellers")}
                     value={
                       t("builder.summary.adults", { count: trip.adults }) +
-                      (trip.children > 0 ? `, ${t("builder.summary.children", { count: trip.children })}` : "")
+                      (trip.children > 0 ? `${t("common.listSeparator")}${t("builder.summary.children", { count: trip.children })}` : "")
                     }
                   />
                   <Row
@@ -144,7 +144,7 @@ export function TripSummaryPage() {
                 {problems.length > 0 && (
                   <div className="mt-6">
                     <p className="text-sm font-medium text-ember-700">{t("builder.summary.problems", { count: problems.length })}</p>
-                    <TripWarnings warnings={problems} className="mt-2" />
+                    <TripWarnings warnings={problems} linked className="mt-2" />
                   </div>
                 )}
                 <div className="mt-6 flex flex-wrap gap-3">

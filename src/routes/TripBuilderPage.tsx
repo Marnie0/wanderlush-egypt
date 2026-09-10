@@ -199,8 +199,8 @@ export function TripBuilderPage() {
       {/* The phone gets the number and the next step, pinned to the bottom,
           and the breakdown behind the number, a tap away. */}
       <div className="sticky bottom-0 z-30 border-t border-line bg-canvas/95 backdrop-blur-sm lg:hidden">
-        {costOpen && (
-          <div id="mobile-cost-panel" className="max-h-[60vh] overflow-y-auto border-b border-line bg-sand-50 px-5 py-4">
+        {/* Always in the tree so aria-controls has something to point at; hidden when closed. */}
+        <div id="mobile-cost-panel" hidden={!costOpen} className="max-h-[60vh] overflow-y-auto border-b border-line bg-sand-50 px-5 py-4">
             <CostLines estimate={estimate} currency={trip.currency} tier={trip.tier} />
             <CostTotal estimate={estimate} currency={trip.currency} size="md" className="mt-3 border-t border-line pt-3" />
             <EstimateControls
@@ -226,7 +226,6 @@ export function TripBuilderPage() {
               </button>
             </div>
           </div>
-        )}
         {firstProblem && (
           <Link
             to={`/trip-builder?step=itinerary${firstProblem.dayIndex !== undefined ? `#day-${firstProblem.dayIndex + 1}` : ""}`}
@@ -245,7 +244,10 @@ export function TripBuilderPage() {
           >
             <span>
               <span className="block text-xs text-ink-muted">{t("estimate.total")}</span>
-              <span className="block font-display text-xl text-charcoal-900" aria-live="polite">{formatMoney(estimate.total, trip.currency, language)}</span>
+              {/* Announced only while the panel is closed; open, the panel's own total speaks. */}
+              <span className="block font-display text-xl text-charcoal-900" aria-live={costOpen ? "off" : "polite"} aria-atomic="true">
+                {formatMoney(estimate.total, trip.currency, language)}
+              </span>
             </span>
             <Icon name="chevronDown" className={cn("h-4 w-4 text-ink-muted transition-transform", costOpen && "rotate-180")} />
             <span className="sr-only">{costOpen ? t("estimate.hideBreakdown") : t("estimate.showBreakdown")}</span>
