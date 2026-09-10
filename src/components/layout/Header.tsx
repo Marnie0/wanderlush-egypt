@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { m } from "framer-motion";
 import { Container } from "@/components/ui/Layout";
 import { ButtonLink } from "@/components/ui/Button";
 import { LanguageSwitcher } from "./LanguageSwitcher";
@@ -8,6 +9,7 @@ import { MobileMenu } from "./MobileMenu";
 import { Logo } from "./Logo";
 import { primaryNav } from "./navItems";
 import { cn } from "@/lib/cn";
+import { popIn } from "@/lib/motion";
 import { useTripCount } from "@/lib/trip-store";
 
 /**
@@ -64,12 +66,17 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
                     {t(item.key)}
                     {item.to === "/trip-builder" && tripCount > 0 && (
                       <>
-                        <span
+                        {/* Keyed on the count: each addition lands with a small spring. */}
+                        <m.span
+                          key={tripCount}
                           aria-hidden
+                          initial="hidden"
+                          animate="visible"
+                          variants={popIn}
                           className="ms-1.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-ember-600 px-1.5 text-xs text-ivory"
                         >
                           {tripCount}
-                        </span>
+                        </m.span>
                         <span className="sr-only">{t("trip.count", { count: tripCount })}</span>
                       </>
                     )}

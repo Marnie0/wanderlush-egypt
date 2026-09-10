@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { m } from "framer-motion";
 import { currencies } from "@content/currencies";
 import type { AccommodationTierId } from "@content/types";
 import {
@@ -11,6 +12,7 @@ import {
   type TripEstimate,
 } from "@/lib/estimate";
 import { formatMoney, formatNumber, formatPercent, pick } from "@/lib/format";
+import { useTweenedNumber } from "@/hooks/useTweenedNumber";
 import { cn } from "@/lib/cn";
 
 /**
@@ -150,6 +152,29 @@ export function CostLines({
   );
 }
 
+/**
+ * A figure that moves. The number travels to its new value and the colour
+ * warms for a moment, so a change to the trip is seen in the price without
+ * anyone having to compare two numbers. The live region is the parent: this
+ * span is keyed on the target so the announcement fires once per change.
+ */
+export function LiveMoney({ amountUsd, currency, className }: { amountUsd: number; currency: string; className?: string }) {
+  const { i18n } = useTranslation();
+  const language = i18n.resolvedLanguage ?? "en";
+  const shown = useTweenedNumber(amountUsd);
+  return (
+    <m.span
+      key={`${amountUsd}-${currency}`}
+      initial={{ color: "#a94a1b" }}
+      animate={{ color: "#12100c" }}
+      transition={{ duration: 1.1, ease: "easeOut" }}
+      className={cn("tabular-nums", className)}
+    >
+      {formatMoney(shown, currency, language)}
+    </m.span>
+  );
+}
+
 /** Total and what it means for each person. The figure is live: it changes under the reader's hands. */
 export function CostTotal({
   estimate,
@@ -171,7 +196,7 @@ export function CostTotal({
         <p className="text-sm font-medium text-charcoal-900">{t("estimate.total")}</p>
         {/* Only the figure is announced, once per change, not the three lines around it. */}
         <p className={cn("font-display text-charcoal-900", size === "lg" ? "text-3xl" : "text-2xl")} aria-live="polite" aria-atomic="true">
-          {money(estimate.total)}
+          <LiveMoney amountUsd={estimate.total} currency={currency} />
         </p>
       </div>
       <p className="mt-1 text-end text-sm text-ink-muted">{t("estimate.perTraveller", { amount: money(estimate.perPerson) })}</p>

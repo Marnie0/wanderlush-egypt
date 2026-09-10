@@ -19,9 +19,11 @@ import {
 } from "@dnd-kit/core";
 import { SortableContext, sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { m } from "framer-motion";
 import { destinations, destinationBySlug } from "@content/destinations";
 import { experienceBySlug, experiencesByDestination } from "@content/experiences";
 import { EgyptMap } from "@/components/ui/EgyptMap";
+import { EmptyState } from "@/components/ui/EmptyState";
 import { ButtonLink } from "@/components/ui/Button";
 import { TripWarnings } from "./TripWarnings";
 import { useTripStore } from "@/lib/trip-store";
@@ -29,6 +31,7 @@ import { dayLoadMinutes, experienceSlugsInDays, stopsFromDays, type TripDay, typ
 import type { TripEstimate } from "@/lib/estimate";
 import { addDays, formatDate, formatDuration, formatMoney, formatNumber, pick } from "@/lib/format";
 import { cn } from "@/lib/cn";
+import { transitions } from "@/lib/motion";
 
 type DragData =
   | { type: "day"; index: number }
@@ -117,13 +120,12 @@ export function StepItinerary({ estimate, warnings }: { estimate: TripEstimate; 
 
   if (days.length === 0) {
     return (
-      <div className="border border-line bg-sand-50 px-6 py-14 text-center">
-        <h2 className="font-display text-2xl text-charcoal-900">{t("builder.itinerary.emptyTitle")}</h2>
-        <p className="mx-auto mt-3 max-w-md leading-relaxed text-charcoal-600">{t("builder.itinerary.emptyBody")}</p>
-        <ButtonLink to="/trip-builder?step=places" className="mt-8">
-          {t("builder.itinerary.emptyAction")}
-        </ButtonLink>
-      </div>
+      <EmptyState
+        icon="pin"
+        title={t("builder.itinerary.emptyTitle")}
+        body={t("builder.itinerary.emptyBody")}
+        action={<ButtonLink to="/trip-builder?step=places">{t("builder.itinerary.emptyAction")}</ButtonLink>}
+      />
     );
   }
 
@@ -163,7 +165,8 @@ export function StepItinerary({ estimate, warnings }: { estimate: TripEstimate; 
               ))}
             </ol>
           </SortableContext>
-          <DragOverlay dropAnimation={null}>
+          {/* The copy under the pointer is lifted: a shadow, a touch larger, a half-degree of tilt. */}
+          <DragOverlay dropAnimation={null} className="rotate-[0.6deg] scale-[1.02] cursor-grabbing">
             {activeItem && <ItemBody item={activeItem} language={language} currency={currency} className="border border-charcoal-800 bg-canvas shadow-xl" />}
             {activeDay && (
               <div className="border border-charcoal-800 bg-canvas p-4 shadow-xl">
@@ -283,7 +286,7 @@ function DayCard({
         </div>
       </div>
 
-      <div ref={setDropRef} className={cn("px-4 py-3 transition-colors", receiving && "bg-sand-100")}>
+      <div ref={setDropRef} className={cn("px-4 py-3 transition-[background-color,box-shadow]", receiving && "bg-sand-100 shadow-[inset_0_0_0_1px_var(--color-ember-500)]")}>
         <SortableContext items={day.items.map((item) => item.id)} strategy={verticalListSortingStrategy}>
           {day.items.length === 0 ? (
             <p className="py-2 text-sm text-ink-muted">{t("builder.itinerary.freeDay")}</p>
@@ -349,6 +352,8 @@ function ItemRow({
 
   return (
     <li ref={setNodeRef} style={{ transform: CSS.Transform.toString(transform), transition }} className={cn(isDragging && "opacity-40")}>
+      {/* dnd-kit owns the li's transform; the arrival animation lives one level down. */}
+      <m.div initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} transition={transitions.soft}>
       <ItemBody
         item={item}
         language={language}
@@ -399,6 +404,7 @@ function ItemRow({
         </div>
         }
       />
+      </m.div>
     </li>
   );
 }

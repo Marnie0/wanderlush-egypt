@@ -39,7 +39,7 @@ function EditorialFeature({
             accent={destination.accent}
             sizes={HALF_SIZES}
             className="aspect-[4/3] w-full lg:aspect-[5/6]"
-            imgClassName="transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
+            imgClassName="photo-zoom"
           />
         </Link>
       </m.div>

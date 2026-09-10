@@ -1,7 +1,10 @@
 import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
+import { m } from "framer-motion";
+import { useDirection } from "@/hooks/useDirection";
 import { cn } from "@/lib/cn";
 import { formatNumber } from "@/lib/format";
+import { transitions } from "@/lib/motion";
 
 export { TRIP_STEPS, type TripStep } from "@/lib/trip-plan";
 
@@ -11,6 +14,10 @@ export { TRIP_STEPS, type TripStep } from "@/lib/trip-plan";
  * than the click, though: a step is only ticked once it and every step
  * before it are done, so all ticks mean the thing is ready, not looked at.
  * Used by the trip builder and the booking request.
+ *
+ * Under the row, a line fills from the start edge to the current step, so
+ * progress is one shape and not five circles to count. A tick that has
+ * just been earned lands with a small spring.
  */
 export function Stepper<Step extends string>({
   steps,
@@ -30,7 +37,9 @@ export function Stepper<Step extends string>({
 }) {
   const { i18n } = useTranslation();
   const language = i18n.resolvedLanguage ?? "en";
+  const { isRtl } = useDirection();
   const navRef = useRef<HTMLElement>(null);
+  const progress = steps.length > 1 ? steps.indexOf(current) / (steps.length - 1) : 1;
 
   // Five steps do not fit a phone; the current one must not be the one off-screen.
   useEffect(() => {
@@ -41,7 +50,8 @@ export function Stepper<Step extends string>({
 
   return (
     <nav ref={navRef} aria-label={navLabel} className="overflow-x-auto">
-      <ol className="flex min-w-max gap-2 sm:gap-4">
+      <div className="min-w-max">
+      <ol className="flex gap-2 sm:gap-4">
         {steps.map((step, index) => {
           const isCurrent = step === current;
           const done = reached.has(step) && !isCurrent;
@@ -67,7 +77,13 @@ export function Stepper<Step extends string>({
                         : "border-charcoal-800/25 text-charcoal-600 group-hover:border-charcoal-800/60",
                   )}
                 >
-                  {done ? "✓" : formatNumber(index + 1, language)}
+                  {done ? (
+                    <m.span key="done" initial={{ scale: 0.4, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={transitions.pop}>
+                      ✓
+                    </m.span>
+                  ) : (
+                    formatNumber(index + 1, language)
+                  )}
                 </span>
                 <span className="text-sm font-medium">{label(step)}</span>
               </button>
@@ -78,6 +94,16 @@ export function Stepper<Step extends string>({
           );
         })}
       </ol>
+      <div aria-hidden className="mt-3 h-px w-full bg-line">
+        <m.div
+          className="h-full bg-ember-600"
+          style={{ transformOrigin: isRtl ? "100% 50%" : "0% 50%" }}
+          initial={false}
+          animate={{ scaleX: progress }}
+          transition={transitions.entrance}
+        />
+      </div>
+      </div>
     </nav>
   );
 }

@@ -5,6 +5,7 @@ import { destinationBySlug } from "@content/destinations";
 import { experienceBySlug } from "@content/experiences";
 import { Container, Section } from "@/components/ui/Layout";
 import { PageHeader } from "@/components/ui/PageHeader";
+import { EmptyState } from "@/components/ui/EmptyState";
 import { ButtonLink } from "@/components/ui/Button";
 import { TripWarnings } from "@/components/trip/TripWarnings";
 import { ConfirmNotice } from "@/components/trip/ConfirmNotice";
@@ -73,13 +74,12 @@ export function TripSummaryPage() {
         <PageHeader eyebrow={t("pages.tripSummary.eyebrow")} title={t("pages.tripSummary.title")} intro={t("pages.tripSummary.intro")} />
         <Section className="pt-0 lg:pt-0">
           <Container>
-            <div className="border border-line bg-sand-50 px-6 py-14 text-center">
-              <h2 className="font-display text-2xl text-charcoal-900">{t("estimate.page.emptyTitle")}</h2>
-              <p className="mx-auto mt-3 max-w-md leading-relaxed text-charcoal-600">{t("estimate.page.emptyBody")}</p>
-              <ButtonLink to="/trip-builder" className="mt-6">
-                {t("estimate.page.emptyAction")}
-              </ButtonLink>
-            </div>
+            <EmptyState
+              icon="receipt"
+              title={t("estimate.page.emptyTitle")}
+              body={t("estimate.page.emptyBody")}
+              action={<ButtonLink to="/trip-builder">{t("estimate.page.emptyAction")}</ButtonLink>}
+            />
           </Container>
         </Section>
       </>

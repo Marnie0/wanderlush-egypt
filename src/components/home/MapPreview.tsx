@@ -82,7 +82,7 @@ export function MapPreview() {
                     accent={active.accent}
                     sizes={HALF_SIZES}
                     className="aspect-[16/10] w-full"
-                    imgClassName="transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
+                    imgClassName="photo-zoom"
                   />
                 </Link>
 

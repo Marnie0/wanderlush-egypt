@@ -48,7 +48,7 @@ export function DestinationCard({
             "w-full",
             featured ? "aspect-[4/5] lg:aspect-[3/4]" : "aspect-[4/3]",
           )}
-          imgClassName="transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
+          imgClassName="photo-zoom"
         >
           <div className="absolute inset-x-0 bottom-0 h-2/3 scrim-bottom" />
           <div className="absolute inset-x-0 bottom-0 p-6">
@@ -126,7 +126,7 @@ export function ExperienceCard({
             sizes={sizes}
             priority={priority}
             className="aspect-[3/2] w-full"
-            imgClassName="transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
+            imgClassName="photo-zoom"
           />
         </Link>
         {showActions && (
@@ -144,7 +144,7 @@ export function ExperienceCard({
           </p>
           <Rating value={experience.rating} count={experience.reviewCount} />
         </div>
-        <h3 className="mt-2 font-display text-xl leading-snug text-charcoal-900 transition-colors group-hover:text-ember-600">
+        <h3 className="card-title mt-2 font-display text-xl leading-snug text-charcoal-900">
           {pick(experience.name, language)}
         </h3>
         {destination && (
@@ -203,7 +203,7 @@ export function JourneyCard({
           accent={journey.accent}
           sizes={sizes}
           className="aspect-[16/10] w-full"
-          imgClassName="transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
+          imgClassName="photo-zoom"
         >
           <div className="absolute inset-x-0 bottom-0 h-1/2 scrim-bottom" />
           <p className="absolute bottom-5 start-6 text-sm text-ivory/85">
@@ -211,7 +211,7 @@ export function JourneyCard({
           </p>
         </SmartImage>
         <div className="pt-4">
-          <h3 className="font-display text-2xl leading-snug text-charcoal-900 transition-colors group-hover:text-ember-600">
+          <h3 className="card-title font-display text-2xl leading-snug text-charcoal-900">
             {pick(journey.name, language)}
           </h3>
           <p className="mt-2 text-sm leading-relaxed text-ink-muted">

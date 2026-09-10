@@ -4,6 +4,7 @@ import { destinationBySlug } from "@content/destinations";
 import { experiencesByDestination } from "@content/experiences";
 import { SmartImage } from "@/components/ui/SmartImage";
 import { Rating } from "@/components/ui/Rating";
+import { EmptyState } from "@/components/ui/EmptyState";
 import { ButtonLink } from "@/components/ui/Button";
 import { useTripStore } from "@/lib/trip-store";
 import { canBePrivate, experiencePrice } from "@/lib/estimate";
@@ -32,12 +33,12 @@ export function StepExperiences() {
 
   if (stops.length === 0) {
     return (
-      <div className="border border-line bg-sand-50 px-6 py-14 text-center">
-        <h2 className="font-display text-2xl text-charcoal-900">{t("builder.experiences.noPlacesTitle")}</h2>
-        <p className="mx-auto mt-3 max-w-md leading-relaxed text-charcoal-600">
-          {t("builder.experiences.noPlacesBody")}
-        </p>
-      </div>
+      <EmptyState
+        icon="pin"
+        title={t("builder.experiences.noPlacesTitle")}
+        body={t("builder.experiences.noPlacesBody")}
+        action={<ButtonLink to="/trip-builder?step=places" variant="secondary">{t("builder.itinerary.emptyAction")}</ButtonLink>}
+      />
     );
   }
 

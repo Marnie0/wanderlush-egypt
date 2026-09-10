@@ -4,9 +4,11 @@ import { cn } from "@/lib/cn";
 type Variant = "primary" | "secondary" | "ghost" | "onDark";
 type Size = "sm" | "md" | "lg";
 
+// A press moves the button by a pixel and back: felt more than seen, and
+// the only thing here that is not a colour change.
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-sm font-medium transition-colors duration-200 " +
-  "focus-visible:outline-2 focus-visible:outline-offset-3 disabled:cursor-not-allowed disabled:opacity-50";
+  "inline-flex items-center justify-center gap-2 rounded-sm font-medium transition-[background-color,border-color,color,transform] duration-200 active:translate-y-px " +
+  "focus-visible:outline-2 focus-visible:outline-offset-3 disabled:cursor-not-allowed disabled:opacity-50 disabled:active:translate-y-0";
 
 const variants: Record<Variant, string> = {
   // Ivory on ember-500 is 3.97:1, short of the 4.5:1 that button text needs.

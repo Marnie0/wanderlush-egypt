@@ -32,6 +32,7 @@
     "exploreEgypt": "Explore Egypt",
     "viewAll": "View all",
     "readMore": "Read more",
+    "dismiss": "Dismiss",
     "addToTrip": "Add to trip",
     "inTrip": "In your trip",
     "from": "From",
@@ -333,7 +334,12 @@
     "remove": "Remove from trip",
     "count_one": "{{count}} item",
     "count_other": "{{count}} items",
-    "inYourTrip": "In your trip"
+    "inYourTrip": "In your trip",
+    "toast": {
+      "added": "{{name}} is in your trip",
+      "removed": "{{name}} was taken out of your trip",
+      "open": "Open the trip builder"
+    }
   },
   "gallery": {
     "title": "Gallery",

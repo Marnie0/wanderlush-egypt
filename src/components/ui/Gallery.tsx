@@ -112,7 +112,7 @@ export function Gallery({ images, accent }: { images: ImageRef[]; accent?: strin
                 accent={accent}
                 sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 92vw"
                 className="aspect-[4/3] w-full"
-                imgClassName="transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
+                imgClassName="photo-zoom"
               />
             </button>
           </li>

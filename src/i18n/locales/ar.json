@@ -32,6 +32,7 @@
     "exploreEgypt": "استكشف مصر",
     "viewAll": "عرض الكل",
     "readMore": "اقرأ المزيد",
+    "dismiss": "إغلاق",
     "addToTrip": "أضف إلى الرحلة",
     "inTrip": "مضاف إلى رحلتك",
     "from": "ابتداءً من",
@@ -377,7 +378,12 @@
     "count_few": "{{count}} عناصر",
     "count_many": "{{count}} عنصرًا",
     "count_other": "{{count}} عنصر",
-    "inYourTrip": "في رحلتك"
+    "inYourTrip": "في رحلتك",
+    "toast": {
+      "added": "أضفنا «{{name}}» إلى رحلتك",
+      "removed": "أزلنا «{{name}}» من رحلتك",
+      "open": "افتح مخطِّط الرحلة"
+    }
   },
   "gallery": {
     "title": "معرض الصور",

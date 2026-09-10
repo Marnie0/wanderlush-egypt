@@ -7,6 +7,7 @@ import { destinations } from "@content/destinations";
 import { Container, Section } from "@/components/ui/Layout";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { ExperienceCard } from "@/components/ui/Cards";
+import { EmptyState } from "@/components/ui/EmptyState";
 import { Drawer } from "@/components/ui/Drawer";
 import { Button } from "@/components/ui/Button";
 import { ExperienceFilters } from "@/components/experiences/ExperienceFilters";
@@ -108,24 +109,17 @@ export function ExperiencesPage() {
               <h2 className="sr-only">{t("experiences.resultsHeading")}</h2>
 
               {results.length === 0 ? (
-                <div className="mt-12 border border-line bg-sand-50 px-6 py-14 text-center">
-                  <h2 className="font-display text-2xl text-charcoal-900">
-                    {filters.savedOnly && savedSlugs.length === 0
-                      ? t("experiences.emptySaved.title")
-                      : t("experiences.empty.title")}
-                  </h2>
-                  <p className="mx-auto mt-3 max-w-md leading-relaxed text-charcoal-600">
-                    {filters.savedOnly && savedSlugs.length === 0
-                      ? t("experiences.emptySaved.body")
-                      : t("experiences.empty.body")}
-                  </p>
-                  <Button
-                    className="mt-8"
-                    onClick={() => setFilters({ ...emptyExperienceFilters, sort: filters.sort })}
-                  >
-                    {t("experiences.empty.action")}
-                  </Button>
-                </div>
+                <EmptyState
+                  className="mt-12"
+                  icon="search"
+                  title={filters.savedOnly && savedSlugs.length === 0 ? t("experiences.emptySaved.title") : t("experiences.empty.title")}
+                  body={filters.savedOnly && savedSlugs.length === 0 ? t("experiences.emptySaved.body") : t("experiences.empty.body")}
+                  action={
+                    <Button onClick={() => setFilters({ ...emptyExperienceFilters, sort: filters.sort })}>
+                      {t("experiences.empty.action")}
+                    </Button>
+                  }
+                />
               ) : (
                 // Not keyed on the results: remounting the grid made every
                 // card fade in again on each keystroke. The grid animates

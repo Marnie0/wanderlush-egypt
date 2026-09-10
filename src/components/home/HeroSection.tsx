@@ -6,14 +6,15 @@ import { ButtonLink } from "@/components/ui/Button";
 import { SmartImage, FULL_SIZES } from "@/components/ui/SmartImage";
 import { imageManifest } from "@/generated/images";
 import { DestinationSearch } from "./DestinationSearch";
-import { riseIn, stagger, transitions } from "@/lib/motion";
+import { ease, riseIn, stagger, transitions } from "@/lib/motion";
 
 const HERO_SRC = "/images/hero/egypt-hero.webp";
 
 /**
  * Full-bleed photography, a headline, the quick search and the two actions the
- * whole site is built around. The image drifts slightly slower than the page,
- * which reads as depth rather than as an effect.
+ * whole site is built around. The image settles from a slight zoom on the
+ * first paint and then drifts slower than the page, which reads as depth
+ * rather than as an effect.
  */
 export function HeroSection() {
   const { t } = useTranslation();
@@ -33,7 +34,13 @@ export function HeroSection() {
       {/* The clip lives here, not on the section, so the search results can
           escape the hero instead of being cut off at its edge. */}
       <div className="absolute inset-0 overflow-hidden">
-        <m.div style={{ y: imageY }} className="absolute inset-0 h-[112%]">
+        <m.div
+          style={{ y: imageY }}
+          initial={{ scale: 1.06 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1.8, ease: ease.entrance }}
+          className="absolute inset-0 h-[112%]"
+        >
           <SmartImage
             src={HERO_SRC}
             alt={t("home.heroAlt")}

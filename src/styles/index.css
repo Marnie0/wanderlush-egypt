@@ -310,6 +310,87 @@
   [dir="rtl"] .rule-gold {
     background: linear-gradient(to left, var(--color-gold-400), transparent);
   }
+
+  /* The one hover a photograph gets: a slow settle to 1.04 when its card is
+     hovered. Every card, gallery tile and spotlight uses this class, so the
+     timing is the same everywhere and lives in one place. */
+  .photo-zoom {
+    transition: transform var(--duration-cinematic) var(--ease-soft);
+  }
+
+  .group:hover .photo-zoom,
+  .group:focus-visible .photo-zoom {
+    transform: scale(1.04);
+  }
+
+  /* A card's title warms on hover; the photograph does the rest. */
+  .card-title {
+    transition: color var(--duration-fast) ease-out;
+  }
+
+  .group:hover .card-title {
+    color: var(--color-ember-600);
+  }
+
+  /* The selected place on the map breathes once every couple of seconds.
+     One element on the page does this, and only while it is selected. */
+  .marker-pulse {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: marker-pulse 2.4s var(--ease-soft) infinite;
+  }
+
+  /* Marker dots grow under the pointer from their own centre. */
+  .marker-dot {
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: transform var(--duration-base) var(--ease-soft);
+  }
+
+  .group:hover .marker-dot,
+  .group:focus-visible .marker-dot {
+    transform: scale(1.25);
+  }
+
+  /* Skeleton blocks shimmer with the site's own sand, not a grey wash. */
+  .skeleton {
+    background: linear-gradient(
+      100deg,
+      var(--color-sand-100) 30%,
+      var(--color-sand-200) 50%,
+      var(--color-sand-100) 70%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-sweep 1.6s ease-in-out infinite;
+  }
+
+  [dir="rtl"] .skeleton {
+    animation-direction: reverse;
+  }
+}
+
+@keyframes marker-pulse {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.55;
+  }
+  70% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+@keyframes skeleton-sweep {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
 }
 
 /* Respect the system preference everywhere, including Framer Motion,
@@ -326,6 +407,19 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  /* A looping animation cut to one frame still repaints; these two go
+     entirely. The selected marker keeps its still halo, the skeleton its
+     plain block. */
+  .marker-pulse,
+  .skeleton {
+    animation: none !important;
+  }
+
+  .marker-pulse {
+    transform: none;
+    opacity: 0.22;
   }
 }
 

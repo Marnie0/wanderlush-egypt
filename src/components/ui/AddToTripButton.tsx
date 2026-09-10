@@ -1,12 +1,22 @@
 import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router-dom";
+import { m } from "framer-motion";
+import { destinationBySlug } from "@content/destinations";
+import { experienceBySlug } from "@content/experiences";
 import { useHasDestination, useHasExperience, useTripStore } from "@/lib/trip-store";
+import { useToastStore } from "@/lib/toast-store";
 import { buttonClasses } from "./Button";
+import { popIn } from "@/lib/motion";
+import { pick } from "@/lib/format";
 import { cn } from "@/lib/cn";
 
 /**
  * Toggles a destination or experience in the trip held in this browser.
  * Adding is a single click and removing is the same click again, so there is
- * never a state the visitor cannot get out of.
+ * never a state the visitor cannot get out of. The click is answered twice:
+ * the button itself flips to a tick, and a line at the foot of the screen
+ * names what was added and offers the trip builder, which is the bridge
+ * from browsing to planning.
  */
 export function AddToTripButton({
   kind,
@@ -22,7 +32,10 @@ export function AddToTripButton({
   variant?: "primary" | "secondary";
   className?: string;
 }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const language = i18n.resolvedLanguage ?? "en";
+  const { pathname } = useLocation();
+  const showToast = useToastStore((state) => state.show);
   const inTripDestination = useHasDestination(slug);
   const inTripExperience = useHasExperience(slug);
   const toggleDestination = useTripStore((state) => state.toggleDestination);
@@ -30,11 +43,22 @@ export function AddToTripButton({
 
   const inTrip = kind === "destination" ? inTripDestination : inTripExperience;
   const toggle = kind === "destination" ? toggleDestination : toggleExperience;
+  const named = kind === "destination" ? destinationBySlug.get(slug)?.name : experienceBySlug.get(slug)?.name;
+
+  const onClick = () => {
+    toggle(slug);
+    // Inside the builder the trip is already on screen; the note is for everywhere else.
+    if (!named || pathname.startsWith("/trip-builder")) return;
+    showToast({
+      message: t(inTrip ? "trip.toast.removed" : "trip.toast.added", { name: pick(named, language) }),
+      action: inTrip ? undefined : { label: t("trip.toast.open"), to: "/trip-builder" },
+    });
+  };
 
   return (
     <button
       type="button"
-      onClick={() => toggle(slug)}
+      onClick={onClick}
       aria-pressed={inTrip}
       title={inTrip ? t("trip.remove") : t("trip.add")}
       className={cn(
@@ -43,15 +67,18 @@ export function AddToTripButton({
         className,
       )}
     >
-      {inTrip ? (
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
-          <path d="m5 13 4 4L19 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      ) : (
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
-          <path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        </svg>
-      )}
+      {/* Keyed on the state, so the tick lands with a small spring when it changes. */}
+      <m.span key={String(inTrip)} initial="hidden" animate="visible" variants={popIn} className="inline-flex" aria-hidden>
+        {inTrip ? (
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path d="m5 13 4 4L19 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        ) : (
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          </svg>
+        )}
+      </m.span>
       {inTrip ? t("trip.added") : t("trip.add")}
     </button>
   );

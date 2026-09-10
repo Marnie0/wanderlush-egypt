@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { m, useReducedMotion } from "framer-motion";
 import { Container, Section } from "@/components/ui/Layout";
 import { Button, ButtonLink } from "@/components/ui/Button";
+import { EmptyState } from "@/components/ui/EmptyState";
+import { riseIn, stagger, transitions } from "@/lib/motion";
 import { TripReview } from "@/components/booking/TripReview";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { useBookingStore, type SentRequest } from "@/lib/booking-store";
@@ -17,10 +20,14 @@ type Loaded = { kind: "loading" } | { kind: "missing" } | { kind: "record"; reco
  * next, and a way to keep it on paper. The browser that sent it has the
  * whole thing, contact details included; any other browser with the link
  * gets the trip and the estimate from the API, and nothing personal.
+ *
+ * The one moment on the site that deserves a flourish: the tick draws
+ * itself, then the reference and the rest rise in one after another.
  */
 export function BookingConfirmationPage() {
   const { t, i18n } = useTranslation();
   const language = i18n.resolvedLanguage ?? "en";
+  const reduceMotion = useReducedMotion();
   usePageMeta(t("meta.confirmation"), t("pages.confirmation.intro"), { noindex: true });
   const [searchParams] = useSearchParams();
   const reference = (searchParams.get("ref") ?? "").toUpperCase();
@@ -58,20 +65,27 @@ export function BookingConfirmationPage() {
     return (
       <Section>
         <Container>
-          <div className="mx-auto max-w-xl border border-line bg-sand-50 px-6 py-14 text-center">
-            {loaded.kind === "loading" ? (
-              <p className="text-charcoal-600" aria-live="polite">{t("booking.confirmation.loading")}</p>
-            ) : (
-              <>
-                <p className="eyebrow text-ink-muted">{t("pages.confirmation.eyebrow")}</p>
-                <h1 className="mt-4 font-display text-3xl text-charcoal-900">{t("booking.confirmation.notFoundTitle")}</h1>
-                <p className="mx-auto mt-3 max-w-md leading-relaxed text-charcoal-600">{t("booking.confirmation.notFoundBody")}</p>
-                <ButtonLink to="/trip-builder" className="mt-6">
-                  {t("booking.empty.action")}
-                </ButtonLink>
-              </>
-            )}
-          </div>
+          {loaded.kind === "loading" ? (
+            // The shape of the page it is waiting for, so nothing jumps when it arrives.
+            <div className="min-h-[70svh]" aria-busy="true">
+              <p className="sr-only" aria-live="polite">{t("booking.confirmation.loading")}</p>
+              <div aria-hidden className="max-w-3xl space-y-5">
+                <div className="skeleton h-3 w-28" />
+                <div className="skeleton h-12 w-4/5" />
+                <div className="skeleton h-5 w-2/3" />
+                <div className="skeleton mt-8 h-24 w-72" />
+              </div>
+            </div>
+          ) : (
+            <EmptyState
+              className="mx-auto max-w-xl"
+              icon="receipt"
+              headingLevel="h1"
+              title={t("booking.confirmation.notFoundTitle")}
+              body={t("booking.confirmation.notFoundBody")}
+              action={<ButtonLink to="/trip-builder">{t("booking.empty.action")}</ButtonLink>}
+            />
+          )}
         </Container>
       </Section>
     );
@@ -85,35 +99,60 @@ export function BookingConfirmationPage() {
     <>
       <Section className="pb-8 lg:pb-10">
         <Container>
-          <p className="eyebrow text-teal-700">{t("pages.confirmation.eyebrow")}</p>
-          <h1 className="mt-4 text-display text-charcoal-900">{t("pages.confirmation.title")}</h1>
-          <p className="mt-4 max-w-2xl text-lead leading-relaxed text-charcoal-600">
-            {record.firstName ? t("booking.confirmation.thanks", { name: record.firstName }) : t("booking.confirmation.thanksNoName")}
-          </p>
-          <div className="mt-8 inline-flex flex-col gap-1 border border-line bg-sand-50 px-6 py-4">
-            <span className="text-xs uppercase tracking-wide text-ink-muted">{t("booking.confirmation.reference")}</span>
-            <span className="font-display text-3xl text-charcoal-900 tabular-nums" dir="ltr">
-              {record.reference}
-            </span>
-            <span className="text-xs text-ink-muted">
-              {t("booking.confirmation.sent", { date: formatDate(new Date(record.createdAt), language, { day: "numeric", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit" }) })}
-            </span>
-          </div>
-          <p className="mt-3 max-w-xl text-sm leading-relaxed text-ink-muted">{t("booking.confirmation.referenceHint")}</p>
-          <div className="mt-6 flex flex-wrap gap-3 print:hidden">
-            <Button onClick={() => window.print()}>{t("booking.confirmation.printAction")}</Button>
-            <ButtonLink to="/trip-builder" variant="secondary">
-              {t("booking.confirmation.anotherTrip")}
-            </ButtonLink>
-          </div>
+          <m.div initial="hidden" animate="visible" variants={stagger(0.15, 0.12)}>
+            <m.div variants={riseIn} className="flex items-center gap-4">
+              <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-teal-700 text-ivory" aria-hidden>
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                  <m.path
+                    d="m5 12.5 4.5 4.5L19 7"
+                    stroke="currentColor"
+                    strokeWidth="2.2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    initial={reduceMotion ? false : { pathLength: 0 }}
+                    animate={{ pathLength: 1 }}
+                    transition={{ delay: 0.2, duration: 0.55, ease: "easeOut" }}
+                  />
+                </svg>
+              </span>
+              <p className="eyebrow text-teal-700">{t("pages.confirmation.eyebrow")}</p>
+            </m.div>
+            <m.h1 variants={riseIn} className="mt-5 text-display text-charcoal-900">
+              {t("pages.confirmation.title")}
+            </m.h1>
+            <m.p variants={riseIn} className="mt-4 max-w-2xl text-lead leading-relaxed text-charcoal-600">
+              {record.firstName ? t("booking.confirmation.thanks", { name: record.firstName }) : t("booking.confirmation.thanksNoName")}
+            </m.p>
+            <m.div
+              variants={{ hidden: { opacity: 0, scale: 0.94 }, visible: { opacity: 1, scale: 1, transition: transitions.pop } }}
+              className="mt-8 inline-flex flex-col gap-1 border border-line bg-sand-50 px-6 py-4"
+            >
+              <span className="text-xs uppercase tracking-wide text-ink-muted">{t("booking.confirmation.reference")}</span>
+              <span className="font-display text-3xl text-charcoal-900 tabular-nums" dir="ltr">
+                {record.reference}
+              </span>
+              <span className="text-xs text-ink-muted">
+                {t("booking.confirmation.sent", { date: formatDate(new Date(record.createdAt), language, { day: "numeric", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit" }) })}
+              </span>
+            </m.div>
+            <m.p variants={riseIn} className="mt-3 max-w-xl text-sm leading-relaxed text-ink-muted">
+              {t("booking.confirmation.referenceHint")}
+            </m.p>
+            <m.div variants={riseIn} className="mt-6 flex flex-wrap gap-3 print:hidden">
+              <Button onClick={() => window.print()}>{t("booking.confirmation.printAction")}</Button>
+              <ButtonLink to="/trip-builder" variant="secondary">
+                {t("booking.confirmation.anotherTrip")}
+              </ButtonLink>
+            </m.div>
+          </m.div>
         </Container>
       </Section>
 
       <Section className="pt-0 lg:pt-0">
         <Container>
-          <div className="grid gap-12 lg:grid-cols-[1fr_22rem] lg:gap-14">
+          <m.div initial="hidden" animate="visible" variants={stagger(0.7, 0.1)} className="grid gap-12 lg:grid-cols-[1fr_22rem] lg:gap-14">
             <div className="min-w-0 space-y-12">
-              <section aria-labelledby="what-next" className="border-s-2 border-teal-600 bg-teal-50 px-5 py-5">
+              <m.section variants={riseIn} aria-labelledby="what-next" className="border-s-2 border-teal-600 bg-teal-50 px-5 py-5">
                 <h2 id="what-next" className="font-display text-xl text-charcoal-900">{t("booking.confirmation.nextTitle")}</h2>
                 <p className="mt-2 text-sm leading-relaxed text-charcoal-700">
                   {t("booking.confirmation.responseBody")}
@@ -132,15 +171,15 @@ export function BookingConfirmationPage() {
                     </li>
                   ))}
                 </ol>
-              </section>
+              </m.section>
 
-              <section aria-labelledby="sent-trip">
+              <m.section variants={riseIn} aria-labelledby="sent-trip">
                 <h2 id="sent-trip" className="font-display text-2xl text-charcoal-900">{t("booking.confirmation.tripTitle")}</h2>
                 <TripReview trip={record.trip} estimate={record.estimate} className="mt-5" />
-              </section>
+              </m.section>
 
               {sent && (
-                <section aria-labelledby="sent-details" className="grid gap-8 md:grid-cols-2">
+                <m.section variants={riseIn} aria-labelledby="sent-details" className="grid gap-8 md:grid-cols-2">
                   <div>
                     <h2 id="sent-details" className="font-display text-xl text-charcoal-900">{t("booking.send.yourDetails")}</h2>
                     <dl className="mt-3 space-y-2 text-sm">
@@ -163,11 +202,11 @@ export function BookingConfirmationPage() {
                       </dl>
                     )}
                   </div>
-                </section>
+                </m.section>
               )}
             </div>
 
-            <aside className="print:hidden">
+            <m.aside variants={riseIn} className="print:hidden">
               <div className="border border-line bg-sand-50 p-6 lg:sticky lg:top-28">
                 <p className="eyebrow text-ink-muted">{t("booking.confirmation.keepTitle")}</p>
                 <p className="mt-3 text-sm leading-relaxed text-charcoal-700">{t("booking.confirmation.keepBody")}</p>
@@ -199,8 +238,8 @@ export function BookingConfirmationPage() {
                   </li>
                 </ul>
               </div>
-            </aside>
-          </div>
+            </m.aside>
+          </m.div>
         </Container>
       </Section>
     </>

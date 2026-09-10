@@ -7,6 +7,7 @@ import { Container, Eyebrow, Rule, Section } from "@/components/ui/Layout";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { DestinationCard } from "@/components/ui/Cards";
 import { EgyptMap } from "@/components/ui/EgyptMap";
+import { EmptyState } from "@/components/ui/EmptyState";
 import { Drawer } from "@/components/ui/Drawer";
 import { Button } from "@/components/ui/Button";
 import { DestinationFilters } from "@/components/destinations/DestinationFilters";
@@ -132,17 +133,13 @@ export function DestinationsPage() {
               <h2 className="sr-only">{t("explore.resultsHeading")}</h2>
 
               {results.length === 0 ? (
-                <div className="mt-12 border border-line bg-sand-50 px-6 py-14 text-center">
-                  <h2 className="font-display text-2xl text-charcoal-900">
-                    {t("explore.empty.title")}
-                  </h2>
-                  <p className="mx-auto mt-3 max-w-md leading-relaxed text-charcoal-600">
-                    {t("explore.empty.body")}
-                  </p>
-                  <Button className="mt-8" onClick={() => setFilters(emptyFilters)}>
-                    {t("explore.empty.action")}
-                  </Button>
-                </div>
+                <EmptyState
+                  className="mt-12"
+                  icon="search"
+                  title={t("explore.empty.title")}
+                  body={t("explore.empty.body")}
+                  action={<Button onClick={() => setFilters(emptyFilters)}>{t("explore.empty.action")}</Button>}
+                />
               ) : (
                 <m.div
                   initial="hidden"

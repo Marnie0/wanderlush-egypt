@@ -12,13 +12,14 @@ import { StepPlaces } from "@/components/trip/StepPlaces";
 import { StepStay } from "@/components/trip/StepStay";
 import { StepExperiences } from "@/components/trip/StepExperiences";
 import { StepItinerary } from "@/components/trip/StepItinerary";
-import { CostLines, CostTotal, EstimateControls, EstimateDisclaimer } from "@/components/trip/CostBreakdown";
+import { CostLines, CostTotal, EstimateControls, EstimateDisclaimer, LiveMoney } from "@/components/trip/CostBreakdown";
 import { Icon } from "@/components/ui/Icon";
+import { StepPanel } from "@/components/ui/StepPanel";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { unconfirmedSteps, useTripStore } from "@/lib/trip-store";
 import { estimateTrip } from "@/lib/estimate";
 import { experienceSlugsInDays, tripWarnings } from "@/lib/trip-plan";
-import { formatMoney, formatNumber, pick } from "@/lib/format";
+import { formatNumber, pick } from "@/lib/format";
 import { cn } from "@/lib/cn";
 
 function isStep(value: string | null): value is TripStep {
@@ -164,6 +165,7 @@ export function TripBuilderPage() {
         <Container>
           <div className="grid gap-12 lg:grid-cols-[1fr_20rem] lg:gap-14">
             <div className="min-w-0">
+              <StepPanel step={step} index={index}>
               {/* A trip that came from a journey says so at the start, and what it
                   has decided on the visitor's behalf until they look. */}
               {step === "basics" && journey && unconfirmed.length > 0 && (
@@ -184,6 +186,7 @@ export function TripBuilderPage() {
               {step === "stay" && <StepStay />}
               {step === "experiences" && <StepExperiences />}
               {step === "itinerary" && <StepItinerary estimate={estimate} warnings={warnings} />}
+              </StepPanel>
 
               <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-6">
                 {previous ? (
@@ -269,7 +272,7 @@ export function TripBuilderPage() {
               <span className="block text-xs text-ink-muted">{t("estimate.total")}</span>
               {/* Announced only while the panel is closed; open, the panel's own total speaks. */}
               <span className="block font-display text-xl text-charcoal-900" aria-live={costOpen ? "off" : "polite"} aria-atomic="true">
-                {formatMoney(estimate.total, trip.currency, language)}
+                <LiveMoney amountUsd={estimate.total} currency={trip.currency} />
               </span>
             </span>
             <Icon name="chevronDown" className={cn("h-4 w-4 text-ink-muted transition-transform", costOpen && "rotate-180")} />

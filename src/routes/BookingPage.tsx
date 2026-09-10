@@ -5,6 +5,8 @@ import { countryCodes, featuredCountries } from "@content/countries";
 import { Container, Section } from "@/components/ui/Layout";
 import { Button, ButtonLink } from "@/components/ui/Button";
 import { FilterToggle } from "@/components/ui/FilterControls";
+import { EmptyState } from "@/components/ui/EmptyState";
+import { StepPanel } from "@/components/ui/StepPanel";
 import { Stepper } from "@/components/trip/Stepper";
 import { TripWarnings } from "@/components/trip/TripWarnings";
 import { ConfirmNotice } from "@/components/trip/ConfirmNotice";
@@ -239,13 +241,12 @@ export function BookingPage() {
         <PageIntro t={t} />
         <Section className="pt-0 lg:pt-0">
           <Container>
-            <div className="border border-line bg-sand-50 px-6 py-14 text-center">
-              <h2 className="font-display text-2xl text-charcoal-900">{t("booking.empty.title")}</h2>
-              <p className="mx-auto mt-3 max-w-md leading-relaxed text-charcoal-600">{t("booking.empty.body")}</p>
-              <ButtonLink to="/trip-builder" className="mt-6">
-                {t("booking.empty.action")}
-              </ButtonLink>
-            </div>
+            <EmptyState
+              icon="route"
+              title={t("booking.empty.title")}
+              body={t("booking.empty.body")}
+              action={<ButtonLink to="/trip-builder">{t("booking.empty.action")}</ButtonLink>}
+            />
           </Container>
         </Section>
       </>
@@ -284,6 +285,7 @@ export function BookingPage() {
                 else if (next && !(step === "review" && blocked)) goTo(next);
               }}
             >
+              <StepPanel step={step} index={index}>
               {step === "review" && (
                 <div>
                   <h2 tabIndex={-1} className="font-display text-2xl text-charcoal-900 focus:outline-none">{t("booking.review.title")}</h2>
@@ -339,6 +341,8 @@ export function BookingPage() {
                   language={language}
                 />
               )}
+
+              </StepPanel>
 
               <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-6">
                 {previous ? (

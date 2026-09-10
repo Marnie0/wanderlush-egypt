@@ -1,5 +1,8 @@
+import { useId } from "react";
 import { useTranslation } from "react-i18next";
+import { m, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/cn";
+import { transitions } from "@/lib/motion";
 import { pick } from "@/lib/format";
 import {
   DEFAULT_LABEL,
@@ -33,6 +36,11 @@ interface EgyptMapProps {
  * so the whole map works from the keyboard.
  *
  * Phase 3 reuses this component for the full destination explorer.
+ *
+ * Motion: the selected marker breathes, a new stop lands with a spring, and
+ * the route draws itself from the first stop to the last whenever it
+ * changes. The drawing is a mask over the dashed line, because Framer's
+ * `pathLength` and a dash pattern cannot share one stroke.
  */
 export function EgyptMap({
   destinations,
@@ -44,6 +52,9 @@ export function EgyptMap({
 }: EgyptMapProps) {
   const { t, i18n } = useTranslation();
   const language = i18n.resolvedLanguage ?? "en";
+  const reduceMotion = useReducedMotion();
+  // Two maps can share a page (the builder's places step and its summary), so ids are per instance.
+  const maskId = useId();
   const bySlug = new Map(destinations.map((destination) => [destination.slug, destination]));
   const position = (slug: string) => {
     const destination = bySlug.get(slug);
@@ -106,18 +117,38 @@ export function EgyptMap({
         />
       ))}
 
-      {routePoints.length > 1 && (
-        <path
-          d={routePoints.map((p, i) => `${i === 0 ? "M" : "L"}${p.x} ${p.y}`).join(" ")}
-          fill="none"
-          stroke="var(--color-ember-600)"
-          strokeWidth="2.5"
-          strokeDasharray="6 6"
-          strokeLinejoin="round"
-          strokeLinecap="round"
-          opacity="0.85"
-        />
-      )}
+      {routePoints.length > 1 && (() => {
+        const d = routePoints.map((p, i) => `${i === 0 ? "M" : "L"}${p.x} ${p.y}`).join(" ");
+        return (
+          <>
+            <mask id={maskId} maskUnits="userSpaceOnUse">
+              <m.path
+                key={d}
+                d={d}
+                fill="none"
+                stroke="#fff"
+                strokeWidth="8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                initial={reduceMotion ? false : { pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 0.9, ease: "easeInOut" }}
+              />
+            </mask>
+            <path
+              d={d}
+              mask={`url(#${maskId})`}
+              fill="none"
+              stroke="var(--color-ember-600)"
+              strokeWidth="2.5"
+              strokeDasharray="6 6"
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              opacity="0.85"
+            />
+          </>
+        );
+      })()}
 
       {destinations.map((destination) => {
         const base = projectToMap(destination.coordinates.lat, destination.coordinates.lng);
@@ -151,14 +182,10 @@ export function EgyptMap({
             {/* Generous invisible target: the visible dot is far too small to tap. */}
             <circle cx={x} cy={y} r="22" fill="transparent" />
             {isActive && (
-              <circle
-                cx={x}
-                cy={y}
-                r="15"
-                fill={destination.accent}
-                opacity="0.22"
-                className="transition-all duration-300"
-              />
+              <>
+                <circle cx={x} cy={y} r="15" fill={destination.accent} opacity="0.18" />
+                <circle cx={x} cy={y} r="12" fill={destination.accent} className="marker-pulse" />
+              </>
             )}
             <circle
               cx={x}
@@ -167,10 +194,10 @@ export function EgyptMap({
               fill={isActive || inRoute ? destination.accent : "var(--color-charcoal-700)"}
               stroke="var(--color-ivory)"
               strokeWidth="2"
-              className="transition-all duration-300 group-focus-visible:stroke-ember-500 group-focus-visible:[stroke-width:3]"
+              className="marker-dot transition-[fill,r] duration-300 group-focus-visible:stroke-ember-500 group-focus-visible:[stroke-width:3]"
             />
             {stopNumber !== undefined && (
-              <>
+              <m.g key={stopNumber} initial="hidden" animate="visible" variants={{ hidden: { scale: 0 }, visible: { scale: 1, transition: transitions.pop } }}>
                 <circle cx={x} cy={y} r="10" fill="var(--color-ember-600)" stroke="var(--color-ivory)" strokeWidth="2" />
                 <text
                   x={x}
@@ -182,7 +209,7 @@ export function EgyptMap({
                 >
                   {stopNumber}
                 </text>
-              </>
+              </m.g>
             )}
             <text
               x={x + label.dx}
