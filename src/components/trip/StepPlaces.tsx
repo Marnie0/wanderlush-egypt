@@ -6,7 +6,7 @@ import { Counter } from "./Counter";
 import { TransportIcon } from "./TransportIcon";
 import { useTripStore } from "@/lib/trip-store";
 import { stopsFromDays, LONG_TRANSFER_HOURS } from "@/lib/trip-plan";
-import { findRoute, distanceKm } from "@/lib/transport";
+import { findRoute, distanceKm, routeModes } from "@/lib/transport";
 import { formatDayRange, formatDuration, formatNumber, pick } from "@/lib/format";
 import { cn } from "@/lib/cn";
 
@@ -129,7 +129,7 @@ export function StepPlaces() {
                             <TransportIcon mode={route.legs[0].option.mode} className="mt-0.5 shrink-0 text-ink-muted" />
                             <p className="leading-relaxed">
                               {/* A route through a hub is two legs, and the modes can differ. */}
-                              {route.legs.map((leg) => t(`builder.transport.${leg.option.mode}`)).join(t("common.listSeparator"))}
+                              {routeModes(route).map((mode) => t(`builder.transport.${mode}`)).join(t("common.listSeparator"))}
                               {" · "}
                               {t("builder.transport.about", { duration: formatDuration(Math.round(route.hours * 60), t) })}
                               {" · "}

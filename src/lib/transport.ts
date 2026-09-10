@@ -31,6 +31,11 @@ function quickest(options: TransportOption[]): TransportOption | undefined {
  * Direct if there is a link, otherwise through the hub that makes the
  * shortest day. A route through a hub adds an hour for the connection.
  */
+/** The modes a route uses, each once: a road leg through a hub is still "by road". */
+export function routeModes(route: TransferRoute): TransportOption["mode"][] {
+  return Array.from(new Set(route.legs.map((leg) => leg.option.mode)));
+}
+
 export function findRoute(from: string, to: string): TransferRoute | null {
   if (from === to) return { legs: [], hours: 0, priceFrom: 0, via: null };
   const direct = quickest(directOptions(from, to));

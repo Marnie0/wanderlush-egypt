@@ -6,7 +6,7 @@ import { CHILD_MAX_AGE, CHILD_RATE, GUESTS_PER_ROOM, SERVICE_FEE_RATE, type Trip
 import { MARKER_NUDGE, projectToMap } from "./egypt-geo";
 import { addDays, formatDate, formatDuration, formatMoney, formatNumber, formatPercent, pick } from "./format";
 import { countryName, preferenceSummary } from "./booking-request";
-import { findRoute, distanceKm } from "./transport";
+import { findRoute, distanceKm, routeModes } from "./transport";
 import { dayLoadMinutes, stopsFromDays, LONG_TRANSFER_HOURS, type TripDay, type TripStep, type TripWarning } from "./trip-plan";
 import { warningText } from "./warning-text";
 
@@ -262,7 +262,7 @@ export function buildTripPdfData({
       return;
     }
     const parts = [
-      leg.legs.map((l) => t(`builder.transport.${l.option.mode}`)).join(sep),
+      routeModes(leg).map((mode) => t(`builder.transport.${mode}`)).join(sep),
       t("builder.transport.about", { duration: formatDuration(Math.round(leg.hours * 60), t) }),
       t("builder.transport.km", { km: number(distanceKm(previous.coordinates, current.coordinates)) }),
     ];
@@ -338,7 +338,7 @@ export function buildTripPdfData({
     .filter((warning) => warning.kind !== "empty")
     .map((warning) => {
       const where = warning.dayIndex !== undefined ? `${t("builder.itinerary.dayLabel", { day: number(warning.dayIndex + 1) })}: ` : "";
-      return { severity: warning.severity, text: `${where}${warningText(t, warning)}` };
+      return { severity: warning.severity, text: `${where}${warningText(t, warning, language)}` };
     });
   const unconfirmedText =
     unconfirmed.length > 0

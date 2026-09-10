@@ -138,7 +138,7 @@ export function TripSummary({
                     to={`/trip-builder?step=itinerary${warning.dayIndex !== undefined ? `#day-${warning.dayIndex + 1}` : ""}`}
                     className="underline decoration-ember-600/40 underline-offset-4 transition-colors hover:text-ember-700"
                   >
-                    {warningText(t, warning)}
+                    {warningText(t, warning, language)}
                   </Link>
                 </li>
               ))}

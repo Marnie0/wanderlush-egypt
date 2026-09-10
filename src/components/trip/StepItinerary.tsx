@@ -24,6 +24,9 @@ import { destinations, destinationBySlug } from "@content/destinations";
 import { experienceBySlug, experiencesByDestination } from "@content/experiences";
 import { EgyptMap } from "@/components/ui/EgyptMap";
 import { EmptyState } from "@/components/ui/EmptyState";
+import { TransportIcon } from "./TransportIcon";
+import { findRoute, routeModes } from "@/lib/transport";
+import { warningText } from "@/lib/warning-text";
 import { ButtonLink } from "@/components/ui/Button";
 import { TripWarnings } from "./TripWarnings";
 import { useTripStore } from "@/lib/trip-store";
@@ -228,6 +231,11 @@ function DayCard({
   const available = (experiencesByDestination[day.destinationSlug] ?? []).filter((e) => !chosen.has(e.slug));
   const load = dayLoadMinutes(day);
   const hasProblem = dayWarnings.some((w) => w.severity === "warning");
+  // A day that begins in a new place begins with the journey there. It is
+  // shown in the day, not only on the places step, so a long transfer is
+  // never a mystery when the day is told to stay free.
+  const previousPlace = index > 0 && days[index - 1].destinationSlug !== day.destinationSlug ? destinationBySlug.get(days[index - 1].destinationSlug) : undefined;
+  const arrival = previousPlace ? findRoute(previousPlace.slug, day.destinationSlug) : null;
 
   const onAdd = (value: string) => {
     if (value === "free" || value === "transport") addNote(day.id, value, "");
@@ -286,6 +294,33 @@ function DayCard({
         </div>
       </div>
 
+      {(arrival || dayWarnings.length > 0) && (
+        <div className="space-y-2 border-b border-line px-4 py-3">
+          {arrival && previousPlace && (
+            <p className="flex items-start gap-2 text-xs leading-relaxed text-ink-muted">
+              <TransportIcon mode={arrival.legs[0].option.mode} size={16} className="mt-0.5 shrink-0" />
+              <span>
+                {t("builder.itinerary.arrival", {
+                  place: pick(previousPlace.name, language),
+                  legs: routeModes(arrival).map((mode) => t(`builder.transport.${mode}`)).join(t("common.listSeparator")),
+                  duration: formatDuration(Math.round(arrival.hours * 60), t),
+                })}
+              </span>
+            </p>
+          )}
+          {dayWarnings.map((warning, i) => (
+            <p
+              key={`${warning.kind}-${i}`}
+              className={cn(
+                "border-s-2 px-3 py-1.5 text-xs leading-relaxed",
+                warning.severity === "warning" ? "border-ember-600 bg-ember-50 text-ember-800" : "border-gold-500 bg-gold-50 text-gold-800",
+              )}
+            >
+              {warningText(t, warning, language)}
+            </p>
+          ))}
+        </div>
+      )}
       <div ref={setDropRef} className={cn("px-4 py-3 transition-[background-color,box-shadow]", receiving && "bg-sand-100 shadow-[inset_0_0_0_1px_var(--color-ember-500)]")}>
         <SortableContext items={day.items.map((item) => item.id)} strategy={verticalListSortingStrategy}>
           {day.items.length === 0 ? (

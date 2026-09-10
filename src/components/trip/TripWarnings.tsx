@@ -18,7 +18,8 @@ export function TripWarnings({
   linked?: boolean;
   className?: string;
 }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const language = i18n.resolvedLanguage ?? "en";
   const shown = warnings.filter((warning) => warning.kind !== "empty");
   if (shown.length === 0) return null;
   return (
@@ -41,10 +42,10 @@ export function TripWarnings({
               to={`/trip-builder?step=itinerary${warning.dayIndex !== undefined ? `#day-${warning.dayIndex + 1}` : ""}`}
               className="underline decoration-current/40 underline-offset-4 hover:decoration-current"
             >
-              {warningText(t, warning)}
+              {warningText(t, warning, language)}
             </Link>
           ) : (
-            <span>{warningText(t, warning)}</span>
+            <span>{warningText(t, warning, language)}</span>
           )}
         </li>
       ))}

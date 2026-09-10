@@ -155,6 +155,7 @@ export type TripWarningKind =
   | "duplicate"
   | "duplicateSameDay"
   | "longTransfer"
+  | "longTransferBusy"
   | "noRoute"
   | "outOfSeason"
   | "minAge"
@@ -229,7 +230,16 @@ export function tripWarnings({ days, durationDays, month, children }: TripFacts)
     if (!route) {
       warnings.push({ kind: "noRoute", severity: "warning", dayIndex, params: { day: dayIndex + 1 } });
     } else if (route.hours >= LONG_TRANSFER_HOURS) {
-      warnings.push({ kind: "longTransfer", severity: "warning", dayIndex, params: { day: dayIndex + 1, hours: Math.round(route.hours) } });
+      // A day that is mostly the journey is fine as long as nothing is planned
+      // on top of it. Free, it is a note; busy, it is something to fix, and
+      // the sentence says what.
+      const planned = days[dayIndex]?.items.filter((item) => item.kind === "experience").length ?? 0;
+      warnings.push({
+        kind: planned > 0 ? "longTransferBusy" : "longTransfer",
+        severity: planned > 0 ? "warning" : "note",
+        dayIndex,
+        params: { day: dayIndex + 1, hours: Math.round(route.hours * 2) / 2, from: stops[i - 1].destinationSlug, count: planned },
+      });
     }
   }
 
