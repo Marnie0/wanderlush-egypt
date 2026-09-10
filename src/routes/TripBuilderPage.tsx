@@ -19,6 +19,7 @@ import { usePageMeta } from "@/hooks/usePageMeta";
 import { unconfirmedSteps, useTripStore } from "@/lib/trip-store";
 import { estimateTrip } from "@/lib/estimate";
 import { experienceSlugsInDays, tripWarnings } from "@/lib/trip-plan";
+import { warningText } from "@/lib/warning-text";
 import { formatNumber, pick } from "@/lib/format";
 import { cn } from "@/lib/cn";
 
@@ -257,7 +258,7 @@ export function TripBuilderPage() {
             to={`/trip-builder?step=itinerary${firstProblem.dayIndex !== undefined ? `#day-${firstProblem.dayIndex + 1}` : ""}`}
             className="block border-b border-ember-600/30 bg-ember-50 px-5 py-2 text-xs leading-snug text-ember-800"
           >
-            {t(`builder.warnings.${firstProblem.kind}`, firstProblem.params)}
+            {warningText(t, firstProblem)}
           </Link>
         )}
         <Container className="flex items-center justify-between gap-4 py-3">

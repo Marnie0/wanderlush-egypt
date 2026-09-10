@@ -8,6 +8,7 @@ import { addDays, formatDate, formatDuration, formatMoney, formatNumber, formatP
 import { countryName, preferenceSummary } from "./booking-request";
 import { findRoute, distanceKm } from "./transport";
 import { dayLoadMinutes, stopsFromDays, LONG_TRANSFER_HOURS, type TripDay, type TripStep, type TripWarning } from "./trip-plan";
+import { warningText } from "./warning-text";
 
 /**
  * Everything the PDF says, as plain strings, decided here rather than in the
@@ -333,18 +334,11 @@ export function buildTripPdfData({
   const shares: PdfShare[] = estimate.total > 0 ? parts.filter(([, amount]) => amount > 0).map(([label, amount, color]) => ({ label, share: amount / estimate.total, percent: formatPercent(amount / estimate.total, language), color })) : [];
 
   // Warnings and notes, phrased the way the builder phrases them.
-  const phrase = (params: NonNullable<TripWarning["params"]> = {}) => {
-    const out: Record<string, unknown> = { ...params };
-    if (typeof params.hours === "number") out.duration = t("common.hours", { count: params.hours });
-    if (typeof params.planned === "number") out.planned = t("common.days", { count: params.planned });
-    if (typeof params.duration === "number") out.duration = t("common.days", { count: params.duration });
-    return out;
-  };
   const notes: PdfNote[] = warnings
     .filter((warning) => warning.kind !== "empty")
     .map((warning) => {
       const where = warning.dayIndex !== undefined ? `${t("builder.itinerary.dayLabel", { day: number(warning.dayIndex + 1) })}: ` : "";
-      return { severity: warning.severity, text: `${where}${t(`builder.warnings.${warning.kind}`, phrase(warning.params))}` };
+      return { severity: warning.severity, text: `${where}${warningText(t, warning)}` };
     });
   const unconfirmedText =
     unconfirmed.length > 0

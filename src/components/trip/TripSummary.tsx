@@ -10,6 +10,7 @@ import type { TripEstimate } from "@/lib/estimate";
 import type { TripWarning } from "@/lib/trip-plan";
 import type { TripState } from "@/lib/trip-store";
 import { stopsFromDays } from "@/lib/trip-plan";
+import { warningText } from "@/lib/warning-text";
 import { cn } from "@/lib/cn";
 
 /**
@@ -137,7 +138,7 @@ export function TripSummary({
                     to={`/trip-builder?step=itinerary${warning.dayIndex !== undefined ? `#day-${warning.dayIndex + 1}` : ""}`}
                     className="underline decoration-ember-600/40 underline-offset-4 transition-colors hover:text-ember-700"
                   >
-                    {t(`builder.warnings.${warning.kind}`, warning.params)}
+                    {warningText(t, warning)}
                   </Link>
                 </li>
               ))}
