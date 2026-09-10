@@ -164,7 +164,9 @@ export function JourneyDetailPage() {
               </p>
 
               {/* The curated route becomes the traveller's own draft: places,
-                  nights, experiences and tier, all editable from there. */}
+                  nights, experiences and tier, all editable from there. It
+                  opens on the first step, because none of that is priced
+                  for anyone until dates, party and stay level are theirs. */}
               {confirmReplace ? (
                 <div className="mt-6 border border-ember-600/40 bg-ember-50 p-4">
                   <p className="text-sm leading-relaxed text-ember-800">{t("journey.replacesTrip")}</p>
@@ -175,7 +177,7 @@ export function JourneyDetailPage() {
                       className="flex-1"
                       onClick={() => {
                         loadJourney(journey);
-                        navigate("/trip-builder?step=itinerary");
+                        navigate("/trip-builder?step=basics");
                       }}
                     >
                       {t("journey.replaceConfirm")}
@@ -194,12 +196,13 @@ export function JourneyDetailPage() {
                       return;
                     }
                     loadJourney(journey);
-                    navigate("/trip-builder?step=itinerary");
+                    navigate("/trip-builder?step=basics");
                   }}
                 >
                   {t("journey.openInBuilder")}
                 </Button>
               )}
+              <p className="mt-2 text-center text-xs text-ink-muted">{t("journey.startAt")}</p>
             </div>
           </aside>
         </Container>

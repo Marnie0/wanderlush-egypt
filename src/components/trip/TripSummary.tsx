@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { destinationBySlug } from "@content/destinations";
 import { Button } from "@/components/ui/Button";
 import { CostLines, CostTotal, EstimateControls, EstimateDisclaimer } from "./CostBreakdown";
+import { ConfirmNotice } from "./ConfirmNotice";
+import type { TripStep } from "@/lib/trip-plan";
 import { formatDate, formatNumber, pick } from "@/lib/format";
 import type { TripEstimate } from "@/lib/estimate";
 import type { TripWarning } from "@/lib/trip-plan";
@@ -19,6 +21,7 @@ export function TripSummary({
   trip,
   estimate,
   warnings,
+  unconfirmed,
   nextLabel,
   onNext,
   onReset,
@@ -27,6 +30,8 @@ export function TripSummary({
   trip: Pick<TripState, "startDate" | "month" | "adults" | "children" | "durationDays" | "currency" | "days" | "tier" | "tourStyle" | "serviceIncluded" | "setPricing">;
   estimate: TripEstimate;
   warnings: TripWarning[];
+  /** Priced steps whose defaults the visitor has not seen. */
+  unconfirmed: TripStep[];
   nextLabel: string | null;
   onNext: () => void;
   onReset: () => void;
@@ -99,6 +104,7 @@ export function TripSummary({
       </div>
 
       <div className="border-t border-line p-6">
+        <ConfirmNotice unconfirmed={unconfirmed} trip={trip} compact className="mb-4" />
         <CostLines estimate={estimate} currency={trip.currency} tier={trip.tier} />
         <CostTotal estimate={estimate} currency={trip.currency} size="md" className="mt-3 border-t border-line pt-3" />
         <EstimateControls

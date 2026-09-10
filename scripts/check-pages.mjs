@@ -34,6 +34,7 @@ const SEEDED_TRIP = JSON.stringify({
   state: {
     startDate: "2027-03-10", month: "mar", adults: 2, children: 1, durationDays: 6, currency: "EGP",
     interests: [], tier: "comfort", tourStyle: "private", serviceIncluded: true, savedExperienceSlugs: [],
+    confirmed: ["basics", "places", "stay", "experiences", "itinerary"], journeySlug: null,
     days: [
       { id: "a", destinationSlug: "cairo", items: [] },
       { id: "b", destinationSlug: "aswan", items: [{ id: "b1", kind: "experience", experienceSlug: "nile-cruise-aswan-to-luxor" }] },

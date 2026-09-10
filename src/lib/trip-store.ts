@@ -1,11 +1,13 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { useShallow } from "zustand/react/shallow";
 import { destinationBySlug } from "@content/destinations";
 import { experienceBySlug } from "@content/experiences";
 import { defaultCurrency } from "@content/currencies";
 import type { AccommodationTierId, Journey, Month } from "@content/types";
 import type { TourStyle } from "./estimate";
 import {
+  ASSUMED_STEPS,
   experienceSlugsInDays,
   makeDays,
   newId,
@@ -14,6 +16,7 @@ import {
   type Interest,
   type TripDay,
   type TripItem,
+  type TripStep,
 } from "./trip-plan";
 
 export const TRIP_STORAGE_KEY = "wanderlush.trip";
@@ -40,6 +43,15 @@ export interface TripState {
   days: TripDay[];
   /** Shortlisted experiences: kept for later, not yet part of the trip. */
   savedExperienceSlugs: string[];
+  /**
+   * Builder steps the visitor has actually seen. Dates, party and stay level
+   * all have defaults, and a trip that arrives from a journey or a
+   * destination page is priced on them; until those steps are seen, the
+   * estimate says so and the request cannot be sent.
+   */
+  confirmed: TripStep[];
+  /** The curated journey this trip started from, if any. */
+  journeySlug: string | null;
 
   setBasics: (basics: Partial<Pick<TripState, "startDate" | "month" | "adults" | "children" | "durationDays" | "currency">>) => void;
   toggleInterest: (interest: Interest) => void;
@@ -70,8 +82,15 @@ export interface TripState {
 
   toggleSavedExperience: (slug: string) => void;
   clearSaved: () => void;
+  confirmStep: (step: TripStep) => void;
   loadJourney: (journey: Journey) => void;
   reset: () => void;
+}
+
+/** The priced steps the visitor has not seen, once there is something to price. */
+export function unconfirmedSteps(state: Pick<TripState, "days" | "confirmed">): TripStep[] {
+  if (state.days.length === 0) return [];
+  return ASSUMED_STEPS.filter((step) => !state.confirmed.includes(step));
 }
 
 const toggleIn = (list: string[], slug: string) =>
@@ -89,6 +108,8 @@ const initialTrip = {
   tourStyle: "shared" as TourStyle,
   serviceIncluded: true,
   days: [] as TripDay[],
+  confirmed: [] as TripStep[],
+  journeySlug: null as string | null,
 };
 
 /** Days for a place, inserted after its last existing day or at the end. */
@@ -265,17 +286,20 @@ export const useTripStore = create<TripState>()(
       toggleSavedExperience: (slug) =>
         set((state) => ({ savedExperienceSlugs: toggleIn(state.savedExperienceSlugs, slug) })),
       clearSaved: () => set({ savedExperienceSlugs: [] }),
+      confirmStep: (step) =>
+        set((state) => (state.confirmed.includes(step) ? {} : { confirmed: [...state.confirmed, step] })),
 
       // A curated journey becomes the traveller's own: its places in order
       // with the nights its outline gives them, its experiences placed, its
-      // suggested tier. Everything after that is editable.
+      // suggested tier. Everything after that is editable, and nothing about
+      // who is travelling or where they sleep counts as decided yet.
       loadJourney: (journey) => {
         let days: TripDay[] = [];
         journey.destinationSlugs.forEach((slug, index) => {
           days = [...days, ...makeDays(slug, journey.stopNights[index] ?? 1)];
         });
         for (const slug of journey.experienceSlugs) days = placeExperience(days, slug);
-        set({ days, durationDays: journey.days, tier: journey.suggestedTier });
+        set({ days, durationDays: journey.days, tier: journey.suggestedTier, confirmed: [], journeySlug: journey.slug });
       },
       reset: () => set({ ...initialTrip, savedExperienceSlugs: [] }),
     }),
@@ -295,6 +319,8 @@ export const useTripStore = create<TripState>()(
         serviceIncluded: state.serviceIncluded,
         days: state.days,
         savedExperienceSlugs: state.savedExperienceSlugs,
+        confirmed: state.confirmed,
+        journeySlug: state.journeySlug,
       }),
       // Earlier versions kept two flat lists. They become days at each
       // place's shortest stay, with the chosen experiences placed on them.
@@ -338,6 +364,9 @@ export const useTripCount = () =>
       stopsFromDays(state.days).length +
       state.days.reduce((sum, day) => sum + day.items.filter((item) => item.kind === "experience").length, 0),
   );
+
+/** Which priced steps still hold defaults nobody has looked at. */
+export const useUnconfirmedSteps = () => useTripStore(useShallow((state) => unconfirmedSteps(state)));
 
 export const useSavedCount = () =>
   useTripStore((state) => state.savedExperienceSlugs.length);

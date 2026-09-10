@@ -3,6 +3,11 @@ import { experienceBySlug } from "@content/experiences";
 import type { AccommodationTierId, Experience, Month } from "@content/types";
 import { findRoute } from "./transport";
 
+export const TRIP_STEPS = ["basics", "places", "stay", "experiences", "itinerary"] as const;
+export type TripStep = (typeof TRIP_STEPS)[number];
+/** Steps whose defaults price the trip: a visitor has to have seen them for the estimate to be theirs. */
+export const ASSUMED_STEPS: readonly TripStep[] = ["basics", "stay"];
+
 export type TripItemKind = "experience" | "free" | "transport";
 
 export interface TripItem {

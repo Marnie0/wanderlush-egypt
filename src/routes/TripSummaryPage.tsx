@@ -7,6 +7,7 @@ import { Container, Section } from "@/components/ui/Layout";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { ButtonLink } from "@/components/ui/Button";
 import { TripWarnings } from "@/components/trip/TripWarnings";
+import { ConfirmNotice } from "@/components/trip/ConfirmNotice";
 import {
   ConversionNote,
   CostBar,
@@ -17,7 +18,7 @@ import {
   EstimateRules,
 } from "@/components/trip/CostBreakdown";
 import { usePageMeta } from "@/hooks/usePageMeta";
-import { useTripStore } from "@/lib/trip-store";
+import { unconfirmedSteps, useTripStore } from "@/lib/trip-store";
 import { estimateTrip } from "@/lib/estimate";
 import { stopsFromDays, tripWarnings } from "@/lib/trip-plan";
 import { addDays, formatDate, formatMoney, formatNumber, pick } from "@/lib/format";
@@ -53,6 +54,7 @@ export function TripSummaryPage() {
     [trip.days, trip.durationDays, trip.month, trip.children],
   );
   const problems = warnings.filter((warning) => warning.severity === "warning");
+  const unconfirmed = unconfirmedSteps(trip);
   const stops = stopsFromDays(trip.days);
   // The next click is "Request this trip"; have its chunk ready before it comes.
   useEffect(() => {
@@ -101,6 +103,7 @@ export function TripSummaryPage() {
             <aside className="lg:order-last">
               <div className="border border-line bg-sand-50 p-6 lg:sticky lg:top-28 lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto">
                 <p className="eyebrow text-ink-muted">{t("estimate.title")}</p>
+                <ConfirmNotice unconfirmed={unconfirmed} trip={trip} compact className="mt-4" />
                 <CostBar estimate={estimate} className="mt-4" />
                 <CostLines estimate={estimate} currency={trip.currency} tier={trip.tier} detailed className="mt-5" />
                 <CostTotal estimate={estimate} currency={trip.currency} className="mt-3 border-t border-line pt-3" />
@@ -151,6 +154,7 @@ export function TripSummaryPage() {
                     );
                   })}
                 </ol>
+                <ConfirmNotice unconfirmed={unconfirmed} trip={trip} className="mt-6" />
                 {problems.length > 0 && (
                   <div className="mt-6">
                     <p className="text-sm font-medium text-ember-700">{t("builder.summary.problems", { count: problems.length })}</p>

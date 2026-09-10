@@ -7,10 +7,11 @@ import { Button, ButtonLink } from "@/components/ui/Button";
 import { FilterToggle } from "@/components/ui/FilterControls";
 import { Stepper } from "@/components/trip/Stepper";
 import { TripWarnings } from "@/components/trip/TripWarnings";
+import { ConfirmNotice } from "@/components/trip/ConfirmNotice";
 import { TripReview } from "@/components/booking/TripReview";
 import { Field, RadioCards, inputClasses } from "@/components/booking/Field";
 import { usePageMeta } from "@/hooks/usePageMeta";
-import { useTripStore } from "@/lib/trip-store";
+import { unconfirmedSteps, useTripStore } from "@/lib/trip-store";
 import { useBookingStore } from "@/lib/booking-store";
 import { estimateTrip } from "@/lib/estimate";
 import { tripWarnings } from "@/lib/trip-plan";
@@ -67,6 +68,10 @@ export function BookingPage() {
     [trip.days, trip.durationDays, trip.month, trip.children],
   );
   const problems = warnings.filter((warning) => warning.severity === "warning");
+  // Defaults nobody looked at are not a trip anyone asked for: the review
+  // holds the request until dates, party and stay level have been seen.
+  const unconfirmed = unconfirmedSteps(trip);
+  const blocked = problems.length > 0 || unconfirmed.length > 0;
   const requestTrip = useMemo(() => snapshotTrip(trip), [trip]);
   const requestEstimate = useMemo(() => snapshotEstimate(estimate), [estimate]);
   const errors = useMemo(() => validateDetails(booking.details, countryCodes), [booking.details]);
@@ -83,7 +88,7 @@ export function BookingPage() {
   // navigation, so the URL agrees with the page and finishing the last field
   // never swaps the step under the visitor's hands.
   const allowed: BookingStep =
-    problems.length > 0 && wanted !== "review" ? "review" : wanted === "send" && !detailsValid ? "details" : wanted;
+    blocked && wanted !== "review" ? "review" : wanted === "send" && !detailsValid ? "details" : wanted;
   const step = allowed;
   // Set once the request is away: the store empties then, which would make the
   // details "invalid" and send the redirect racing the move to the confirmation.
@@ -137,7 +142,7 @@ export function BookingPage() {
     }
   }, [step, visited]);
   const complete: Record<BookingStep, boolean> = {
-    review: trip.days.length > 0 && problems.length === 0,
+    review: trip.days.length > 0 && !blocked,
     details: detailsValid,
     preferences: visited.has("preferences"),
     send: false,
@@ -275,13 +280,19 @@ export function BookingPage() {
                 event.preventDefault();
                 if (step === "send") void send();
                 else if (step === "details" && next) leaveDetails(next);
-                else if (next && !(step === "review" && problems.length > 0)) goTo(next);
+                else if (next && !(step === "review" && blocked)) goTo(next);
               }}
             >
               {step === "review" && (
                 <div>
                   <h2 tabIndex={-1} className="font-display text-2xl text-charcoal-900 focus:outline-none">{t("booking.review.title")}</h2>
                   <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-muted">{t("booking.review.hint")}</p>
+                  {unconfirmed.length > 0 && (
+                    <div className="mt-6">
+                      <p className="text-sm font-medium text-ember-700">{t("builder.confirm.blocked")}</p>
+                      <ConfirmNotice unconfirmed={unconfirmed} trip={trip} className="mt-2" />
+                    </div>
+                  )}
                   {problems.length > 0 && (
                     <div className="mt-6">
                       <p className="text-sm font-medium text-ember-700">{t("booking.review.fixFirst", { count: problems.length })}</p>
@@ -347,7 +358,7 @@ export function BookingPage() {
                       {sending ? t("booking.send.sending") : t("booking.send.submit")}
                     </Button>
                   </div>
-                ) : step === "review" && problems.length > 0 ? (
+                ) : step === "review" && blocked ? (
                   <p className="max-w-sm text-end text-sm text-ink-muted">{t("booking.review.blocked")}</p>
                 ) : (
                   next && <Button type="submit">{t(`booking.next.${next}`)}</Button>
@@ -359,10 +370,10 @@ export function BookingPage() {
               <div className="sticky top-28 max-h-[calc(100vh-8rem)] overflow-y-auto border border-line bg-sand-50 p-6">
                 <p className="eyebrow text-ink-muted">{t("booking.summary.title")}</p>
                 <TripReview trip={requestTrip} estimate={requestEstimate} compact className="mt-4" />
-                {problems.length > 0 && (
+                {blocked && (
                   <p className="mt-4 border-t border-line pt-4 text-sm text-ember-700">
                     <Link to="/booking?step=review" className="underline underline-offset-4">
-                      {t("booking.review.fixFirst", { count: problems.length })}
+                      {problems.length > 0 ? t("booking.review.fixFirst", { count: problems.length }) : t("builder.confirm.blocked")}
                     </Link>
                   </p>
                 )}

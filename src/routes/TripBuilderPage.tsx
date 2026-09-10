@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import { Container, Section } from "@/components/ui/Layout";
 import { Button } from "@/components/ui/Button";
 import { Stepper, TRIP_STEPS, type TripStep } from "@/components/trip/Stepper";
+import { ConfirmNotice } from "@/components/trip/ConfirmNotice";
+import { journeyBySlug } from "@content/journeys";
 import { TripSummary } from "@/components/trip/TripSummary";
 import { StepBasics } from "@/components/trip/StepBasics";
 import { StepPlaces } from "@/components/trip/StepPlaces";
@@ -13,10 +15,10 @@ import { StepItinerary } from "@/components/trip/StepItinerary";
 import { CostLines, CostTotal, EstimateControls, EstimateDisclaimer } from "@/components/trip/CostBreakdown";
 import { Icon } from "@/components/ui/Icon";
 import { usePageMeta } from "@/hooks/usePageMeta";
-import { useTripStore } from "@/lib/trip-store";
+import { unconfirmedSteps, useTripStore } from "@/lib/trip-store";
 import { estimateTrip } from "@/lib/estimate";
 import { experienceSlugsInDays, tripWarnings } from "@/lib/trip-plan";
-import { formatMoney } from "@/lib/format";
+import { formatMoney, formatNumber, pick } from "@/lib/format";
 import { cn } from "@/lib/cn";
 
 function isStep(value: string | null): value is TripStep {
@@ -37,8 +39,16 @@ export function TripBuilderPage() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const requested = searchParams.get("step");
-  // Someone who already has days lands on the itinerary; a first visit starts at the beginning.
-  const step: TripStep = isStep(requested) ? requested : trip.days.length > 0 ? "itinerary" : "basics";
+  // Someone whose trip is priced on defaults they have never seen (a journey,
+  // places added from a destination page) starts at the beginning; someone
+  // who has been through it lands on the itinerary; a first visit starts at
+  // the beginning too.
+  const unconfirmed = unconfirmedSteps(trip);
+  const step: TripStep = isStep(requested)
+    ? requested
+    : trip.days.length > 0 && unconfirmed.length === 0
+      ? "itinerary"
+      : "basics";
   const goTo = (next: TripStep) => {
     setSearchParams({ step: next });
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -61,25 +71,13 @@ export function TripBuilderPage() {
     [trip.days, trip.durationDays, trip.month, trip.children],
   );
 
-  // A step counts as done once it has been seen or already holds something;
-  // "Stay" is never ticked on the strength of a default the visitor never saw.
-  const [visited, setVisited] = useState<Set<TripStep>>(() => {
-    try {
-      return new Set(JSON.parse(sessionStorage.getItem("wanderlush.visited-steps") ?? "[]") as TripStep[]);
-    } catch {
-      return new Set();
-    }
-  });
+  // Seeing a step confirms its defaults; the store remembers, so a trip that
+  // arrives from a journey keeps asking until dates, party and stay were seen.
+  const confirmStep = trip.confirmStep;
   useEffect(() => {
-    if (visited.has(step)) return;
-    const next = new Set(visited).add(step);
-    setVisited(next);
-    try {
-      sessionStorage.setItem("wanderlush.visited-steps", JSON.stringify([...next]));
-    } catch {
-      // Storage can be unavailable; the ticks are a courtesy, not state.
-    }
-  }, [step, visited]);
+    confirmStep(step);
+  }, [step, confirmStep]);
+  const visited = new Set(trip.confirmed);
   // What "done" means for each step, and a tick only once every step before
   // it is done too. Any step can still be opened and read at any time.
   const problems = warnings.filter((warning) => warning.severity === "warning").length;
@@ -137,6 +135,7 @@ export function TripBuilderPage() {
     target?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, [step]);
   const firstProblem = warnings.find((warning) => warning.severity === "warning");
+  const journey = trip.journeySlug ? journeyBySlug.get(trip.journeySlug) : undefined;
   // The phone's cost panel: closed by default, and closed again on every step change.
   const [costOpen, setCostOpen] = useState(false);
   useEffect(() => setCostOpen(false), [step]);
@@ -165,6 +164,21 @@ export function TripBuilderPage() {
         <Container>
           <div className="grid gap-12 lg:grid-cols-[1fr_20rem] lg:gap-14">
             <div className="min-w-0">
+              {/* A trip that came from a journey says so at the start, and what it
+                  has decided on the visitor's behalf until they look. */}
+              {step === "basics" && journey && unconfirmed.length > 0 && (
+                <div className="mb-8 border-s-2 border-teal-600 bg-teal-50 px-4 py-3">
+                  <p className="text-sm font-medium text-charcoal-900">
+                    {t("builder.fromJourney.title", { journey: pick(journey.name, language) })}
+                  </p>
+                  <p className="mt-1 max-w-2xl text-sm leading-relaxed text-charcoal-700">
+                    {t("builder.fromJourney.body", {
+                      days: formatNumber(journey.days, language),
+                      tier: t(`tiers.${journey.suggestedTier}`),
+                    })}
+                  </p>
+                </div>
+              )}
               {step === "basics" && <StepBasics />}
               {step === "places" && <StepPlaces />}
               {step === "stay" && <StepStay />}
@@ -193,6 +207,7 @@ export function TripBuilderPage() {
                   trip={trip}
                   estimate={estimate}
                   warnings={warnings}
+                  unconfirmed={unconfirmed}
                   nextLabel={nextLabel}
                   onNext={goNext}
                   onReset={() => setConfirmReset(true)}
@@ -219,6 +234,7 @@ export function TripBuilderPage() {
               onChange={trip.setPricing}
               className="mt-4 border-t border-line pt-4"
             />
+            <ConfirmNotice unconfirmed={unconfirmed} trip={trip} compact className="mt-4" />
             <EstimateDisclaimer compact className="mt-4" />
             <div className="mt-2 flex flex-wrap items-center justify-between gap-x-6 gap-y-1">
               <Link to="/trip-summary" className="inline-flex min-h-11 items-center text-sm text-charcoal-800 underline underline-offset-4">

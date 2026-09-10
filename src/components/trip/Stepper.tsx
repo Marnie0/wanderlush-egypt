@@ -3,8 +3,7 @@ import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/cn";
 import { formatNumber } from "@/lib/format";
 
-export const TRIP_STEPS = ["basics", "places", "stay", "experiences", "itinerary"] as const;
-export type TripStep = (typeof TRIP_STEPS)[number];
+export { TRIP_STEPS, type TripStep } from "@/lib/trip-plan";
 
 /**
  * A row of numbered steps, every one of them reachable at any time: the

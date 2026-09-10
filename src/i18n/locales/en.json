@@ -228,7 +228,8 @@
     "suggestedTier": "Suggested accommodation",
     "openInBuilder": "Open in the trip builder",
     "replacesTrip": "This replaces the trip you have started.",
-    "replaceConfirm": "Replace it with this journey"
+    "replaceConfirm": "Replace it with this journey",
+    "startAt": "Start with your dates and party"
   },
   "faqPage": {
     "stillStuck": "Still have a question?",
@@ -588,6 +589,18 @@
       "overNothing": "{{item}} is no longer over a drop area.",
       "end": "{{item}} was dropped on {{target}}.",
       "cancel": "Dragging {{item}} was cancelled."
+    },
+    "fromJourney": {
+      "title": "Starting from {{journey}}",
+      "body": "Its {{days}} days, places and experiences are laid out for you already, with {{tier}} stays as it suggests. Nothing here is priced for you yet: set when and who is travelling, then check the stay level, and the itinerary is yours to adjust."
+    },
+    "confirm": {
+      "title": "Not yet confirmed",
+      "body": "This estimate assumes {{travellers}} and {{stay}} stays until you say otherwise.",
+      "basics": "dates and travellers",
+      "stay": "stay level",
+      "action": "Confirm {{step}}",
+      "blocked": "Confirm your dates, travellers and stay level in the builder before this can be requested."
     }
   },
   "estimate": {
