@@ -89,3 +89,15 @@ The confirmation page offers the request as a PDF as well as the print
 stylesheet. See `docs/pdf.md`: the same document the trip summary page
 produces, with the reference on it and, in the browser that sent the
 request, the traveller's details and preferences.
+
+## The contact form
+
+`/contact` is for what is not a booking request: a question, a change to a
+request already sent, a trip that is still an idea. One form (name, email,
+an optional booking reference, the message), the same honeypot, the same
+rate limit, and `shared/contact.ts` validating on both sides the way
+`shared/booking.ts` does. `POST /api/contact` stores the message in
+`contact_messages` with status `new`; nothing reads it back through the
+site, and the page's thank-you says the reply comes by email. A reference
+typed into the form is checked for shape only, not for existence, so a
+message about a request sent from another browser still lands.

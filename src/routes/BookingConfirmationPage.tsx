@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { m, useReducedMotion } from "framer-motion";
 import { Container, Section } from "@/components/ui/Layout";
@@ -11,6 +11,7 @@ import { DownloadPdfButton } from "@/components/trip/DownloadPdfButton";
 import { buildTripPdfData, tripPdfFileName } from "@/lib/trip-pdf";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { useBookingStore, type SentRequest } from "@/lib/booking-store";
+import { useTripStore } from "@/lib/trip-store";
 import { countryName, preferenceSummary } from "@/lib/booking-request";
 import { formatDate } from "@/lib/format";
 import { isReference, type BookingRecord } from "../../shared/booking";
@@ -38,6 +39,10 @@ export function BookingConfirmationPage() {
   const [loaded, setLoaded] = useState<Loaded>(() => (local ? { kind: "record", record: local } : { kind: "loading" }));
 
   const forget = useBookingStore((state) => state.forgetLastRequest);
+  // The trip stays in the browser after sending, so "back" keeps it and a
+  // new trip is an explicit choice that says what it clears.
+  const resetTrip = useTripStore((state) => state.reset);
+  const navigate = useNavigate();
   useEffect(() => {
     if (local) return setLoaded({ kind: "record", record: local });
     if (!isReference(reference)) return setLoaded({ kind: "missing" });
@@ -227,6 +232,19 @@ export function BookingConfirmationPage() {
                 <p className="eyebrow text-ink-muted">{t("booking.confirmation.keepTitle")}</p>
                 <p className="mt-3 text-sm leading-relaxed text-charcoal-700">{t("booking.confirmation.keepBody")}</p>
                 <ul className="mt-4 space-y-2 text-sm">
+                  <li>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        resetTrip();
+                        navigate("/trip-builder?step=basics");
+                      }}
+                      className="text-start text-charcoal-800 underline underline-offset-4 hover:text-ember-700"
+                    >
+                      {t("booking.confirmation.startNew")}
+                    </button>
+                    <span className="mt-1 block text-xs text-ink-muted">{t("booking.confirmation.startNewHint")}</span>
+                  </li>
                   {sent && (
                     <li>
                       <button

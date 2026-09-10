@@ -1,6 +1,14 @@
 import type { Journey } from "./types";
 
-/** Six curated journeys, each one a working starting point for the trip builder. */
+/**
+ * Six curated journeys, each one a working starting point for the trip builder.
+ *
+ * `priceFrom` is not written by hand: it is what `estimateTrip` returns per
+ * person for the journey on the builder's defaults (two adults, the suggested
+ * stay level, shared tours, fee included; see `src/lib/journey-price.ts`).
+ * The pages compute it live; this copy is for the database and the API, and
+ * `npm run check:content` fails when it drifts from the estimator.
+ */
 export const journeys: Journey[] = [
   {
     id: "jny-ancient-egypt",
@@ -17,7 +25,7 @@ export const journeys: Journey[] = [
     experienceSlugs: ["giza-pyramids-at-sunrise", "grand-egyptian-museum-guided", "saqqara-and-dahshur-day", "islamic-cairo-night-walk", "valley-of-the-kings-private", "luxor-hot-air-balloon", "abu-simbel-sunrise", "nubian-village-lunch", "felucca-sunset-sail"],
     travelStyles: ["history", "family"],
     suggestedTier: "comfort",
-    priceFrom: 1980,
+    priceFrom: 1331,
     bestSeasonNote: { en: "Best from October to April, when the south is comfortable before ten in the morning.", ar: "الأنسب من أكتوبر إلى أبريل، حين يكون جو الجنوب لطيفًا قبل العاشرة صباحًا." },
     heroImage: { src: "/images/journeys/ancient-egypt.webp", alt: { en: "The avenue of ram sphinxes at Karnak", ar: "طريق الكباش في الكرنك" } },
     outline: [
@@ -48,7 +56,7 @@ export const journeys: Journey[] = [
     experienceSlugs: ["giza-pyramids-at-sunrise", "grand-egyptian-museum-guided", "nile-cruise-aswan-to-luxor", "felucca-sunset-sail", "valley-of-the-kings-private"],
     travelStyles: ["luxury", "romantic", "history"],
     suggestedTier: "luxury",
-    priceFrom: 4250,
+    priceFrom: 1786,
     bestSeasonNote: { en: "November to March, when the river runs cool in the evening and the decks are usable all day.", ar: "من نوفمبر إلى مارس، حين يلطف الجو على النهر مساءً ويصلح سطح المركب للجلوس طوال النهار." },
     heroImage: { src: "/images/journeys/luxury-nile.webp", alt: { en: "Morning mist on the Nile", ar: "ضباب الصباح على النيل" } },
     outline: [
@@ -79,7 +87,7 @@ export const journeys: Journey[] = [
     experienceSlugs: ["alexandria-greco-roman-day", "great-sand-sea-safari", "siwa-salt-lake-float", "siwa-oracle-bike-tour", "white-desert-overnight-camp"],
     travelStyles: ["desert", "nature"],
     suggestedTier: "comfort",
-    priceFrom: 1650,
+    priceFrom: 961,
     bestSeasonNote: { en: "October to March. The desert is unusable in high summer and camps close.", ar: "من أكتوبر إلى مارس. في عز الصيف لا تُطاق الصحراء، وتغلق المخيمات أبوابها." },
     heroImage: { src: "/images/journeys/siwa-desert.webp", alt: { en: "Dunes at the edge of the Great Sand Sea", ar: "كثبان على حافة بحر الرمال الأعظم" } },
     outline: [
@@ -109,7 +117,7 @@ export const journeys: Journey[] = [
     experienceSlugs: ["ras-mohammed-diving-day", "thistlegorm-wreck-dive", "mount-sinai-sunrise-trek"],
     travelStyles: ["beach", "nature"],
     suggestedTier: "premium",
-    priceFrom: 1490,
+    priceFrom: 955,
     bestSeasonNote: { en: "Diveable all year. March to May and September to November are the sweet spots.", ar: "الغوص ممكن طوال العام، وأفضل أوقاته من مارس إلى مايو ومن سبتمبر إلى نوفمبر." },
     heroImage: { src: "/images/journeys/red-sea.webp", alt: { en: "The Ras Mohammed shore, where the desert meets the sea", ar: "ساحل رأس محمد حيث تلتقي الصحراء بالبحر" } },
     outline: [
@@ -137,7 +145,7 @@ export const journeys: Journey[] = [
     experienceSlugs: ["giza-pyramids-at-sunrise", "grand-egyptian-museum-guided", "khan-el-khalili-food-walk", "luxor-hot-air-balloon", "giftun-island-snorkel-day", "eastern-desert-quad-and-bedouin-dinner"],
     travelStyles: ["family", "history", "beach"],
     suggestedTier: "comfort",
-    priceFrom: 1860,
+    priceFrom: 1090,
     bestSeasonNote: { en: "School holidays in spring and autumn work best. Avoid July and August in the Nile valley.", ar: "أنسب أوقاتها الإجازات المدرسية في الربيع والخريف. وتجنّب يوليو وأغسطس في وادي النيل." },
     heroImage: { src: "/images/journeys/family.webp", alt: { en: "Visitors and camels at the Giza pyramids", ar: "زوار وجمال عند أهرامات الجيزة" } },
     outline: [
@@ -169,7 +177,7 @@ export const journeys: Journey[] = [
     experienceSlugs: ["giza-pyramids-at-sunrise", "felucca-sunset-sail", "nubian-village-lunch", "luxor-hot-air-balloon", "nile-dinner-cruise-cairo"],
     travelStyles: ["romantic", "luxury"],
     suggestedTier: "premium",
-    priceFrom: 2680,
+    priceFrom: 1522,
     bestSeasonNote: { en: "October to April. Aswan in particular is at its best in the winter months.", ar: "من أكتوبر إلى أبريل، وأسوان تحديدًا في أبهى حالاتها في شهور الشتاء." },
     heroImage: { src: "/images/journeys/honeymoon.webp", alt: { en: "Two feluccas at sunset on the Nile", ar: "فلوكتان عند الغروب على النيل" } },
     outline: [

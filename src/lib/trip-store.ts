@@ -168,6 +168,21 @@ function placeExperience(days: TripDay[], slug: string, dayId?: string): TripDay
   return next.map((day, i) => (i === index ? { ...day, items: [...day.items, item] } : day));
 }
 
+/**
+ * A journey as an itinerary: its places in order with the nights its outline
+ * gives them, and its experiences placed on the emptiest days. The same
+ * function loads a journey into the builder and prices it on its card, so
+ * the two can never disagree.
+ */
+export function journeyDays(journey: Journey): TripDay[] {
+  let days: TripDay[] = [];
+  journey.destinationSlugs.forEach((slug, index) => {
+    days = [...days, ...makeDays(slug, journey.stopNights[index] ?? 1)];
+  });
+  for (const slug of journey.experienceSlugs) days = placeExperience(days, slug);
+  return days;
+}
+
 export const useTripStore = create<TripState>()(
   persist(
     (set, get) => ({
@@ -293,14 +308,8 @@ export const useTripStore = create<TripState>()(
       // with the nights its outline gives them, its experiences placed, its
       // suggested tier. Everything after that is editable, and nothing about
       // who is travelling or where they sleep counts as decided yet.
-      loadJourney: (journey) => {
-        let days: TripDay[] = [];
-        journey.destinationSlugs.forEach((slug, index) => {
-          days = [...days, ...makeDays(slug, journey.stopNights[index] ?? 1)];
-        });
-        for (const slug of journey.experienceSlugs) days = placeExperience(days, slug);
-        set({ days, durationDays: journey.days, tier: journey.suggestedTier, confirmed: [], journeySlug: journey.slug });
-      },
+      loadJourney: (journey) =>
+        set({ days: journeyDays(journey), durationDays: journey.days, tier: journey.suggestedTier, confirmed: [], journeySlug: journey.slug }),
       reset: () => set({ ...initialTrip, savedExperienceSlugs: [] }),
     }),
     {

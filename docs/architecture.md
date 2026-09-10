@@ -151,6 +151,16 @@ erDiagram
     boolean service_included "default true"
     text status "default new, never updated"
   }
+  contact_messages {
+    bigserial id PK
+    timestamptz created_at "default now(); btree index desc"
+    text language "en or ar"
+    text full_name
+    text email
+    text booking_reference "nullable, shape-checked only, no FK"
+    text message "up to 2000 characters"
+    text status "default new, never updated"
+  }
 
   destinations ||--o{ experiences : "destination_slug, on delete cascade"
   accommodation_levels ||--o{ journeys : "suggested_tier"
@@ -163,6 +173,7 @@ erDiagram
   destinations }o..o{ destinations : "related_slugs array, no FK"
   booking_requests }o..o{ destinations : "itinerary jsonb, one slug per day, no FK"
   booking_requests }o..o{ experiences : "itinerary jsonb, slugs per day, no FK"
+  contact_messages }o..o| booking_requests : "booking_reference text, typed by a person, no FK"
 ```
 
 **What it shows.** Solid lines are real foreign keys; dotted lines are
@@ -170,8 +181,9 @@ relationships the application maintains without one. The catalogue tables
 (`destinations`, `experiences`, `journeys`, `accommodation_levels`,
 `reviews`, `faq_categories`, `faqs`) are a mirror of the TypeScript content
 modules in `content/`, pushed by `db/seed.ts`, which upserts every row and
-then deletes any row whose key is no longer in the content. The one table
-the site writes to at runtime is `booking_requests`.
+then deletes any row whose key is no longer in the content. The two tables
+the site writes to at runtime are `booking_requests` and `contact_messages`;
+nothing reads a contact message back through the site.
 
 **Non-obvious choices.**
 
@@ -314,6 +326,7 @@ way for the sidebar, the phone bar and the booking review to disagree.
 flowchart LR
   subgraph fn["Vercel serverless functions (api/*.ts, one default export each)"]
     R["requests.ts\nPOST: validate, insert, return reference\nGET ?ref=: read one request, no contact details"]
+    C["contact.ts\nPOST: validate, insert, return the time"]
     D["destinations.ts\nGET all, or ?slug="]
     E["experiences.ts\nGET all, ?slug=, ?destination=, ?category="]
     H["health.ts\nGET: select now()"]
@@ -324,13 +337,15 @@ flowchart LR
     Seed["seed.ts (command line only)\n--migrate-only applies schema.sql\notherwise upserts content and prunes"]
     Schema["schema.sql"]
   end
-  Shared["shared/booking.ts\nparsePayload · validateDetails · makeReference · isReference"]
+  Shared["shared/booking.ts · shared/contact.ts · shared/rate-limit.ts\nparsePayload · validateDetails · makeReference · isReference\nparseContactPayload · validateMessage · makeLimiter"]
   Content["content/*.ts\ncountries · currencies · accommodation"]
   PG[("Neon PostgreSQL")]
 
   R --> Shared
   R --> Content
   R --> Client
+  C --> Shared
+  C --> Client
   D --> Client
   D --> Rows
   E --> Client
@@ -345,9 +360,9 @@ flowchart LR
 **What it shows.** There is no service layer, no repository, no ORM and no
 classes on the server. Each route is one file exporting one handler that
 runs SQL through a shared `query` function. The only logic that is more
-than a query is in `shared/booking.ts`, and it is shared with the browser
-so that a request which passed the form also passes the API. **Two of the
-four routes are unused by the site**: `/api/destinations` and
+than a query is in `shared/booking.ts` and `shared/contact.ts`, and it is
+shared with the browser so that a request or a message which passed the
+form also passes the API. **Two of the five routes are unused by the site**: `/api/destinations` and
 `/api/experiences` are live and answer from the database, but the React app
 reads the same content from the bundled modules and never calls them. They
 exist so the catalogue can be served from the database when a phase needs
@@ -366,18 +381,18 @@ flowchart LR
 
   subgraph vercel["Vercel (one project, deploys from main)"]
     CDN["Static files and CDN\ndist/ · images · self-hosted fonts\nrewrite: everything not /api/ serves index.html\nimmutable cache headers on assets and images"]
-    FN["Serverless functions, Node\n/api/requests · /api/destinations · /api/experiences · /api/health"]
+    FN["Serverless functions, Node\n/api/requests · /api/contact · /api/destinations · /api/experiences · /api/health"]
   end
 
   subgraph neon["Neon"]
-    PG[("PostgreSQL\n8 tables · DATABASE_URL")]
+    PG[("PostgreSQL\n9 tables · DATABASE_URL")]
   end
 
   GH["GitHub\nMarnie0/wanderlush-egypt"]
   DEV["Developer machine\nnpm run build · db/seed.ts · QA scripts"]
 
   SPA -- "HTTPS GET\nHTML, JS chunks, CSS, WebP images, WOFF2 fonts" --> CDN
-  SPA -- "HTTPS, JSON\nPOST /api/requests\nGET /api/requests?ref=" --> FN
+  SPA -- "HTTPS, JSON\nPOST /api/requests · GET /api/requests?ref=\nPOST /api/contact" --> FN
   SPA <-- "synchronous read and write" --> LS
   SPA -- "dynamic import on first click" --> PDFR
   FN -- "PostgreSQL wire protocol over TLS\npg Pool, max 3 connections, certificate verified" --> PG
@@ -389,15 +404,17 @@ flowchart LR
 **What it shows.** Three hosted parts and one repository. The browser does
 almost all of the work: content, search, filtering, the map, the trip, the
 estimate, the warnings and the PDF are all computed on the client from the
-bundled content modules. The server is reached twice in a whole visit at
-most, both times for a booking request. Vercel serves the static build and
-runs the four API files as functions from the same deployment. Neon holds
+bundled content modules. The server is reached only to send a booking
+request, to look one up by reference, or to send a message from the contact
+page. Vercel serves the static build and runs the five API files as
+functions from the same deployment. Neon holds
 the database, reached only from those functions and from the seed script.
 
 **Third-party services that are not there.**
 
 - **No email provider.** A booking request is stored, and the traveller is
-  shown a reference on a confirmation page. Nothing is sent to anyone.
+  shown a reference on a confirmation page; a contact message is stored and
+  the page says thank you. Nothing is sent to anyone.
   `docs/booking.md` records this as a deliberate limit of the demo.
 - **No map tiles.** The map is an SVG drawn from `src/lib/egypt-geo.ts`.
 - **No font or analytics CDN at runtime.** Fonts are self-hosted from
@@ -409,8 +426,8 @@ the database, reached only from those functions and from the seed script.
 **Environment.** One secret, `DATABASE_URL`, set in Vercel and in
 `.env.local`. The pool strips `sslmode` from the string and sets its own
 TLS options so the certificate is always verified. Rate limiting on
-`/api/requests` is an in-memory map per function container (eight requests
-per address per ten minutes), which the code itself describes as a brake
+`/api/requests` and `/api/contact` is an in-memory map per function
+container (eight requests per address per ten minutes), which the code itself describes as a brake
 rather than a defence.
 
 ## 4. Sequence diagrams

@@ -7,6 +7,7 @@ import { SaveButton } from "./SaveButton";
 import { Rating } from "./Rating";
 import { destinationBySlug } from "@content/destinations";
 import { pick, formatMoney, formatDayRange, formatDuration } from "@/lib/format";
+import { journeyPriceFrom } from "@/lib/journey-price";
 import { riseIn } from "@/lib/motion";
 import { cn } from "@/lib/cn";
 import type { Destination, Experience, Journey } from "@content/types";
@@ -218,7 +219,7 @@ export function JourneyCard({
             {pick(journey.tagline, language)}
           </p>
           <p className="mt-3 text-sm text-charcoal-800">
-            {t("common.from")} {formatMoney(journey.priceFrom, "USD", language)}{" "}
+            {t("common.from")} {formatMoney(journeyPriceFrom(journey), "USD", language)}{" "}
             <span className="text-ink-muted">{t("common.perPerson")}</span>
           </p>
         </div>

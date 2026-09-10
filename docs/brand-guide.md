@@ -8,7 +8,7 @@ they actually want, understand what it costs before they commit, and arrive
 knowing why each day is arranged the way it is.
 
 **Tagline:** Experience Egypt beyond the ordinary
-**Arabic tagline:** عِش مصر على غير المعتاد
+**Arabic tagline:** عِش مصر خارج المألوف
 
 ## Audience
 

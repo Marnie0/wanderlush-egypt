@@ -3,6 +3,7 @@ import { destinationBySlug } from "@content/destinations";
 import type { Destination, Experience, Journey } from "@content/types";
 import { SITE_ORIGIN } from "@/hooks/usePageMeta";
 import { pick } from "./format";
+import { journeyPriceFrom } from "./journey-price";
 
 /**
  * Structured data for the pages that describe one thing, so a search engine
@@ -62,6 +63,6 @@ export function journeyData(journey: Journey, language: string) {
         return { "@type": "ListItem", position: index + 1, name: destination ? pick(destination.name, language) : slug, url: `${SITE_ORIGIN}/destinations/${slug}` };
       }),
     },
-    offers: { "@type": "Offer", price: journey.priceFrom, priceCurrency: "USD", url: `${SITE_ORIGIN}/journeys/${journey.slug}` },
+    offers: { "@type": "Offer", price: journeyPriceFrom(journey), priceCurrency: "USD", url: `${SITE_ORIGIN}/journeys/${journey.slug}` },
   };
 }

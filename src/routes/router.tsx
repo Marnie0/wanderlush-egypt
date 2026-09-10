@@ -43,7 +43,7 @@ const BookingPage = lazy(() => import("./BookingPage").then((m) => ({ default: m
 const BookingConfirmationPage = lazy(() =>
   import("./BookingConfirmationPage").then((m) => ({ default: m.BookingConfirmationPage })),
 );
-const ContactPage = lazy(() => import("./StubPages").then((m) => ({ default: m.ContactPage })));
+const ContactPage = lazy(() => import("./ContactPage").then((m) => ({ default: m.ContactPage })));
 
 /**
  * Fetch the chunks behind the main navigation once the landing page has gone

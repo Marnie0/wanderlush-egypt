@@ -169,3 +169,19 @@ alter table booking_requests add column if not exists estimate jsonb not null de
 alter table booking_requests add column if not exists tour_style text not null default 'shared';
 alter table booking_requests add column if not exists service_included boolean not null default true;
 alter table booking_requests add column if not exists end_date date;
+
+-- Messages from the contact page: a question or a change, not a booking
+-- request. Nothing reads them back through the site; a specialist replies
+-- by email. The reference is free text a person typed, checked for shape
+-- only, so a message about a request sent from another browser still lands.
+create table if not exists contact_messages (
+  id                bigserial primary key,
+  created_at        timestamptz not null default now(),
+  language          text not null default 'en',
+  full_name         text not null,
+  email             text not null,
+  booking_reference text,
+  message           text not null,
+  status            text not null default 'new'
+);
+create index if not exists contact_messages_created_idx on contact_messages (created_at desc);

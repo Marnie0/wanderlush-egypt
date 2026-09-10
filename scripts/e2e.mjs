@@ -9,7 +9,7 @@
  *   node scripts/e2e.mjs http://localhost:4174
  *
  * Needs the API (the booking is sent), so `vite preview` is not enough. The
- * request it sends uses an @example.com address; delete such rows afterwards.
+ * request and the message it sends use an @example.com address; delete such rows afterwards.
  */
 import { launch } from "./lib/chrome.mjs";
 
@@ -253,6 +253,24 @@ try {
   check("but not the personal details", !/nour\.e2e@example\.com/.test((await text("main")) ?? ""));
   await b.go(`${base}/booking/confirmation?ref=WL-NOPE-NOPE`, 4000);
   check("an unknown reference says so", /could not find/i.test((await text("main h1")) ?? ""), await text("main h1"));
+
+  step("Contact");
+  await b.go(`${base}/contact`, 2500);
+  check("contact page has a form", (await count("main form")) === 1);
+  await clickText("main button[type=submit]", "/Send the message/");
+  check("an empty message is refused", await b.until("document.querySelectorAll('main [id$=-error]').length >= 3", 3000), await count("main [id$=-error]"));
+  await b.fill("#contact-name", "Nour E2E");
+  await b.fill("#contact-email", "nour.e2e@example.com");
+  await b.fill("#contact-reference", "not-a-reference");
+  await b.fill("#contact-message", "A question about the Siwa road in January, from the end-to-end run.");
+  await clickText("main button[type=submit]", "/Send the message/");
+  check("a malformed reference is named", await b.until("/WL-/.test(document.querySelector('#contact-reference-error')?.textContent ?? '')", 3000), await text("#contact-reference-error"));
+  await b.fill("#contact-reference", reference ?? "");
+  await clickText("main button[type=submit]", "/Send the message/");
+  check("consent is required for a message", await b.until("!!document.querySelector('#contact-consent-error')", 3000));
+  await b.click("document.querySelector('#contact-consent')");
+  await clickText("main button[type=submit]", "/Send the message/");
+  check("the message is acknowledged by name", await b.until("/Your message is in/.test(document.querySelector('main [role=status]')?.textContent ?? '') && /Nour/.test(document.querySelector('main [role=status]')?.textContent ?? '')", 15000), await text("main [role=status]"));
 
   step("Language");
   await b.go(`${base}/destinations/luxor`, 2500);

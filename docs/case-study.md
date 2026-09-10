@@ -26,14 +26,16 @@ described in both languages with photography, seasons, prices and practical
 notes. An interactive map of Egypt, drawn in SVG so it needs no key and can be
 coloured to match the site. A trip builder in five steps that share one data
 model. An estimate that explains every line. A booking request with a
-reference and a lookup. A PDF of the whole trip. Arabic written natively.
+reference and a lookup, and a contact form for everything that is not one.
+A PDF of the whole trip. Arabic written natively.
 
 ## How it fits together
 
 Three hosted parts and one repository. The browser does almost all of the
 work: content, search, the map, the trip, the estimate, the warnings and the
 PDF are computed on the client from the bundled content. The server is
-reached at most twice in a visit, both times for a booking request. There is
+reached only to send a booking request, look one up, or send a message
+from the contact page. There is
 no email provider, no map tiles and no runtime font CDN; the caption in
 [the architecture document](architecture.md) lists what is deliberately absent.
 
@@ -48,18 +50,18 @@ flowchart LR
 
   subgraph vercel["Vercel (one project, deploys from main)"]
     CDN["Static files and CDN\ndist/ · images · self-hosted fonts\nrewrite: everything not /api/ serves index.html\nimmutable cache headers on assets and images"]
-    FN["Serverless functions, Node\n/api/requests · /api/destinations · /api/experiences · /api/health"]
+    FN["Serverless functions, Node\n/api/requests · /api/contact · /api/destinations · /api/experiences · /api/health"]
   end
 
   subgraph neon["Neon"]
-    PG[("PostgreSQL\n8 tables · DATABASE_URL")]
+    PG[("PostgreSQL\n9 tables · DATABASE_URL")]
   end
 
   GH["GitHub\nMarnie0/wanderlush-egypt"]
   DEV["Developer machine\nnpm run build · db/seed.ts · QA scripts"]
 
   SPA -- "HTTPS GET\nHTML, JS chunks, CSS, WebP images, WOFF2 fonts" --> CDN
-  SPA -- "HTTPS, JSON\nPOST /api/requests\nGET /api/requests?ref=" --> FN
+  SPA -- "HTTPS, JSON\nPOST /api/requests · GET /api/requests?ref=\nPOST /api/contact" --> FN
   SPA <-- "synchronous read and write" --> LS
   SPA -- "dynamic import on first click" --> PDFR
   FN -- "PostgreSQL wire protocol over TLS\npg Pool, max 3 connections, certificate verified" --> PG

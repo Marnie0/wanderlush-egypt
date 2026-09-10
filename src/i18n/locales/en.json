@@ -43,7 +43,6 @@
     "retry": "Try again",
     "notFound": "Page not found",
     "demoContent": "Demo content",
-    "comingInPhase": "Arriving in a later phase",
     "backHome": "Back to the homepage",
     "dayRange": "{{min}}–{{max}} days",
     "days_one": "{{count}} day",
@@ -204,10 +203,6 @@
       "intro": "The link may be out of date, or the page may have moved."
     }
   },
-  "placeholder": {
-    "label": "In development",
-    "body": "This part of the journey is being built. The foundation, content and design system it depends on are already in place."
-  },
   "destination": {
     "bestSeason": "Best season",
     "recommendedStay": "Recommended stay",
@@ -248,7 +243,8 @@
     "openInBuilder": "Open in the trip builder",
     "replacesTrip": "This replaces the trip you have started.",
     "replaceConfirm": "Replace it with this journey",
-    "startAt": "Start with your dates and party"
+    "startAt": "Start with your dates and party",
+    "priceBasis": "For two adults sharing a room, {{tier}} stays and shared tours, planning fee included. The trip builder prices it for your own party."
   },
   "faqPage": {
     "stillStuck": "Still have a question?",
@@ -870,7 +866,7 @@
       "thanksNoName": "The request has reached us and a travel specialist has it.",
       "sent": "Sent {{date}}",
       "printAction": "Print or save as PDF",
-      "anotherTrip": "Plan another trip",
+      "anotherTrip": "Back to your trip",
       "nextTitle": "What happens next",
       "responseBody": "You will hear from us within one working day.",
       "replyBy": "We reply by {{method}}: {{address}}.",
@@ -888,7 +884,47 @@
       "notFoundTitle": "We could not find that request",
       "notFoundBody": "Check the reference in the link. If you sent the request from another browser, the copy with your details is there; this one can only show requests it knows about or can look up.",
       "forget": "Forget this request on this device",
-      "forgetHint": "Removes the copy with your contact details from this browser. The request itself stays with us."
+      "forgetHint": "Removes the copy with your contact details from this browser. The request itself stays with us.",
+      "startNew": "Start a new trip",
+      "startNewHint": "Clears the trip in this browser and opens an empty builder. The request you sent is unaffected."
     }
+  },
+  "contact": {
+    "title": "Send a message",
+    "hint": "A question, a change to a request you have sent, or a trip that is still an idea. A travel specialist replies by email within one working day.",
+    "fullName": "Full name",
+    "email": "Email address",
+    "reference": "Booking reference",
+    "referenceHint": "If this is about a request you have already sent, for example WL-K7M2-P9XA.",
+    "message": "Your message",
+    "messageHint": "What you have in mind, roughly: the places, the month, who is travelling, or the question itself.",
+    "submit": "Send the message",
+    "sending": "Sending…",
+    "consent": "I agree to being contacted about this message and have read the",
+    "consentLink": "privacy notice",
+    "consentRequired": "Please tick the box so we may reply to you.",
+    "whatHappens": "When you send, the message goes to a travel specialist. There is no reference for a message; the reply comes to the address above.",
+    "errors": {
+      "required": "This is needed to reply to you.",
+      "tooLong": "This is too long.",
+      "tooShort": "Tell us a little more: at least ten characters.",
+      "email": "That does not look like an email address.",
+      "reference": "A reference looks like WL-K7M2-P9XA.",
+      "summary_one": "One field needs attention.",
+      "summary_other": "{{count}} fields need attention."
+    },
+    "failed": "The message could not be saved. Nothing was sent. Please try again in a moment.",
+    "failedNetwork": "We could not reach the server. Check your connection and try again; your message is still here.",
+    "failedRate": "Too many messages from this connection in a short time. Please wait a few minutes and try again; your message is still here.",
+    "failedInvalid": "Something in the message was not accepted. Please check it and try again.",
+    "sentTitle": "Your message is in",
+    "sentBody": "Thank you, {{name}}. A travel specialist reads it and replies by email to {{email}} within one working day.",
+    "another": "Send another message",
+    "asideTitle": "Other ways",
+    "builtTrip": "Already built a trip?",
+    "builtTripBody": "Request it instead. The itinerary and the estimate go to a specialist exactly as they stand, and you get a reference straight away.",
+    "request": "Request your booking",
+    "faq": "Questions about booking",
+    "faqBody": "Most answers about prices, dates and what happens after a request are already written down."
   }
 }

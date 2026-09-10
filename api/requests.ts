@@ -13,6 +13,7 @@ import {
   type RequestEstimate,
   type RequestTrip,
 } from "../shared/booking.js";
+import { clientAddress, makeLimiter } from "../shared/rate-limit.js";
 
 /**
  * POST /api/requests       → stores a booking request, returns its reference
@@ -41,32 +42,11 @@ interface RequestRow extends Record<string, unknown> {
   estimate: RequestEstimate;
 }
 
-/**
- * A best-effort brake on one address sending request after request. Memory
- * lives as long as the container, which is enough to blunt a loop and no
- * substitute for edge rate limiting on a real deployment.
- */
-const WINDOW_MS = 10 * 60 * 1000;
-const WINDOW_LIMIT = 8;
-const recent = new Map<string, number[]>();
-function tooMany(address: string): boolean {
-  const now = Date.now();
-  const stamps = (recent.get(address) ?? []).filter((at) => now - at < WINDOW_MS);
-  stamps.push(now);
-  recent.set(address, stamps);
-  if (recent.size > 5000) recent.clear();
-  return stamps.length > WINDOW_LIMIT;
-}
-
-function clientAddress(req: VercelRequest): string {
-  const forwarded = req.headers["x-forwarded-for"];
-  const first = (Array.isArray(forwarded) ? forwarded[0] : forwarded)?.split(",")[0]?.trim();
-  return first || req.socket?.remoteAddress || "unknown";
-}
+const tooMany = makeLimiter();
 
 async function create(req: VercelRequest, res: VercelResponse) {
   if (tooMany(clientAddress(req))) {
-    res.setHeader("Retry-After", String(WINDOW_MS / 1000));
+    res.setHeader("Retry-After", "600");
     return res.status(429).json({ error: "Too many requests" });
   }
   if (JSON.stringify(req.body ?? "").length > LIMITS.payloadBytes) {

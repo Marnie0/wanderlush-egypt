@@ -13,6 +13,7 @@ import { usePageMeta } from "@/hooks/usePageMeta";
 import { journeyData, socialImageFor } from "@/lib/seo";
 import { useSolidHeader } from "@/lib/header-store";
 import { pick, formatMoney } from "@/lib/format";
+import { journeyPriceFrom } from "@/lib/journey-price";
 import { riseIn, stagger, transitions } from "@/lib/motion";
 
 export function JourneyDetailPage() {
@@ -127,9 +128,14 @@ export function JourneyDetailPage() {
             <div className="border border-line bg-sand-50 p-6">
               <p className="text-sm text-ink-muted">{t("common.from")}</p>
               <p className="mt-1 font-display text-4xl text-charcoal-900">
-                {formatMoney(journey.priceFrom, "USD", language)}
+                {formatMoney(journeyPriceFrom(journey), "USD", language)}
               </p>
               <p className="text-sm text-ink-muted">{t("common.perPerson")}</p>
+              {/* The same sum the builder makes for this journey on its defaults, so
+                  the card and the estimate can never say two different things. */}
+              <p className="mt-2 text-xs leading-relaxed text-ink-muted">
+                {t("journey.priceBasis", { tier: t(`tiers.${journey.suggestedTier}`) })}
+              </p>
 
               <div className="mt-6 border-t border-line pt-4">
                 <p className="eyebrow text-ink-muted">{t("journey.included")}</p>

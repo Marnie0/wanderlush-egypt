@@ -11,7 +11,7 @@
     "db:migrate": "tsx db/seed.ts --migrate-only",
     "db:seed": "tsx db/seed.ts",
     "typecheck": "tsc -b",
-    "check:content": "tsx scripts/check-content.mjs",
+    "check:content": "tsx --tsconfig tsconfig.app.json scripts/check-content.mjs",
     "check:pages": "node scripts/check-pages.mjs",
     "fonts": "node scripts/fonts.mjs",
     "sitemap": "tsx scripts/sitemap.mjs",

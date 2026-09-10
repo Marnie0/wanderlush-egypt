@@ -14,6 +14,7 @@ import { accommodationById, accommodationLevels } from "../content/accommodation
 import { reviews } from "../content/reviews.ts";
 import { faqs, faqCategories } from "../content/faqs.ts";
 import { imageManifest } from "../src/generated/images.ts";
+import { journeyPriceFrom } from "../src/lib/journey-price.ts";
 
 const problems = [];
 const fail = (where, message) => problems.push(`${where}: ${message}`);
@@ -134,6 +135,9 @@ for (const j of journeys) {
     if (entry.day !== index + 1) fail(j.slug, `outline day ${entry.day} is out of sequence`);
   });
   if (j.priceFrom <= 0) fail(j.slug, "price must be positive");
+  // The card computes its price; the content copy feeds the database. Same number, or neither is honest.
+  const computed = journeyPriceFrom(j);
+  if (j.priceFrom !== computed) fail(j.slug, `priceFrom is ${j.priceFrom} but the estimator makes it ${computed}`);
   if (j.stopNights.length !== j.destinationSlugs.length) fail(j.slug, "stopNights must match destinationSlugs");
   if (j.stopNights.reduce((sum, n) => sum + n, 0) !== j.days) fail(j.slug, "stopNights must add up to the days");
   if (j.stopNights.some((n) => n < 1)) fail(j.slug, "every stop needs at least one night");
