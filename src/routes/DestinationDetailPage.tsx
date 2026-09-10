@@ -10,6 +10,7 @@ import { Gallery } from "@/components/ui/Gallery";
 import { AddToTripButton } from "@/components/ui/AddToTripButton";
 import { ButtonLink } from "@/components/ui/Button";
 import { usePageMeta } from "@/hooks/usePageMeta";
+import { destinationData, socialImageFor } from "@/lib/seo";
 import { useSolidHeader } from "@/lib/header-store";
 import { formatMonthRuns } from "@/lib/format";
 import { pick, pickList, formatMoney, formatDayRange } from "@/lib/format";
@@ -29,6 +30,7 @@ export function DestinationDetailPage() {
   usePageMeta(
     destination ? pick(destination.name, language) : undefined,
     destination ? pick(destination.tagline, language) : undefined,
+    destination ? { image: socialImageFor(destination.heroImage.src), structuredData: destinationData(destination, language) } : {},
   );
 
   if (!destination) {

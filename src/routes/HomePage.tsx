@@ -1,7 +1,7 @@
 import { Suspense, lazy } from "react";
 import { useTranslation } from "react-i18next";
 import { HeroSection } from "@/components/home/HeroSection";
-import { usePageMeta } from "@/hooks/usePageMeta";
+import { organisationData, usePageMeta } from "@/hooks/usePageMeta";
 
 /**
  * The homepage runs inspiration first, then breadth, then proof, then the ask:
@@ -15,7 +15,7 @@ const BelowFold = lazy(() => import("@/components/home/BelowFold"));
 
 export function HomePage() {
   const { t } = useTranslation();
-  usePageMeta(undefined, t("brand.shortDescription"));
+  usePageMeta(undefined, t("brand.shortDescription"), { structuredData: organisationData(t("brand.name"), t("brand.shortDescription")) });
 
   return (
     <>

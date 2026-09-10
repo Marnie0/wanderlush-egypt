@@ -12,6 +12,7 @@ import { SaveButton } from "@/components/ui/SaveButton";
 import { Rating } from "@/components/ui/Rating";
 import { ExperienceCard } from "@/components/ui/Cards";
 import { usePageMeta } from "@/hooks/usePageMeta";
+import { experienceData, socialImageFor } from "@/lib/seo";
 import { pick, pickList, formatMoney, formatDuration } from "@/lib/format";
 import { stagger, viewportOnce } from "@/lib/motion";
 import type { Experience } from "@content/types";
@@ -70,6 +71,7 @@ export function ExperienceDetailPage() {
   usePageMeta(
     experience ? pick(experience.name, language) : undefined,
     experience ? pick(experience.summary, language) : undefined,
+    experience ? { image: socialImageFor(experience.heroImage.src), structuredData: experienceData(experience, language) } : {},
   );
 
   if (!experience) {

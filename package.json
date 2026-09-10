@@ -14,7 +14,10 @@
     "check:content": "tsx scripts/check-content.mjs",
     "check:pages": "node scripts/check-pages.mjs",
     "fonts": "node scripts/fonts.mjs",
-    "sitemap": "tsx scripts/sitemap.mjs"
+    "sitemap": "tsx scripts/sitemap.mjs",
+    "e2e": "node scripts/e2e.mjs",
+    "check:responsive": "node scripts/responsive.mjs",
+    "social": "node scripts/social-image.mjs"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",

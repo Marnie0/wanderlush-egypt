@@ -16,7 +16,7 @@ config({ path: ".env.local" });
 
 const port = Number(process.argv[2] ?? 4174);
 const dist = "dist";
-const types = { ".html": "text/html; charset=utf-8", ".js": "text/javascript", ".css": "text/css", ".webp": "image/webp", ".svg": "image/svg+xml", ".json": "application/json", ".woff2": "font/woff2", ".txt": "text/plain", ".xml": "application/xml", ".png": "image/png", ".ico": "image/x-icon" };
+const types = { ".html": "text/html; charset=utf-8", ".js": "text/javascript", ".css": "text/css", ".webp": "image/webp", ".svg": "image/svg+xml", ".json": "application/json", ".woff2": "font/woff2", ".txt": "text/plain", ".xml": "application/xml", ".png": "image/png", ".ico": "image/x-icon", ".jpg": "image/jpeg", ".webmanifest": "application/manifest+json", ".woff": "font/woff", ".pdf": "application/pdf" };
 const routes = {
   "/api/requests": () => import("../api/requests.ts"),
   "/api/health": () => import("../api/health.ts"),

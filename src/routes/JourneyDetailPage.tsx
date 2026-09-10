@@ -10,6 +10,7 @@ import { Button, ButtonLink } from "@/components/ui/Button";
 import { useTripStore } from "@/lib/trip-store";
 import { SmartImage, FULL_SIZES } from "@/components/ui/SmartImage";
 import { usePageMeta } from "@/hooks/usePageMeta";
+import { journeyData, socialImageFor } from "@/lib/seo";
 import { useSolidHeader } from "@/lib/header-store";
 import { pick, formatMoney } from "@/lib/format";
 import { riseIn, stagger, transitions } from "@/lib/motion";
@@ -32,6 +33,7 @@ export function JourneyDetailPage() {
   usePageMeta(
     journey ? pick(journey.name, language) : undefined,
     journey ? pick(journey.tagline, language) : undefined,
+    journey ? { image: socialImageFor(journey.heroImage.src), structuredData: journeyData(journey, language) } : {},
   );
 
   // A wrong link deserves an answer, not a silent bounce to the list that
