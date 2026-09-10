@@ -28,17 +28,27 @@ store as `lastRequest`.
 `shared/booking.ts` defines the payload and validates it. The same module
 runs in the browser (before sending) and in the API route (on receipt), so a
 request that passes the form passes the server, and one sent by hand is held
-to the same rules. Strings are clipped to their limits rather than rejected.
+to the same rules. Strings are clipped to their limits rather than rejected,
+by code point and with control characters removed, so a limit never leaves a
+half emoji that the JSON columns would refuse. Arabic-Indic digits in a phone
+number are normalised before counting.
+
+The route also answers 429 to more than eight requests from one address in
+ten minutes. The counter lives in the function's memory, so it is a brake on
+a loop rather than a guarantee.
 
 - `traveller`: name, email, phone (7 to 15 digits with the usual punctuation),
   ISO country code from `content/countries.ts`, contact method.
 - `preferences`: the optional fields, notes capped at 1,000 characters.
 - `trip`: a snapshot (`snapshotTrip`): per day the place, the experience slugs
-  and any notes; party, dates, level, tour style, fee choice, currency,
-  interests. No ids, no drag state.
+  and any notes (200 characters each, cut where they are typed); party,
+  dates, level, tour style, fee choice, currency, interests. No ids, no drag
+  state. Dates are checked as real calendar dates, months and currencies
+  against the site's lists.
 - `estimate`: the USD breakdown at the moment of sending (`snapshotEstimate`).
-- `website`: a honeypot. People never see it; a filled one is answered with a
-  fake success and stored nowhere.
+- `wl_extra`: a honeypot with a name no form filler recognises. People never
+  see it; a filled one is answered with a fake success, stored nowhere and
+  counted in the log.
 
 ## Storage
 
