@@ -67,7 +67,11 @@ export function HeroSection() {
         )}
       </div>
 
-      <Container className="relative pb-20 lg:pb-28">
+      {/* Top padding clears the floating header. On a tall screen the content
+          sits at the bottom and the padding is slack; on a short one (an
+          iPhone SE, a phone held sideways) the content is taller than the
+          hero and would otherwise start under the logo. */}
+      <Container className="relative pt-28 pb-20 lg:pb-28">
         <m.div
           style={{ opacity: contentOpacity }}
           initial="hidden"

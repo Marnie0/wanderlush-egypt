@@ -66,7 +66,7 @@ export function DestinationDetailPage() {
         />
         <div aria-hidden className="absolute inset-0 scrim-full" />
         <div aria-hidden className="absolute inset-0 scrim-inline" />
-        <Container className="relative pb-16 lg:pb-20">
+        <Container className="relative pt-28 pb-16 lg:pb-20">
           <m.div initial="hidden" animate="visible" variants={stagger(0.1, 0.1)}>
             <m.p variants={riseIn} className="eyebrow on-photo text-gold-200">
               {t(`regions.${destination.region}`)}
