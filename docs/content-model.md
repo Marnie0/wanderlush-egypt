@@ -79,3 +79,9 @@ estimate, and `src/lib/transport.ts` routes between places using
 All figures are USD and are estimates. `formatMoney()` converts with the static
 rates in `currencies.ts`. Live foreign exchange is deliberately out of scope.
 The estimate's rules, with a worked example, are in `docs/pricing.md`.
+
+## Booking requests
+
+The one table the site writes to: `booking_requests`. What goes in it, how it
+is validated on both sides, and how the confirmation reads it back are in
+`docs/booking.md`.

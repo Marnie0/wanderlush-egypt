@@ -16,10 +16,12 @@ const ROUTES = [
   "/experiences", "/experiences/wadi-el-rayan-and-whale-valley", "/journeys",
   "/journeys/family-journey", "/trip-builder", "/trip-builder?step=places", "/trip-builder?step=stay",
   "/trip-builder?step=experiences", "/trip-builder?step=itinerary", "/trip-summary", "/booking",
-  "/booking/confirmation", "/about", "/contact", "/faq", "/privacy", "/no-such-page",
+  "/booking?step=details", "/booking?step=preferences", "/booking?step=send", "/booking/confirmation?ref=WL-QA2X-TEST",
+  "/about", "/contact", "/faq", "/privacy", "/no-such-page",
   // Arabic runs last: the detector caches the choice, so every route visited
   // after this one would report as RTL and hide a real direction problem.
   "/?lng=ar", "/destinations", "/destinations/luxor", "/experiences", "/journeys", "/trip-summary",
+  "/booking?step=details", "/booking/confirmation?ref=WL-QA2X-TEST",
 ];
 
 /**
@@ -46,7 +48,36 @@ const SEEDED_TRIP = JSON.stringify({
   },
   version: 3,
 });
-const SEEDED_ROUTES = ["/trip-builder", "/trip-summary"];
+/**
+ * A booking draft with valid details, so the send step renders rather than
+ * bouncing back to the details, and a sent request under a reference the
+ * confirmation page can show without asking the API.
+ */
+const SEEDED_TRIP_STATE = JSON.parse(SEEDED_TRIP).state;
+const SEEDED_BOOKING = JSON.stringify({
+  state: {
+    details: { fullName: "Test Traveller", email: "test@example.com", phone: "+20 100 123 4567", country: "GB", contactMethod: "email" },
+    preferences: { dietary: ["vegetarian"], dietaryNotes: "", accessibility: "", roomType: "twin", roomNotes: "", airportTransfer: "yes", occasion: "anniversary", occasionNotes: "Tenth", additionalRequests: "" },
+    consent: true,
+    lastRequest: {
+      reference: "WL-QA2X-TEST", createdAt: "2026-09-10T10:00:00.000Z", status: "new", language: "en", firstName: "Test",
+      trip: {
+        startDate: SEEDED_TRIP_STATE.startDate, month: SEEDED_TRIP_STATE.month, durationDays: SEEDED_TRIP_STATE.durationDays,
+        adults: 2, children: 1, tier: "comfort", tourStyle: "private", serviceIncluded: true, currency: "EGP", interests: [],
+        days: SEEDED_TRIP_STATE.days.map((day) => ({
+          destinationSlug: day.destinationSlug,
+          experienceSlugs: day.items.filter((i) => i.kind === "experience").map((i) => i.experienceSlug),
+          notes: day.items.filter((i) => i.kind !== "experience").map((i) => i.note),
+        })),
+      },
+      estimate: { accommodation: 420, experiences: 1788, transport: 60, serviceFee: 148, subtotal: 2268, total: 2416, perPerson: 805 },
+      traveller: { fullName: "Test Traveller", email: "test@example.com", phone: "+20 100 123 4567", country: "GB", contactMethod: "email" },
+      preferences: { dietary: ["vegetarian"], dietaryNotes: "", accessibility: "", roomType: "twin", roomNotes: "", airportTransfer: "yes", occasion: "anniversary", occasionNotes: "Tenth", additionalRequests: "" },
+    },
+  },
+  version: 1,
+});
+const SEEDED_ROUTES = ["/trip-builder", "/trip-summary", "/booking"];
 
 const VIEWPORTS = [
   { name: "desktop", width: 1440, height: 900, mobile: false },
@@ -139,7 +170,7 @@ for (const viewport of VIEWPORTS) {
     failedRequests = [];
     if (SEEDED_ROUTES.some((prefix) => route.startsWith(prefix))) {
       await send("Runtime.evaluate", {
-        expression: `localStorage.setItem("wanderlush.trip", ${JSON.stringify(SEEDED_TRIP)})`,
+        expression: `localStorage.setItem("wanderlush.trip", ${JSON.stringify(SEEDED_TRIP)}); localStorage.setItem("wanderlush.booking", ${JSON.stringify(SEEDED_BOOKING)})`,
       });
     }
     await send("Page.navigate", { url: base + route });

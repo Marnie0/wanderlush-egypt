@@ -161,3 +161,11 @@ create table if not exists booking_requests (
 );
 
 create index if not exists booking_requests_created_idx on booking_requests (created_at desc);
+
+-- Phase 7: the request as sent. The itinerary column holds the trip snapshot
+-- (days, places, experiences, party, options); estimate the USD breakdown at
+-- the moment of sending, so the reply can quote what the traveller saw.
+alter table booking_requests add column if not exists estimate jsonb not null default '{}';
+alter table booking_requests add column if not exists tour_style text not null default 'shared';
+alter table booking_requests add column if not exists service_included boolean not null default true;
+alter table booking_requests add column if not exists end_date date;

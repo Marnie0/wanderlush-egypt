@@ -39,9 +39,9 @@ const TripBuilderPage = lazy(() =>
 const TripSummaryPage = lazy(() =>
   import("./TripSummaryPage").then((m) => ({ default: m.TripSummaryPage })),
 );
-const BookingPage = lazy(() => import("./StubPages").then((m) => ({ default: m.BookingPage })));
+const BookingPage = lazy(() => import("./BookingPage").then((m) => ({ default: m.BookingPage })));
 const BookingConfirmationPage = lazy(() =>
-  import("./StubPages").then((m) => ({ default: m.BookingConfirmationPage })),
+  import("./BookingConfirmationPage").then((m) => ({ default: m.BookingConfirmationPage })),
 );
 const ContactPage = lazy(() => import("./StubPages").then((m) => ({ default: m.ContactPage })));
 

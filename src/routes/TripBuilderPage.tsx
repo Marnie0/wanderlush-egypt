@@ -149,7 +149,14 @@ export function TripBuilderPage() {
           <h1 className="mt-4 text-display text-charcoal-900">{t("pages.tripBuilder.title")}</h1>
           <p className="mt-4 max-w-2xl text-lead leading-relaxed text-charcoal-600">{t("pages.tripBuilder.intro")}</p>
           <div className="mt-10">
-            <Stepper current={step} onSelect={goTo} reached={reached} />
+            <Stepper
+              steps={TRIP_STEPS}
+              label={(candidate) => t(`builder.steps.${candidate}`)}
+              navLabel={t("builder.stepsLabel")}
+              current={step}
+              onSelect={goTo}
+              reached={reached}
+            />
           </div>
         </Container>
       </Section>

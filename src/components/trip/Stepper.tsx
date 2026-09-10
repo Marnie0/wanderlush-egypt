@@ -7,22 +7,29 @@ export const TRIP_STEPS = ["basics", "places", "stay", "experiences", "itinerary
 export type TripStep = (typeof TRIP_STEPS)[number];
 
 /**
- * Five steps, every one of them reachable at any time: the order is a
- * suggestion for a first pass, not a gate. The tick is stricter than the
- * click, though: a step is only ticked once it and every step before it
- * are done, so five ticks mean the trip is ready, not that it was looked at.
+ * A row of numbered steps, every one of them reachable at any time: the
+ * order is a suggestion for a first pass, not a gate. The tick is stricter
+ * than the click, though: a step is only ticked once it and every step
+ * before it are done, so all ticks mean the thing is ready, not looked at.
+ * Used by the trip builder and the booking request.
  */
-export function Stepper({
+export function Stepper<Step extends string>({
+  steps,
+  label,
   current,
   onSelect,
   reached,
+  navLabel,
 }: {
-  current: TripStep;
-  onSelect: (step: TripStep) => void;
+  steps: readonly Step[];
+  label: (step: Step) => string;
+  current: Step;
+  onSelect: (step: Step) => void;
   /** Steps that are done, with everything before them done too. */
-  reached: Set<TripStep>;
+  reached: Set<Step>;
+  navLabel: string;
 }) {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const language = i18n.resolvedLanguage ?? "en";
   const navRef = useRef<HTMLElement>(null);
 
@@ -34,9 +41,9 @@ export function Stepper({
   }, [current]);
 
   return (
-    <nav ref={navRef} aria-label={t("builder.stepsLabel")} className="overflow-x-auto">
+    <nav ref={navRef} aria-label={navLabel} className="overflow-x-auto">
       <ol className="flex min-w-max gap-2 sm:gap-4">
-        {TRIP_STEPS.map((step, index) => {
+        {steps.map((step, index) => {
           const isCurrent = step === current;
           const done = reached.has(step) && !isCurrent;
           return (
@@ -63,9 +70,9 @@ export function Stepper({
                 >
                   {done ? "✓" : formatNumber(index + 1, language)}
                 </span>
-                <span className="text-sm font-medium">{t(`builder.steps.${step}`)}</span>
+                <span className="text-sm font-medium">{label(step)}</span>
               </button>
-              {index < TRIP_STEPS.length - 1 && (
+              {index < steps.length - 1 && (
                 <span aria-hidden className="hidden h-px w-6 bg-line sm:block" />
               )}
             </li>

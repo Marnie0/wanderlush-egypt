@@ -160,7 +160,7 @@
     "confirmation": {
       "eyebrow": "Confirmed",
       "title": "Your request is in",
-      "intro": "Keep your booking reference. A specialist will confirm availability and the final quotation."
+      "intro": "Keep your booking reference. A specialist checks availability and confirms the final quotation."
     },
     "about": {
       "eyebrow": "About",
@@ -679,6 +679,173 @@
       "dayTotal": "Day total",
       "freeDay": "Free day",
       "tableNote": "The subtotal is before planning and support. The last day carries no hotel night: it is the journey home."
+    }
+  },
+  "booking": {
+    "stepsLabel": "Booking request steps",
+    "steps": {
+      "review": "Review",
+      "details": "Your details",
+      "preferences": "Preferences",
+      "send": "Send"
+    },
+    "next": {
+      "details": "Add your details",
+      "preferences": "Add preferences",
+      "send": "Check and send"
+    },
+    "back": "Back to {{step}}",
+    "empty": {
+      "title": "Nothing to request yet",
+      "body": "Build a trip first. The request takes the itinerary and the estimate exactly as you left them.",
+      "action": "Build your trip"
+    },
+    "review": {
+      "title": "Read your trip back",
+      "hint": "This is what a specialist will receive. Change anything on the itinerary or the estimate first; it comes through here as it stands.",
+      "fixFirst_one": "One thing to fix on the itinerary before it can be sent",
+      "fixFirst_other": "{{count}} things to fix on the itinerary before it can be sent",
+      "blocked": "Fix the items above on the itinerary, then come back here.",
+      "editTrip": "Edit the itinerary",
+      "adjustEstimate": "Adjust the estimate"
+    },
+    "details": {
+      "title": "Who should we reply to?",
+      "hint": "Only what a specialist needs to write back. Nothing here is shared or sold.",
+      "fullName": "Full name",
+      "email": "Email address",
+      "phone": "Phone number",
+      "phoneHint": "With the country code, for example +20 100 123 4567.",
+      "country": "Country of residence",
+      "countryPlaceholder": "Choose a country",
+      "countryFeatured": "Most of our travellers",
+      "countryAll": "All countries",
+      "contactMethod": "How would you like us to reply?",
+      "contact": {
+        "email": "Email",
+        "phone": "Phone call",
+        "whatsapp": "WhatsApp"
+      },
+      "contactHint": {
+        "email": "A written quotation you can keep.",
+        "phone": "We call at a time you name in your notes.",
+        "whatsapp": "On the number above."
+      }
+    },
+    "errors": {
+      "required": "This is needed to reply to you.",
+      "tooLong": "This is too long.",
+      "email": "That does not look like an email address.",
+      "phone": "Enter a phone number with seven to fifteen digits.",
+      "country": "Choose a country from the list.",
+      "contact": "Choose how we should reply.",
+      "summary_one": "One field needs attention.",
+      "summary_other": "{{count}} fields need attention."
+    },
+    "preferences": {
+      "title": "Anything we should know?",
+      "hint": "All of this is optional. It goes to the specialist with your itinerary, so it shapes the quotation rather than being asked for afterwards.",
+      "optional": "optional",
+      "chars": "{{count}} of {{max}}",
+      "dietary": "Dietary requirements",
+      "dietaryOptions": {
+        "vegetarian": "Vegetarian",
+        "vegan": "Vegan",
+        "halal": "Halal",
+        "kosher": "Kosher",
+        "glutenFree": "Gluten-free",
+        "dairyFree": "Dairy-free",
+        "nutAllergy": "Nut allergy",
+        "other": "Other"
+      },
+      "dietaryNotes": "Tell us more",
+      "accessibility": "Accessibility and mobility",
+      "accessibilityHint": "Steps, distances, heat, a wheelchair, anything that changes which days work. Several sites have uneven ground.",
+      "room": "Room preference",
+      "roomAny": "No preference",
+      "roomTypes": {
+        "double": "Double",
+        "twin": "Twin beds",
+        "single": "Single",
+        "family": "Family room",
+        "connecting": "Connecting rooms"
+      },
+      "roomNotes": "Room notes",
+      "airportTransfer": "Airport transfer",
+      "transferYes": "Yes, please",
+      "transferYesHint": "A driver meets you at arrivals.",
+      "transferNo": "No, thank you",
+      "transferNoHint": "You make your own way.",
+      "transferUndecided": "Not sure yet",
+      "occasion": "Special occasion",
+      "occasions": {
+        "none": "None",
+        "honeymoon": "Honeymoon",
+        "anniversary": "Anniversary",
+        "birthday": "Birthday",
+        "retirement": "Retirement",
+        "graduation": "Graduation",
+        "other": "Something else"
+      },
+      "occasionNotes": "Tell us about it",
+      "additional": "Anything else",
+      "additionalHint": "Fixed flight times, a hotel you have your eye on, travelling companions who need a hand, a budget ceiling."
+    },
+    "send": {
+      "title": "Check and send",
+      "hint": "One last look. Sending creates a request, not a booking: nothing is charged and nothing is held until you say so.",
+      "yourDetails": "Your details",
+      "yourPreferences": "Your preferences",
+      "nothingAdded": "Nothing added. That is fine.",
+      "edit": "Edit",
+      "consent": "I agree to being contacted about this request and have read the",
+      "consentLink": "privacy notice",
+      "consentRequired": "Please tick the box so we may reply to you.",
+      "submit": "Send the request",
+      "sending": "Sending…",
+      "failed": "The request could not be saved. Nothing was sent. Please try again in a moment.",
+      "failedNetwork": "We could not reach the server. Check your connection and try again; your details are still here.",
+      "failedInvalid": "Something in the {{field}} was not accepted. Please check it and try again.",
+      "fields": {
+        "traveller": "contact details",
+        "trip": "itinerary",
+        "estimate": "estimate",
+        "body": "request",
+        "spam": "request"
+      },
+      "whatHappens": "When you send, the itinerary, the estimate and your details go to a travel specialist. You receive a booking reference straight away and a reply within one working day."
+    },
+    "summary": {
+      "title": "What you are sending",
+      "dates": "{{start}} – {{end}}",
+      "freeDay": "Free day",
+      "perTraveller": "Per traveller",
+      "note": "An estimate, not a quotation. Flights to Egypt are not included. A specialist confirms the final figure."
+    },
+    "confirmation": {
+      "reference": "Booking reference",
+      "referenceHint": "Quote it if you write to us. A copy of everything below stays in this browser, and this page can be printed or saved as a PDF.",
+      "thanks": "Thank you, {{name}}. Your request has reached us and a travel specialist has it.",
+      "thanksNoName": "The request has reached us and a travel specialist has it.",
+      "sent": "Sent {{date}}",
+      "printAction": "Print or save as PDF",
+      "anotherTrip": "Plan another trip",
+      "nextTitle": "What happens next",
+      "responseBody": "You will hear from us within one working day.",
+      "replyBy": "We reply by {{method}}: {{address}}.",
+      "steps": {
+        "check": "A specialist checks availability for your dates: rooms, cabins, guides and the transfers between places.",
+        "quote": "You receive a written quotation. Where something is unavailable or could be better, it says so and offers an alternative.",
+        "confirm": "Only when you are happy do you confirm. A deposit secures the booking; nothing is charged before then."
+      },
+      "tripTitle": "The trip you sent",
+      "keepTitle": "Meanwhile",
+      "keepBody": "Your trip stays in this browser, so you can keep looking at it, or start another one. The estimate you sent is the one we quote against.",
+      "home": "Back to the homepage",
+      "faq": "Questions about booking",
+      "loading": "Finding your request…",
+      "notFoundTitle": "We could not find that request",
+      "notFoundBody": "Check the reference in the link. If you sent the request from another browser, the copy with your details is there; this one can only show requests it knows about or can look up."
     }
   }
 }

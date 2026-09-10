@@ -311,3 +311,32 @@
     scroll-behavior: auto !important;
   }
 }
+
+/*
+ * On paper: the page is the document. The site chrome, the buttons and the
+ * sticky asides go; colour stays where it carries meaning.
+ */
+@media print {
+  header,
+  footer,
+  nav,
+  [data-print="hide"] {
+    display: none !important;
+  }
+  main {
+    padding-top: 0 !important;
+  }
+  .sticky {
+    position: static !important;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  * {
+    box-shadow: none !important;
+  }
+  @page {
+    margin: 16mm;
+  }
+}
