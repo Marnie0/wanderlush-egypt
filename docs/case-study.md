@@ -215,7 +215,7 @@ a visitor would, in headless Chrome against a build with the API: search, the
 map, filters and sorting, the guide and gallery, every builder step, the
 estimate controls, a booking request through to a real confirmation and its
 lookup, the language switch, what survives a reload, and a silent console.
-Eighty-three checks, all passing. Lighthouse on production in both languages
+Eighty-eight checks, all passing. Lighthouse on production in both languages
 scores 100 for accessibility, best practices and SEO on every page type, with
 performance between 75 and 93 on a throttled phone and layout shift under
 0.1 everywhere. The one thing measurement could not fix outright is the

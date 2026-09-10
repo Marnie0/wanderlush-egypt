@@ -122,7 +122,7 @@ npm run build && npx tsx scripts/serve-local.mjs 4174
 | `node scripts/check-locales.mjs` | Key parity, Arabic plural completeness, placeholder parity, nothing left in English |
 | `npm run check:pages -- <url>` | Every route at desktop and phone widths in both languages: console errors, failed requests, missing headings, overflow, broken links |
 | `npm run check:responsive -- <url>` | Twelve routes at five widths in both languages, with screenshots |
-| `npm run e2e -- <url>` | Eighty-three end-to-end checks in headless Chrome, from search to a real booking and its lookup, against a build with the API |
+| `npm run e2e -- <url>` | Eighty-eight end-to-end checks in headless Chrome, from search to a real booking and its lookup, against a build with the API |
 | `npx tsx --tsconfig tsconfig.app.json scripts/pdf-sample.tsx out/` | Renders a sample trip PDF in both languages |
 | `node scripts/portfolio-shots.mjs <url>` | The portfolio screenshots |
 | `node scripts/demo-video.mjs <url>` | Records the walkthrough video (needs the API and ffmpeg) |
