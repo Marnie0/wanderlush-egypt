@@ -28,6 +28,49 @@ coloured to match the site. A trip builder in five steps that share one data
 model. An estimate that explains every line. A booking request with a
 reference and a lookup. A PDF of the whole trip. Arabic written natively.
 
+## How it fits together
+
+Three hosted parts and one repository. The browser does almost all of the
+work: content, search, the map, the trip, the estimate, the warnings and the
+PDF are computed on the client from the bundled content. The server is
+reached at most twice in a visit, both times for a booking request. There is
+no email provider, no map tiles and no runtime font CDN; the caption in
+[the architecture document](architecture.md) lists what is deliberately absent.
+
+```mermaid
+%%{init: {"flowchart": {"nodeSpacing": 25, "rankSpacing": 50}}}%%
+flowchart LR
+  subgraph browser["Visitor's browser"]
+    SPA["React 19 single-page app\nReact Router 7 · i18next · Zustand · Framer Motion"]
+    LS[("localStorage\nwanderlush.trip · wanderlush.booking · wanderlush.language")]
+    PDFR["@react-pdf/renderer\nPDF built in the browser, fonts from /fonts/pdf"]
+  end
+
+  subgraph vercel["Vercel (one project, deploys from main)"]
+    CDN["Static files and CDN\ndist/ · images · self-hosted fonts\nrewrite: everything not /api/ serves index.html\nimmutable cache headers on assets and images"]
+    FN["Serverless functions, Node\n/api/requests · /api/destinations · /api/experiences · /api/health"]
+  end
+
+  subgraph neon["Neon"]
+    PG[("PostgreSQL\n8 tables · DATABASE_URL")]
+  end
+
+  GH["GitHub\nMarnie0/wanderlush-egypt"]
+  DEV["Developer machine\nnpm run build · db/seed.ts · QA scripts"]
+
+  SPA -- "HTTPS GET\nHTML, JS chunks, CSS, WebP images, WOFF2 fonts" --> CDN
+  SPA -- "HTTPS, JSON\nPOST /api/requests\nGET /api/requests?ref=" --> FN
+  SPA <-- "synchronous read and write" --> LS
+  SPA -- "dynamic import on first click" --> PDFR
+  FN -- "PostgreSQL wire protocol over TLS\npg Pool, max 3 connections, certificate verified" --> PG
+  DEV -- "git push, SSH" --> GH
+  GH -- "push to main triggers build and deploy" --> vercel
+  DEV -- "tsx db/seed.ts, TLS\nreads .env.local" --> PG
+```
+
+The schema, the component tree, the four key flows as sequence diagrams and
+the trip's states are drawn in [docs/architecture.md](architecture.md).
+
 ## The decisions that shaped it
 
 ### Content first, one source of truth
@@ -53,6 +96,53 @@ editor disagree. Instead the day list is the only state: choosing a place
 appends days, setting nights adds or removes them, adding an experience puts it
 on the emptiest day in that place, and the estimate is a pure function of the
 list. The setup steps are views of the itinerary, not inputs to it.
+
+Because the list is the only state, the trip has no stored status. Every
+state below is derived on each render from the days, the seen steps and the
+warnings; sending a request records the request and leaves the trip editable.
+
+```mermaid
+stateDiagram-v2
+  direction TB
+  [*] --> Empty
+
+  Empty : days is empty
+  Empty : estimate is zero, one "empty" note
+  Empty : summary and booking pages show an empty state
+
+  Draft : has days, priced on defaults
+  Draft : basics or stay step not yet seen (ConfirmNotice shown)
+  Draft : estimate visible but marked as assumed
+
+  Priced : basics and stay both seen
+  Priced : at least one warning-severity problem
+  Priced : booking review is held, problems listed with links
+
+  Ready : basics and stay both seen
+  Ready : no warning-severity problems (notes allowed)
+  Ready : booking review passes to details
+
+  Sent : booking-store holds lastRequest with the reference
+  Sent : trip-store is unchanged and still editable
+
+  Empty --> Draft : addDestination · toggleDestination · addExperience · loadJourney
+  Draft --> Priced : confirmStep("basics") and confirmStep("stay") both recorded, warnings present
+  Draft --> Ready : both steps seen, no warnings
+  Priced --> Ready : last warning fixed (any edit that clears it)
+  Ready --> Priced : an edit makes a rule fire
+  Priced --> Draft : loadJourney (confirmed steps cleared)
+  Ready --> Draft : loadJourney
+  Ready --> Sent : details valid · consent · POST /api/requests → 201
+  Sent --> Ready : keep editing, or request again
+  Draft --> Empty : last stop removed
+  Priced --> Empty : last stop removed
+  Ready --> Empty : last stop removed
+  Draft --> Empty : reset (after the confirm dialog)
+  Priced --> Empty : reset
+  Ready --> Empty : reset
+  Sent --> Empty : reset
+```
+
 
 ### A price that says how it was worked out
 
