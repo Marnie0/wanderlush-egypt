@@ -1,4 +1,4 @@
-import { clipText, isReference, LIMITS as BOOKING_LIMITS } from "./booking";
+import { clipText, isReference, LIMITS as BOOKING_LIMITS } from "./booking.js";
 
 /**
  * A message to a specialist that is not a booking request: a question, a
