@@ -61,7 +61,7 @@ export function Testimonials() {
                   <figcaption className="mt-6 text-sm">
                   <span className="block text-ivory">{pick(review.author, language)}</span>
                   <span className="block text-ivory/55">{pick(review.origin, language)}</span>
-                  <span className="mt-1 block text-ivory/45">
+                  <span className="mt-1 block text-ivory/60">
                     {journey ? `${pick(journey.name, language)} · ` : ""}
                     {formatMonthYear(review.travelledOn, language)}
                   </span>
