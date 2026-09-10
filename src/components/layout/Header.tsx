@@ -39,12 +39,25 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
     <>
       <header
         className={cn(
-          "fixed inset-x-0 top-0 z-40 transition-all duration-500",
-          floating
-            ? "bg-transparent py-5"
-            : "border-b border-line bg-canvas/95 py-3 backdrop-blur-sm",
+          "fixed inset-x-0 top-0 z-40 transition-[padding] duration-500",
+          floating ? "py-5" : "py-3",
         )}
       >
+        {/* The solid bar is a layer of its own with nothing in it. iOS Safari
+            composites a backdrop filter from a snapshot of what lies behind
+            the element, and when the element carrying the filter also holds
+            the text and is mid-transition, a frame of that text from before
+            the change lands in the snapshot and paints again, offset by the
+            padding that moved: the logo shown twice. Kept apart, the blur
+            never contains the text, and the bar fades in and out rather than
+            toggling the filter while the padding animates. */}
+        <div
+          aria-hidden
+          className={cn(
+            "absolute inset-0 -z-10 border-b border-line bg-canvas/95 backdrop-blur-sm transition-opacity duration-500",
+            floating ? "opacity-0" : "opacity-100",
+          )}
+        />
         <Container className="flex items-center justify-between gap-6">
           <Logo onDark={floating} />
 
