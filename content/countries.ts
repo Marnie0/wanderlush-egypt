@@ -18,4 +18,8 @@ export const countryCodes: readonly string[] = [
   "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SD", "SE", "SG", "SI", "SK", "SL", "SM", "SN", "SO", "SR",
   "SS", "ST", "SV", "SY", "SZ", "TD", "TG", "TH", "TJ", "TL", "TM", "TN", "TO", "TR", "TT", "TV", "TW", "TZ",
   "UA", "UG", "US", "UY", "UZ", "VA", "VC", "VE", "VN", "VU", "WS", "YE", "ZA", "ZM", "ZW",
+  // Territories and dependencies people live in and travel from.
+  "AI", "AS", "AW", "AX", "BM", "BQ", "CK", "CW", "FK", "FO", "GF", "GG", "GI", "GL", "GP", "GU", "HK",
+  "IM", "JE", "KY", "MF", "MO", "MP", "MQ", "MS", "NC", "NF", "NU", "PF", "PM", "PR", "RE", "SX", "TC",
+  "TK", "VG", "VI", "WF", "XK", "YT",
 ];

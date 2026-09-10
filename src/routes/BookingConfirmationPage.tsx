@@ -4,10 +4,9 @@ import { useTranslation } from "react-i18next";
 import { Container, Section } from "@/components/ui/Layout";
 import { Button, ButtonLink } from "@/components/ui/Button";
 import { TripReview } from "@/components/booking/TripReview";
-import { preferenceSummary } from "./BookingPage";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { useBookingStore, type SentRequest } from "@/lib/booking-store";
-import { countryName } from "@/lib/booking-request";
+import { countryName, preferenceSummary } from "@/lib/booking-request";
 import { formatDate } from "@/lib/format";
 import { isReference, type BookingRecord } from "../../shared/booking";
 
@@ -29,11 +28,15 @@ export function BookingConfirmationPage() {
   const local = lastRequest && lastRequest.reference === reference ? lastRequest : null;
   const [loaded, setLoaded] = useState<Loaded>(() => (local ? { kind: "record", record: local } : { kind: "loading" }));
 
+  const forget = useBookingStore((state) => state.forgetLastRequest);
   useEffect(() => {
     if (local) return setLoaded({ kind: "record", record: local });
     if (!isReference(reference)) return setLoaded({ kind: "missing" });
     let cancelled = false;
-    fetch(`/api/requests?ref=${encodeURIComponent(reference)}`)
+    setLoaded({ kind: "loading" });
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 15_000);
+    fetch(`/api/requests?ref=${encodeURIComponent(reference)}`, { signal: controller.signal })
       .then(async (response) => {
         if (!response.ok) throw new Error(String(response.status));
         return (await response.json()) as BookingRecord;
@@ -46,6 +49,8 @@ export function BookingConfirmationPage() {
       });
     return () => {
       cancelled = true;
+      window.clearTimeout(timeout);
+      controller.abort();
     };
   }, [local, reference]);
 
@@ -112,7 +117,12 @@ export function BookingConfirmationPage() {
                 <h2 id="what-next" className="font-display text-xl text-charcoal-900">{t("booking.confirmation.nextTitle")}</h2>
                 <p className="mt-2 text-sm leading-relaxed text-charcoal-700">
                   {t("booking.confirmation.responseBody")}
-                  {sent && ` ${t("booking.confirmation.replyBy", { method: t(`booking.details.contact.${sent.traveller.contactMethod}`), address: sent.traveller.contactMethod === "email" ? sent.traveller.email : sent.traveller.phone })}`}
+                  {sent &&
+                    ` ${t("booking.confirmation.replyBy", {
+                      method: t(`booking.details.contact.${sent.traveller.contactMethod}`),
+                      // Isolated, or an Arabic sentence reverses the digit groups of the number.
+                      address: `\u2066${sent.traveller.contactMethod === "email" ? sent.traveller.email : sent.traveller.phone}\u2069`,
+                    })}`}
                 </p>
                 <ol className="mt-4 space-y-2 text-sm leading-relaxed text-charcoal-700">
                   {(["check", "quote", "confirm"] as const).map((key, index) => (
@@ -162,6 +172,21 @@ export function BookingConfirmationPage() {
                 <p className="eyebrow text-ink-muted">{t("booking.confirmation.keepTitle")}</p>
                 <p className="mt-3 text-sm leading-relaxed text-charcoal-700">{t("booking.confirmation.keepBody")}</p>
                 <ul className="mt-4 space-y-2 text-sm">
+                  {sent && (
+                    <li>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          forget();
+                          setLoaded({ kind: "missing" });
+                        }}
+                        className="text-start text-charcoal-800 underline underline-offset-4 hover:text-ember-700"
+                      >
+                        {t("booking.confirmation.forget")}
+                      </button>
+                      <span className="mt-1 block text-xs text-ink-muted">{t("booking.confirmation.forgetHint")}</span>
+                    </li>
+                  )}
                   <li>
                     <Link to="/" className="text-charcoal-800 underline underline-offset-4 hover:text-ember-700">
                       {t("booking.confirmation.home")}

@@ -746,7 +746,7 @@
       "title": "Anything we should know?",
       "hint": "All of this is optional. It goes to the specialist with your itinerary, so it shapes the quotation rather than being asked for afterwards.",
       "optional": "optional",
-      "chars": "{{count}} of {{max}}",
+      "chars": "{{used}} of {{max}}",
       "dietary": "Dietary requirements",
       "dietaryOptions": {
         "vegetarian": "Vegetarian",
@@ -813,7 +813,8 @@
         "body": "request",
         "spam": "request"
       },
-      "whatHappens": "When you send, the itinerary, the estimate and your details go to a travel specialist. You receive a booking reference straight away and a reply within one working day."
+      "whatHappens": "When you send, the itinerary, the estimate and your details go to a travel specialist. You receive a booking reference straight away and a reply within one working day.",
+      "failedRate": "Too many requests from this connection in a short time. Please wait a few minutes and try again; your details are still here."
     },
     "summary": {
       "title": "What you are sending",
@@ -845,7 +846,9 @@
       "faq": "Questions about booking",
       "loading": "Finding your request…",
       "notFoundTitle": "We could not find that request",
-      "notFoundBody": "Check the reference in the link. If you sent the request from another browser, the copy with your details is there; this one can only show requests it knows about or can look up."
+      "notFoundBody": "Check the reference in the link. If you sent the request from another browser, the copy with your details is there; this one can only show requests it knows about or can look up.",
+      "forget": "Forget this request on this device",
+      "forgetHint": "Removes the copy with your contact details from this browser. The request itself stays with us."
     }
   }
 }

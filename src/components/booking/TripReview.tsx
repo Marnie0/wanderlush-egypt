@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useTranslation } from "react-i18next";
 import { destinationBySlug } from "@content/destinations";
 import { experienceBySlug } from "@content/experiences";
@@ -11,7 +12,7 @@ import { cn } from "@/lib/cn";
  * store, so the same block renders on the form, on the confirmation and on
  * paper, and always shows what was actually sent.
  */
-export function TripReview({
+export const TripReview = memo(function TripReview({
   trip,
   estimate,
   compact = false,
@@ -107,7 +108,7 @@ export function TripReview({
       <p className="mt-3 text-xs leading-relaxed text-ink-muted">{t("booking.summary.note")}</p>
     </div>
   );
-}
+});
 
 function Row({ label, value }: { label: string; value: string }) {
   return (

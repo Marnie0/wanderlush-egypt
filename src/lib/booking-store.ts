@@ -27,6 +27,8 @@ interface BookingState {
   setConsent: (consent: boolean) => void;
   recordSent: (request: SentRequest) => void;
   clearDraft: () => void;
+  /** Removes the sent copy, contact details included, from this browser. */
+  forgetLastRequest: () => void;
 }
 
 /**
@@ -46,6 +48,7 @@ export const useBookingStore = create<BookingState>()(
       setConsent: (consent) => set({ consent }),
       recordSent: (request) => set({ lastRequest: request, details: emptyDetails, preferences: emptyPreferences, consent: false }),
       clearDraft: () => set({ details: emptyDetails, preferences: emptyPreferences, consent: false }),
+      forgetLastRequest: () => set({ lastRequest: null }),
     }),
     {
       name: BOOKING_STORAGE_KEY,

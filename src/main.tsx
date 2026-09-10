@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
 import { LazyMotion, MotionConfig, domAnimation } from "framer-motion";
-import "./i18n";
+import { ready as i18nReady } from "./i18n";
 // Fonts are served from this origin with the rest of the bundle. The Google
 // Fonts stylesheet was render-blocking and cost two extra connections before
 // a single word could paint; these files are subset by script, so a visitor
@@ -34,14 +34,18 @@ import { router, warmMainRoutes } from "./routes/router";
  * media query cannot do this on its own because these are JavaScript-driven
  * animations, not CSS transitions.
  */
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <LazyMotion features={domAnimation} strict>
-      <MotionConfig reducedMotion="user">
-        <RouterProvider router={router} />
-      </MotionConfig>
-    </LazyMotion>
-  </StrictMode>,
-);
-
-warmMainRoutes();
+// Strings before pixels: an Arabic visitor's bundle is a separate chunk, and
+// the first render waits for it. A promise rather than a top-level await,
+// which would turn the entry into a graph of tiny chunks.
+void i18nReady.then(() => {
+  createRoot(document.getElementById("root")!).render(
+    <StrictMode>
+      <LazyMotion features={domAnimation} strict>
+        <MotionConfig reducedMotion="user">
+          <RouterProvider router={router} />
+        </MotionConfig>
+      </LazyMotion>
+    </StrictMode>,
+  );
+  warmMainRoutes();
+});

@@ -446,6 +446,7 @@ function ItemBody({
               placeholder={item.kind === "free" ? t("builder.itinerary.freePlaceholder") : t("builder.itinerary.transferPlaceholder")}
               onChange={(event) => updateNote(item.id, event.target.value)}
               aria-label={item.kind === "free" ? t("builder.itinerary.freeTime") : t("builder.itinerary.transfer")}
+              maxLength={200}
               className="w-full min-w-0 border-b border-transparent bg-transparent text-sm text-charcoal-900 placeholder:text-charcoal-400 focus:border-ember-500 focus:outline-none"
             />
           </div>

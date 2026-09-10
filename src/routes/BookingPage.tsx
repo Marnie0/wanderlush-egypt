@@ -14,7 +14,7 @@ import { useTripStore } from "@/lib/trip-store";
 import { useBookingStore } from "@/lib/booking-store";
 import { estimateTrip } from "@/lib/estimate";
 import { tripWarnings } from "@/lib/trip-plan";
-import { countryName, snapshotEstimate, snapshotTrip } from "@/lib/booking-request";
+import { countryCollator, countryName, preferenceSummary, snapshotEstimate, snapshotTrip } from "@/lib/booking-request";
 import { formatNumber } from "@/lib/format";
 import {
   CONTACT_METHODS,
@@ -72,17 +72,52 @@ export function BookingPage() {
   const errors = useMemo(() => validateDetails(booking.details, countryCodes), [booking.details]);
   const detailsValid = Object.keys(errors).length === 0;
 
+  // Details are checked when the visitor tries to leave the step, not on
+  // every keystroke; after that first attempt the messages follow the typing.
+  const [attempted, setAttempted] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const requested = searchParams.get("step");
   const wanted: BookingStep = isStep(requested) ? requested : "review";
   // Later steps are not gates the visitor can vault: with problems on the trip
-  // it is the review; without valid details, the details.
-  const step: BookingStep =
+  // it is the review; without valid details, the details. The correction is a
+  // navigation, so the URL agrees with the page and finishing the last field
+  // never swaps the step under the visitor's hands.
+  const allowed: BookingStep =
     problems.length > 0 && wanted !== "review" ? "review" : wanted === "send" && !detailsValid ? "details" : wanted;
+  const step = allowed;
+  // Set once the request is away: the store empties then, which would make the
+  // details "invalid" and send the redirect racing the move to the confirmation.
+  const leaving = useRef(false);
+  useEffect(() => {
+    if (allowed === wanted || leaving.current) return;
+    if (wanted === "send") setAttempted(true);
+    setSearchParams(
+      (params) => {
+        params.set("step", allowed);
+        return params;
+      },
+      { replace: true },
+    );
+    // Only the mismatch matters; the setter is stable.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [allowed, wanted]);
+  const navigated = useRef(false);
   const goTo = (next: BookingStep) => {
-    setSearchParams({ step: next });
+    navigated.current = true;
+    // Other params (a shared ?lng=) ride along.
+    setSearchParams((params) => {
+      params.set("step", next);
+      return params;
+    });
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+  // A new step announces itself: focus lands on its heading, not on whatever
+  // button happened to keep the same position.
+  const stepRef = useRef<HTMLFormElement>(null);
+  useEffect(() => {
+    if (!navigated.current) return;
+    stepRef.current?.querySelector<HTMLElement>("h2")?.focus({ preventScroll: true });
+  }, [step]);
 
   const [visited, setVisited] = useState<Set<BookingStep>>(() => {
     try {
@@ -113,9 +148,6 @@ export function BookingPage() {
     reached.add(candidate);
   }
 
-  // Details are checked when the visitor tries to leave the step, not on
-  // every keystroke; after that first attempt the messages follow the typing.
-  const [attempted, setAttempted] = useState(false);
   const detailsRef = useRef<HTMLDivElement>(null);
   const [focusInvalid, setFocusInvalid] = useState(0);
   const leaveDetails = (next: BookingStep) => {
@@ -146,7 +178,7 @@ export function BookingPage() {
       preferences: booking.preferences,
       trip: requestTrip,
       estimate: requestEstimate,
-      website: (document.getElementById("website") as HTMLInputElement | null)?.value ?? "",
+      wl_extra: (document.getElementById("wl-extra") as HTMLInputElement | null)?.value ?? "",
     };
     const controller = new AbortController();
     const timeout = window.setTimeout(() => controller.abort(), 20_000);
@@ -159,10 +191,17 @@ export function BookingPage() {
       });
       if (!response.ok) {
         const body = (await response.json().catch(() => ({}))) as { field?: string };
-        setSendError(response.status === 400 ? t("booking.send.failedInvalid", { field: t(`booking.send.fields.${body.field ?? "trip"}`) }) : t("booking.send.failed"));
+        setSendError(
+          response.status === 400
+            ? t("booking.send.failedInvalid", { field: t(`booking.send.fields.${body.field ?? "trip"}`) })
+            : response.status === 429
+              ? t("booking.send.failedRate")
+              : t("booking.send.failed"),
+        );
         return;
       }
       const { reference, createdAt } = (await response.json()) as { reference: string; createdAt: string };
+      leaving.current = true;
       booking.recordSent({
         reference,
         createdAt,
@@ -191,7 +230,7 @@ export function BookingPage() {
   if (trip.days.length === 0) {
     return (
       <>
-        <Header t={t} />
+        <PageIntro t={t} />
         <Section className="pt-0 lg:pt-0">
           <Container>
             <div className="border border-line bg-sand-50 px-6 py-14 text-center">
@@ -213,7 +252,7 @@ export function BookingPage() {
 
   return (
     <>
-      <Header t={t}>
+      <PageIntro t={t}>
         <Stepper
           steps={BOOKING_STEPS}
           label={(candidate) => t(`booking.steps.${candidate}`)}
@@ -222,15 +261,26 @@ export function BookingPage() {
           onSelect={(candidate) => (step === "details" && candidate !== "review" ? leaveDetails(candidate) : goTo(candidate))}
           reached={reached}
         />
-      </Header>
+      </PageIntro>
 
       <Section className="pt-0 lg:pt-0">
         <Container>
           <div className="grid gap-12 lg:grid-cols-[1fr_22rem] lg:gap-14">
-            <div className="min-w-0">
+            {/* One form per step: Enter in a field does what the primary button does. */}
+            <form
+              ref={stepRef}
+              className="min-w-0"
+              noValidate
+              onSubmit={(event) => {
+                event.preventDefault();
+                if (step === "send") void send();
+                else if (step === "details" && next) leaveDetails(next);
+                else if (next && !(step === "review" && problems.length > 0)) goTo(next);
+              }}
+            >
               {step === "review" && (
                 <div>
-                  <h2 className="font-display text-2xl text-charcoal-900">{t("booking.review.title")}</h2>
+                  <h2 tabIndex={-1} className="font-display text-2xl text-charcoal-900 focus:outline-none">{t("booking.review.title")}</h2>
                   <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-muted">{t("booking.review.hint")}</p>
                   {problems.length > 0 && (
                     <div className="mt-6">
@@ -280,7 +330,7 @@ export function BookingPage() {
 
               <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-6">
                 {previous ? (
-                  <Button variant="secondary" onClick={() => goTo(previous)}>
+                  <Button type="button" variant="secondary" onClick={() => goTo(previous)}>
                     {t("booking.back", { step: t(`booking.steps.${previous}`) })}
                   </Button>
                 ) : (
@@ -293,21 +343,17 @@ export function BookingPage() {
                         {sendError}
                       </p>
                     )}
-                    <Button onClick={send} disabled={sending} aria-busy={sending}>
+                    <Button type="submit" disabled={sending} aria-busy={sending}>
                       {sending ? t("booking.send.sending") : t("booking.send.submit")}
                     </Button>
                   </div>
                 ) : step === "review" && problems.length > 0 ? (
                   <p className="max-w-sm text-end text-sm text-ink-muted">{t("booking.review.blocked")}</p>
                 ) : (
-                  next && (
-                    <Button onClick={() => (step === "details" ? leaveDetails(next) : goTo(next))}>
-                      {t(`booking.next.${next}`)}
-                    </Button>
-                  )
+                  next && <Button type="submit">{t(`booking.next.${next}`)}</Button>
                 )}
               </div>
-            </div>
+            </form>
 
             <aside className="hidden lg:block">
               <div className="sticky top-28 max-h-[calc(100vh-8rem)] overflow-y-auto border border-line bg-sand-50 p-6">
@@ -329,7 +375,7 @@ export function BookingPage() {
   );
 }
 
-function Header({ t, children }: { t: (key: string) => string; children?: React.ReactNode }) {
+function PageIntro({ t, children }: { t: (key: string) => string; children?: React.ReactNode }) {
   return (
     <Section className="pb-8 lg:pb-10">
       <Container>
@@ -361,14 +407,14 @@ function DetailsStep({
     const featured = featuredCountries.map((code) => named.find((c) => c.code === code)!).filter(Boolean);
     const rest = named
       .filter((c) => !(featuredCountries as readonly string[]).includes(c.code))
-      .sort((a, b) => a.name.localeCompare(b.name, language.startsWith("ar") ? "ar" : "en"));
+      .sort((a, b) => countryCollator(language).compare(a.name, b.name));
     return { featured, rest };
   }, [language]);
   const errorCount = Object.keys(errors).length;
 
   return (
     <div>
-      <h2 className="font-display text-2xl text-charcoal-900">{t("booking.details.title")}</h2>
+      <h2 tabIndex={-1} className="font-display text-2xl text-charcoal-900 focus:outline-none">{t("booking.details.title")}</h2>
       <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-muted">{t("booking.details.hint")}</p>
       {errorCount > 0 && (
         <p role="alert" className="mt-4 border-s-2 border-ember-600 bg-ember-50 px-4 py-2.5 text-sm text-ember-800">
@@ -473,7 +519,7 @@ function PreferencesStep({
 }) {
   const { t } = useTranslation();
   const optional = t("booking.preferences.optional");
-  const counter = (value: string, max: number) => t("booking.preferences.chars", { count: formatNumber(value.length, language), max: formatNumber(max, language) });
+  const counter = (value: string, max: number) => t("booking.preferences.chars", { used: formatNumber(Array.from(value).length, language), max: formatNumber(max, language) });
   const textarea = (props: { id: string; "aria-describedby": string | undefined; "aria-invalid": true | undefined }, value: string, set: (v: string) => void, rows = 3, max: number = LIMITS.note) => (
     <>
       <textarea {...props} rows={rows} maxLength={max} value={value} onChange={(event) => set(event.target.value)} className={inputClasses()} />
@@ -485,7 +531,7 @@ function PreferencesStep({
 
   return (
     <div>
-      <h2 className="font-display text-2xl text-charcoal-900">{t("booking.preferences.title")}</h2>
+      <h2 tabIndex={-1} className="font-display text-2xl text-charcoal-900 focus:outline-none">{t("booking.preferences.title")}</h2>
       <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-muted">{t("booking.preferences.hint")}</p>
       <div className="mt-8 max-w-xl space-y-8">
         <fieldset>
@@ -601,7 +647,7 @@ function SendStep({
   const preferenceLines = preferenceSummary(preferences, t);
   return (
     <div>
-      <h2 className="font-display text-2xl text-charcoal-900">{t("booking.send.title")}</h2>
+      <h2 tabIndex={-1} className="font-display text-2xl text-charcoal-900 focus:outline-none">{t("booking.send.title")}</h2>
       <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-muted">{t("booking.send.hint")}</p>
 
       <div className="mt-8 grid gap-8 md:grid-cols-2">
@@ -663,10 +709,10 @@ function SendStep({
             {t("booking.send.consentRequired")}
           </p>
         )}
-        {/* Not for people. Hidden from the page and from assistive technology. */}
+        {/* Not for people. Hidden from the page and from assistive technology,
+            and named so that no form filler recognises it as a field it knows. */}
         <div aria-hidden className="absolute -start-[9999px] h-px w-px overflow-hidden">
-          <label htmlFor="website">Website</label>
-          <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" defaultValue="" />
+          <input id="wl-extra" name="wl_extra" type="text" tabIndex={-1} autoComplete="off" defaultValue="" />
         </div>
         <p className="mt-4 text-xs leading-relaxed text-ink-muted">{t("booking.send.whatHappens")}</p>
       </div>
@@ -683,27 +729,4 @@ function Line({ label, value, ltr }: { label: string; value: string; ltr?: boole
       </dd>
     </div>
   );
-}
-
-/** Only what was filled in, as label and value pairs. */
-export function preferenceSummary(preferences: Preferences, t: (key: string) => string): { label: string; value: string }[] {
-  const lines: { label: string; value: string }[] = [];
-  if (preferences.dietary.length > 0) {
-    lines.push({ label: t("booking.preferences.dietary"), value: preferences.dietary.map((d) => t(`booking.preferences.dietaryOptions.${d}`)).join(t("common.listSeparator")) });
-  }
-  if (preferences.dietaryNotes.trim()) lines.push({ label: t("booking.preferences.dietaryNotes"), value: preferences.dietaryNotes.trim() });
-  if (preferences.accessibility.trim()) lines.push({ label: t("booking.preferences.accessibility"), value: preferences.accessibility.trim() });
-  if (preferences.roomType) lines.push({ label: t("booking.preferences.room"), value: t(`booking.preferences.roomTypes.${preferences.roomType}`) });
-  if (preferences.roomNotes.trim()) lines.push({ label: t("booking.preferences.roomNotes"), value: preferences.roomNotes.trim() });
-  if (preferences.airportTransfer) {
-    lines.push({ label: t("booking.preferences.airportTransfer"), value: t(preferences.airportTransfer === "yes" ? "booking.preferences.transferYes" : "booking.preferences.transferNo") });
-  }
-  if (preferences.occasion !== "none") {
-    lines.push({
-      label: t("booking.preferences.occasion"),
-      value: [t(`booking.preferences.occasions.${preferences.occasion}`), preferences.occasionNotes.trim()].filter(Boolean).join(": "),
-    });
-  }
-  if (preferences.additionalRequests.trim()) lines.push({ label: t("booking.preferences.additional"), value: preferences.additionalRequests.trim() });
-  return lines;
 }

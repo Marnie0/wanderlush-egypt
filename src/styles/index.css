@@ -319,15 +319,11 @@
 @media print {
   header,
   footer,
-  nav,
-  [data-print="hide"] {
+  nav {
     display: none !important;
   }
   main {
     padding-top: 0 !important;
-  }
-  .sticky {
-    position: static !important;
   }
   a {
     text-decoration: none;

@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { destinationBySlug } from "@content/destinations";
@@ -54,6 +54,16 @@ export function TripSummaryPage() {
   );
   const problems = warnings.filter((warning) => warning.severity === "warning");
   const stops = stopsFromDays(trip.days);
+  // The next click is "Request this trip"; have its chunk ready before it comes.
+  useEffect(() => {
+    const warm = () => void import("./BookingPage");
+    if (typeof window.requestIdleCallback === "function") {
+      const handle = window.requestIdleCallback(warm, { timeout: 3000 });
+      return () => window.cancelIdleCallback(handle);
+    }
+    const handle = window.setTimeout(warm, 1500);
+    return () => window.clearTimeout(handle);
+  }, []);
 
   if (trip.days.length === 0) {
     return (

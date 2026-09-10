@@ -76,7 +76,7 @@ export interface BookingPayload {
   trip: RequestTrip;
   estimate: RequestEstimate;
   /** Left empty by people; filled by the kind of script that fills every field. */
-  website?: string;
+  wl_extra?: string;
 }
 
 /** What the confirmation page shows, and what the API returns for a reference. */
@@ -115,6 +115,8 @@ export const LIMITS = {
   email: 254,
   phone: 30,
   note: 1000,
+  /** A free-time or transfer note on one itinerary day. */
+  dayNote: 200,
   days: 60,
   itemsPerDay: 12,
   payloadBytes: 60_000,
@@ -126,12 +128,30 @@ export type DetailsErrors = Partial<Record<keyof TravellerDetails, DetailsErrorK
 /** Plain, generous and not a spec: a dot after the at sign is the whole test. */
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
+/** Arabic-Indic and Persian digits become ASCII, so a phone typed on an Arabic keyboard counts. */
+export function normalizeDigits(value: string): string {
+  return value
+    .replace(/[\u0660-\u0669]/g, (d) => String(d.charCodeAt(0) - 0x0660))
+    .replace(/[\u06f0-\u06f9]/g, (d) => String(d.charCodeAt(0) - 0x06f0));
+}
+
 /**
  * A phone number is digits, with the usual punctuation people type around
  * them. Between seven and fifteen digits is every national plan on earth.
  */
 export function phoneDigits(value: string): string {
-  return value.replace(/\D/g, "");
+  return normalizeDigits(value).replace(/\D/g, "");
+}
+
+/**
+ * Trims, drops control characters the database would refuse, and cuts by
+ * code point rather than code unit, so a limit never splits an emoji into a
+ * lone surrogate that no JSON column accepts.
+ */
+export function clipText(value: string, max: number): string {
+  // eslint-disable-next-line no-control-regex
+  const clean = value.replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/g, "").trim();
+  return Array.from(clean).slice(0, max).join("");
 }
 
 export function validateDetails(details: TravellerDetails, countries: readonly string[]): DetailsErrors {
@@ -144,7 +164,7 @@ export function validateDetails(details: TravellerDetails, countries: readonly s
   if (!email) errors.email = "required";
   else if (email.length > LIMITS.email || !EMAIL.test(email)) errors.email = "email";
 
-  const phone = details.phone.trim();
+  const phone = normalizeDigits(details.phone.trim());
   const digits = phoneDigits(phone);
   if (!phone) errors.phone = "required";
   else if (phone.length > LIMITS.phone || digits.length < 7 || digits.length > 15 || !/^[+\d\s().-]+$/.test(phone)) errors.phone = "phone";
@@ -179,7 +199,15 @@ const isString = (value: unknown): value is string => typeof value === "string";
 const isInt = (value: unknown, min: number, max: number): value is number =>
   typeof value === "number" && Number.isInteger(value) && value >= min && value <= max;
 const isMoney = (value: unknown): value is number => typeof value === "number" && Number.isFinite(value) && value >= 0 && value < 10_000_000;
-const clip = (value: unknown, max: number): string => (isString(value) ? value.trim().slice(0, max) : "");
+const clip = (value: unknown, max: number): string => (isString(value) ? clipText(value, max) : "");
+export const MONTHS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"] as const;
+/** A real calendar date, not just the shape of one: "2026-02-30" fails. */
+export function isIsoDate(value: unknown): value is string {
+  if (!isString(value) || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const [y, m, d] = value.split("-").map(Number);
+  const date = new Date(Date.UTC(y, m - 1, d));
+  return date.getUTCFullYear() === y && date.getUTCMonth() === m - 1 && date.getUTCDate() === d;
+}
 const oneOf = <T extends string>(value: unknown, options: readonly T[], fallback: T): T =>
   isString(value) && (options as readonly string[]).includes(value) ? (value as T) : fallback;
 
@@ -187,16 +215,20 @@ const oneOf = <T extends string>(value: unknown, options: readonly T[], fallback
  * Turns an untrusted body into a payload or a reason it is not one. Strings
  * are clipped rather than rejected: a long note is a note, not an attack.
  */
-export function parsePayload(body: unknown, countries: readonly string[]): { payload: BookingPayload } | { error: string } {
+export function parsePayload(
+  body: unknown,
+  countries: readonly string[],
+  currencies: readonly string[] = ["USD"],
+): { payload: BookingPayload } | { error: string } {
   if (!body || typeof body !== "object") return { error: "body" };
   const raw = body as Record<string, unknown>;
-  if (isString(raw.website) && raw.website.trim() !== "") return { error: "spam" };
+  if (isString(raw.wl_extra) && raw.wl_extra.trim() !== "") return { error: "spam" };
 
   const t = (raw.traveller ?? {}) as Record<string, unknown>;
   const traveller: TravellerDetails = {
     fullName: clip(t.fullName, LIMITS.name),
     email: clip(t.email, LIMITS.email),
-    phone: clip(t.phone, LIMITS.phone),
+    phone: normalizeDigits(clip(t.phone, LIMITS.phone)),
     country: isString(t.country) ? t.country.toUpperCase().slice(0, 2) : "",
     contactMethod: oneOf(t.contactMethod, CONTACT_METHODS, "email"),
   };
@@ -225,21 +257,21 @@ export function parsePayload(body: unknown, countries: readonly string[]): { pay
     const experienceSlugs = Array.isArray(d.experienceSlugs)
       ? d.experienceSlugs.filter((s): s is string => isString(s) && /^[a-z0-9-]{1,80}$/.test(s)).slice(0, LIMITS.itemsPerDay)
       : [];
-    const notes = Array.isArray(d.notes) ? d.notes.filter(isString).map((n) => n.trim().slice(0, 200)).slice(0, LIMITS.itemsPerDay) : [];
+    const notes = Array.isArray(d.notes) ? d.notes.filter(isString).map((n) => clipText(n, LIMITS.dayNote)).filter(Boolean).slice(0, LIMITS.itemsPerDay) : [];
     days.push({ destinationSlug: d.destinationSlug, experienceSlugs, notes });
   }
-  const startDate = isString(tr.startDate) && /^\d{4}-\d{2}-\d{2}$/.test(tr.startDate) ? tr.startDate : null;
+  const startDate = isIsoDate(tr.startDate) ? tr.startDate : null;
   if (!isInt(tr.durationDays, 1, LIMITS.days) || !isInt(tr.adults, 1, 40) || !isInt(tr.children, 0, 40)) return { error: "trip" };
   const trip: RequestTrip = {
     startDate,
-    month: isString(tr.month) && /^[a-z]{3}$/.test(tr.month) ? tr.month : null,
+    month: isString(tr.month) && (MONTHS as readonly string[]).includes(tr.month) ? tr.month : null,
     durationDays: tr.durationDays,
     adults: tr.adults,
     children: tr.children,
     tier: clip(tr.tier, 20) || "comfort",
     tourStyle: oneOf(tr.tourStyle, ["shared", "private"] as const, "shared"),
     serviceIncluded: tr.serviceIncluded !== false,
-    currency: isString(tr.currency) && /^[A-Z]{3}$/.test(tr.currency) ? tr.currency : "USD",
+    currency: isString(tr.currency) && currencies.includes(tr.currency) ? tr.currency : "USD",
     interests: Array.isArray(tr.interests) ? tr.interests.filter((i): i is string => isString(i) && /^[a-z]{1,20}$/.test(i)).slice(0, 12) : [],
     days,
   };

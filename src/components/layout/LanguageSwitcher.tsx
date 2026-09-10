@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
+import { switchLanguage as loadAndSwitch } from "@/i18n";
 import { cn } from "@/lib/cn";
 
 /**
@@ -21,7 +22,7 @@ export function LanguageSwitcher({
   const next = isArabic ? "en" : "ar";
 
   const switchLanguage = () => {
-    void i18n.changeLanguage(next);
+    void loadAndSwitch(next);
     // A shared link carries ?lng=, and the detector reads the URL before it
     // reads the saved choice. Left in place, one reload would flip the page
     // straight back to the language the visitor just left.

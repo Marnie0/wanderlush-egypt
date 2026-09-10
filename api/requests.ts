@@ -1,6 +1,8 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { query } from "../db/client.js";
 import { countryCodes } from "../content/countries.js";
+import { currencies } from "../content/currencies.js";
+import { accommodationLevels } from "../content/accommodation.js";
 import {
   firstNameOf,
   isReference,
@@ -39,14 +41,45 @@ interface RequestRow extends Record<string, unknown> {
   estimate: RequestEstimate;
 }
 
+/**
+ * A best-effort brake on one address sending request after request. Memory
+ * lives as long as the container, which is enough to blunt a loop and no
+ * substitute for edge rate limiting on a real deployment.
+ */
+const WINDOW_MS = 10 * 60 * 1000;
+const WINDOW_LIMIT = 8;
+const recent = new Map<string, number[]>();
+function tooMany(address: string): boolean {
+  const now = Date.now();
+  const stamps = (recent.get(address) ?? []).filter((at) => now - at < WINDOW_MS);
+  stamps.push(now);
+  recent.set(address, stamps);
+  if (recent.size > 5000) recent.clear();
+  return stamps.length > WINDOW_LIMIT;
+}
+
+function clientAddress(req: VercelRequest): string {
+  const forwarded = req.headers["x-forwarded-for"];
+  const first = (Array.isArray(forwarded) ? forwarded[0] : forwarded)?.split(",")[0]?.trim();
+  return first || req.socket?.remoteAddress || "unknown";
+}
+
 async function create(req: VercelRequest, res: VercelResponse) {
+  if (tooMany(clientAddress(req))) {
+    res.setHeader("Retry-After", String(WINDOW_MS / 1000));
+    return res.status(429).json({ error: "Too many requests" });
+  }
   if (JSON.stringify(req.body ?? "").length > LIMITS.payloadBytes) {
     return res.status(413).json({ error: "Request too large" });
   }
-  const parsed = parsePayload(req.body, countryCodes);
+  const parsed = parsePayload(req.body, countryCodes, currencyCodes);
   if ("error" in parsed) {
-    // A filled honeypot gets the same answer as success: nothing to learn from it.
-    if (parsed.error === "spam") return res.status(201).json({ reference: makeReference(), createdAt: new Date().toISOString() });
+    // A filled honeypot gets the same answer as success: nothing to learn from
+    // it. Counted in the log, without the body, so a false-positive rate shows.
+    if (parsed.error === "spam") {
+      console.warn("requests.create honeypot");
+      return res.status(201).json({ reference: makeReference(), createdAt: new Date().toISOString() });
+    }
     return res.status(400).json({ error: "Invalid request", field: parsed.error });
   }
   const { traveller, preferences, trip, estimate, language } = parsed.payload;
@@ -73,7 +106,15 @@ async function create(req: VercelRequest, res: VercelResponse) {
       return res.status(201).json({ reference, createdAt: rows[0]?.created_at ?? new Date().toISOString() });
     } catch (error) {
       if (isUniqueViolation(error)) continue;
-      if (isForeignKeyViolation(error)) return res.status(400).json({ error: "Invalid request", field: "trip" });
+      if (isForeignKeyViolation(error)) {
+        // A known tier that the database does not know means the levels were
+        // never seeded: our problem, not the traveller's.
+        if (knownTiers.has(trip.tier)) {
+          console.error("requests.create accommodation_levels not seeded", error);
+          return res.status(500).json({ error: "Could not save the request" });
+        }
+        return res.status(400).json({ error: "Invalid request", field: "trip" });
+      }
       console.error("requests.create", error);
       return res.status(500).json({ error: "Could not save the request" });
     }
@@ -112,6 +153,9 @@ function addDays(iso: string, days: number): string {
   const date = new Date(Date.UTC(year, month - 1, day + days));
   return date.toISOString().slice(0, 10);
 }
+
+const currencyCodes = currencies.map((currency) => currency.code);
+const knownTiers = new Set<string>(accommodationLevels.map((level) => level.id));
 
 const pgCode = (error: unknown) => (error as { code?: string } | null)?.code;
 const isUniqueViolation = (error: unknown) => pgCode(error) === "23505";
