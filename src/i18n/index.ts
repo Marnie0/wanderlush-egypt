@@ -2,6 +2,7 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import en from "./locales/en.json";
+import { loadArabicContent } from "@content/ar-text";
 
 export const supportedLanguages = ["en", "ar"] as const;
 export type SupportedLanguage = (typeof supportedLanguages)[number];
@@ -24,9 +25,14 @@ const bundles: Record<SupportedLanguage, () => Promise<{ default: typeof en }>> 
 };
 
 export async function loadLanguage(language: SupportedLanguage): Promise<void> {
-  if (i18n.hasResourceBundle(language, "translation")) return;
-  const bundle = await bundles[language]();
-  i18n.addResourceBundle(language, "translation", bundle.default, true, true);
+  // The Arabic content strings travel as a chunk of their own, fetched
+  // alongside the locale rather than after it.
+  const content = language === "ar" ? loadArabicContent() : Promise.resolve();
+  if (!i18n.hasResourceBundle(language, "translation")) {
+    const bundle = await bundles[language]();
+    i18n.addResourceBundle(language, "translation", bundle.default, true, true);
+  }
+  await content;
 }
 
 /** The switcher's entry point: the bundle first, then the change, so nothing renders as keys. */

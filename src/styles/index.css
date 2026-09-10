@@ -227,6 +227,16 @@
     letter-spacing: 0;
   }
 
+  /* The family utilities follow the swap too, so an Arabic page never
+     fetches Fraunces for a price or Inter for a map label. */
+  [dir="rtl"] .font-display {
+    font-family: var(--font-arabic-display);
+  }
+
+  [dir="rtl"] .font-body {
+    font-family: var(--font-arabic-body);
+  }
+
   /* Cinematic scrim: keeps white type legible over photography. */
   /* Card overlays. Strong enough for white type over a bright photograph. */
   .scrim-bottom {

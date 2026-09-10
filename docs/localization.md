@@ -15,6 +15,21 @@ language can be linked to), then `localStorage` (`wanderlush.language`),
 then the browser. The document gets `lang` and `dir`, so portals, dialogs,
 scrollbars and the print stylesheet all follow.
 
+## What the browser downloads
+
+English strings ship in the main bundle. Arabic is two chunks fetched
+together before the first paint for an Arabic visitor, and on the first
+switch for anyone else: the locale file, and the Arabic side of the content.
+`content/*.ts` is still written once, with `{ en, ar }` pairs, and the seed
+script and the API read it as written. For the browser,
+`scripts/vite-content-split.ts` rewrites each pair into a call that keeps
+the English string inline and reads the Arabic one from a table emitted as
+`virtual:content-ar`; `content/ar-text.ts` loads that table. An English
+visitor never downloads a word of Arabic, and a pair read before its table
+arrives answers in English rather than with nothing. The table and the
+calls index the pairs in source order from the same walk, so they cannot
+drift.
+
 ## Locale files
 
 One namespace, grouped by page or feature (`home`, `explore`, `builder`,
@@ -97,8 +112,10 @@ for everything else, including the Latin words inside Arabic text. Leading
 is higher than the Latin scale (1.9 for body, 1.28–1.4 for display sizes),
 and every letter-spacing utility is zeroed under `[dir="rtl"]`, because
 tracking pulls a connected script apart. Uppercase labels become plain.
-Fonts are self-hosted and subset by script, so an English visitor never
-downloads the Arabic faces.
+Fonts are self-hosted and subset by script, and the family utilities follow
+the swap under `[dir="rtl"]`, so an English visitor never downloads the
+Arabic faces and an Arabic page never fetches Fraunces for a price or Inter
+for a map label.
 
 ## Testing
 

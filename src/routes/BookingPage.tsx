@@ -28,6 +28,7 @@ import {
   type DetailsErrors,
   type Preferences,
   type TravellerDetails,
+  normalizeDigits,
 } from "../../shared/booking";
 import { cn } from "@/lib/cn";
 
@@ -470,7 +471,7 @@ function DetailsStep({
               inputMode="tel"
               maxLength={LIMITS.phone}
               value={details.phone}
-              onChange={(event) => onChange({ phone: event.target.value })}
+              onChange={(event) => onChange({ phone: normalizeDigits(event.target.value) })}
               className={inputClasses(props["aria-invalid"])}
               dir="ltr"
             />

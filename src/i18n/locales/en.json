@@ -550,8 +550,8 @@
       "empty": "Nothing planned yet.",
       "exceedsDuration_one": "Your itinerary runs to {{planned}} but the trip is {{duration}}. Drop one night, or make the trip longer.",
       "exceedsDuration_other": "Your itinerary runs to {{planned}} but the trip is {{duration}}. Drop {{count}} nights, or make the trip longer.",
-      "underDuration_one": "One day of your {{duration}} trip is still unplanned: the itinerary covers {{planned}}.",
-      "underDuration_other": "{{count}} days of your {{duration}} trip are still unplanned: the itinerary covers {{planned}}.",
+      "underDuration_one": "The trip is {{duration}} but the itinerary covers {{planned}}. One day is still unplanned.",
+      "underDuration_other": "The trip is {{duration}} but the itinerary covers {{planned}}. {{count}} days are still unplanned.",
       "multiDay_one": "An experience on day {{day}} lasts a full day; nothing else fits on it.",
       "multiDay_other": "An experience on day {{day}} lasts {{count}} days; keep the days after it free.",
       "duplicateSameDay": "Day {{day}} has the same experience twice."

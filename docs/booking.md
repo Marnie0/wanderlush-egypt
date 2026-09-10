@@ -31,7 +31,9 @@ request that passes the form passes the server, and one sent by hand is held
 to the same rules. Strings are clipped to their limits rather than rejected,
 by code point and with control characters removed, so a limit never leaves a
 half emoji that the JSON columns would refuse. Arabic-Indic digits in a phone
-number are normalised before counting.
+number become Western digits as they are typed, so the number reads the
+same way in the form, the read-back and the database, and the server
+normalises again on receipt.
 
 The route also answers 429 to more than eight requests from one address in
 ten minutes. The counter lives in the function's memory, so it is a brake on
