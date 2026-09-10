@@ -31,7 +31,7 @@ export function Toast() {
   }, [pathname, dismiss]);
 
   return (
-    <div className="pointer-events-none fixed inset-x-0 bottom-0 z-40 flex justify-center px-4 pb-4 sm:pb-6" aria-live="polite">
+    <div className="pointer-events-none fixed inset-x-0 bottom-0 z-40 flex justify-center px-4 pb-4 print:hidden sm:pb-6" aria-live="polite">
       <AnimatePresence>
         {toast && (
           <m.div

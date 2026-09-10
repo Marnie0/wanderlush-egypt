@@ -111,7 +111,10 @@
     "plan": "Plan",
     "company": "Company",
     "rights": "A fictional travel company, built as a portfolio project.",
-    "demoNotice": "All destinations, experiences, prices and testimonials on this site are demonstration content."
+    "demoNotice": "All destinations, experiences, prices and testimonials on this site are demonstration content.",
+    "creditPrefix": "Designed and built by",
+    "creditName": "Ibrahim Hassan",
+    "newTab": "opens in a new tab"
   },
   "meta": {
     "destinations": "Destinations in Egypt",

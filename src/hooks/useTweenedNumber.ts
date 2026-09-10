@@ -13,18 +13,15 @@ import { duration } from "@/lib/motion";
 export function useTweenedNumber(target: number, seconds = duration.slow): number {
   const reduceMotion = useReducedMotion();
   const [shown, setShown] = useState(target);
-  const fromRef = useRef(target);
   const shownRef = useRef(target);
   shownRef.current = shown;
 
   useEffect(() => {
     if (reduceMotion || shownRef.current === target) {
-      fromRef.current = target;
       setShown(target);
       return;
     }
     const from = shownRef.current;
-    fromRef.current = from;
     const start = performance.now();
     const total = seconds * 1000;
     let frame = 0;

@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { m } from "framer-motion";
 import { currencies } from "@content/currencies";
@@ -157,15 +158,20 @@ export function CostLines({
  * warms for a moment, so a change to the trip is seen in the price without
  * anyone having to compare two numbers. The live region is the parent: this
  * span is keyed on the target so the announcement fires once per change.
+ * The first figure on a page is a fact, not a change, so it does not warm.
  */
 export function LiveMoney({ amountUsd, currency, className }: { amountUsd: number; currency: string; className?: string }) {
   const { i18n } = useTranslation();
   const language = i18n.resolvedLanguage ?? "en";
   const shown = useTweenedNumber(amountUsd);
+  const settled = useRef(false);
+  useEffect(() => {
+    settled.current = true;
+  }, []);
   return (
     <m.span
       key={`${amountUsd}-${currency}`}
-      initial={{ color: "#a94a1b" }}
+      initial={settled.current ? { color: "#a94a1b" } : false}
       animate={{ color: "#12100c" }}
       transition={{ duration: 1.1, ease: "easeOut" }}
       className={cn("tabular-nums", className)}

@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { m } from "framer-motion";
 import { useDirection } from "@/hooks/useDirection";
 import { stepPanel } from "@/lib/motion";
@@ -14,7 +14,9 @@ export function StepPanel({ step, index, children }: { step: string; index: numb
   const { isRtl } = useDirection();
   const lastIndex = useRef(index);
   const forward = index >= lastIndex.current;
-  lastIndex.current = index;
+  useEffect(() => {
+    lastIndex.current = index;
+  }, [index]);
   const direction = (forward ? 1 : -1) * (isRtl ? -1 : 1);
   return (
     <m.div key={step} initial="hidden" animate="visible" variants={stepPanel(direction)}>
