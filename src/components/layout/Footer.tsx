@@ -5,6 +5,7 @@ import { LanguageSwitcher } from "./LanguageSwitcher";
 import { primaryNav, footerPlanNav, footerCompanyNav } from "./navItems";
 
 const PORTFOLIO_URL = "https://portfolio-ih18.vercel.app/";
+void PORTFOLIO_URL;
 
 function FooterColumn({
   title,
@@ -61,9 +62,10 @@ export function Footer() {
           {/* The maker's mark: one quiet line in the same voice as the rest
               of the bar, the name a link, and nothing that competes with the
               site it sits under. */}
+          {/*
           <p className="shrink-0 text-xs text-ivory/70">
             {t("footer.creditPrefix")}{" "}
-            <a
+            
               href={PORTFOLIO_URL}
               target="_blank"
               rel="noopener noreferrer"
@@ -76,6 +78,7 @@ export function Footer() {
               <span className="sr-only"> ({t("footer.newTab")})</span>
             </a>
           </p>
+          */}
         </div>
       </Container>
     </footer>
